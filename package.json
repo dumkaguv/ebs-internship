@@ -5,9 +5,11 @@
   "scripts": {},
   "private": true,
   "dependencies": {
+    "@tanstack/react-query": "^5.80.6",
+    "antd": "^5.26.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-router-dom": "6.29.0"
+    "react-router-dom": "^6.29.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
@@ -26,6 +28,7 @@
     "@swc/cli": "~0.6.0",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
+    "@tanstack/react-query-devtools": "^5.80.6",
     "@testing-library/dom": "10.4.0",
     "@testing-library/react": "16.1.0",
     "@types/jest": "^29.5.12",
