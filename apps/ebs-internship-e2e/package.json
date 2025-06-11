@@ -1,0 +1,10 @@
+{
+  "name": "@ebs-internship/ebs-internship-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@ebs-internship/ebs-internship"
+    ]
+  }
+}
