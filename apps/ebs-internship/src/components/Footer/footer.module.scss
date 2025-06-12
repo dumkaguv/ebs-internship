@@ -11,9 +11,14 @@
   padding: 0 16px;
 }
 
+.customTitle {
+  color: var(--color-grey-100) !important;
+  font-size: 18px;
+  font-weight: 600;
+}
+
 .customText {
-  color: #cbd5e1;
-  font-family: Inter, sans-serif;
+  color: var(--color-grey-300);
   font-size: 14px;
   font-weight: 400;
 }

@@ -32,12 +32,7 @@ const AppFooter = () => {
                   preview={false}
                 />
                 <Title
-                  style={{
-                    color: "#f1f5f9",
-                    fontFamily: "Inter, sans-serif",
-                    fontSize: 24,
-                    fontWeight: 600,
-                  }}
+                  className={classes.customTitle}
                   level={3}
                 >
                   Byway
@@ -59,13 +54,8 @@ const AppFooter = () => {
             lg={3}
           >
             <Title
+              className={classes.customTitle}
               level={5}
-              style={{
-                color: "#f1f5f9",
-                fontFamily: "Inter, sans-serif",
-                fontSize: 18,
-                fontWeight: 600,
-              }}
             >
               Get Help
             </Title>
@@ -83,13 +73,8 @@ const AppFooter = () => {
             lg={3}
           >
             <Title
+              className={classes.customTitle}
               level={5}
-              style={{
-                color: "#f1f5f9",
-                fontFamily: "Inter, sans-serif",
-                fontSize: 18,
-                fontWeight: 600,
-              }}
             >
               Programs
             </Title>
@@ -110,13 +95,8 @@ const AppFooter = () => {
             xl={6}
           >
             <Title
+              className={classes.customTitle}
               level={5}
-              style={{
-                color: "#f1f5f9",
-                fontFamily: "Inter, sans-serif",
-                fontSize: 18,
-                fontWeight: 600,
-              }}
             >
               Contact Us
             </Title>
