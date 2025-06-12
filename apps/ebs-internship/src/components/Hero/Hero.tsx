@@ -10,6 +10,7 @@ function Hero() {
       <Container>
         <Flex
           justify="space-between"
+          align="center"
           gap={16}
         >
           <Flex
