@@ -1,5 +1,4 @@
 import { StrictMode } from "react";
-import { BrowserRouter } from "react-router-dom";
 import * as ReactDOM from "react-dom/client";
 import App from "./app/app";
 import "antd/dist/reset.css";
@@ -10,8 +9,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <App />
   </StrictMode>
 );

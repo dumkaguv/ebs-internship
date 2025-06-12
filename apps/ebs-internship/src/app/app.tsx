@@ -1,10 +1,9 @@
-import { MainLayout } from "@/layouts";
-import AntDesignConfig from "@/providers/AntDesignConfig";
+import { AntDesignConfig, AppRouter } from "@/providers";
 
 export function App() {
   return (
     <AntDesignConfig>
-      <MainLayout />
+      <AppRouter />
     </AntDesignConfig>
   );
 }
