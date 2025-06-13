@@ -1,0 +1,11 @@
+.hero {
+  padding-block: 40px;
+
+  &Description {
+    color: var(--color-grey-700);
+  }
+
+  &Title {
+    color: var(--color-grey-900);
+  }
+}
