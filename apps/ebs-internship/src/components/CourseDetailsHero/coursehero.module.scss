@@ -1,6 +1,6 @@
 .heroSection {
   background-color: var(--color-grey-background);
-  padding-top: 40px;
+  padding: 40px 0;
 }
 
 .customTitle {
@@ -12,9 +12,50 @@
 .customParagraph {
   font-size: 16px;
   color: var(--color-grey-700);
+  max-width: 75%;
+}
+
+.customText {
+  font-size: 14px;
+  color: var(--color-grey-700);
 }
 
 .rate {
-  margin: 0;
-  padding: 0;
+  margin: 0 8px !important;
+  padding: 0 !important;
+}
+
+:global(.ant-rate-star) {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.rateNumber {
+  font-size: 16px;
+  color: var(--color-Warning-300);
+  font-weight: 500;
+}
+
+.customButton {
+  padding: 10px 0;
+  margin-bottom: 16px;
+}
+
+.cardTitle {
+  font-size: 24px;
+  font-weight: 600;
+  display: flex;
+  gap: 13px;
+  align-items: center;
+}
+
+.cardText {
+  color: var(--color-active-600);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.cardLine {
+  margin: 24px 0;
+  border: 2px solid #e2e8f0;
 }

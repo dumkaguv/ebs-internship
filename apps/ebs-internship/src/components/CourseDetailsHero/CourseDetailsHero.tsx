@@ -1,23 +1,13 @@
-import React from "react";
-import {
-  Row,
-  Col,
-  Card,
-  Typography,
-  Button,
-  Flex,
-  Rate,
-  Avatar,
-  Tag,
-} from "antd";
+import { Row, Col, Card, Typography, Button, Flex, Rate, Avatar } from "antd";
 import { GlobalOutlined } from "@ant-design/icons";
 import Container from "../Container";
 import { Breadcrumb } from "../Breadcrumb";
 import styles from "./coursehero.module.scss";
+import { FC } from "react";
 
 const { Title, Paragraph, Text, Link } = Typography;
 
-const HeroSection: React.FC = () => {
+const HeroSection: FC = () => {
   return (
     <section className={styles.heroSection}>
       <Container>
@@ -31,7 +21,6 @@ const HeroSection: React.FC = () => {
           >
             <Typography>
               <Breadcrumb />
-
               <Title
                 className={styles.customTitle}
                 level={1}
@@ -48,36 +37,39 @@ const HeroSection: React.FC = () => {
                 vertical
                 gap={24}
               >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  <Text>4.6</Text>
+                <Flex align="center">
+                  <Text className={styles.rateNumber}>4.6</Text>
                   <Rate
                     className={styles.rate}
                     disabled
                     defaultValue={4.6}
                     allowHalf
                   />
-                  <Text>(651651 rating)</Text>
+                  <Text className={styles.customText}>(651651 rating)</Text>
                   <Text style={{ margin: "0 1rem" }}>|</Text>
-                  <Text>22 Total Hours. 155 Lectures. All levels</Text>
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <Text className={styles.customText}>
+                    22 Total Hours. 155 Lectures. All levels
+                  </Text>
+                </Flex>
+
+                <Flex
+                  align="center"
+                  gap={8}
+                >
                   <Avatar
                     src="https://randomuser.me/api/portraits/men/32.jpg"
                     size={40}
                   />
-                  <Text>Created by </Text>
+                  <Text className={styles.customText}>Created by </Text>
                   <Link>Ronal Richards</Link>
-                </div>
-                <div style={{ marginTop: 8 }}>
-                  <GlobalOutlined style={{ marginRight: 8 }} />
-                  <Text>English, Spanish, Italian, German</Text>
-                </div>
+                </Flex>
+
+                <Flex align="center">
+                  <GlobalOutlined style={{ marginRight: 8, fontSize: 24 }} />
+                  <Text className={styles.customText}>
+                    English, Spanish, Italian, German
+                  </Text>
+                </Flex>
               </Flex>
             </Typography>
           </Col>
@@ -96,27 +88,35 @@ const HeroSection: React.FC = () => {
                 />
               }
             >
-              <Title level={3}>
-                $49.5{" "}
+              <Title
+                className={styles.cardTitle}
+                level={3}
+              >
+                $49.5
                 <Text
                   delete
                   type="secondary"
+                  style={{ fontSize: 18 }}
                 >
                   $99.5
-                </Text>{" "}
-                <Tag color="green">50% Off</Tag>
+                </Text>
+                <Text className={styles.cardText}>50% Off</Text>
               </Title>
               <Button
+                style={{ backgroundColor: "black", color: " white" }}
+                className={styles.customButton}
                 block
-                style={{
-                  marginBottom: 8,
-                  backgroundColor: "black",
-                  color: "white",
-                }}
               >
                 Add To Cart
               </Button>
-              <Button block>Buy Now</Button>
+              <Button
+                style={{ borderBottom: "1px solid #E2E8F0" }}
+                className={styles.customButton}
+                block
+              >
+                Buy Now
+              </Button>
+              <div className="cardLine"></div>
             </Card>
           </Col>
         </Row>
