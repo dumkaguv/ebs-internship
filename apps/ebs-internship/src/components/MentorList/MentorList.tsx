@@ -1,6 +1,6 @@
 import { Container, Section } from "@/components";
 import { RoutesEnum } from "@/config/routesEnum";
-import { fetchTutors } from "@/lib";
+import { fetchTutors } from "@/services";
 import { useQuery } from "@tanstack/react-query";
 import { Card, Flex, List, Typography } from "antd";
 import { FC } from "react";

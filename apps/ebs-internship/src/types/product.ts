@@ -1,5 +1,5 @@
+import { Author } from "./author";
 import { Productable } from "./productable";
-import { ProductAuthor } from "./productAuthor";
 
 export interface Product {
   id: number;
@@ -25,7 +25,7 @@ export interface Product {
   categories: unknown;
   tags: unknown;
   updated_at: string;
-  authors: ProductAuthor[];
+  authors: Author[];
   available_quantity?: number | null;
   sold_quantity: number;
   gross_price: number;

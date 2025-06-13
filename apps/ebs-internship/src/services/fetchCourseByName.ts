@@ -1,12 +1,15 @@
-import { axiosInstance } from "./axios";
-import { Course } from "@/types/course";
+import { axiosInstance } from "../lib/axios";
 import { ApiRoutes } from "@/config/api-routes";
 import { ApiResponse } from "@/types/apiResponse";
+import { Course } from "@/types/course";
 
-export const fetchCourses = async () => {
+export const fetchCourseByName = async (title?: string) => {
   try {
     const response = await axiosInstance.get<ApiResponse<Course[]>>(
-      ApiRoutes.COURSES
+      ApiRoutes.COURSES,
+      {
+        params: title ? { title } : undefined,
+      }
     );
     return response.data.data;
   } catch (error) {
