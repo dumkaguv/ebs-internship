@@ -1,9 +1,10 @@
-import { Hero } from "@/components";
+import { Hero, Metrics } from "@/components";
 
 function HomePage() {
   return (
     <>
       <Hero />
+      <Metrics />
     </>
   );
 }
