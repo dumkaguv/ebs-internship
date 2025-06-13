@@ -2,7 +2,7 @@ import { RoutesEnum } from "@/config/routesEnum";
 import { MainLayout } from "@/layouts";
 import CourseDetailsPage from "@/pages/CourseDetailsPage";
 import CoursesPage from "@/pages/CoursesPage";
-import HomePage from "@/pages/HomePage";
+import HomePage from "@/features/home/pages/HomePage";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 const AppRouter = () => {

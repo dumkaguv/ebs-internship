@@ -1,9 +1,11 @@
-import { AntDesignConfig, AppRouter } from "@/providers";
+import { AntDesignConfig, AppRouter, TanstackQueryClient } from "@/providers";
 
 export function App() {
   return (
     <AntDesignConfig>
-      <AppRouter />
+      <TanstackQueryClient>
+        <AppRouter />
+      </TanstackQueryClient>
     </AntDesignConfig>
   );
 }

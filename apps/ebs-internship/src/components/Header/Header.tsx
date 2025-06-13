@@ -9,75 +9,84 @@ const { Title } = Typography;
 const AppHeader = () => {
   return (
     <Header className={styles.header}>
-      <Flex align="start">
-        <Link
-          to="/"
-          className={styles.logoContainer}
-        >
-          <img
-            src="/logo.jpg"
-            className={styles.logo}
-            width={31}
-            height={40}
-            alt=""
-          />
-          <Title
-            level={1}
-            style={{ fontSize: 16, marginBottom: 0 }}
-            className={styles.logoText}
-          >
-            Byway
-          </Title>
-        </Link>
-      </Flex>
-
-      <Link
-        to="/"
-        className={styles.navItem}
+      <Flex
+        style={{
+          alignItems: "center",
+          width: "100%",
+          maxWidth: 1280,
+          justifyContent: "space-between",
+        }}
       >
-        Categories
-      </Link>
+        <Flex align="start">
+          <Link
+            to="/"
+            className={styles.logoContainer}
+          >
+            <img
+              src="/logo.jpg"
+              className={styles.logo}
+              width={31}
+              height={40}
+              alt=""
+            />
+            <Title
+              level={1}
+              style={{ fontSize: 16, marginBottom: 0 }}
+              className={styles.logoText}
+            >
+              Byway
+            </Title>
+          </Link>
+        </Flex>
 
-      <Input
-        style={{ width: 622 }}
-        prefix={<SearchOutlined />}
-        placeholder="Search courses..."
-        className={styles.search}
-        allowClear
-      />
-
-      <nav className={styles.nav}>
         <Link
           to="/"
           className={styles.navItem}
         >
-          Teach on Byway
+          Categories
         </Link>
-      </nav>
 
-      <Flex
-        gap={24}
-        align="center"
-      >
-        <Button
-          type="text"
-          className={styles.iconCart}
-        >
-          <ShoppingCartOutlined />
-        </Button>
+        <Input
+          style={{ width: 622 }}
+          prefix={<SearchOutlined />}
+          placeholder="Search courses..."
+          className={styles.search}
+          allowClear
+        />
 
-        <Link
-          to="/"
-          className={styles.login}
+        <nav className={styles.nav}>
+          <Link
+            to="/"
+            className={styles.navItem}
+          >
+            Teach on Byway
+          </Link>
+        </nav>
+
+        <Flex
+          gap={24}
+          align="center"
         >
-          Log In
-        </Link>
-        <Link
-          to="/"
-          className={styles.signUp}
-        >
-          Sign Up
-        </Link>
+          <Button
+            type="text"
+            className={styles.iconCart}
+          >
+            <ShoppingCartOutlined />
+          </Button>
+
+          <Link
+            to="/"
+            className={styles.login}
+          >
+            Log In
+          </Link>
+          <Link
+            to="/"
+            className={styles.signUp}
+          >
+            Sign Up
+          </Link>
+        </Flex>
       </Flex>
     </Header>
   );

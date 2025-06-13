@@ -1,4 +1,4 @@
-import { Hero, Metrics, TopCategories } from "@/components";
+import { Hero, Metrics, TopCategories } from "../components";
 
 function HomePage() {
   return (
