@@ -13,7 +13,12 @@ const AntDesignConfig: FC<PropsWithChildren> = ({ children }) => {
         components: {
           Layout: {
             headerBg: "rgb(255,255,255)",
+            bodyBg: "rgb(255,255,255)",
             headerPadding: "0 80px",
+          },
+          Divider: {
+            lineWidth: 4,
+            colorSplit: "rgb(226,232,240)",
           },
         },
       }}

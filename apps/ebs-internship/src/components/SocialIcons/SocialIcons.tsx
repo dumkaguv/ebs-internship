@@ -1,35 +1,35 @@
 import { Flex } from "antd";
 import classes from "./socialicons.module.scss";
 
-const SocialIcons = () => {
-  const socialLinks = [
-    {
-      img: "facebook.svg",
-      alt: "Facebook",
-      link: "https://www.facebook.com/?locale=ro_RO",
-    },
-    {
-      img: "github.svg",
-      alt: "Github",
-      link: "https://github.com/",
-    },
-    {
-      img: "google.svg",
-      alt: "Google",
-      link: "https://www.google.co.uk/",
-    },
-    {
-      img: "twitter.svg",
-      alt: "Twitter",
-      link: "https://x.com/",
-    },
-    {
-      img: "microsoft.svg",
-      alt: "Microsoft",
-      link: "https://www.microsoft.com/ro-md/",
-    },
-  ];
+const socialLinks = [
+  {
+    img: "facebook.svg",
+    alt: "Facebook",
+    link: "https://www.facebook.com/?locale=ro_RO",
+  },
+  {
+    img: "github.svg",
+    alt: "Github",
+    link: "https://github.com/",
+  },
+  {
+    img: "google.svg",
+    alt: "Google",
+    link: "https://www.google.co.uk/",
+  },
+  {
+    img: "twitter.svg",
+    alt: "Twitter",
+    link: "https://x.com/",
+  },
+  {
+    img: "microsoft.svg",
+    alt: "Microsoft",
+    link: "https://www.microsoft.com/ro-md/",
+  },
+] as const;
 
+const SocialIcons = () => {
   return (
     <Flex
       style={{ marginTop: 20 }}

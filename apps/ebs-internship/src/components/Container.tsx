@@ -5,7 +5,7 @@ type Props = HTMLAttributes<HTMLDivElement>;
 const Container: FC<PropsWithChildren<Props>> = ({ children, ...props }) => {
   return (
     <div
-      style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 16px" }}
+      style={{ maxWidth: "1280px", margin: "0 auto" }}
       {...props}
     >
       {children}
