@@ -1,10 +1,11 @@
-import { Hero, Metrics } from "@/components";
+import { Hero, Metrics, TopCategories } from "@/components";
 
 function HomePage() {
   return (
     <>
       <Hero />
       <Metrics />
+      <TopCategories />
     </>
   );
 }
