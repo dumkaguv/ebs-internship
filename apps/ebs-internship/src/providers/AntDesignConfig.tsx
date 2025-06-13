@@ -27,6 +27,11 @@ const AntDesignConfig: FC<PropsWithChildren> = ({ children }) => {
             fontSizeHeading4: 20,
             fontSizeHeading3: 26,
           },
+          Card: {
+            bodyPadding: 16,
+            borderRadiusLG: 16,
+            boxShadowTertiary: "0px 0px 8px 0px rgba(59, 130, 246, 0.12)",
+          },
         },
       }}
     >

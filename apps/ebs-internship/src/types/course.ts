@@ -23,7 +23,7 @@ export interface Course {
   categories: Category[];
   tags: Tag[];
   level?: string | null;
-  lessons: Lesson[];
+  lessons?: Lesson[];
   poster_path?: string | null;
   active_from?: string | null;
   active_to: string | null;

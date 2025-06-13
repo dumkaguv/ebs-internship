@@ -9,5 +9,7 @@ export const enum RoutesEnum {
   PROFILE = "/profile",
 }
 
-export const getRouteUrlById = (baseRoute: RoutesEnum, id: string): string =>
-  `${baseRoute}/${id}`;
+export const getRouteUrlById = (
+  baseRoute: RoutesEnum,
+  id: string | number
+): string => `${baseRoute}/${id}`;
