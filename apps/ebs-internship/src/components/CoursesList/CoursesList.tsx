@@ -8,11 +8,16 @@ import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
 import styles from "./coursesList.module.scss";
 
 interface Props {
+  title: string;
   category?: string;
   showSeeAllButton?: boolean;
 }
 
-const CoursesList: FC<Props> = ({ showSeeAllButton = false, category }) => {
+const CoursesList: FC<Props> = ({
+  title = "Top Courses",
+  showSeeAllButton = false,
+  category,
+}) => {
   const { data: courses, isLoading } = useQuery({
     queryKey: ["courses"],
     queryFn: fetchCourses,
@@ -27,7 +32,7 @@ const CoursesList: FC<Props> = ({ showSeeAllButton = false, category }) => {
   return (
     <Container>
       <Section
-        title="Top Courses"
+        title={title}
         endAdornment={
           showSeeAllButton && <Link to={RoutesEnum.COURSES}>See All</Link>
         }
