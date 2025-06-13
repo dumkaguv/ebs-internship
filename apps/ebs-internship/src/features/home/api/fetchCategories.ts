@@ -1,4 +1,4 @@
-import { ApiResponse } from "./../../../types/apiResponse";
+import { ApiResponse } from "@/types/apiResponse";
 import { ApiRoutes } from "@/config/api-routes";
 import { axiosInstance } from "@/lib";
 import { Category } from "@/types/category";

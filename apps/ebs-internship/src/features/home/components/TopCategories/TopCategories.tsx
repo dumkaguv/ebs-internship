@@ -3,7 +3,7 @@ import { RoutesEnum } from "@/config/routesEnum";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { fetchCategories } from "../../api/fetchCategories";
-import { Card, Flex, List, Typography } from "antd";
+import { Card, Flex, Image, List, Typography } from "antd";
 import styles from "./topCategories.module.scss";
 
 const TopCategories = () => {
@@ -31,7 +31,7 @@ const TopCategories = () => {
                   align="center"
                 >
                   <div className={styles.cardIconWrapper}>
-                    <img
+                    <Image
                       src={category.icon}
                       className={styles.cardIcon}
                       width={40}
