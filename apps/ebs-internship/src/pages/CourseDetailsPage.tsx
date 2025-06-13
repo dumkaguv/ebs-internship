@@ -1,5 +1,7 @@
+import CourseDetailsHero from "@/components/CourseDetailsHero/CourseDetailsHero";
+
 function CourseDetailsPage() {
-  return null;
+  return <CourseDetailsHero />;
 }
 
 export default CourseDetailsPage;

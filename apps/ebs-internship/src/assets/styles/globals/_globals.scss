@@ -1,22 +1,6 @@
-html,
-body,
-#root {
-  height: 100dvh;
-}
-
 body {
   display: flex;
   flex-direction: column;
   color: var(--color-grey-700);
   background-color: var(--color-light);
-}
-
-#root {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-main {
-  flex-grow: 1;
 }
