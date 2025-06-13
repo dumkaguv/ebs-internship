@@ -1,7 +1,8 @@
 import { Flex, Layout, Typography, Input, Button } from "antd";
 import styles from "./header.module.scss";
-import { Link } from "react-router-dom";
+import { Link, Routes } from "react-router-dom";
 import { SearchOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { RoutesEnum } from "@/config/routesEnum";
 
 const { Header } = Layout;
 const { Title } = Typography;
@@ -19,7 +20,7 @@ const AppHeader = () => {
       >
         <Flex align="start">
           <Link
-            to="/"
+            to={RoutesEnum.HOME}
             className={styles.logoContainer}
           >
             <img
@@ -40,7 +41,7 @@ const AppHeader = () => {
         </Flex>
 
         <Link
-          to="/"
+          to={RoutesEnum.COURSES}
           className={styles.navItem}
         >
           Categories
@@ -56,7 +57,7 @@ const AppHeader = () => {
 
         <nav className={styles.nav}>
           <Link
-            to="/"
+            to={RoutesEnum.PROFILE}
             className={styles.navItem}
           >
             Teach on Byway
@@ -75,13 +76,13 @@ const AppHeader = () => {
           </Button>
 
           <Link
-            to="/"
+            to={RoutesEnum.SIGNIN}
             className={styles.login}
           >
             Log In
           </Link>
           <Link
-            to="/"
+            to={RoutesEnum.SIGNUP}
             className={styles.signUp}
           >
             Sign Up

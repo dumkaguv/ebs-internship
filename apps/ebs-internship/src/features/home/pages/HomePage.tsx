@@ -1,4 +1,4 @@
-import { CoursesList } from "@/components/CoursesList";
+import { CourseList, MentorList } from "@/components";
 import { Hero, Metrics, TopCategories } from "../components";
 
 function HomePage() {
@@ -7,7 +7,8 @@ function HomePage() {
       <Hero />
       <Metrics />
       <TopCategories />
-      <CoursesList showSeeAllButton />
+      <CourseList showSeeAllButton />
+      <MentorList showSeeAllButton />
     </>
   );
 }
