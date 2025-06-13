@@ -1,0 +1,40 @@
+import { Author } from "./author";
+import { Productable } from "./productable";
+
+export interface Product {
+  id: number;
+  type: string;
+  name: string;
+  description?: string | null;
+  price: number;
+  price_old: number;
+  tax_rate: number;
+  extra_fees: number;
+  purchasable: boolean;
+  duration?: number | null;
+  calculated_duration: number;
+  limit_per_user: number;
+  limit_total?: number | null;
+  productables: Productable[];
+  teaser_url?: string | null;
+  poster_path: string;
+  poster_url: string;
+  buyable: boolean;
+  owned: boolean;
+  owned_quantity: number;
+  categories: unknown;
+  tags: unknown;
+  updated_at: string;
+  authors: Author[];
+  available_quantity?: number | null;
+  sold_quantity: number;
+  gross_price: number;
+  subscription_period?: string | null;
+  subscription_duration?: number | null;
+  recursive: boolean;
+  has_trial?: boolean | null;
+  trial_period?: string | null;
+  trial_duration?: number | null;
+  fields?: null;
+  related_products: unknown;
+}
