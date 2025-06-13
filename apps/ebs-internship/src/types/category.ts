@@ -2,7 +2,7 @@ export interface Category {
   id: number;
   name: string;
   description?: string | null;
-  name_with_breadcrumbs: string;
+  name_with_breadcrumbs?: string;
   slug: string;
   icon: string;
   icon_class?: string | null;
@@ -12,4 +12,8 @@ export interface Category {
   parent_id?: number | null;
   count: number;
   order: number;
+  pivot: {
+    course_id: number;
+    category_id: number;
+  };
 }

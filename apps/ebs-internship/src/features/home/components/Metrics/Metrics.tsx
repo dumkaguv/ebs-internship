@@ -25,7 +25,9 @@ const data = [
 const Metrics = () => {
   return (
     <Section className={styles.metrics}>
-      <Container>
+      <Container
+        style={{ paddingBlock: 40, maxWidth: "1280px", margin: "0 auto" }}
+      >
         <dl className={styles.metricsList}>
           {data.map((item, i) => (
             <Fragment key={item.description}>

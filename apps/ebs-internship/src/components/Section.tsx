@@ -14,7 +14,7 @@ const Section: FC<PropsWithChildren<Props>> = ({
 }) => {
   return (
     <section
-      style={{ marginBlock: "60px", paddingBlock: "40px" }}
+      style={{ marginBlock: "60px" }}
       {...props}
     >
       <Flex
