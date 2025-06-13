@@ -1,0 +1,43 @@
+import { Author } from "./author";
+import { Category } from "./category";
+import { Lesson } from "./lesson";
+import { Product } from "./product";
+import { Tag } from "./tag";
+
+export interface Course {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  title: string;
+  summary: string;
+  image_path: string;
+  video_path?: string | null;
+  duration?: number | null;
+  author_id: number;
+  author?: Author;
+  authors: Author[];
+  status: string;
+  subtitle: string;
+  language?: string | null;
+  description?: string | null;
+  categories: Category[];
+  tags: Tag[];
+  level?: string | null;
+  lessons: Lesson[];
+  poster_path?: string | null;
+  active_from?: string | null;
+  active_to: string | null;
+  hours_to_complete?: number | null;
+  findable: boolean;
+  scorm_sco_id?: number | null;
+  target_group?: string | null;
+  users_count: number;
+  image_url: string;
+  video_url?: string | null;
+  poster_url?: string | null;
+  teaser_url?: string | null;
+  public: boolean;
+  fields: unknown;
+  product: Product;
+  related_product: unknown;
+}

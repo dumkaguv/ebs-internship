@@ -1,19 +1,31 @@
-import { Row, Col, Card, Typography, Button, Flex, Rate, Avatar } from "antd";
+import { Row, Col, Card, Typography, Button, Flex, Avatar } from "antd";
 import { GlobalOutlined } from "@ant-design/icons";
-import Container from "../Container";
-import { Breadcrumb } from "../Breadcrumb";
+import { Container } from "@/components";
+import { Breadcrumb } from "../../../../components/Breadcrumb";
 import styles from "./coursehero.module.scss";
-import { FC } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { fetchCourseDetails } from "../../api/fetchCourseDetails";
+import { useParams } from "react-router-dom";
 
 const { Title, Paragraph, Text, Link } = Typography;
 
-const HeroSection: FC = () => {
+const HeroSection = () => {
+  const { id } = useParams();
+
+  const { data } = useQuery({
+    queryKey: ["courses"],
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    queryFn: () => fetchCourseDetails(id!),
+  });
+
+  console.log(data);
+
   return (
     <section className={styles.heroSection}>
       <Container>
         <Row
           gutter={[32, 32]}
-          align="middle"
+          align="top"
         >
           <Col
             xs={24}
@@ -25,30 +37,19 @@ const HeroSection: FC = () => {
                 className={styles.customTitle}
                 level={1}
               >
-                Introduction to User Experience Design
+                {data?.title}
               </Title>
               <Paragraph className={styles.customParagraph}>
-                This course is meticulously crafted to provide you with a
-                foundational understanding of the principles, methodologies, and
-                tools that drive exceptional user experiences in the digital
-                landscape.
+                {data?.description}
               </Paragraph>
               <Flex
                 vertical
                 gap={24}
               >
                 <Flex align="center">
-                  <Text className={styles.rateNumber}>4.6</Text>
-                  <Rate
-                    className={styles.rate}
-                    disabled
-                    defaultValue={4.6}
-                    allowHalf
-                  />
-                  <Text className={styles.customText}>(651651 rating)</Text>
-                  <Text style={{ margin: "0 1rem" }}>|</Text>
                   <Text className={styles.customText}>
-                    22 Total Hours. 155 Lectures. All levels
+                    {data?.duration} Total Hours. {data?.lessons.length}{" "}
+                    Lessons. {data?.level} Level
                   </Text>
                 </Flex>
 
@@ -57,66 +58,65 @@ const HeroSection: FC = () => {
                   gap={8}
                 >
                   <Avatar
-                    src="https://randomuser.me/api/portraits/men/32.jpg"
+                    src={data?.author?.url_avatar}
                     size={40}
                   />
                   <Text className={styles.customText}>Created by </Text>
-                  <Link>Ronal Richards</Link>
+                  <Link>
+                    {data?.author?.first_name} {data?.author?.last_name}
+                  </Link>
                 </Flex>
 
                 <Flex align="center">
                   <GlobalOutlined style={{ marginRight: 8, fontSize: 24 }} />
                   <Text className={styles.customText}>
-                    English, Spanish, Italian, German
+                    Language: {data?.language}
                   </Text>
                 </Flex>
               </Flex>
             </Typography>
           </Col>
 
-          {/* Right Section */}
           <Col
             xs={24}
             md={8}
           >
-            <Card
-              cover={
-                <img
-                  alt="course"
-                  src="https://user-images.githubusercontent.com/placeholder.jpg"
-                  style={{ objectFit: "cover", height: 200 }}
-                />
-              }
-            >
+            <Card className={styles.customCard}>
+              <img
+                className={styles.cardImg}
+                alt="course"
+                src={data?.image_url}
+              />
               <Title
                 className={styles.cardTitle}
                 level={3}
               >
-                $49.5
+                ${data?.product?.price_old}
                 <Text
                   delete
                   type="secondary"
                   style={{ fontSize: 18 }}
                 >
-                  $99.5
+                  $
+                  {(data?.product?.price_old ?? 0) *
+                    (1 + (data?.product?.tax_rate ?? 0) / 100)}
                 </Text>
-                <Text className={styles.cardText}>50% Off</Text>
+                <Text className={styles.cardText}>
+                  {data?.product?.tax_rate}% Off
+                </Text>
               </Title>
               <Button
-                style={{ backgroundColor: "black", color: " white" }}
-                className={styles.customButton}
+                className={styles.customButtonAdd}
                 block
               >
                 Add To Cart
               </Button>
               <Button
-                style={{ borderBottom: "1px solid #E2E8F0" }}
-                className={styles.customButton}
+                className={styles.customButtonBuy}
                 block
               >
                 Buy Now
               </Button>
-              <div className="cardLine"></div>
             </Card>
           </Col>
         </Row>

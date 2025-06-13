@@ -12,4 +12,8 @@ export interface Category {
   parent_id?: number | null;
   count: number;
   order: number;
+  pivot: {
+    course_id: number;
+    category_id: number;
+  };
 }

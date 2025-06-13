@@ -1,6 +1,6 @@
 import { RoutesEnum } from "@/config/routesEnum";
 import { MainLayout } from "@/layouts";
-import CourseDetailsPage from "@/pages/CourseDetailsPage";
+import CourseDetailsPage from "@/features/courseDetails/pages/CourseDetailsPage";
 import CoursesPage from "@/pages/CoursesPage";
 import HomePage from "@/features/home/pages/HomePage";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
