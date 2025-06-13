@@ -20,6 +20,13 @@ const AntDesignConfig: FC<PropsWithChildren> = ({ children }) => {
             lineWidth: 4,
             colorSplit: "rgb(226,232,240)",
           },
+          Typography: {
+            colorTextHeading: "rgb(15,23,42)",
+            fontSizeHeading1: 40,
+            fontSizeHeading2: 32,
+            fontSizeHeading4: 20,
+            fontSizeHeading3: 26,
+          },
         },
       }}
     >

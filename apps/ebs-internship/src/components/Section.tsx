@@ -20,11 +20,19 @@ const Section: FC<PropsWithChildren<Props>> = ({
       <Flex
         justify="space-between"
         align="center"
+        style={title ? { marginBottom: 30 } : {}}
       >
-        {title && <Typography.Title level={2}>{title}</Typography.Title>}
+        {title && (
+          <Typography.Title
+            level={2}
+            style={{ marginBottom: 0 }}
+          >
+            {title}
+          </Typography.Title>
+        )}
         {endAdornment}
       </Flex>
-      
+
       {children}
     </section>
   );
