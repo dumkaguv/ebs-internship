@@ -1,25 +1,18 @@
 import { Row, Col, Card, Typography, Button, Flex, Avatar } from "antd";
 import { GlobalOutlined } from "@ant-design/icons";
 import { Container } from "@/components";
-import { Breadcrumb } from "../../../../components/Breadcrumb";
-import styles from "./coursehero.module.scss";
-import { useQuery } from "@tanstack/react-query";
-import { fetchCourseDetails } from "../../api/fetchCourseDetails";
-import { useParams } from "react-router-dom";
+import { Breadcrumb } from "@/components/Breadcrumb";
+import styles from "./courseDetailsHero.module.scss";
+import { Link } from "react-router-dom";
+import { Course } from "@/types";
+import { FC } from "react";
+import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
 
-const { Title, Paragraph, Text, Link } = Typography;
+interface Props {
+  data: Course;
+}
 
-const HeroSection = () => {
-  const { id } = useParams();
-
-  const { data } = useQuery({
-    queryKey: ["courses"],
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    queryFn: () => fetchCourseDetails(id!),
-  });
-
-  console.log(data);
-
+const CourseDetailsHero: FC<Props> = ({ data }) => {
   return (
     <section className={styles.heroSection}>
       <Container>
@@ -33,24 +26,24 @@ const HeroSection = () => {
           >
             <Typography>
               <Breadcrumb />
-              <Title
+              <Typography.Title
                 className={styles.customTitle}
                 level={1}
               >
                 {data?.title}
-              </Title>
-              <Paragraph className={styles.customParagraph}>
+              </Typography.Title>
+              <Typography.Paragraph className={styles.customParagraph}>
                 {data?.description}
-              </Paragraph>
+              </Typography.Paragraph>
               <Flex
                 vertical
                 gap={24}
               >
                 <Flex align="center">
-                  <Text className={styles.customText}>
-                    {data?.duration} Total Hours. {data?.lessons.length}{" "}
+                  <Typography.Text className={styles.customText}>
+                    {data?.duration} Total Hours. {data?.lessons?.length}{" "}
                     Lessons. {data?.level} Level
-                  </Text>
+                  </Typography.Text>
                 </Flex>
 
                 <Flex
@@ -61,17 +54,21 @@ const HeroSection = () => {
                     src={data?.author?.url_avatar}
                     size={40}
                   />
-                  <Text className={styles.customText}>Created by </Text>
-                  <Link>
+                  <Typography.Text className={styles.customText}>
+                    Created by
+                  </Typography.Text>
+                  <Link
+                    to={getRouteUrlById(RoutesEnum.MENTORS, data?.author_id)}
+                  >
                     {data?.author?.first_name} {data?.author?.last_name}
                   </Link>
                 </Flex>
 
                 <Flex align="center">
                   <GlobalOutlined style={{ marginRight: 8, fontSize: 24 }} />
-                  <Text className={styles.customText}>
+                  <Typography.Text className={styles.customText}>
                     Language: {data?.language}
-                  </Text>
+                  </Typography.Text>
                 </Flex>
               </Flex>
             </Typography>
@@ -85,14 +82,17 @@ const HeroSection = () => {
               <img
                 className={styles.cardImg}
                 alt="course"
-                src={data?.image_url}
+                src={
+                  data?.image_url ??
+                  "https://foundr.com/wp-content/uploads/2021/09/Best-online-course-platforms.png"
+                }
               />
-              <Title
+              <Typography.Title
                 className={styles.cardTitle}
                 level={3}
               >
                 ${data?.product?.price_old}
-                <Text
+                <Typography.Text
                   delete
                   type="secondary"
                   style={{ fontSize: 18 }}
@@ -100,11 +100,11 @@ const HeroSection = () => {
                   $
                   {(data?.product?.price_old ?? 0) *
                     (1 + (data?.product?.tax_rate ?? 0) / 100)}
-                </Text>
-                <Text className={styles.cardText}>
+                </Typography.Text>
+                <Typography.Text className={styles.cardText}>
                   {data?.product?.tax_rate}% Off
-                </Text>
-              </Title>
+                </Typography.Text>
+              </Typography.Title>
               <Button
                 className={styles.customButtonAdd}
                 block
@@ -125,4 +125,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default CourseDetailsHero;
