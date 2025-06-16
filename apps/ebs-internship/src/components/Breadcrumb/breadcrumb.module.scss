@@ -1,0 +1,11 @@
+.customBreadcrumb {
+  padding: 20px 0;
+
+  & ol {
+    display: flex;
+    gap: 24px;
+  }
+  & li {
+    margin: 0 !important;
+  }
+}

@@ -3,7 +3,7 @@ import { GlobalOutlined } from "@ant-design/icons";
 import { Container } from "@/components";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import styles from "./courseDetailsHero.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Course } from "@/types";
 import { FC } from "react";
 import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
@@ -13,6 +13,8 @@ interface Props {
 }
 
 const CourseDetailsHero: FC<Props> = ({ data }) => {
+  const location = useLocation();
+
   return (
     <section className={styles.heroSection}>
       <Container>
@@ -25,7 +27,11 @@ const CourseDetailsHero: FC<Props> = ({ data }) => {
             md={16}
           >
             <Typography>
-              <Breadcrumb />
+              <Breadcrumb
+                location={location.pathname}
+                title={data?.title}
+              />
+
               <Typography.Title
                 className={styles.customTitle}
                 level={1}
