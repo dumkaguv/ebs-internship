@@ -4,6 +4,7 @@ import CourseDetailsPage from "@/features/courseDetails/pages/CourseDetailsPage"
 import CoursesPage from "@/pages/CoursesPage";
 import HomePage from "@/features/home/pages/HomePage";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { SignUpPage } from "@/features/auth";
 
 const AppRouter = () => {
   return (
@@ -13,6 +14,10 @@ const AppRouter = () => {
           <Route
             path={RoutesEnum.HOME}
             element={<HomePage />}
+          />
+          <Route
+            path={RoutesEnum.SIGNUP}
+            element={<SignUpPage />}
           />
           <Route
             path={RoutesEnum.COURSES}

@@ -1,10 +1,13 @@
 import { Container } from "@/components";
 import { Button, Flex, Image, Typography } from "antd";
 import styles from "./hero.module.scss";
+import { useNavigate } from "react-router-dom";
+import { RoutesEnum } from "@/config/routesEnum";
 
 const { Title, Paragraph } = Typography;
 
 function Hero() {
+  const navigate = useNavigate();
   return (
     <section className={styles.hero}>
       <Container>
@@ -38,6 +41,7 @@ function Hero() {
                 width: "fit-content",
                 backgroundColor: "var(--color-primary-500)",
               }}
+              onClick={() => navigate(RoutesEnum.SIGNUP)}
             >
               Start your instructor journey
             </Button>

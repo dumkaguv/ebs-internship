@@ -1,0 +1,249 @@
+import { ArrowRightOutlined } from "@ant-design/icons";
+import { Button, Flex, Form, Input, Typography } from "antd";
+import { useForm } from "antd/es/form/Form";
+
+const SignUpForm = () => {
+  const [form] = useForm();
+
+  const onSubmit = async () => {
+    const values = await form.validateFields();
+    console.log("Form values:", values);
+  };
+  
+  return (
+    <Form
+      form={form}
+      onFinish={onSubmit}
+      name="signup"
+      layout="vertical"
+      requiredMark={false}
+      scrollToFirstError
+    >
+      <Flex
+        gap={30}
+        align="center"
+      >
+        <Form.Item
+          label={
+            <Typography.Title
+              level={5}
+              style={{ marginBottom: 0 }}
+            >
+              First Name
+            </Typography.Title>
+          }
+          name="firstName"
+          rules={[
+            {
+              required: true,
+              message: "Please enter your first name",
+            },
+            {
+              min: 2,
+              message: "First name must be at least 2 characters",
+            },
+            {
+              max: 30,
+              message: "First name must be at most 30 characters",
+            },
+            {
+              pattern: /^[A-Za-z\s\-]+$/,
+              message: "Only letters, spaces, and hyphens are allowed",
+            },
+          ]}
+          style={{ width: "100%" }}
+        >
+          <Input
+            placeholder="John"
+            style={{ height: 58, padding: 16 }}
+          />
+        </Form.Item>
+
+        <Form.Item
+          label={
+            <Typography.Title
+              level={5}
+              style={{ marginBottom: 0 }}
+            >
+              Last Name
+            </Typography.Title>
+          }
+          rules={[
+            {
+              required: true,
+              message: "Please enter your last name",
+            },
+            {
+              min: 2,
+              message: "Last name must be at least 2 characters",
+            },
+            {
+              max: 30,
+              message: "Last name must be at most 30 characters",
+            },
+            {
+              pattern: /^[A-Za-z\s\-]+$/,
+              message: "Only letters, spaces, and hyphens are allowed",
+            },
+          ]}
+          style={{ width: "100%" }}
+          name="lastName"
+        >
+          <Input
+            placeholder="Doe"
+            style={{ height: 58, padding: 16 }}
+          />
+        </Form.Item>
+      </Flex>
+      <Form.Item
+        label={
+          <Typography.Title
+            level={5}
+            style={{ marginBottom: 0 }}
+          >
+            Username
+          </Typography.Title>
+        }
+        rules={[
+          {
+            required: true,
+            message: "Please enter your username",
+          },
+          {
+            min: 2,
+            message: "Username must be at least 2 characters",
+          },
+          {
+            max: 30,
+            message: "Username must be at most 30 characters",
+          },
+          {
+            pattern: /^[A-Za-z\-]+$/,
+            message: "Only letters, and hyphens are allowed",
+          },
+        ]}
+        style={{ width: "100%" }}
+        name="username"
+      >
+        <Input
+          placeholder="johndoe"
+          style={{ height: 58, padding: 16 }}
+        />
+      </Form.Item>
+      <Form.Item
+        label={
+          <Typography.Title
+            level={5}
+            style={{ marginBottom: 0 }}
+          >
+            Email
+          </Typography.Title>
+        }
+        rules={[
+          {
+            required: true,
+            message: "Please enter your email",
+          },
+          {
+            type: "email",
+            message: "Please enter a valid email",
+          },
+          {
+            max: 50,
+            message: "Email must be at most 50 characters",
+          },
+        ]}
+        style={{ width: "100%" }}
+        name="email"
+      >
+        <Input
+          placeholder="johndoe@gmail.com"
+          style={{ height: 58, padding: 16 }}
+        />
+      </Form.Item>
+
+      <Flex
+        gap={30}
+        align="center"
+      >
+        <Form.Item
+          label={
+            <Typography.Title
+              level={5}
+              style={{ marginBottom: 0 }}
+            >
+              Password
+            </Typography.Title>
+          }
+          hasFeedback
+          rules={[
+            {
+              required: true,
+              message: "Please enter your password",
+            },
+            {
+              min: 8,
+              message: "Password must be at least 8 characters",
+            },
+            {
+              pattern:
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&^])[A-Za-z\d@$!%*#?&^]+$/,
+              message:
+                "Password must include upper/lowercase, number, and special character",
+            },
+          ]}
+          name="password"
+          style={{ width: "100%" }}
+        >
+          <Input.Password
+            placeholder="aGAss2%$`1"
+            style={{ height: 58, padding: 16 }}
+          />
+        </Form.Item>
+
+        <Form.Item
+          label={
+            <Typography.Title
+              level={5}
+              style={{ marginBottom: 0 }}
+            >
+              Confirm Password
+            </Typography.Title>
+          }
+          style={{ width: "100%" }}
+          name="confirmPassword"
+          hasFeedback
+          rules={[
+            {
+              required: true,
+              message: "Please confirm your password",
+            },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("password") === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error("Passwords do not match"));
+              },
+            }),
+          ]}
+        >
+          <Input.Password
+            placeholder="aGAss2%$`1"
+            style={{ height: 58, padding: 16 }}
+          />
+        </Form.Item>
+      </Flex>
+      <Button
+        htmlType="submit"
+        type="primary"
+        icon={<ArrowRightOutlined style={{ height: 24 }} />}
+        iconPosition="end"
+      >
+        Create Account
+      </Button>
+    </Form>
+  );
+};
+
+export default SignUpForm;

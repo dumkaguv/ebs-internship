@@ -4,12 +4,23 @@ import { Link } from "react-router-dom";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { RoutesEnum } from "@/config/routesEnum";
 import HeaderSearch from "./HeaderSearch";
+import { useEffect, useRef } from "react";
+import defineHeaderHeightCssVar from "@/utils/defineHeaderHeightCssVar";
 
 const { Header } = Layout;
 
 const AppHeader = () => {
+  const headerRef = useRef(null);
+
+  useEffect(() => {
+    defineHeaderHeightCssVar(headerRef);
+  }, []);
+
   return (
-    <Header className={styles.header}>
+    <Header
+      ref={headerRef}
+      className={styles.header}
+    >
       <Flex
         style={{
           alignItems: "center",
