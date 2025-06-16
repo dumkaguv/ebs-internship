@@ -4,13 +4,15 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { fetchCategories } from "../../api/fetchCategories";
 import { Card, Flex, Image, List, Typography } from "antd";
-import styles from "./topCategories.module.scss";
+import { useTopCategoriesStyles } from "./TopCategoriesStyles";
 
 const TopCategories = () => {
   const { data: categories, isLoading } = useQuery({
     queryKey: ["categories"],
     queryFn: fetchCategories,
   });
+
+  const { styles } = useTopCategoriesStyles();
 
   return (
     <Container>
@@ -25,27 +27,30 @@ const TopCategories = () => {
           dataSource={categories?.slice(0, 4)}
           renderItem={(category) => (
             <List.Item style={{ marginBottom: 0 }}>
-              <Card className={styles.card}>
+              <Card className={styles.topCategoriesCard}>
                 <Flex
                   vertical
                   align="center"
                 >
-                  <div className={styles.cardIconWrapper}>
+                  <div className={styles.topCategoriesIconWrapper}>
                     <Image
                       src={category.icon}
-                      className={styles.cardIcon}
+                      className={styles.topCategoriesIcon}
                       width={40}
                       height={40}
+                      preview={false}
                       alt=""
                     />
                   </div>
-                  <Typography.Title
-                    className={styles.cardTitle}
-                    level={3}
+                  <Flex
+                    gap={10}
+                    vertical
                   >
-                    {category.name}
-                  </Typography.Title>
-                  <Typography.Text>{category.count} Courses</Typography.Text>
+                    <Typography.Title level={3}>
+                      {category.name}
+                    </Typography.Title>
+                    <Typography.Text>{category.count} Courses</Typography.Text>
+                  </Flex>
                 </Flex>
               </Card>
             </List.Item>
