@@ -1,11 +1,11 @@
 import { FC } from "react";
 import { Container, Section } from "@/components";
 import { useQuery } from "@tanstack/react-query";
-import { fetchCourses } from "@/services";
 import { List } from "antd";
 import { Link } from "react-router-dom";
 import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
 import CourseCard from "./CourseCard";
+import { Api } from "@/services/apiClient";
 
 interface Props {
   title?: string;
@@ -20,7 +20,7 @@ const CourseList: FC<Props> = ({
 }) => {
   const { data: courses, isLoading } = useQuery({
     queryKey: ["courses"],
-    queryFn: fetchCourses,
+    queryFn: Api.courses.fetchCourses,
   });
 
   const filteredCourses = category

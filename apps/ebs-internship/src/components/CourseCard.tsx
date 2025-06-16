@@ -1,5 +1,5 @@
 import { Course } from "@/types/course";
-import { Card, Flex, Typography } from "antd";
+import { Card, Flex, Image, Typography } from "antd";
 import { FC } from "react";
 
 interface Props {
@@ -11,13 +11,13 @@ const CourseCard: FC<Props> = ({ course }) => {
     <Card
       hoverable
       cover={
-        <img
-          src={
-            course.image_url ??
+        <Image
+          src={course.image_url}
+          fallback={
             "https://foundr.com/wp-content/uploads/2021/09/Best-online-course-platforms.png"
           }
           alt=""
-          width={266}
+          preview={false}
           height={200}
         />
       }

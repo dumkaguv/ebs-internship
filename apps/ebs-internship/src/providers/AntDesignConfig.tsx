@@ -11,6 +11,17 @@ const AntDesignConfig: FC<PropsWithChildren> = ({ children }) => {
           borderRadius: 8,
         },
         components: {
+          Button: {
+            colorPrimary: "rgb(2,6,23)",
+            colorPrimaryHover: "rgba(2, 6, 23, 0.82)",
+            colorPrimaryActive: "rgba(2, 6, 23, 0.69)",
+            controlHeightLG: 48,
+            contentFontSize: 14,
+            fontWeight: 500,
+            controlHeight: 48,
+            paddingInline: 24,
+            paddingInlineLG: 24,
+          },
           Layout: {
             headerBg: "rgb(255,255,255)",
             bodyBg: "rgb(255,255,255)",

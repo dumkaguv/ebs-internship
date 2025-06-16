@@ -1,5 +1,5 @@
 import { Container } from "@/components";
-import { Button, Flex, Typography } from "antd";
+import { Button, Flex, Image, Typography } from "antd";
 import styles from "./hero.module.scss";
 
 const { Title, Paragraph } = Typography;
@@ -34,44 +34,41 @@ function Hero() {
             <Button
               type="primary"
               style={{
-                width: 190,
-                paddingBlock: 10,
-                paddingInline: 24,
-                height: "fit-content",
-                fontSize: 14,
-                fontWeight: 500,
                 marginTop: 12,
+                width: "fit-content",
+                backgroundColor: "var(--color-primary-500)",
               }}
             >
               Start your instructor journey
             </Button>
           </Flex>
 
-          <Flex
-            align="center"
-          >
-            <img
+          <Flex align="center">
+            <Image
               src="/images/persons/1.png"
               className={styles.heroImage}
               width={222}
               height={222}
+              preview={false}
               alt=""
             />
             <Flex
               vertical
               gap={8}
             >
-              <img
+              <Image
                 src="/images/persons/2.png"
                 className={styles.heroImage}
                 width={222}
                 height={222}
+                preview={false}
                 alt=""
               />
-              <img
+              <Image
                 src="/images/persons/3.png"
                 className={styles.heroImage}
                 width={222}
+                preview={false}
                 height={222}
                 alt=""
               />

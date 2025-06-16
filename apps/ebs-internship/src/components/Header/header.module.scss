@@ -28,18 +28,8 @@
   &Item {
     display: inline-block;
     color: var(--color-grey-700);
-    margin-left: 28px;
     width: fit-content;
     height: fit-content !important;
-  }
-}
-
-.search {
-  height: 40px;
-  border-radius: 8px;
-
-  &Container {
-    position: relative;
   }
 }
 

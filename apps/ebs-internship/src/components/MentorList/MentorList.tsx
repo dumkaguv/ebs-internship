@@ -1,8 +1,8 @@
 import { Container, Section } from "@/components";
 import { RoutesEnum } from "@/config/routesEnum";
-import { fetchTutors } from "@/services";
+import { Api } from "@/services/apiClient";
 import { useQuery } from "@tanstack/react-query";
-import { Card, Flex, List, Typography } from "antd";
+import { Card, Flex, Image, List, Typography } from "antd";
 import { FC } from "react";
 import { Link } from "react-router-dom";
 
@@ -14,7 +14,7 @@ interface Props {
 const MentorList: FC<Props> = ({ title = "Top Mentors", showSeeAllButton }) => {
   const { data: mentors, isLoading } = useQuery({
     queryKey: ["mentors"],
-    queryFn: fetchTutors,
+    queryFn: Api.tutors.fetchTutors,
   });
 
   return (
@@ -33,15 +33,13 @@ const MentorList: FC<Props> = ({ title = "Top Mentors", showSeeAllButton }) => {
             <List.Item>
               <Link to={RoutesEnum.MENTORS}>
                 <Card
-                  hoverable
+                  hoverable 
                   cover={
-                    <img
-                      src={
-                        mentor.url_avatar ??
-                        "https://static.vecteezy.com/system/resources/previews/046/409/821/non_2x/avatar-profile-icon-in-flat-style-male-user-profile-illustration-on-isolated-background-man-profile-sign-business-concept-vector.jpg"
-                      }
+                    <Image
+                      src={mentor.url_avatar}
+                      fallback="https://static.vecteezy.com/system/resources/previews/046/409/821/non_2x/avatar-profile-icon-in-flat-style-male-user-profile-illustration-on-isolated-background-man-profile-sign-business-concept-vector.jpg"
                       alt=""
-                      width={240}
+                      preview={false}
                       height={240}
                     />
                   }

@@ -6,10 +6,10 @@ export interface Product {
   type: string;
   name: string;
   description?: string | null;
-  price?: number | null;
-  price_old?: number | null;
-  tax_rate?: number | null;
-  extra_fees?: number | null;
+  price?: number;
+  price_old?: number;
+  tax_rate?: number;
+  extra_fees?: number;
   purchasable: boolean;
   duration?: number | null;
   calculated_duration: number;
