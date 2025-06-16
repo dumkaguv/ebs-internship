@@ -1,4 +1,7 @@
+import { customThemePalette } from "@/assets/styles/globals/colorPallete";
+import GlobalStyles from "@/assets/styles/globals/globalStyles";
 import { ConfigProvider } from "antd";
+import { StyleProvider } from "antd-style";
 import { FC, PropsWithChildren } from "react";
 
 const AntDesignConfig: FC<PropsWithChildren> = ({ children }) => {
@@ -9,6 +12,7 @@ const AntDesignConfig: FC<PropsWithChildren> = ({ children }) => {
           fontFamily: "Inter",
           fontSize: 16,
           borderRadius: 8,
+          ...customThemePalette,
         },
         components: {
           Button: {
@@ -37,16 +41,30 @@ const AntDesignConfig: FC<PropsWithChildren> = ({ children }) => {
             fontSizeHeading2: 32,
             fontSizeHeading4: 20,
             fontSizeHeading3: 26,
+            titleMarginBottom: 0,
+            titleMarginTop: 0,
           },
           Card: {
             bodyPadding: 16,
             borderRadiusLG: 16,
             boxShadowTertiary: "0px 0px 8px 0px rgba(59, 130, 246, 0.12)",
           },
+          List: {
+            margin: 0,
+            marginLG: 0,
+            marginSM: 0,
+            marginXXL: 0,
+            marginXXS: 0,
+          },
         },
       }}
     >
-      {children}
+      <StyleProvider hashPriority="high">
+        <>
+          <GlobalStyles />
+          {children}
+        </>
+      </StyleProvider>
     </ConfigProvider>
   );
 };

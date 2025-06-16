@@ -6,10 +6,13 @@ import { useQuery } from "@tanstack/react-query";
 import { AutoComplete, Flex, Image, Input, Typography } from "antd";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useStyles } from "@/styles";
 
 const HeaderSearch = () => {
   const [searchValue, setSearchValue] = useState("");
   const debouncedSearch = useDebouncedValue(searchValue, 500);
+
+  const { styles } = useStyles();
 
   const { data: searchResults, isLoading } = useQuery({
     queryKey: ["search", debouncedSearch],
@@ -42,7 +45,7 @@ const HeaderSearch = () => {
             />
             <Flex vertical>
               <Typography.Title
-                style={{ marginBottom: 0, fontSize: 14 }}
+                style={{ fontSize: 14 }}
                 level={5}
               >
                 {course.title}
@@ -61,10 +64,11 @@ const HeaderSearch = () => {
   return (
     <AutoComplete
       options={options}
-      style={{ width: 622 }}
       onSearch={setSearchValue}
       value={searchValue}
       onChange={setSearchValue}
+      allowClear
+      popupMatchSelectWidth={false}
       notFoundContent={
         !searchValue ? null : isLoading ? (
           <span>Loading...</span>
@@ -72,14 +76,12 @@ const HeaderSearch = () => {
           <span>No results</span>
         )
       }
-      allowClear
-      popupMatchSelectWidth={false}
-      dropdownAlign={{ offset: [0, 10] }}
+      className={styles.headerSearch}
     >
       <Input
         prefix={<SearchOutlined />}
         placeholder="Search courses..."
-        style={{ height: 40, borderColor: "var(--color-grey-700)" }}
+        className={styles.headerSearchInput}
       />
     </AutoComplete>
   );

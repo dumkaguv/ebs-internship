@@ -1,15 +1,16 @@
 import { Container } from "@/components";
-import { Button, Flex, Image, Typography } from "antd";
-import styles from "./hero.module.scss";
+import { Button, Flex, Image, Space, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 import { RoutesEnum } from "@/config/routesEnum";
+import { useStyles } from "@/styles";
 
-const { Title, Paragraph } = Typography;
-
-function Hero() {
+const Hero = () => {
   const navigate = useNavigate();
+
+  const { styles } = useStyles();
+
   return (
-    <section className={styles.hero}>
+    <section style={{ paddingBlock: 40 }}>
       <Container>
         <Flex
           justify="space-between"
@@ -18,39 +19,40 @@ function Hero() {
         >
           <Flex
             style={{ maxWidth: 600 }}
+            gap={16}
             vertical
           >
-            <Title
-              level={2}
-              style={{ maxWidth: 483, fontSize: 40, fontWeight: 700 }}
-              className={styles.heroTitle}
+            <Typography.Title
+              level={1}
+              style={{ maxWidth: 483, fontWeight: 700 }}
             >
               Unlock Your Potential with Byway
-            </Title>
+            </Typography.Title>
 
-            <Paragraph className={styles.heroDescription}>
-              Welcome to Byway, where learning knows no bounds. We believe that
-              education is the key to personal and professional growth, and
-              we're here to guide you on your journey to success.
-            </Paragraph>
-
-            <Button
-              type="primary"
-              style={{
-                marginTop: 12,
-                width: "fit-content",
-                backgroundColor: "var(--color-primary-500)",
-              }}
-              onClick={() => navigate(RoutesEnum.SIGNUP)}
+            <Space
+              size={24}
+              direction="vertical"
             >
-              Start your instructor journey
-            </Button>
+              <Typography.Paragraph className={styles.paragraph}>
+                Welcome to Byway, where learning knows no bounds. We believe
+                that education is the key to personal and professional growth,
+                and we're here to guide you on your journey to success.
+              </Typography.Paragraph>
+
+              <Button
+                variant="solid"
+                color="blue"
+                style={{ alignSelf: "start" }}
+                onClick={() => navigate(RoutesEnum.SIGNUP)}
+              >
+                Start your instructor journey
+              </Button>
+            </Space>
           </Flex>
 
           <Flex align="center">
             <Image
               src="/images/persons/1.png"
-              className={styles.heroImage}
               width={222}
               height={222}
               preview={false}
@@ -62,7 +64,6 @@ function Hero() {
             >
               <Image
                 src="/images/persons/2.png"
-                className={styles.heroImage}
                 width={222}
                 height={222}
                 preview={false}
@@ -70,7 +71,6 @@ function Hero() {
               />
               <Image
                 src="/images/persons/3.png"
-                className={styles.heroImage}
                 width={222}
                 preview={false}
                 height={222}
@@ -82,6 +82,6 @@ function Hero() {
       </Container>
     </section>
   );
-}
+};
 
 export default Hero;

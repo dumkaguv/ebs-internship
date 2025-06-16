@@ -33,7 +33,7 @@ const MentorList: FC<Props> = ({ title = "Top Mentors", showSeeAllButton }) => {
             <List.Item>
               <Link to={RoutesEnum.MENTORS}>
                 <Card
-                  hoverable 
+                  hoverable
                   cover={
                     <Image
                       src={mentor.url_avatar}

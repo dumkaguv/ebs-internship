@@ -9,7 +9,7 @@ const SignUpForm = () => {
     const values = await form.validateFields();
     console.log("Form values:", values);
   };
-  
+
   return (
     <Form
       form={form}
@@ -24,14 +24,7 @@ const SignUpForm = () => {
         align="center"
       >
         <Form.Item
-          label={
-            <Typography.Title
-              level={5}
-              style={{ marginBottom: 0 }}
-            >
-              First Name
-            </Typography.Title>
-          }
+          label={<Typography.Title level={5}>First Name</Typography.Title>}
           name="firstName"
           rules={[
             {
@@ -60,14 +53,7 @@ const SignUpForm = () => {
         </Form.Item>
 
         <Form.Item
-          label={
-            <Typography.Title
-              level={5}
-              style={{ marginBottom: 0 }}
-            >
-              Last Name
-            </Typography.Title>
-          }
+          label={<Typography.Title level={5}>Last Name</Typography.Title>}
           rules={[
             {
               required: true,
@@ -96,14 +82,7 @@ const SignUpForm = () => {
         </Form.Item>
       </Flex>
       <Form.Item
-        label={
-          <Typography.Title
-            level={5}
-            style={{ marginBottom: 0 }}
-          >
-            Username
-          </Typography.Title>
-        }
+        label={<Typography.Title level={5}>Username</Typography.Title>}
         rules={[
           {
             required: true,
@@ -131,14 +110,7 @@ const SignUpForm = () => {
         />
       </Form.Item>
       <Form.Item
-        label={
-          <Typography.Title
-            level={5}
-            style={{ marginBottom: 0 }}
-          >
-            Email
-          </Typography.Title>
-        }
+        label={<Typography.Title level={5}>Email</Typography.Title>}
         rules={[
           {
             required: true,
@@ -167,14 +139,7 @@ const SignUpForm = () => {
         align="center"
       >
         <Form.Item
-          label={
-            <Typography.Title
-              level={5}
-              style={{ marginBottom: 0 }}
-            >
-              Password
-            </Typography.Title>
-          }
+          label={<Typography.Title level={5}>Password</Typography.Title>}
           hasFeedback
           rules={[
             {
@@ -203,12 +168,7 @@ const SignUpForm = () => {
 
         <Form.Item
           label={
-            <Typography.Title
-              level={5}
-              style={{ marginBottom: 0 }}
-            >
-              Confirm Password
-            </Typography.Title>
+            <Typography.Title level={5}>Confirm Password</Typography.Title>
           }
           style={{ width: "100%" }}
           name="confirmPassword"

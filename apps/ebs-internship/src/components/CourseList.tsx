@@ -1,10 +1,9 @@
 import { FC } from "react";
-import { Container, Section } from "@/components";
+import { Container, Section, CourseCard } from "@/components";
 import { useQuery } from "@tanstack/react-query";
 import { List } from "antd";
 import { Link } from "react-router-dom";
 import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
-import CourseCard from "./CourseCard";
 import { Api } from "@/services/apiClient";
 
 interface Props {

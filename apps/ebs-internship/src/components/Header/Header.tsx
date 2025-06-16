@@ -1,16 +1,18 @@
 import { Flex, Layout, Typography, Button } from "antd";
-import styles from "./header.module.scss";
 import { Link } from "react-router-dom";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { RoutesEnum } from "@/config/routesEnum";
 import HeaderSearch from "./HeaderSearch";
 import { useEffect, useRef } from "react";
 import defineHeaderHeightCssVar from "@/utils/defineHeaderHeightCssVar";
+import { useHeaderStyles } from "./HeaderStyles";
 
 const { Header } = Layout;
 
 const AppHeader = () => {
   const headerRef = useRef(null);
+
+  const { styles } = useHeaderStyles();
 
   useEffect(() => {
     defineHeaderHeightCssVar(headerRef);
@@ -22,28 +24,24 @@ const AppHeader = () => {
       className={styles.header}
     >
       <Flex
-        style={{
-          alignItems: "center",
-          width: "100%",
-          maxWidth: 1280,
-          justifyContent: "space-between",
-        }}
+        justify="space-between"
+        align="center"
+        style={{ width: "100%", maxWidth: "1280px" }}
       >
-        <Flex align="start">
+        <Flex align="center">
           <Link
             to={RoutesEnum.HOME}
             className={styles.logoContainer}
           >
             <img
               src="/logo.jpg"
-              className={styles.logo}
               width={31}
               height={40}
               alt=""
             />
             <Typography.Title
               level={1}
-              style={{ fontSize: 16, marginBottom: 0 }}
+              style={{ fontSize: 16 }}
               className={styles.logoText}
             >
               Byway
@@ -53,22 +51,17 @@ const AppHeader = () => {
 
         <Link
           to={RoutesEnum.COURSES}
-          className={styles.navItem}
+          className={styles.headerNavItem}
         >
           Categories
         </Link>
 
-        <Flex
-          className={styles.searchContainer}
-          style={{ position: "relative" }}
-        >
-          <HeaderSearch />
-        </Flex>
+        <HeaderSearch />
 
-        <nav className={styles.nav}>
+        <nav>
           <Link
             to={RoutesEnum.PROFILE}
-            className={styles.navItem}
+            className={styles.headerNavItem}
           >
             Teach on Byway
           </Link>
