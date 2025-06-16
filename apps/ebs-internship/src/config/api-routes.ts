@@ -3,3 +3,8 @@ export const enum ApiRoutes {
   COURSES = "/courses",
   TUTORS = "/tutors",
 }
+
+export const getApiUrlById = (
+  baseRoute: ApiRoutes,
+  id: string | number
+): string => `${baseRoute}/${id}`;
