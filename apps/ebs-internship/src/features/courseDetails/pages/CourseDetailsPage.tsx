@@ -4,6 +4,7 @@ import { CourseDetailsInformation } from "../components";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCourseDetails } from "../api/fetchCourseDetails";
 import { Flex, Spin } from "antd";
+import { CourseList } from "@/components";
 
 function CourseDetailsPage() {
   const { id } = useParams();
@@ -32,6 +33,10 @@ function CourseDetailsPage() {
     <>
       <CourseDetailsHero data={data} />
       <CourseDetailsInformation data={data} />
+      <CourseList
+        title="More Courses Like This"
+        category={data.categories[0]?.name}
+      />
     </>
   );
 }
