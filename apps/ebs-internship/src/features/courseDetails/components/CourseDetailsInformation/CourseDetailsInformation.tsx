@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
 import { Course } from "@/types";
 import { FC, useRef, useState } from "react";
+import { CourseDetailsSyllabus } from "../CourseDetailsSyllabus";
 
 interface Props {
   data: Course;
@@ -133,7 +134,9 @@ const CourseDetailsInformation: FC<Props> = ({ data }) => {
 
       <div className={styles.line}></div>
 
-      <div ref={syllabusRef}></div>
+      <div ref={syllabusRef}>
+        <CourseDetailsSyllabus lessons={data.lessons} />
+      </div>
     </Container>
   );
 };
