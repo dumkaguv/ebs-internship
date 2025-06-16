@@ -1,19 +1,15 @@
 import { Container, Section } from "@/components";
 import { Flex, Image, Typography } from "antd";
-import { SignUpForm } from "../components";
+import { SignInForm } from "../components";
 
-function SignUpPage() {
+const SignInPage = () => {
   return (
     <Container>
       <Section>
-        <Flex gap={40}>
-          <Image
-            src="/images/signup-hero.jpg"
-            width={560}
-            height={760}
-            preview={false}
-            alt=""
-          />
+        <Flex
+          gap={40}
+          align="center"
+        >
           <Flex
             vertical
             flex={1}
@@ -23,14 +19,22 @@ function SignUpPage() {
               level={2}
               style={{ textAlign: "center", marginBottom: 16 }}
             >
-              Create Your Account
+              Sign in to your account
             </Typography.Title>
-            <SignUpForm />
+
+            <SignInForm />
           </Flex>
+          <Image
+            src="/images/login-hero.png"
+            // width={560}
+            // height={760}
+            preview={false}
+            alt="loginImg"
+          />
         </Flex>
       </Section>
     </Container>
   );
-}
+};
 
-export default SignUpPage;
+export default SignInPage;
