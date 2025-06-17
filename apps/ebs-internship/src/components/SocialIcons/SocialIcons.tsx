@@ -1,5 +1,5 @@
 import { Flex } from "antd";
-import classes from "./socialicons.module.scss";
+import { useSocialIconsStyles } from "./SocialIconsStyles";
 
 const socialLinks = [
   {
@@ -30,6 +30,8 @@ const socialLinks = [
 ] as const;
 
 const SocialIcons = () => {
+  const { styles } = useSocialIconsStyles();
+
   return (
     <Flex
       style={{ marginTop: 20 }}
@@ -42,7 +44,7 @@ const SocialIcons = () => {
           href={item.link}
           target="_blank"
           rel="noopener noreferrer"
-          className={classes.socialIcons}
+          className={styles.socialIcons}
         >
           <img
             height={40}

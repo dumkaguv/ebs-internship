@@ -28,8 +28,10 @@ const AntDesignConfig: FC<PropsWithChildren> = ({ children }) => {
           },
           Layout: {
             headerBg: "rgb(255,255,255)",
+            footerBg: "rgb(30,41,59)",
             bodyBg: "rgb(255,255,255)",
             headerPadding: "0 80px",
+            footerPadding: "80px 0",
           },
           Divider: {
             lineWidth: 4,

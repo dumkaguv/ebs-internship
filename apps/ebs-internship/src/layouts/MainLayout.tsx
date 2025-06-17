@@ -1,4 +1,4 @@
-import { Header, Footer } from "@/components";
+import { Header, Footer, ScrollToTop } from "@/components";
 import { Layout } from "antd";
 import { Content } from "antd/es/layout/layout";
 import { Outlet } from "react-router-dom";
@@ -8,6 +8,7 @@ const MainLayout = () => {
     <Layout>
       <Header />
       <Content>
+        <ScrollToTop />
         <Outlet />
       </Content>
       <Footer />

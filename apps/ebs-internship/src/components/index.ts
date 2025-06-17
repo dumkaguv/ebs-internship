@@ -7,3 +7,4 @@ export { default as Container } from "./Container";
 export { Breadcrumb } from "./Breadcrumb";
 export { default as CourseList } from "./CourseList";
 export { CourseCard } from "./CourseCard";
+export { ScrollToTop } from "./ScrollToTop";

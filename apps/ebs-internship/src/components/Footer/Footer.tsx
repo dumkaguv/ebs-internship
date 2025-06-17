@@ -1,119 +1,169 @@
-import { Layout, Col, Typography, Space, Flex, Row } from "antd";
+import { Layout, Typography, Space, Flex } from "antd";
 import Image from "antd/es/image";
-import classes from "./footer.module.scss";
 import SocialIcons from "../SocialIcons/SocialIcons";
+import { useFooterStyles } from "./FooterStyles";
+import { Link } from "react-router-dom";
 
 const { Footer } = Layout;
-const { Title, Paragraph, Text } = Typography;
 
 const AppFooter = () => {
+  const { styles } = useFooterStyles();
+
   return (
-    <Footer className={classes.customFooter}>
-      <div className={classes.footerContainer}>
-        <Row
-          justify="space-between"
-          gutter={[32, 32]}
+    <Footer className={styles.footer}>
+      <Flex
+        className={styles.footerContainer}
+        justify="space-between"
+        gap={16}
+      >
+        <Flex
+          className={styles.footerDescription}
+          vertical
+          gap={16}
         >
-          <Col
-            xs={24}
-            sm={12}
-            md={8}
+          <Flex
+            align="center"
+            gap={8}
           >
-            <Space direction="vertical">
-              <Flex
-                align="center"
-                gap={8}
-              >
-                <Image
-                  src="/logo(1).png"
-                  alt="Logo"
-                  width={31}
-                  height={40}
-                  preview={false}
-                />
-                <Title
-                  className={classes.customTitle}
-                  level={3}
-                >
-                  Byway
-                </Title>
-              </Flex>
-              <Paragraph className={classes.customText}>
-                Empowering learners through accessible and engaging online
-                education. Byway is a leading online learning platform dedicated
-                to providing high-quality, flexible, and affordable educational
-                experiences.
-              </Paragraph>
-            </Space>
-          </Col>
-
-          <Col
-            xs={24}
-            sm={12}
-            md={4}
-            lg={3}
-          >
-            <Title
-              className={classes.customTitle}
-              level={5}
+            <Image
+              src="/logo(1).png"
+              alt="Logo"
+              width={31}
+              height={40}
+              preview={false}
+            />
+            <Typography.Title
+              className={styles.logoTitle}
+              level={3}
             >
-              Get Help
-            </Title>
-            <Space direction="vertical">
-              <Text className={classes.customText}>Contact Us</Text>
-              <Text className={classes.customText}>Latest Article</Text>
-              <Text className={classes.customText}>FAQ</Text>
-            </Space>
-          </Col>
+              Byway
+            </Typography.Title>
+          </Flex>
+          <Typography.Paragraph className={styles.paragraph}>
+            Empowering learners through accessible and engaging online
+            education.
+            <br />
+            Byway is a leading online learning platform dedicated to providing
+            high-quality, flexible, and affordable educational experiences.
+          </Typography.Paragraph>
+        </Flex>
 
-          <Col
-            xs={24}
-            sm={12}
-            md={4}
-            lg={3}
+        <Flex
+          vertical
+          gap={8}
+        >
+          <Typography.Title
+            className={styles.title}
+            level={5}
           >
-            <Title
-              className={classes.customTitle}
-              level={5}
-            >
-              Programs
-            </Title>
-            <Space direction="vertical">
-              <Text className={classes.customText}>Art & Design</Text>
-              <Text className={classes.customText}>Business</Text>
-              <Text className={classes.customText}>IT & Software</Text>
-              <Text className={classes.customText}>Languages</Text>
-              <Text className={classes.customText}>Programming</Text>
-            </Space>
-          </Col>
+            Get Help
+          </Typography.Title>
 
-          <Col
-            xs={24}
-            sm={12}
-            md={24}
-            lg={24}
-            xl={6}
+          <Space
+            direction="vertical"
+            size="small"
           >
-            <Title
-              className={classes.customTitle}
-              level={5}
+            <Link
+              to={"#"}
+              className={styles.paragraph}
             >
               Contact Us
-            </Title>
-            <Space direction="vertical">
-              <Text className={classes.customText}>
-                Address: 123 Main Street, Anytown, CA 12345
-              </Text>
-              <Text className={classes.customText}>Tel: +(123) 456-7890</Text>
-              <Text className={classes.customText}>
-                Email: bywayedu@webkul.in
-              </Text>
-            </Space>
+            </Link>
+            <Link
+              to={"#"}
+              className={styles.paragraph}
+            >
+              Latest Article
+            </Link>
+            <Link
+              to={"#"}
+              className={styles.paragraph}
+            >
+              FAQ
+            </Link>
+          </Space>
+        </Flex>
 
-            <SocialIcons />
-          </Col>
-        </Row>
-      </div>
+        <Flex
+          vertical
+          gap={8}
+        >
+          <Typography.Title
+            className={styles.title}
+            level={5}
+          >
+            Programs
+          </Typography.Title>
+          <Space direction="vertical">
+            <Link
+              to={"#"}
+              className={styles.paragraph}
+            >
+              Art & Design
+            </Link>
+            <Link
+              to={"#"}
+              className={styles.paragraph}
+            >
+              Business
+            </Link>
+            <Link
+              to={"#"}
+              className={styles.paragraph}
+            >
+              IT & Software
+            </Link>
+            <Link
+              to={"#"}
+              className={styles.paragraph}
+            >
+              Languages
+            </Link>
+            <Link
+              to={"#"}
+              className={styles.paragraph}
+            >
+              Programming
+            </Link>
+          </Space>
+        </Flex>
+
+        <Flex
+          vertical
+          gap={8}
+        >
+          <Typography.Title
+            className={styles.title}
+            level={5}
+          >
+            Contact Us
+          </Typography.Title>
+          <Space
+            direction="vertical"
+            size="small"
+          >
+            <Typography.Paragraph className={styles.paragraph}>
+              Address: 123 Main Street, Anytown, CA 12345
+            </Typography.Paragraph>
+
+            <Typography.Link
+              href="tel:+1234567890"
+              className={styles.paragraph}
+            >
+              Tel: +(123) 456-7890
+            </Typography.Link>
+
+            <Typography.Link
+              href="mailto:bywayedu@webkul.in"
+              className={styles.paragraph}
+            >
+              Email: bywayedu@webkul.in
+            </Typography.Link>
+          </Space>
+
+          <SocialIcons />
+        </Flex>
+      </Flex>
     </Footer>
   );
 };
