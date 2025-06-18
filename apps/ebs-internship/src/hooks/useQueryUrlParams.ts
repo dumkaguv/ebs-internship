@@ -15,8 +15,14 @@ export const useQueryUrlParams = (params: Record<string, any>) => {
         ignoreQueryPrefix: true,
       });
       const mergedParams = { ...currentParams, ...params };
-      console.log(mergedParams);
-      const newQueryParams = qs.stringify(mergedParams);
+      const cleanedParams = Object.fromEntries(
+        Object.entries(mergedParams).filter(
+          ([, value]) => value !== "" && value !== null && value !== undefined
+        )
+      );
+      const newQueryParams = qs.stringify(cleanedParams, {
+        arrayFormat: "comma",
+      });
 
       navigate(`${location.pathname}?${newQueryParams}`);
     }

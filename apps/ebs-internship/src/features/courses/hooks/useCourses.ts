@@ -3,8 +3,8 @@ import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Api } from "@/services/apiClient";
 import type { Sort as SortType } from "../types/sortTypes";
-import { useQueryUrlParams } from "@/hooks";
-import { useSortChangeToInitialPage, useScrollTop } from "../hooks";
+import { useDebouncedValue, useQueryUrlParams } from "@/hooks";
+import { useScrollTop, useChangeToInitialPage } from "../hooks";
 
 const PER_PAGE = 9;
 
@@ -21,22 +21,60 @@ export const useCourses = () => {
     sortOrder: (searchParams.get("order") as SortType["sortOrder"]) || "ASC",
   });
 
+  const [searchValue, setSearchValue] = useState(
+    searchParams.get("title")
+  );
+  const debouncedSearch = useDebouncedValue(searchValue, 500);
+
+  const categories = useMemo(
+    () => searchParams.get("categories")?.split(",").map(Number) ?? [],
+    [searchParams]
+  );
+
+  const authors = useMemo(
+    () => searchParams.get("authors")?.split(",").map(Number) ?? [],
+    [searchParams]
+  );
+
   const filters = useMemo(
     () => ({
+      categories,
+      authors,
+      title: debouncedSearch,
       order_by: sort.sortBy,
       order: sort.sortOrder,
       page: currentPage,
       per_page: PER_PAGE,
     }),
-    [sort.sortBy, sort.sortOrder, currentPage]
+    [
+      categories,
+      authors,
+      debouncedSearch,
+      sort.sortBy,
+      sort.sortOrder,
+      currentPage,
+    ]
   );
 
   const { data, isLoading } = useQuery({
-    queryKey: ["courses", sort, currentPage],
+    queryKey: [
+      "courses",
+      sort,
+      debouncedSearch,
+      currentPage,
+      categories,
+      authors,
+    ],
     queryFn: () => Api.courses.fetchCourses(filters),
   });
 
-  useSortChangeToInitialPage(sort, setCurrentPage);
+  useChangeToInitialPage(
+    sort,
+    categories,
+    authors,
+    setCurrentPage,
+    debouncedSearch
+  );
   useScrollTop(currentPage);
   useQueryUrlParams(filters);
 
@@ -46,6 +84,8 @@ export const useCourses = () => {
     isLoading,
     currentPage,
     setCurrentPage,
+    searchValue,
+    setSearchValue,
     sort,
     setSort,
     perPage: PER_PAGE,

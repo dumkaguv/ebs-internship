@@ -60,6 +60,15 @@ const AntDesignConfig: FC<PropsWithChildren> = ({ children }) => {
           Pagination: {
             colorText: "rgba(41,39,39,0.88)",
           },
+          Collapse: {
+            colorBorder: "rgb(203,213,225)",
+          },
+          Checkbox: {
+            controlInteractiveSize: 24,
+            lineWidthBold: 2.5,
+            colorPrimary: "rgb(59,130,246)",
+            paddingXS: 12,
+          },
         },
       }}
     >

@@ -19,7 +19,7 @@ export const fetchCourseByName = async (title?: string) => {
 };
 
 export interface FetchCoursesParams {
-  title?: string;
+  title?: string | null;
   page?: number;
   category_id?: number;
   tag?: string;
@@ -34,6 +34,7 @@ export const fetchCourses = async (
   params?: FetchCoursesParams
 ): Promise<ApiResponse<Course[]> | undefined> => {
   try {
+    console.log(params)
     const response = await axiosInstance.get<ApiResponse<Course[]>>(
       ApiRoutes.COURSES,
       { params }
