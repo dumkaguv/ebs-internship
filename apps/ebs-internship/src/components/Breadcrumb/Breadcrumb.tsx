@@ -1,7 +1,7 @@
 import { Breadcrumb, Typography } from "antd";
 import { Link } from "react-router-dom";
 import { FC } from "react";
-import styles from "./breadcrumb.module.scss";
+import { useBreadcrumbStyles } from "./BreadcrumbsStyles";
 
 interface Props {
   location: string;
@@ -9,15 +9,19 @@ interface Props {
 }
 
 const AppBreadcrumb: FC<Props> = ({ location, title }) => {
+  const { styles } = useBreadcrumbStyles();
+
   const pathSnippets = location.split("/").filter((i) => i);
-
-  console.log(location);
-
   const breadcrumbItems = [
     {
       title: (
-        <Typography.Title level={4}>
-          <Link to="/">Home</Link>
+        <Typography.Title level={5}>
+          <Link
+            className={styles.breadcrumbTitle}
+            to="/"
+          >
+            Home
+          </Link>
         </Typography.Title>
       ),
       key: "home",
@@ -34,8 +38,17 @@ const AppBreadcrumb: FC<Props> = ({ location, title }) => {
 
       return {
         title: (
-          <Typography.Title level={4}>
-            <Link to={url}>{route}</Link>
+          <Typography.Title level={5}>
+            {isLast ? (
+              <span className={styles.inactive}>{route}</span>
+            ) : (
+              <Link
+                className={styles.breadcrumbTitle}
+                to={url}
+              >
+                {route}
+              </Link>
+            )}
           </Typography.Title>
         ),
         key: url,

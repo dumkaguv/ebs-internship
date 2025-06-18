@@ -1,11 +1,11 @@
 import { Container } from "@/components";
 import { Avatar, Button, Flex, Typography } from "antd";
-import styles from "./courseDetailsInformation.module.scss";
 import { Link } from "react-router-dom";
 import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
 import { Course } from "@/types";
 import { FC, useRef, useState } from "react";
 import { CourseDetailsSyllabus } from "../CourseDetailsSyllabus";
+import { useCourseDetailsInformationStyles } from "./CourseDetailsInformationStyles";
 
 interface Props {
   data: Course;
@@ -17,6 +17,8 @@ const CourseDetailsInformation: FC<Props> = ({ data }) => {
   const instructorRef = useRef<HTMLDivElement>(null);
   const syllabusRef = useRef<HTMLDivElement>(null);
 
+  const { styles } = useCourseDetailsInformationStyles();
+
   const scrollToRef = (
     ref: React.RefObject<HTMLDivElement | null>,
     tabName: string
@@ -26,9 +28,7 @@ const CourseDetailsInformation: FC<Props> = ({ data }) => {
   };
 
   return (
-    <Container
-      style={{ maxWidth: "1280px", paddingBlock: 40, margin: "0 auto" }}
-    >
+    <Container className={styles.infoContainer}>
       <Flex
         gap={24}
         justify="flex-start"
@@ -67,16 +67,34 @@ const CourseDetailsInformation: FC<Props> = ({ data }) => {
 
       <div className={styles.line}></div>
 
-      <div
+      <Flex
+        className={styles.descriptionContainer}
         ref={descriptionRef}
-        style={{ maxWidth: "840px" }}
+        vertical
+        gap={24}
       >
-        <Typography.Title level={4}>Course Description</Typography.Title>
-        <Typography.Paragraph>{data.product?.description}</Typography.Paragraph>
+        <Flex
+          gap={8}
+          vertical
+        >
+          <Typography.Title level={4}>Course Description</Typography.Title>
+          <Typography.Paragraph>
+            {data.product?.description ??
+              "This interactive e-learning course will introduce you to User Experience (UX) design, the art of creating products and services that are intuitive, enjoyable, and user-friendly. Gain a solid foundation in UX principles and learn to apply them in real-world scenarios through engaging modules and interactive exercises. "}
+          </Typography.Paragraph>
+        </Flex>
 
-        <Typography.Title level={4}>Certification</Typography.Title>
-        {/* <Typography.Paragraph>{data}</Typography.Paragraph> */}
-      </div>
+        <Flex
+          gap={8}
+          vertical
+        >
+          <Typography.Title level={4}>Certification</Typography.Title>
+          <Typography.Paragraph>
+            {data.summary ??
+              "At Byway, we understand the significance of formal recognition for your hard work and dedication to continuous learning. Upon successful completion of our courses, you will earn a prestigious certification that not only validates your expertise but also opens doors to new opportunities in your chosen field."}
+          </Typography.Paragraph>
+        </Flex>
+      </Flex>
 
       <div className={styles.line}></div>
 
@@ -86,39 +104,38 @@ const CourseDetailsInformation: FC<Props> = ({ data }) => {
         gap={16}
       >
         <Typography.Title level={4}>Instructor</Typography.Title>
-        <div>
+        <Flex vertical>
           <Link
+            className={styles.authorLink}
             to={getRouteUrlById(RoutesEnum.MENTORS, data.author_id)}
-            style={{ fontSize: "20px" }}
           >
             {data.author?.first_name} {data.author?.last_name}
           </Link>
           <Typography.Paragraph>{data.author?.bio}</Typography.Paragraph>
-        </div>
+        </Flex>
         <Flex
           gap={16}
           align="center"
         >
           <Avatar
             size={120}
-            src={data.author?.url_avatar}
+            src={
+              data.author?.url_avatar ??
+              "https://static.vecteezy.com/system/resources/previews/046/409/821/non_2x/avatar-profile-icon-in-flat-style-male-user-profile-illustration-on-isolated-background-man-profile-sign-business-concept-vector.jpg"
+            }
           />
           <Flex
             gap={16}
             vertical
           >
-            <Typography.Text
-              style={{ display: "flex", alignItems: "center", gap: "8px" }}
-            >
+            <Typography.Text className={styles.authorInfo}>
               <img
                 src="icons/graduation.svg"
                 alt="graduationIcon"
               />
               {data.author?.email}
             </Typography.Text>
-            <Typography.Text
-              style={{ display: "flex", alignItems: "center", gap: "8px" }}
-            >
+            <Typography.Text className={styles.authorInfo}>
               <img
                 src="icons/play.svg"
                 alt="playIcon"
@@ -127,9 +144,7 @@ const CourseDetailsInformation: FC<Props> = ({ data }) => {
             </Typography.Text>
           </Flex>
         </Flex>
-        <Typography.Paragraph style={{ maxWidth: "840px" }}>
-          {data.author?.bio}
-        </Typography.Paragraph>
+        <Typography.Paragraph>{data.subtitle ?? ""}</Typography.Paragraph>
       </Flex>
 
       <div className={styles.line}></div>

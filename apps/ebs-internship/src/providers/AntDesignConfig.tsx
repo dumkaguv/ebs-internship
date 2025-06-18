@@ -26,11 +26,17 @@ const AntDesignConfig: FC<PropsWithChildren> = ({ children }) => {
             controlHeight: 48,
             paddingInline: 24,
             paddingInlineLG: 24,
+            boxShadow: "0",
           },
           Layout: {
             headerBg: "rgb(255,255,255)",
+            footerBg: "rgb(30,41,59)",
             bodyBg: "rgb(255,255,255)",
             headerPadding: "0 80px",
+            footerPadding: "80px 0",
+          },
+          Collapse: {
+            headerPadding: "24px",
           },
           Divider: {
             lineWidth: 4,

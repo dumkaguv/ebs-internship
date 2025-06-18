@@ -8,3 +8,4 @@ export { Breadcrumb } from "./Breadcrumb";
 export { default as CourseList } from "./CourseList";
 export { CourseCard } from "./CourseCard";
 export { LoadableCheckboxGroup } from "./LoadableCheckboxGroup";
+export { ScrollToTop } from "./ScrollToTop";
