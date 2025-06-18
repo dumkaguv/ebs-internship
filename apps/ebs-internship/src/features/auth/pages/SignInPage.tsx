@@ -26,8 +26,6 @@ const SignInPage = () => {
           </Flex>
           <Image
             src="/images/login-hero.png"
-            // width={560}
-            // height={760}
             preview={false}
             alt="loginImg"
           />

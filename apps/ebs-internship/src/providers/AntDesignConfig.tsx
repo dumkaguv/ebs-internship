@@ -37,6 +37,7 @@ const AntDesignConfig: FC<PropsWithChildren> = ({ children }) => {
           },
           Collapse: {
             headerPadding: "24px",
+            colorBorder: "rgb(203,213,225)",
           },
           Divider: {
             lineWidth: 4,
@@ -65,9 +66,6 @@ const AntDesignConfig: FC<PropsWithChildren> = ({ children }) => {
           },
           Pagination: {
             colorText: "rgba(41,39,39,0.88)",
-          },
-          Collapse: {
-            colorBorder: "rgb(203,213,225)",
           },
           Checkbox: {
             controlInteractiveSize: 24,
