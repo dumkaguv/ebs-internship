@@ -1,5 +1,5 @@
 import { Container, Section } from "@/components";
-import { RoutesEnum } from "@/config/routesEnum";
+import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
 import { Api } from "@/services/apiClient";
 import { useQuery } from "@tanstack/react-query";
 import { Card, Flex, Image, List, Typography } from "antd";
@@ -31,7 +31,7 @@ const MentorList: FC<Props> = ({ title = "Top Mentors", showSeeAllButton }) => {
           grid={{ gutter: 16, column: 5 }}
           renderItem={(mentor) => (
             <List.Item>
-              <Link to={RoutesEnum.MENTORS}>
+              <Link to={getRouteUrlById(RoutesEnum.MENTORS, mentor.id)}>
                 <Card
                   hoverable
                   cover={

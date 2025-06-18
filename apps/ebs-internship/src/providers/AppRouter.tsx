@@ -5,6 +5,7 @@ import CoursesPage from "@/pages/CoursesPage";
 import HomePage from "@/features/home/pages/HomePage";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { SignInPage, SignUpPage } from "@/features/auth";
+import MentorPage from "@/features/mentorPage/pages/MentorPage";
 
 const AppRouter = () => {
   return (
@@ -30,6 +31,10 @@ const AppRouter = () => {
           <Route
             path={`${RoutesEnum.COURSES}/:id`}
             element={<CourseDetailsPage />}
+          />
+          <Route
+            path={`${RoutesEnum.MENTORS}/:id`}
+            element={<MentorPage />}
           />
         </Route>
       </Routes>

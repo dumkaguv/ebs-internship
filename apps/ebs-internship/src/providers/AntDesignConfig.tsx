@@ -61,6 +61,7 @@ const AntDesignConfig: FC<PropsWithChildren> = ({ children }) => {
             marginSM: 0,
             marginXXL: 0,
             marginXXS: 0,
+            itemPadding: "0",
           },
         },
       }}
