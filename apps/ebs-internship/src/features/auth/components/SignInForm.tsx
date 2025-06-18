@@ -1,13 +1,16 @@
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Typography } from "antd";
 import { useForm } from "antd/es/form/Form";
+import { useLogin } from "../hooks";
 
 const SignInForm = () => {
   const [form] = useForm();
 
+  const { mutate, isPending } = useLogin();
+
   const handleSubmitSignIn = async () => {
-    const values = await form.validateFields();
-    console.log(values);
+    const { email, password } = await form.validateFields();
+    mutate({ email, password });
   };
 
   return (
@@ -20,14 +23,7 @@ const SignInForm = () => {
       scrollToFirstError
     >
       <Form.Item
-        label={
-          <Typography.Title
-            level={5}
-            style={{ marginBottom: 0 }}
-          >
-            Email
-          </Typography.Title>
-        }
+        label={<Typography.Title level={5}>Email</Typography.Title>}
         rules={[
           {
             required: true,
@@ -47,15 +43,7 @@ const SignInForm = () => {
         />
       </Form.Item>
       <Form.Item
-        label={
-          <Typography.Title
-            level={5}
-            style={{ marginBottom: 0 }}
-          >
-            Password
-          </Typography.Title>
-        }
-        hasFeedback
+        label={<Typography.Title level={5}>Password</Typography.Title>}
         rules={[
           {
             required: true,
@@ -72,11 +60,13 @@ const SignInForm = () => {
       </Form.Item>
       <Button
         htmlType="submit"
+        loading={isPending}
+        disabled={isPending}
         type="primary"
         icon={<ArrowRightOutlined style={{ height: 24 }} />}
         iconPosition="end"
       >
-        Sign In{" "}
+        Sign In
       </Button>
     </Form>
   );

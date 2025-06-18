@@ -2,12 +2,14 @@ import { Course } from "@/types/course";
 import { Card, Flex, Image, Space, Typography } from "antd";
 import { FC } from "react";
 import { useCourseCardStyles } from "./CourseCardStyles";
+import { formatPrice } from "@/utils";
 
 interface Props {
   course: Course;
+  imageHeight?: number | string;
 }
 
-const CourseCard: FC<Props> = ({ course }) => {
+const CourseCard: FC<Props> = ({ course, imageHeight }) => {
   const { styles } = useCourseCardStyles();
 
   return (
@@ -19,15 +21,17 @@ const CourseCard: FC<Props> = ({ course }) => {
           fallback={
             "https://foundr.com/wp-content/uploads/2021/09/Best-online-course-platforms.png"
           }
+          height={imageHeight}
           alt=""
           preview={false}
-          height={200}
         />
       }
+      style={{ height: "100%", display: "flex", flexDirection: "column" }}
     >
-      <Space
-        size={8}
-        direction="vertical"
+      <Flex
+        gap={8}
+        style={{ height: "100%" }}
+        vertical
       >
         <Flex
           vertical
@@ -40,7 +44,10 @@ const CourseCard: FC<Props> = ({ course }) => {
             {course.author?.last_name}
           </Typography.Paragraph>
 
-          <Flex gap={4}>
+          <Flex
+            gap={4}
+            flex={1}
+          >
             {course.hours_to_complete && (
               <Typography.Paragraph className={styles.courseCardDetails}>
                 {course.hours_to_complete} Total Hours
@@ -60,10 +67,13 @@ const CourseCard: FC<Props> = ({ course }) => {
             )}
           </Flex>
         </Flex>
-        <Typography.Title level={4}>
-          ${course.product?.price ? course.product.price : 0}
+        <Typography.Title
+          level={4}
+          className={styles.price}
+        >
+          ${course.product?.price ? formatPrice(course.product.price) : 0}
         </Typography.Title>
-      </Space>
+      </Flex>
     </Card>
   );
 };

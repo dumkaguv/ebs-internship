@@ -17,10 +17,12 @@ const CourseList: FC<Props> = ({
   showSeeAllButton = false,
   category,
 }) => {
-  const { data: courses, isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["courses"],
-    queryFn: Api.courses.fetchCourses,
+    queryFn: () => Api.courses.fetchCourses(),
   });
+
+  const courses = data?.data;
 
   const filteredCourses = category
     ? courses?.filter((course) =>
@@ -43,7 +45,10 @@ const CourseList: FC<Props> = ({
           renderItem={(course) => (
             <List.Item>
               <Link to={getRouteUrlById(RoutesEnum.COURSES, course.id)}>
-                <CourseCard course={course} />
+                <CourseCard
+                  course={course}
+                  imageHeight={200}
+                />
               </Link>
             </List.Item>
           )}

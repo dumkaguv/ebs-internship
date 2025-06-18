@@ -1,11 +1,11 @@
 import { RoutesEnum } from "@/config/routesEnum";
 import { MainLayout } from "@/layouts";
 import CourseDetailsPage from "@/features/courseDetails/pages/CourseDetailsPage";
-import CoursesPage from "@/pages/CoursesPage";
 import HomePage from "@/features/home/pages/HomePage";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { SignInPage, SignUpPage } from "@/features/auth";
 import MentorPage from "@/features/mentorPage/pages/MentorPage";
+import CoursesPage from "@/features/courses/pages/CoursesPage";
 
 const AppRouter = () => {
   return (

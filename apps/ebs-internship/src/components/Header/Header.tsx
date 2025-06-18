@@ -4,7 +4,7 @@ import { ShoppingCartOutlined } from "@ant-design/icons";
 import { RoutesEnum } from "@/config/routesEnum";
 import HeaderSearch from "./HeaderSearch";
 import { useEffect, useRef } from "react";
-import defineHeaderHeightCssVar from "@/utils/defineHeaderHeightCssVar";
+import { defineHeaderHeightCssVar } from "@/utils";
 import { useHeaderStyles } from "./HeaderStyles";
 
 const { Header } = Layout;

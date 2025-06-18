@@ -15,9 +15,14 @@ const GlobalStyles = createGlobalStyle(
   .ant-card {
     box-shadow: 0px 0px 8px 0px rgba(59, 130, 246, 0.12) !important;
   }
-    .ant-btn {
-      box-shadow: 0 !important;
-    }
+    
+  .ant-btn {
+    box-shadow: 0 !important;
+  }
+
+  .ant-card-body {
+    height: 100% !important;
+  }
 
   .ant-card-hoverable {
     transition: transform 0.3s ease, box-shadow 0.3s ease !important;
@@ -35,8 +40,14 @@ const GlobalStyles = createGlobalStyle(
   .ant-typography {
     margin-bottom: 0 !important;
   }
-  
-  
+
+  .ant-col {
+    height: 100% !important;
+  }
+
+  .ant-list-item {
+    height: 100% !important;
+  }
 `
 );
 

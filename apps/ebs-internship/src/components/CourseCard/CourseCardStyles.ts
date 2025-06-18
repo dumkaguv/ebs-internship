@@ -14,5 +14,9 @@ export const useCourseCardStyles = createStyles(({ token, css }) => {
         color: ${token.grey.grey700};
       }
     `,
+
+    price: css`
+      margin-top: auto;
+    `
   };
 });

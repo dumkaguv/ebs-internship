@@ -12,6 +12,7 @@ const AntDesignConfig: FC<PropsWithChildren> = ({ children }) => {
           fontFamily: "Inter",
           fontSize: 16,
           borderRadius: 8,
+          boxShadow: "0px 0px 8px 0px rgba(59, 130, 246, 0.12)",
           ...customThemePalette,
         },
         components: {
@@ -36,6 +37,7 @@ const AntDesignConfig: FC<PropsWithChildren> = ({ children }) => {
           },
           Collapse: {
             headerPadding: "24px",
+            colorBorder: "rgb(203,213,225)",
           },
           Divider: {
             lineWidth: 4,
@@ -62,6 +64,15 @@ const AntDesignConfig: FC<PropsWithChildren> = ({ children }) => {
             marginXXL: 0,
             marginXXS: 0,
             itemPadding: "0",
+          },
+          Pagination: {
+            colorText: "rgba(41,39,39,0.88)",
+          },
+          Checkbox: {
+            controlInteractiveSize: 24,
+            lineWidthBold: 2.5,
+            colorPrimary: "rgb(59,130,246)",
+            paddingXS: 12,
           },
         },
       }}

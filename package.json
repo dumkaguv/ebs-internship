@@ -11,9 +11,11 @@
     "antd": "^5.26.0",
     "antd-style": "^3.7.1",
     "axios": "^1.9.0",
+    "qs": "^6.14.0",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-router-dom": "^6.29.0"
+    "react-router-dom": "^6.29.0",
+    "use-deep-compare-effect": "^1.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
@@ -37,6 +39,7 @@
     "@testing-library/react": "16.1.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.0.0",
+    "@types/qs": "^6.14.0",
     "@types/react": "19.0.0",
     "@types/react-dom": "19.0.0",
     "@vitejs/plugin-react": "^4.2.0",

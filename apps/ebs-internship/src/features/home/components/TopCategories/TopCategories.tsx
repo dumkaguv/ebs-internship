@@ -2,14 +2,14 @@ import { Section, Container } from "@/components";
 import { RoutesEnum } from "@/config/routesEnum";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { fetchCategories } from "../../api/fetchCategories";
 import { Card, Flex, Image, List, Typography } from "antd";
 import { useTopCategoriesStyles } from "./TopCategoriesStyles";
+import { Api } from "@/services/apiClient";
 
 const TopCategories = () => {
   const { data: categories, isLoading } = useQuery({
     queryKey: ["categories"],
-    queryFn: fetchCategories,
+    queryFn: Api.categories.fetchCategories,
   });
 
   const { styles } = useTopCategoriesStyles();

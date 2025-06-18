@@ -1,6 +1,6 @@
 import { RefObject } from "react";
 
-const defineHeaderHeightCssVar = (
+export const defineHeaderHeightCssVar = (
   headerRef: RefObject<HTMLDivElement | null>
 ) => {
   if (headerRef.current) {
@@ -10,5 +10,3 @@ const defineHeaderHeightCssVar = (
     );
   }
 };
-
-export default defineHeaderHeightCssVar;
