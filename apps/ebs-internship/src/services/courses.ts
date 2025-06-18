@@ -14,18 +14,33 @@ export const fetchCourseByName = async (title?: string) => {
     return response.data.data;
   } catch (error) {
     console.error(error);
-    return [];
+    return undefined;
   }
 };
 
-export const fetchCourses = async () => {
+export interface FetchCoursesParams {
+  title?: string;
+  page?: number;
+  category_id?: number;
+  tag?: string;
+  per_page?: number;
+  order_by?: "created_at" | "title";
+  order?: "ASC" | "DESC";
+  only_with_categories?: boolean;
+  free?: boolean;
+}
+
+export const fetchCourses = async (
+  params?: FetchCoursesParams
+): Promise<ApiResponse<Course[]> | undefined> => {
   try {
     const response = await axiosInstance.get<ApiResponse<Course[]>>(
-      ApiRoutes.COURSES
+      ApiRoutes.COURSES,
+      { params }
     );
-    return response.data.data;
+    return response.data;
   } catch (error) {
     console.error(error);
-    return [];
+    return undefined;
   }
 };

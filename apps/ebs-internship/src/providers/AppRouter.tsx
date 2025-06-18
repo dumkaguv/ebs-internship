@@ -1,10 +1,10 @@
 import { RoutesEnum } from "@/config/routesEnum";
 import { MainLayout } from "@/layouts";
 import CourseDetailsPage from "@/features/courseDetails/pages/CourseDetailsPage";
-import CoursesPage from "@/pages/CoursesPage";
 import HomePage from "@/features/home/pages/HomePage";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import { SignUpPage } from "@/features/auth";
+import SignUpPage from "@/features/auth/pages/SignUpPage";
+import CoursesPage from "@/features/courses/pages/coursesPage";
 
 const AppRouter = () => {
   return (
@@ -20,12 +20,12 @@ const AppRouter = () => {
             element={<SignUpPage />}
           />
           <Route
-            path={RoutesEnum.COURSES}
-            element={<CoursesPage />}
-          />
-          <Route
             path={`${RoutesEnum.COURSES}/:id`}
             element={<CourseDetailsPage />}
+          />
+          <Route 
+            path={RoutesEnum.COURSES}
+            element={<CoursesPage />}
           />
         </Route>
       </Routes>

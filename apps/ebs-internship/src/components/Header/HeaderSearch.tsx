@@ -6,13 +6,13 @@ import { useQuery } from "@tanstack/react-query";
 import { AutoComplete, Flex, Image, Input, Typography } from "antd";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useStyles } from "@/styles";
+import { useHeaderStyles } from "./HeaderStyles";
 
 const HeaderSearch = () => {
   const [searchValue, setSearchValue] = useState("");
   const debouncedSearch = useDebouncedValue(searchValue, 500);
 
-  const { styles } = useStyles();
+  const { styles } = useHeaderStyles();
 
   const { data: searchResults, isLoading } = useQuery({
     queryKey: ["search", debouncedSearch],

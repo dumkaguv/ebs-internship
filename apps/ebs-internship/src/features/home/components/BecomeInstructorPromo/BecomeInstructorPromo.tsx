@@ -19,26 +19,34 @@ const BecomeInstructorPromo = () => {
             alt=""
             loading="lazy"
           />
-          <Flex vertical>
+          <Flex
+            vertical
+            gap={8}
+          >
             <Typography.Title
               level={4}
               style={{ color: "black" }}
             >
               Become an Instructor
             </Typography.Title>
-            <Typography.Paragraph style={{ color: "#1D2939", maxWidth: 550 }}>
-              Instructors from around the world teach millions of students on
-              Byway. We provide the tools and skills to teach what you love.
-            </Typography.Paragraph>
-            <Button
-              type="primary"
-              href={RoutesEnum.PROFILE}
-              style={{ width: "fit-content" }}
-              icon={<ArrowRightOutlined />}
-              iconPosition="end"
+            <Flex
+              gap={16}
+              vertical
             >
-              Start Your Instructor Journey
-            </Button>
+              <Typography.Paragraph style={{ color: "#1D2939", maxWidth: 550 }}>
+                Instructors from around the world teach millions of students on
+                Byway. We provide the tools and skills to teach what you love.
+              </Typography.Paragraph>
+              <Button
+                type="primary"
+                href={RoutesEnum.PROFILE}
+                style={{ width: "fit-content" }}
+                icon={<ArrowRightOutlined />}
+                iconPosition="end"
+              >
+                Start Your Instructor Journey
+              </Button>
+            </Flex>
           </Flex>
         </Flex>
         <Flex
@@ -46,26 +54,34 @@ const BecomeInstructorPromo = () => {
           align="center"
           style={{ marginTop: 60 }}
         >
-          <Flex vertical>
+          <Flex
+            vertical
+            gap={8}
+          >
             <Typography.Title
               level={4}
               style={{ color: "black" }}
             >
               Transform your life through education
             </Typography.Title>
-            <Typography.Paragraph style={{ color: "#1D2939", maxWidth: 550 }}>
-              Learners around the world are launching new careers, advancing in
-              their fields, and enriching their lives.
-            </Typography.Paragraph>
-            <Button
-              type="primary"
-              href={RoutesEnum.COURSES}
-              style={{ width: "fit-content" }}
-              icon={<ArrowRightOutlined />}
-              iconPosition="end"
+            <Flex
+              vertical
+              gap={16}
             >
-              Checkout Courses
-            </Button>
+              <Typography.Paragraph style={{ color: "#1D2939", maxWidth: 550 }}>
+                Learners around the world are launching new careers, advancing
+                in their fields, and enriching their lives.
+              </Typography.Paragraph>
+              <Button
+                type="primary"
+                href={RoutesEnum.COURSES}
+                style={{ width: "fit-content" }}
+                icon={<ArrowRightOutlined />}
+                iconPosition="end"
+              >
+                Checkout Courses
+              </Button>
+            </Flex>
           </Flex>
           <Image
             src="/images/persons/9.png"
