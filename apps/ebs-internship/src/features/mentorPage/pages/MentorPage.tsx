@@ -5,7 +5,7 @@ import { MentorInformation } from "../components";
 import { Flex, Spin } from "antd";
 import CoursesByMentor from "@/components/CoursesByMentor/CoursesByMentor";
 
-const MentorPage = () => {
+function MentorPage() {
   const { id } = useParams();
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["tutors", id],
@@ -36,6 +36,6 @@ const MentorPage = () => {
       />
     </>
   );
-};
+}
 
 export default MentorPage;

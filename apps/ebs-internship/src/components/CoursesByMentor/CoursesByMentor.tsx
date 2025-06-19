@@ -15,16 +15,20 @@ interface Props {
 
 const CoursesByMentor: FC<Props> = ({ authorId, authorName }) => {
   const { styles } = useCoursesByMentorStyles();
+
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const { data: allCourses } = useQuery({
     queryKey: ["courses"],
     queryFn: () => Api.courses.fetchCourses(),
   });
-  const courses = allCourses?.filter((course) => course.author_id === authorId);
+
+  const courses =
+    allCourses?.data?.filter((course) => course.author_id === authorId) ?? [];
 
   const scrollLeft = () =>
     scrollRef.current?.scrollBy({ left: -320, behavior: "smooth" });
+
   const scrollRight = () =>
     scrollRef.current?.scrollBy({ left: 320, behavior: "smooth" });
 
