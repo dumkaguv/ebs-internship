@@ -1,3 +1,3 @@
-import { ACCESS_TOKEN } from "@/config/constants";
+import { getAccessToken } from "./getAccessToken";
 
-export const isAuth = () => !!localStorage.getItem(ACCESS_TOKEN);
+export const isAuth = () => !!getAccessToken();

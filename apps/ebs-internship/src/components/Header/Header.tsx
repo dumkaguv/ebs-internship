@@ -1,5 +1,5 @@
 import { Flex, Layout, Typography, Button } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { RoutesEnum } from "@/config/routesEnum";
 import HeaderSearch from "./HeaderSearch";
@@ -11,6 +11,7 @@ const { Header } = Layout;
 
 const AppHeader = () => {
   const headerRef = useRef(null);
+  const navigate = useNavigate();
 
   const { styles } = useHeaderStyles();
 
@@ -72,6 +73,7 @@ const AppHeader = () => {
           align="center"
         >
           <Button
+            onClick={() => navigate(RoutesEnum.CART)}
             type="text"
             className={styles.iconCart}
           >
