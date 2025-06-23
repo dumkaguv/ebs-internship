@@ -1,4 +1,4 @@
-import { Card, Typography, Button, Flex, Avatar } from "antd";
+import { Card, Typography, Button, Flex, Avatar, message } from "antd";
 import { GlobalOutlined } from "@ant-design/icons";
 import { Container } from "@/components";
 import { Breadcrumb } from "@/components/Breadcrumb";
@@ -7,15 +7,30 @@ import { Course } from "@/types";
 import { FC } from "react";
 import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
 import { useCourseDetailsHeroStyles } from "./CourseDetailsHeroStyles";
+import { useMutation } from "@tanstack/react-query";
+import { addItemToCart } from "../../api/addItemToCart";
 
 interface Props {
   data: Course;
+  id: number;
 }
 
-const CourseDetailsHero: FC<Props> = ({ data }) => {
+const CourseDetailsHero: FC<Props> = ({ data, id }) => {
   const { styles } = useCourseDetailsHeroStyles();
 
   const location = useLocation();
+
+  const { mutate, isPending } = useMutation<
+    Course,
+    Error,
+    { id: number; quantity?: number }
+  >({
+    mutationFn: () => addItemToCart(data.product.id),
+
+    onSuccess: () =>
+      message.success(`Course ${data.title} added successfully to the cart!`),
+    onError: () => message.error("Error occurred. Try again later."),
+  });
 
   return (
     <section className={styles.heroSection}>
@@ -102,6 +117,8 @@ const CourseDetailsHero: FC<Props> = ({ data }) => {
               )}
             </Typography.Title>
             <Button
+              onClick={() => mutate({ id })}
+              loading={isPending}
               className={styles.customButtonAdd}
               block
             >

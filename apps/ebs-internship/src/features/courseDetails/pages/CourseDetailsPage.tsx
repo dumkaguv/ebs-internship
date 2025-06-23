@@ -31,7 +31,10 @@ function CourseDetailsPage() {
 
   return (
     <>
-      <CourseDetailsHero data={data} />
+      <CourseDetailsHero
+        data={data}
+        id={Number(id)}
+      />
       <CourseDetailsInformation data={data} />
       <CourseList
         title="More Courses Like This"
