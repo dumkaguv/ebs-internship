@@ -8,13 +8,16 @@ import { PROFILE_ROUTES } from "@/config/routesEnum";
 const SignInForm = () => {
   const [form] = useForm();
   const navigate = useNavigate();
-
   const { mutate, isPending } = useLogin();
 
   const handleSubmitSignIn = async () => {
     const { email, password } = await form.validateFields();
-    mutate({ email, password });
-    setTimeout(() => navigate(PROFILE_ROUTES.ROOT), 2000);
+    mutate(
+      { email, password },
+      {
+        onSuccess: () => navigate(PROFILE_ROUTES.ROOT),
+      }
+    );
   };
 
   return (

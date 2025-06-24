@@ -20,7 +20,7 @@ export const useUserProfileFormStyles = createStyles(({ token, css }) => {
 
     inputForm: css`
       &&.ant-input {
-        width: 60%;
+        padding: 16px;
       }
     `,
 
@@ -46,6 +46,7 @@ export const useUserProfileFormStyles = createStyles(({ token, css }) => {
 
     uploadButton: css`
       &&.ant-upload {
+        height: 100%;
         &:hover {
           background-color: ${token.grey.grey800};
           color: ${token.colorWhite};
@@ -58,6 +59,10 @@ export const useUserProfileFormStyles = createStyles(({ token, css }) => {
         background-color: ${token.grey.grey800};
         color: #fff;
       }
+    `,
+
+    formItem: css`
+      width: 60%;
     `,
   };
 });

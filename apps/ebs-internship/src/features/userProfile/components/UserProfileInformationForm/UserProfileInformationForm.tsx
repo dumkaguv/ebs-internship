@@ -1,5 +1,6 @@
 import { Flex, Form, Input, Typography } from "antd";
 import { useUserProfileInformationForm } from "./UserProfileInformationFormStyles";
+import { createTextRules } from "@/utils/createTextRules";
 
 const UserProfileInformationForm = () => {
   const { styles } = useUserProfileInformationForm();
@@ -18,24 +19,7 @@ const UserProfileInformationForm = () => {
           label={<Typography.Paragraph>First Name</Typography.Paragraph>}
           name="first_name"
           className={styles.formItem}
-          rules={[
-            {
-              required: true,
-              message: "Please enter your first name",
-            },
-            {
-              min: 2,
-              message: "First name must be at least 2 characters",
-            },
-            {
-              max: 30,
-              message: "First name must be at most 30 characters",
-            },
-            {
-              pattern: /^[A-Za-z\s-]+$/,
-              message: "Only letters, spaces, and hyphens are allowed",
-            },
-          ]}
+          rules={createTextRules("First Name")}
         >
           <Input
             className={styles.inputForm}
@@ -47,24 +31,7 @@ const UserProfileInformationForm = () => {
           label={<Typography.Paragraph>Last Name</Typography.Paragraph>}
           name="last_name"
           className={styles.formItem}
-          rules={[
-            {
-              required: true,
-              message: "Please enter your last name",
-            },
-            {
-              min: 2,
-              message: "Last name must be at least 2 characters",
-            },
-            {
-              max: 30,
-              message: "Last name must be at most 30 characters",
-            },
-            {
-              pattern: /^[A-Za-z\s-]+$/,
-              message: "Only letters, spaces, and hyphens are allowed",
-            },
-          ]}
+          rules={createTextRules("Last Name")}
         >
           <Input
             className={styles.inputForm}
@@ -77,24 +44,7 @@ const UserProfileInformationForm = () => {
         label={<Typography.Paragraph>Headline</Typography.Paragraph>}
         name="headline"
         className={styles.formItem}
-        rules={[
-          {
-            required: true,
-            message: "Please enter your headline",
-          },
-          {
-            min: 2,
-            message: "Headline must be at least 2 characters",
-          },
-          {
-            max: 30,
-            message: "Headline must be at most 30 characters",
-          },
-          {
-            pattern: /^[A-Za-z\s-]+$/,
-            message: "Only letters, spaces, and hyphens are allowed",
-          },
-        ]}
+        rules={createTextRules("Headline")}
       >
         <Input
           placeholder="Headline"

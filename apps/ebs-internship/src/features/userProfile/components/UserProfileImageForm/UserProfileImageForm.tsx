@@ -1,16 +1,24 @@
-import { Button, Flex, Image, Input, message, Typography, Upload } from "antd";
+import {
+  Button,
+  Flex,
+  Form,
+  Image,
+  Input,
+  message,
+  Typography,
+  Upload,
+} from "antd";
 import { useUserProfileFormStyles } from "./UserProfileImageFormStyles";
 import { FC, useState } from "react";
 import { User } from "@/types/user";
-import { changeUserSettings } from "../../api/changeUserSettings";
-import { uploadUserAvatar } from "../../api/uploadUserAvatar";
+import { changeUserSettings } from "@/features/userProfile/api/changeUserSettings";
+import { uploadUserAvatar } from "@/features/userProfile/api/uploadUserAvatar";
 
 interface Props {
   data: User;
 }
 
 const UserProfileImageForm: FC<Props> = ({ data }) => {
-  const [label, setLabel] = useState("");
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const { styles } = useUserProfileFormStyles();
@@ -30,8 +38,8 @@ const UserProfileImageForm: FC<Props> = ({ data }) => {
   };
 
   const handleSave = async () => {
-    if (!imageFile || !label) {
-      message.warning("Please upload an image and enter a label");
+    if (!imageFile) {
+      message.warning("Please upload an image");
       return;
     }
     const uploadedUrl = await uploadUserAvatar(imageFile);
@@ -77,14 +85,22 @@ const UserProfileImageForm: FC<Props> = ({ data }) => {
         justify="flex-start"
         className={styles.uploadContainer}
       >
-        <Typography.Title level={4}>Add/Change Image</Typography.Title>
-        <Flex gap={16}>
-          <Input
-            placeholder="Enter image label"
-            value={label}
-            onChange={(e) => setLabel(e.target.value)}
-            className={styles.inputForm}
-          />
+        <Flex
+          gap={16}
+          align="center"
+        >
+          <Form.Item
+            label={
+              <Typography.Title level={4}>Add/Change Image</Typography.Title>
+            }
+            name="avatar"
+            className={styles.formItem}
+          >
+            <Input
+              placeholder="Enter image label"
+              className={styles.inputForm}
+            />
+          </Form.Item>
           <Upload
             beforeUpload={handlePreview}
             showUploadList={false}

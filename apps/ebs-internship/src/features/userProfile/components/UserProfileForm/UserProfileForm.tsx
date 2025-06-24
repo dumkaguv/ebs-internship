@@ -1,12 +1,15 @@
 import { Button, Form, message } from "antd";
-import { UserProfileInformationForm } from "../UserProfileInformationForm";
-import { UserProfileImageForm } from "../UserProfileImageForm";
-import { UserProfileLinksForm } from "../UserProfileLinksForm";
+import {
+  UserProfileLinksForm,
+  UserProfileInformationForm,
+  UserProfileImageForm,
+} from "@/features/userProfile/components";
 import { User } from "@/types/user";
 import { useOutletContext } from "react-router-dom";
 import { useUserProfileFormStyles } from "./UserProfileFormStyles";
 import { useForm } from "antd/es/form/Form";
-import { changeUserSettings } from "../../api/changeUserSettings";
+import { changeUserSettings } from "@/features/userProfile/api/changeUserSettings";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 type ContextType = { data: User };
 
@@ -14,17 +17,32 @@ const UserProfileForm = () => {
   const [form] = useForm();
   const { styles } = useUserProfileFormStyles();
   const { data } = useOutletContext<ContextType>();
+  const queryClient = useQueryClient();
 
-  const handleFinish = async (values: User) => {
-    await changeUserSettings(values);
-    message.success("Changes was applied");
+  const { mutate, isPending } = useMutation({
+    mutationFn: changeUserSettings,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["profile"] });
+      message.success("Changes was applied");
+    },
+    onError: () => {
+      message.error("Failed to apply changes");
+    },
+  });
+
+  const handleSubmit = async () => {
+    try {
+      const values = await form.validateFields();
+      mutate(values);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <Form
       form={form}
       layout="vertical"
-      onFinish={handleFinish}
       className={styles.formContainer}
       requiredMark={false}
       scrollToFirstError
@@ -36,6 +54,8 @@ const UserProfileForm = () => {
         <Button
           htmlType="submit"
           block
+          loading={isPending}
+          onClick={handleSubmit}
         >
           Save Changes
         </Button>
