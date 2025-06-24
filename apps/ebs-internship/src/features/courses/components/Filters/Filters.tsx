@@ -63,11 +63,10 @@ const Filters = () => {
   return (
     <Flex
       gap={6}
-      style={{ width: "100%" }}
+      className="w-full"
       align="start"
     >
       <Collapse
-        style={{ width: "100%" }}
         size="large"
         className={styles.collapse}
         items={items}

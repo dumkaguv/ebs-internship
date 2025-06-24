@@ -12,8 +12,6 @@ function MentorPage() {
     queryFn: () => fetchMentorDetails(Number(id)),
   });
 
-  console.log(data);
-
   if (isLoading)
     return (
       <Flex

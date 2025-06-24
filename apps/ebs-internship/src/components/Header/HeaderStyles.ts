@@ -90,5 +90,17 @@ export const useHeaderStyles = createStyles(({ token, css }) => {
         }
       }
     `,
+
+    avatarWrapper: css`
+      && {
+        padding-inline: 6px;
+      }
+    `,
+
+    authButtonsWrapper: css`
+      && {
+        margin-left: 100px;
+      }
+    `,
   };
 });

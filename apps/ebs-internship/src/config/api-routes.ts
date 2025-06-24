@@ -18,7 +18,7 @@ export const ApiRoutes = {
 type ExtractRoutes<T> = T extends string
   ? T
   : T extends object
-  ? { [K in keyof T]: ExtractRoutes<T[K]> }[keyof T]
+  ? ExtractRoutes<T[keyof T]>
   : never;
 
 type FlatApiRoutes = ExtractRoutes<typeof ApiRoutes>;

@@ -40,6 +40,8 @@ const AppHeader = () => {
     defineHeaderHeightCssVar(headerRef);
   }, []);
 
+  const onShoppingCartButtonClick = () => {};
+
   const items: MenuProps["items"] = [
     {
       key: "0",
@@ -115,9 +117,9 @@ const AppHeader = () => {
 
         {isAuth ? (
           <Flex
-            style={{ marginLeft: 100 }}
             gap={24}
             align="center"
+            className={styles.authButtonsWrapper}
           >
             <Button
               type="text"
@@ -126,6 +128,7 @@ const AppHeader = () => {
               <HeartOutlined />
             </Button>
             <Button
+              onClick={() => navigate(RoutesEnum.CART)}
               type="text"
               size="small"
             >
@@ -139,13 +142,13 @@ const AppHeader = () => {
               <Button
                 type="text"
                 variant="link"
-                style={{ paddingInline: 10 }}
+                className={styles.avatarWrapper}
               >
                 <Avatar
                   size={40}
                   icon={<UserOutlined />}
                   style={{ cursor: "pointer" }}
-                ></Avatar>
+                />
               </Button>
             </Dropdown>
           </Flex>
@@ -154,24 +157,6 @@ const AppHeader = () => {
             gap={24}
             align="center"
           >
-            <Button
-              onClick={() => {
-                isAuth
-                  ? navigate(RoutesEnum.CART)
-                  : (() => {
-                      navigate(RoutesEnum.SIGNIN);
-                      message.info(
-                        "Cart is available only for authorized users"
-                      );
-                    })();
-              }}
-              type="text"
-              size="small"
-              style={{ width: 40, height: 40 }}
-            >
-              <ShoppingCartOutlined />
-            </Button>
-
             <Link
               to={RoutesEnum.SIGNIN}
               className={styles.login}

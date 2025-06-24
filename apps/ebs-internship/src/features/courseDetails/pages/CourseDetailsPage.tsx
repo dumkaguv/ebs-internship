@@ -14,8 +14,6 @@ function CourseDetailsPage() {
     queryFn: () => fetchCourseDetails(id!),
   });
 
-  console.log(data);
-
   if (isLoading)
     return (
       <Flex

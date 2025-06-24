@@ -5,15 +5,13 @@ import { fetchCart } from "../api/fetchCart";
 import { useQuery } from "@tanstack/react-query";
 import { CartItem } from "../components";
 
-export default function CartPage() {
+export const CartPage = () => {
   const location = useLocation();
 
   const { data, isLoading } = useQuery({
     queryKey: ["cart"],
     queryFn: fetchCart,
   });
-
-  console.log(data);
 
   return (
     <Container>
@@ -43,4 +41,4 @@ export default function CartPage() {
       </Section>
     </Container>
   );
-}
+};

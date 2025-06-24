@@ -49,7 +49,7 @@ const SignUpForm = () => {
               message: "Only letters, spaces, and hyphens are allowed",
             },
           ]}
-          style={{ width: "100%" }}
+          className="w-full"
         >
           <Input
             placeholder="John"
@@ -77,7 +77,7 @@ const SignUpForm = () => {
               message: "Only letters, spaces, and hyphens are allowed",
             },
           ]}
-          style={{ width: "100%" }}
+          className="w-full"
           name="last_name"
         >
           <Input
@@ -106,7 +106,7 @@ const SignUpForm = () => {
             message: "Only letters, and hyphens are allowed",
           },
         ]}
-        style={{ width: "100%" }}
+        className="w-full"
         name="username"
       >
         <Input
@@ -130,7 +130,7 @@ const SignUpForm = () => {
             message: "Email must be at most 50 characters",
           },
         ]}
-        style={{ width: "100%" }}
+        className="w-full"
         name="email"
       >
         <Input
@@ -163,7 +163,7 @@ const SignUpForm = () => {
             },
           ]}
           name="password"
-          style={{ width: "100%" }}
+          className="w-full"
         >
           <Input.Password
             placeholder="aGAss2%$`1"
@@ -175,7 +175,7 @@ const SignUpForm = () => {
           label={
             <Typography.Title level={5}>Confirm Password</Typography.Title>
           }
-          style={{ width: "100%" }}
+          className="w-full"
           name="password_confirmation"
           hasFeedback
           rules={[

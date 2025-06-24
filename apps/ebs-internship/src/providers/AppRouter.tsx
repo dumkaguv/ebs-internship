@@ -6,7 +6,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { SignInPage, SignUpPage } from "@/features/auth";
 import MentorPage from "@/features/mentorPage/pages/MentorPage";
 import CoursesPage from "@/features/courses/pages/CoursesPage";
-import CartPage from "@/features/cart/pages/Cart";
+import { CartPage } from "@/features/cart/pages/Cart";
 import { ProtectedRoute } from "@/components";
 
 const AppRouter = () => {

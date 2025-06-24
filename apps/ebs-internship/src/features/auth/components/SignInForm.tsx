@@ -34,7 +34,7 @@ const SignInForm = () => {
             message: "Please enter a valid email",
           },
         ]}
-        style={{ width: "100%" }}
+        className="w-full"
         name="email"
       >
         <Input
@@ -51,7 +51,7 @@ const SignInForm = () => {
           },
         ]}
         name="password"
-        style={{ width: "100%" }}
+        className="w-full"
       >
         <Input.Password
           placeholder="Enter Password"

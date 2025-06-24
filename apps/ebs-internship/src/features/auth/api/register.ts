@@ -18,7 +18,6 @@ export const register = async (params: RegisterParams) => {
       ApiRoutes.AUTH.REGISTER,
       params
     );
-    console.log(response);
     return response.data;
   } catch (e) {
     const error = e as AxiosError<ApiResponse<null>>;

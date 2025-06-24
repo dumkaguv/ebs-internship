@@ -8,7 +8,7 @@ import { FC } from "react";
 import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
 import { useCourseDetailsHeroStyles } from "./CourseDetailsHeroStyles";
 import { useMutation } from "@tanstack/react-query";
-import { addItemToCart } from "../../api/addItemToCart";
+import { addItemToCart } from "@/features/courseDetails/api/addItemToCart";
 
 interface Props {
   data: Course;
