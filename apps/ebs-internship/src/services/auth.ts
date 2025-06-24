@@ -14,3 +14,15 @@ export const refreshToken = async () => {
     return undefined;
   }
 };
+
+export const logout = async () => {
+  try {
+    const response = await axiosInstance.post<ApiResponse<null>>(
+      ApiRoutes.AUTH.LOGOUT
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return {};
+  }
+};

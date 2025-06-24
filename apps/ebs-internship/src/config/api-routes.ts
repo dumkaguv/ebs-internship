@@ -6,6 +6,7 @@ export const ApiRoutes = {
     BASE: "/auth",
     LOGIN: "/auth/login",
     REFRESH: "/auth/refresh",
+    LOGOUT: "/auth/logout",
   },
   CART: {
     BASE: "/cart",

@@ -53,10 +53,6 @@ export const useHeaderStyles = createStyles(({ token, css }) => {
       height: fit-content;
     `,
 
-    iconCart: css`
-      margin-left: 84px;
-    `,
-
     login: css`
       && {
         padding: 10px;
