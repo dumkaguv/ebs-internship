@@ -6,8 +6,15 @@ export const enum RoutesEnum {
   CART = "/cart",
   CHECKOUT = "/checkout",
   MENTORS = "/mentors",
-  PROFILE = "/profile",
 }
+
+export const PROFILE_ROUTES = {
+  ROOT: "/profile",
+  COURSES: "/profile/courses",
+  TEACHERS: "/profile/teachers",
+  MESSAGE: "/profile/message",
+  REVIEWS: "/profile/reviews",
+};
 
 export const getRouteUrlById = (
   baseRoute: RoutesEnum,
