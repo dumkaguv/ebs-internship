@@ -1,9 +1,9 @@
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Typography } from "antd";
 import { useForm } from "antd/es/form/Form";
-import { useLogin } from "../hooks";
+import { useLogin } from "@/features/auth/hooks";
 
-const SignInForm = () => {
+export const SignInForm = () => {
   const [form] = useForm();
 
   const { mutate, isPending } = useLogin();
@@ -39,7 +39,7 @@ const SignInForm = () => {
       >
         <Input
           placeholder="Username or Email ID"
-          style={{ height: 58, padding: 16 }}
+          className="input"
         />
       </Form.Item>
       <Form.Item
@@ -55,7 +55,7 @@ const SignInForm = () => {
       >
         <Input.Password
           placeholder="Enter Password"
-          style={{ height: 58, padding: 16 }}
+          className="input"
         />
       </Form.Item>
       <Button
@@ -71,5 +71,3 @@ const SignInForm = () => {
     </Form>
   );
 };
-
-export default SignInForm;

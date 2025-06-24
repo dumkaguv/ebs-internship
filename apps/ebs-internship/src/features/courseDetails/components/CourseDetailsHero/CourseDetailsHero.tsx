@@ -4,7 +4,6 @@ import { Container } from "@/components";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { Link, useLocation } from "react-router-dom";
 import { Course } from "@/types";
-import { FC } from "react";
 import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
 import { useCourseDetailsHeroStyles } from "./CourseDetailsHeroStyles";
 import { useMutation } from "@tanstack/react-query";
@@ -15,7 +14,7 @@ interface Props {
   id: number;
 }
 
-const CourseDetailsHero: FC<Props> = ({ data, id }) => {
+export const CourseDetailsHero = ({ data, id }: Props) => {
   const { styles } = useCourseDetailsHeroStyles();
 
   const location = useLocation();
@@ -136,5 +135,3 @@ const CourseDetailsHero: FC<Props> = ({ data, id }) => {
     </section>
   );
 };
-
-export default CourseDetailsHero;

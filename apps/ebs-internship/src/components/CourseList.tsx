@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { Container, Section, CourseCard } from "@/components";
 import { useQuery } from "@tanstack/react-query";
 import { List } from "antd";
@@ -12,11 +11,11 @@ interface Props {
   showSeeAllButton?: boolean;
 }
 
-const CourseList: FC<Props> = ({
+export const CourseList = ({
   title = "Top Courses",
   showSeeAllButton = false,
   category,
-}) => {
+}: Props) => {
   const { data, isLoading } = useQuery({
     queryKey: ["courses"],
     queryFn: () => Api.courses.fetchCourses(),
@@ -57,5 +56,3 @@ const CourseList: FC<Props> = ({
     </Container>
   );
 };
-
-export default CourseList;

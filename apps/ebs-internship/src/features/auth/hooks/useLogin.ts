@@ -1,6 +1,6 @@
 import { Token } from "@/types/token";
 import { useMutation } from "@tanstack/react-query";
-import { login } from "../api/login";
+import { login } from "@/features/auth/api";
 import { message } from "antd";
 import { ACCESS_TOKEN, EXPIRES_AT } from "@/config/constants";
 import { useAuthStore } from "@/stores/authStore";

@@ -2,7 +2,10 @@
   "name": "@ebs-internship/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "lint": "eslint \"apps/**/*.{ts,tsx}\" --max-warnings=0",
+    "lint:fix": "eslint \"apps/**/*.{ts,tsx}\" --fix"
+  },
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^5.6.1",

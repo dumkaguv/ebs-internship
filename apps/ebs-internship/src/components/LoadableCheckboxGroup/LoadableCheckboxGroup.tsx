@@ -1,5 +1,5 @@
 import { Button, Checkbox, Flex, Input, Typography } from "antd";
-import { FC, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { ArrowDownOutlined, SearchOutlined } from "@ant-design/icons";
 import { useQueryUrlParams } from "@/hooks";
 import { useSearchParams } from "react-router-dom";
@@ -17,13 +17,13 @@ interface Props {
   showSearch?: boolean;
 }
 
-const LoadableCheckboxGroup: FC<Props> = ({
+export const LoadableCheckboxGroup = ({
   items,
   urlParam,
   showSearch,
   defaultShowCount = 5,
   loadPerButtonClick = 8,
-}) => {
+}: Props) => {
   const [searchParams] = useSearchParams();
 
   const [checkedValues, setCheckedValues] = useState<number[]>(
@@ -117,5 +117,3 @@ const LoadableCheckboxGroup: FC<Props> = ({
     </Flex>
   );
 };
-
-export default LoadableCheckboxGroup;

@@ -7,3 +7,4 @@ export type { Tag } from "./tag";
 export type { Topic } from "./topic";
 export type { Productable } from "./productable";
 export type { ApiResponse } from "./apiResponse";
+export type { Token } from "./token";

@@ -1,12 +1,14 @@
 import { useParams } from "react-router-dom";
-import { CourseDetailsHero } from "../components";
-import { CourseDetailsInformation } from "../components";
+import {
+  CourseDetailsHero,
+  CourseDetailsInformation,
+} from "@/features/courseDetails/components";
 import { useQuery } from "@tanstack/react-query";
-import { fetchCourseDetails } from "../api/fetchCourseDetails";
-import { Flex, Spin } from "antd";
+import { fetchCourseDetails } from "@/features/courseDetails/api";
+import { Flex, Spin, Typography } from "antd";
 import { CourseList } from "@/components";
 
-function CourseDetailsPage() {
+export const CourseDetailsPage = () => {
   const { id } = useParams();
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["courses", id],
@@ -19,13 +21,14 @@ function CourseDetailsPage() {
       <Flex
         align="center"
         justify="center"
-        style={{ height: "100dvh" }}
+        className="h-screen"
       >
         <Spin size="large"></Spin>
       </Flex>
     );
   if (isError) return <div>Error: {error.message}</div>;
-  if (!data) return <div style={{ color: "red" }}>No data found!</div>;
+  if (!data)
+    return <Typography.Text type="danger">No data found!</Typography.Text>;
 
   return (
     <>
@@ -40,6 +43,4 @@ function CourseDetailsPage() {
       />
     </>
   );
-}
-
-export default CourseDetailsPage;
+};

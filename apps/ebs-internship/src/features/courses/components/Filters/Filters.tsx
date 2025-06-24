@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Api } from "@/services/apiClient";
 import { LoadableCheckboxGroup } from "@/components/LoadableCheckboxGroup";
 
-const Filters = () => {
+export const Filters = () => {
   const { styles } = useFiltersStyles();
   const { styles: globalStyles } = useStyles();
 
@@ -77,5 +77,3 @@ const Filters = () => {
     </Flex>
   );
 };
-
-export default Filters;

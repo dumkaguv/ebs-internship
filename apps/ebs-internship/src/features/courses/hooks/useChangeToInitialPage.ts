@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useRef } from "react";
-import { Sort } from "../types";
+import { Sort } from "@/features/courses/types";
 import useDeepCompareEffect from "use-deep-compare-effect";
 
 export const useChangeToInitialPage = (

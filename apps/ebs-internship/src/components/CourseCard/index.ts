@@ -1,1 +1,1 @@
-export { default as CourseCard } from "./CourseCard";
+export { CourseCard } from "./CourseCard";

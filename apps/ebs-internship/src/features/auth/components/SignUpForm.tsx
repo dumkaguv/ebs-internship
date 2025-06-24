@@ -1,16 +1,16 @@
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { Button, Flex, Form, Input, Typography } from "antd";
 import { useForm } from "antd/es/form/Form";
-import { useRegister } from "../hooks/useRegister";
+import { useRegister } from "@/features/auth/hooks";
 
-const SignUpForm = () => {
+export const SignUpForm = () => {
   const [form] = useForm();
 
-  const { mutate, isPending } = useRegister();
+  const { mutate } = useRegister();
 
   const onSubmit = async () => {
     const values = await form.validateFields();
-    values.return_url = "http://localhost:4200/profile"
+    values.return_url = "http://localhost:4200/profile";
     console.log("Form values:", values);
     mutate(values);
   };
@@ -45,7 +45,7 @@ const SignUpForm = () => {
               message: "First name must be at most 30 characters",
             },
             {
-              pattern: /^[A-Za-z\s\-]+$/,
+              pattern: /^[A-Za-z\s-]+$/,
               message: "Only letters, spaces, and hyphens are allowed",
             },
           ]}
@@ -53,7 +53,7 @@ const SignUpForm = () => {
         >
           <Input
             placeholder="John"
-            style={{ height: 58, padding: 16 }}
+            className="input"
           />
         </Form.Item>
 
@@ -73,7 +73,7 @@ const SignUpForm = () => {
               message: "Last name must be at most 30 characters",
             },
             {
-              pattern: /^[A-Za-z\s\-]+$/,
+              pattern: /^[A-Za-z\s-]+$/,
               message: "Only letters, spaces, and hyphens are allowed",
             },
           ]}
@@ -82,7 +82,7 @@ const SignUpForm = () => {
         >
           <Input
             placeholder="Doe"
-            style={{ height: 58, padding: 16 }}
+            className="input"
           />
         </Form.Item>
       </Flex>
@@ -102,7 +102,7 @@ const SignUpForm = () => {
             message: "Username must be at most 30 characters",
           },
           {
-            pattern: /^[A-Za-z\-]+$/,
+            pattern: /^[A-Za-z-]+$/,
             message: "Only letters, and hyphens are allowed",
           },
         ]}
@@ -111,7 +111,7 @@ const SignUpForm = () => {
       >
         <Input
           placeholder="johndoe"
-          style={{ height: 58, padding: 16 }}
+          className="input"
         />
       </Form.Item>
       <Form.Item
@@ -135,7 +135,7 @@ const SignUpForm = () => {
       >
         <Input
           placeholder="johndoe@gmail.com"
-          style={{ height: 58, padding: 16 }}
+          className="input"
         />
       </Form.Item>
 
@@ -167,7 +167,7 @@ const SignUpForm = () => {
         >
           <Input.Password
             placeholder="aGAss2%$`1"
-            style={{ height: 58, padding: 16 }}
+            className="input"
           />
         </Form.Item>
 
@@ -195,7 +195,7 @@ const SignUpForm = () => {
         >
           <Input.Password
             placeholder="aGAss2%$`1"
-            style={{ height: 58, padding: 16 }}
+            className="input"
           />
         </Form.Item>
       </Flex>
@@ -210,5 +210,3 @@ const SignUpForm = () => {
     </Form>
   );
 };
-
-export default SignUpForm;

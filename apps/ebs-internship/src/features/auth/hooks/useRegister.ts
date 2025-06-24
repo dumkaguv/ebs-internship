@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { register, RegisterParams } from "../api/register";
+import { register, RegisterParams } from "@/features/auth/api/register";
 import { ApiResponse } from "@/types";
 import { message } from "antd";
 import { AxiosError } from "axios";

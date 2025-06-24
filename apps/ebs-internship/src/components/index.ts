@@ -1,12 +1,13 @@
-export { default as MentorList } from "./MentorList";
 export { Header } from "./Header";
 export { Footer } from "./Footer";
 export { SocialIcons } from "./SocialIcons";
-export { default as Section } from "./Section";
-export { default as Container } from "./Container";
 export { Breadcrumb } from "./Breadcrumb";
-export { default as CourseList } from "./CourseList";
 export { CourseCard } from "./CourseCard";
 export { LoadableCheckboxGroup } from "./LoadableCheckboxGroup";
 export { ScrollToTop } from "./ScrollToTop";
-export { default as ProtectedRoute } from "./ProtectedRoute";
+export { Container } from "./Container";
+export { MentorList } from "./MentorList";
+export { Section } from "./Section";
+export { CourseList } from "./CourseList";
+export { ProtectedRoute } from "./ProtectedRoute";
+export { CoursesByMentor } from "./CoursesByMentor";

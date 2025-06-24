@@ -16,7 +16,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { RoutesEnum } from "@/config/routesEnum";
-import HeaderSearch from "./HeaderSearch";
+import { HeaderSearch } from "./HeaderSearch";
 import { useEffect, useRef } from "react";
 import { defineHeaderHeightCssVar } from "@/utils";
 import { useHeaderStyles } from "./HeaderStyles";
@@ -25,7 +25,7 @@ import { useLogout } from "@/hooks";
 
 const { Header } = Layout;
 
-const AppHeader = () => {
+export const AppHeader = () => {
   const headerRef = useRef(null);
   const navigate = useNavigate();
   const { styles } = useHeaderStyles();
@@ -68,7 +68,7 @@ const AppHeader = () => {
       <Flex
         justify="space-between"
         align="center"
-        style={{ width: "100%", maxWidth: "1280px" }}
+        className={styles.headerWrapper}
       >
         <Flex align="center">
           <Link
@@ -83,7 +83,6 @@ const AppHeader = () => {
             />
             <Typography.Title
               level={1}
-              style={{ fontSize: 16 }}
               className={styles.logoText}
             >
               Byway
@@ -141,7 +140,6 @@ const AppHeader = () => {
                 <Avatar
                   size={40}
                   icon={<UserOutlined />}
-                  style={{ cursor: "pointer" }}
                 />
               </Button>
             </Dropdown>
@@ -169,5 +167,3 @@ const AppHeader = () => {
     </Header>
   );
 };
-
-export default AppHeader;

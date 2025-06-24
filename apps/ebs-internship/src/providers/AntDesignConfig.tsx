@@ -4,7 +4,7 @@ import { ConfigProvider } from "antd";
 import { StyleProvider } from "antd-style";
 import { FC, PropsWithChildren } from "react";
 
-const AntDesignConfig: FC<PropsWithChildren> = ({ children }) => {
+export const AntDesignConfig: FC<PropsWithChildren> = ({ children }) => {
   return (
     <ConfigProvider
       theme={{
@@ -86,5 +86,3 @@ const AntDesignConfig: FC<PropsWithChildren> = ({ children }) => {
     </ConfigProvider>
   );
 };
-
-export default AntDesignConfig;

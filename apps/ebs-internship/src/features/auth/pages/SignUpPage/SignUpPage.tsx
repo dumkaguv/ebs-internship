@@ -1,8 +1,11 @@
 import { Container, Section } from "@/components";
 import { Flex, Image, Typography } from "antd";
-import { SignUpForm } from "../components";
+import { SignUpForm } from "@/features/auth/components";
+import { useSignUpPageStyles } from "./SignUpPageStyles";
 
-function SignUpPage() {
+export const SignUpPage = () => {
+  const { styles } = useSignUpPageStyles();
+
   return (
     <Container>
       <Section>
@@ -21,7 +24,7 @@ function SignUpPage() {
           >
             <Typography.Title
               level={2}
-              style={{ textAlign: "center", marginBottom: 16 }}
+              className={styles.title}
             >
               Create Your Account
             </Typography.Title>
@@ -31,6 +34,4 @@ function SignUpPage() {
       </Section>
     </Container>
   );
-}
-
-export default SignUpPage;
+};

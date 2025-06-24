@@ -1,9 +1,9 @@
 import { Breadcrumb, Container, Section } from "@/components";
 import { Flex, List, Typography } from "antd";
 import { useLocation } from "react-router-dom";
-import { fetchCart } from "../api/fetchCart";
+import { fetchCart } from "@/features/cart/api";
 import { useQuery } from "@tanstack/react-query";
-import { CartItem } from "../components";
+import { CartItem } from "@/features/cart/components";
 
 export const CartPage = () => {
   const location = useLocation();

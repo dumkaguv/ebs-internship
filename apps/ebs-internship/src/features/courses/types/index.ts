@@ -1,1 +1,1 @@
-export type { Sort } from "./sortTypes";
+export type * from "./sortTypes";

@@ -1,15 +1,15 @@
 import { RoutesEnum } from "@/config/routesEnum";
 import { MainLayout } from "@/layouts";
-import CourseDetailsPage from "@/features/courseDetails/pages/CourseDetailsPage";
-import HomePage from "@/features/home/pages/HomePage";
+import { CourseDetailsPage } from "@/features/courseDetails";
+import { HomePage } from "@/features/home";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { SignInPage, SignUpPage } from "@/features/auth";
-import MentorPage from "@/features/mentorPage/pages/MentorPage";
-import CoursesPage from "@/features/courses/pages/CoursesPage";
-import { CartPage } from "@/features/cart/pages/Cart";
+import { MentorPage } from "@/features/mentorPage";
+import { CoursesPage } from "@/features/courses";
+import { CartPage } from "@/features/cart";
 import { ProtectedRoute } from "@/components";
 
-const AppRouter = () => {
+export const AppRouter = () => {
   return (
     <Router>
       <Routes>
@@ -53,5 +53,3 @@ const AppRouter = () => {
     </Router>
   );
 };
-
-export default AppRouter;

@@ -1,7 +1,7 @@
 import { ApiRoutes } from "@/config/api-routes";
 import { axiosInstance } from "@/lib";
 import { ApiResponse } from "@/types/apiResponse";
-import { Cart } from "../types/cart";
+import { Cart } from "@/features/cart/types";
 
 export const fetchCart = async () => {
   try {

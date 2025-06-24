@@ -8,7 +8,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useHeaderStyles } from "./HeaderStyles";
 
-const HeaderSearch = () => {
+export const HeaderSearch = () => {
   const [searchValue, setSearchValue] = useState("");
   const debouncedSearch = useDebouncedValue(searchValue, 500);
 
@@ -41,16 +41,16 @@ const HeaderSearch = () => {
               preview={false}
               width={45}
               height={45}
-              style={{ borderRadius: 6 }}
+              className={styles.searchImage}
             />
             <Flex vertical>
               <Typography.Title
-                style={{ fontSize: 14 }}
+                className={styles.searchTextSize}
                 level={5}
               >
                 {course.title}
               </Typography.Title>
-              <Typography.Text style={{ fontSize: 14 }}>
+              <Typography.Text className={styles.searchTextSize}>
                 {course.author?.first_name} {course.author?.last_name}
               </Typography.Text>
             </Flex>
@@ -86,5 +86,3 @@ const HeaderSearch = () => {
     </AutoComplete>
   );
 };
-
-export default HeaderSearch;

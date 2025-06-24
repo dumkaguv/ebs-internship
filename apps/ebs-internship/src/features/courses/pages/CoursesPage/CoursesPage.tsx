@@ -1,10 +1,11 @@
 import { Container, Section } from "@/components";
 import { Flex, Input, Pagination, Typography } from "antd";
-import { Sort, Filters, CourseList } from "../components";
-import { useCourses } from "../hooks";
+import { Sort, Filters, CourseList } from "@/features/courses/components";
+import { useCourses } from "@/features/courses/hooks";
 import { SearchOutlined } from "@ant-design/icons";
+import { useCoursesPageStyles } from "./CoursesPageStyles";
 
-function CoursesPage() {
+export const CoursesPage = () => {
   const {
     courses,
     total,
@@ -17,6 +18,8 @@ function CoursesPage() {
     sort,
     setSort,
   } = useCourses();
+
+  const { styles } = useCoursesPageStyles();
 
   return (
     <Container>
@@ -46,7 +49,7 @@ function CoursesPage() {
             </Flex>
           </Flex>
           <Flex gap={40}>
-            <Flex style={{ maxWidth: 305, width: "100%" }}>
+            <Flex className={styles.leftSide}>
               <Filters />
             </Flex>
             <Flex
@@ -72,6 +75,4 @@ function CoursesPage() {
       </Section>
     </Container>
   );
-}
-
-export default CoursesPage;
+};
