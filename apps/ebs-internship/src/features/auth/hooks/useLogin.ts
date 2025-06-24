@@ -6,7 +6,7 @@ import { ACCESS_TOKEN, EXPIRES_AT } from "@/config/constants";
 import { useAuthStore } from "@/stores/authStore";
 
 export const useLogin = () => {
-  const { setIsAuth } = useAuthStore();
+  const setIsAuth = useAuthStore((state) => state.setIsAuth);
 
   const { mutate, isPending } = useMutation<
     Token,

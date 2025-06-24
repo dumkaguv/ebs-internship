@@ -9,3 +9,4 @@ export { default as CourseList } from "./CourseList";
 export { CourseCard } from "./CourseCard";
 export { LoadableCheckboxGroup } from "./LoadableCheckboxGroup";
 export { ScrollToTop } from "./ScrollToTop";
+export { default as ProtectedRoute } from "./ProtectedRoute";

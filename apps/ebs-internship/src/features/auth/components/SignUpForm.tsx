@@ -1,13 +1,18 @@
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { Button, Flex, Form, Input, Typography } from "antd";
 import { useForm } from "antd/es/form/Form";
+import { useRegister } from "../hooks/useRegister";
 
 const SignUpForm = () => {
   const [form] = useForm();
 
+  const { mutate, isPending } = useRegister();
+
   const onSubmit = async () => {
     const values = await form.validateFields();
+    values.return_url = "http://localhost:4200/profile"
     console.log("Form values:", values);
+    mutate(values);
   };
 
   return (
@@ -25,7 +30,7 @@ const SignUpForm = () => {
       >
         <Form.Item
           label={<Typography.Title level={5}>First Name</Typography.Title>}
-          name="firstName"
+          name="first_name"
           rules={[
             {
               required: true,
@@ -73,7 +78,7 @@ const SignUpForm = () => {
             },
           ]}
           style={{ width: "100%" }}
-          name="lastName"
+          name="last_name"
         >
           <Input
             placeholder="Doe"
@@ -171,7 +176,7 @@ const SignUpForm = () => {
             <Typography.Title level={5}>Confirm Password</Typography.Title>
           }
           style={{ width: "100%" }}
-          name="confirmPassword"
+          name="password_confirmation"
           hasFeedback
           rules={[
             {

@@ -22,7 +22,7 @@ import { useEffect, useRef } from "react";
 import { defineHeaderHeightCssVar } from "@/utils";
 import { useHeaderStyles } from "./HeaderStyles";
 import { useAuthStore } from "@/stores/authStore";
-import { Api } from "@/services/apiClient";
+import { useLogout } from "@/hooks";
 
 const { Header } = Layout;
 
@@ -32,7 +32,9 @@ const AppHeader = () => {
 
   const { styles } = useHeaderStyles();
 
-  const { isAuth, setIsAuth } = useAuthStore();
+  const isAuth = useAuthStore((state) => state.isAuth);
+
+  const { logout } = useLogout();
 
   useEffect(() => {
     defineHeaderHeightCssVar(headerRef);
@@ -58,11 +60,7 @@ const AppHeader = () => {
           <LogoutOutlined size={20} /> Logout
         </Typography.Text>
       ),
-      onClick: () => {
-        Api.auth.logout();
-        message.success("Logout successfully");
-        setIsAuth(false);
-      },
+      onClick: () => logout(),
     },
   ];
 
