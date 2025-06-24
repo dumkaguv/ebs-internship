@@ -6,7 +6,6 @@ import {
   Avatar,
   MenuProps,
   Dropdown,
-  message,
 } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -29,18 +28,13 @@ const { Header } = Layout;
 const AppHeader = () => {
   const headerRef = useRef(null);
   const navigate = useNavigate();
-
   const { styles } = useHeaderStyles();
-
   const isAuth = useAuthStore((state) => state.isAuth);
-
   const { logout } = useLogout();
 
   useEffect(() => {
     defineHeaderHeightCssVar(headerRef);
   }, []);
-
-  const onShoppingCartButtonClick = () => {};
 
   const items: MenuProps["items"] = [
     {
