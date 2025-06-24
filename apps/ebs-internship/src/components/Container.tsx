@@ -2,7 +2,7 @@ import { CSSProperties, FC, HTMLAttributes, PropsWithChildren } from "react";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   size?: "md" | "lg";
-  style: CSSProperties;
+  style?: CSSProperties;
 }
 
 const Container: FC<PropsWithChildren<Props>> = ({

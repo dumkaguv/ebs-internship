@@ -45,12 +45,12 @@ export const useUserProfileFormStyles = createStyles(({ token, css }) => {
     `,
 
     uploadButton: css`
-      &&.ant-upload {
-        height: 100%;
-        &:hover {
-          background-color: ${token.grey.grey800};
-          color: ${token.colorWhite};
-        }
+      &&.ant-btn {
+        height: 58px;
+      }
+      &:hover {
+        background-color: ${token.grey.grey800};
+        color: ${token.colorWhite};
       }
     `,
     saveImageButton: css`

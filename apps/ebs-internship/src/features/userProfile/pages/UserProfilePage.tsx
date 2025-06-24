@@ -3,22 +3,17 @@ import { fetchUserProfile } from "@/features/userProfile/api/fetchUserProfile";
 import { UserProfile } from "../components";
 import { Outlet } from "react-router-dom";
 import { Container } from "@/components";
+import { useUserProfilePageStyles } from "./UserProfilePageStyles";
 
 function UserProfilePage() {
+  const { styles } = useUserProfilePageStyles();
   const { data } = useQuery({
     queryKey: ["profile"],
     queryFn: fetchUserProfile,
   });
 
   return (
-    <Container
-      style={{
-        display: "flex",
-        gap: 40,
-        padding: "40px 0",
-        alignItems: "flex-start",
-      }}
-    >
+    <Container className={styles.pageContainer}>
       <UserProfile data={data} />
 
       <Outlet context={{ data }} />

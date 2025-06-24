@@ -9,16 +9,11 @@ import {
   Upload,
 } from "antd";
 import { useUserProfileFormStyles } from "./UserProfileImageFormStyles";
-import { FC, useState } from "react";
-import { User } from "@/types/user";
+import { useState } from "react";
 import { changeUserSettings } from "@/features/userProfile/api/changeUserSettings";
 import { uploadUserAvatar } from "@/features/userProfile/api/uploadUserAvatar";
 
-interface Props {
-  data: User;
-}
-
-const UserProfileImageForm: FC<Props> = ({ data }) => {
+const UserProfileImageForm = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const { styles } = useUserProfileFormStyles();
@@ -87,13 +82,13 @@ const UserProfileImageForm: FC<Props> = ({ data }) => {
       >
         <Flex
           gap={16}
-          align="center"
+          align="flex-end"
         >
           <Form.Item
             label={
               <Typography.Title level={4}>Add/Change Image</Typography.Title>
             }
-            name="avatar"
+            name="image_label"
             className={styles.formItem}
           >
             <Input
@@ -101,13 +96,19 @@ const UserProfileImageForm: FC<Props> = ({ data }) => {
               className={styles.inputForm}
             />
           </Form.Item>
-          <Upload
-            beforeUpload={handlePreview}
-            showUploadList={false}
-            accept="image/*"
+
+          <Form.Item
+            name="avatar"
+            className={styles.formItem}
           >
-            <Button className={styles.uploadButton}>Upload Image</Button>
-          </Upload>
+            <Upload
+              beforeUpload={handlePreview}
+              showUploadList={false}
+              accept="image/*"
+            >
+              <Button className={styles.uploadButton}>Upload Image</Button>
+            </Upload>
+          </Form.Item>
         </Flex>
         <Button
           className={styles.saveImageButton}
