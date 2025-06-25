@@ -3,7 +3,7 @@ import { useUserProfileStyles } from "./UserProfileStyles";
 import { Link, useLocation } from "react-router-dom";
 import { RoutesEnum } from "@/config/routesEnum";
 import { FC } from "react";
-import { User } from "@/types/user";
+import { User } from "@libs/types/user";
 
 interface Props {
   data?: User;

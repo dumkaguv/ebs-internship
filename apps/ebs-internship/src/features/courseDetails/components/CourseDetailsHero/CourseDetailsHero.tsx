@@ -3,7 +3,7 @@ import { GlobalOutlined } from "@ant-design/icons";
 import { Container } from "@/components";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { Link } from "react-router-dom";
-import { Course } from "@/types";
+import { Course } from "@libs";
 import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
 import { useCourseDetailsHeroStyles } from "./CourseDetailsHeroStyles";
 import { useMutation } from "@tanstack/react-query";

@@ -1,9 +1,12 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".",
+    "rootDir": "../../",
+    "baseUrl": "../../",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["apps/ebs-internship/src/*"],
+      "@libs": ["libs/src/index.ts"],
+      "@libs/*": ["libs/src/*"]
     },
     "outDir": "dist",
     "tsBuildInfoFile": "dist/tsconfig.app.tsbuildinfo",
@@ -14,8 +17,7 @@
       "@nx/react/typings/cssmodule.d.ts",
       "@nx/react/typings/image.d.ts",
       "vite/client"
-    ],
-    "rootDir": "src"
+    ]
   },
   "exclude": [
     "out-tsc",
@@ -33,5 +35,13 @@
     "eslint.config.cjs",
     "eslint.config.mjs"
   ],
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "../../libs/src/**/*.ts",
+    "../../libs/src/**/*.tsx"
+  ],
+  "references": []
 }

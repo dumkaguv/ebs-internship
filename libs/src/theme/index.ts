@@ -1,0 +1,1 @@
+export { AntDesignConfig } from "./AntDesignConfig";

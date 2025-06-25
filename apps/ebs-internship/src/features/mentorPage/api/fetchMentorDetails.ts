@@ -1,6 +1,5 @@
 import { ApiRoutes, getApiUrlById } from "@/config/api-routes";
-import { axiosInstance } from "@/lib";
-import { ApiResponse, Author } from "@/types";
+import { ApiResponse, Author, axiosInstance } from "@libs";
 
 export const fetchMentorDetails = async (id: number) => {
   try {

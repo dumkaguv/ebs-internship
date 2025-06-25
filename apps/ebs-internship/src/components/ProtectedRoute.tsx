@@ -1,5 +1,5 @@
 import { RoutesEnum } from "@/config/routesEnum";
-import { useAuthStore } from "@/stores/authStore";
+import { useAuthStore } from "@libs";
 import { Navigate, Outlet } from "react-router-dom";
 
 interface Props {

@@ -1,7 +1,5 @@
-import { axiosInstance } from "@/lib";
+import { axiosInstance, Course, ApiResponse } from "@libs";
 import { ApiRoutes } from "@/config/api-routes";
-import { ApiResponse } from "@/types/apiResponse";
-import { Course } from "@/types/course";
 
 export const fetchCourseByName = async (title?: string) => {
   try {

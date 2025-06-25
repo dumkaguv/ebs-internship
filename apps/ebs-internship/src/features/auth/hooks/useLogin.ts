@@ -1,9 +1,7 @@
-import { Token } from "@/types/token";
 import { useMutation } from "@tanstack/react-query";
 import { login } from "@/features/auth/api";
 import { message } from "antd";
-import { ACCESS_TOKEN, EXPIRES_AT } from "@/config/constants";
-import { useAuthStore } from "@/stores/authStore";
+import { ACCESS_TOKEN, EXPIRES_AT, Token, useAuthStore  } from "@libs";
 
 export const useLogin = () => {
   const setIsAuth = useAuthStore((state) => state.setIsAuth);

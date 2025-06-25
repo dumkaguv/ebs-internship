@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Api } from "@/services/apiClient";
 import type { Sort as SortType } from "@/features/courses/types";
-import { useDebouncedValue, useQueryUrlParams } from "@/hooks";
+import { useDebouncedValue, useQueryUrlParams } from "@libs";
 import { useScrollTop, useChangeToInitialPage } from "@/features/courses/hooks";
 
 const PER_PAGE = 9;

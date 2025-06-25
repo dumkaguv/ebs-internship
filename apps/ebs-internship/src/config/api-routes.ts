@@ -1,4 +1,7 @@
+import { ApiRoutes as GlobalApiRoutes } from "@libs";
+
 export const ApiRoutes = {
+  ...GlobalApiRoutes,
   CATEGORIES: "/categories",
   COURSES: "/courses",
   TUTORS: "/tutors",
@@ -6,18 +9,11 @@ export const ApiRoutes = {
     SETTINGS: "/profile/settings",
     AVATAR: "profile/upload-avatar",
   },
-  AUTH: {
-    BASE: "/auth",
-    LOGIN: "/auth/login",
-    REGISTER: "/auth/register",
-    REFRESH: "/auth/refresh",
-    LOGOUT: "/auth/logout",
-  },
   CART: {
     BASE: "/cart",
     PRODUCTS: "/cart/products",
   },
-} as const;
+};
 
 type ExtractRoutes<T> = T extends string
   ? T

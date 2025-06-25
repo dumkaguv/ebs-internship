@@ -1,6 +1,6 @@
 import { CourseCard } from "@/components";
 import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
-import { Course } from "@/types";
+import { Course } from "@libs";
 import { List } from "antd";
 import { Link } from "react-router-dom";
 

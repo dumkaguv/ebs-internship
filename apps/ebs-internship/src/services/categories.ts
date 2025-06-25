@@ -1,7 +1,5 @@
-import { ApiResponse } from "@/types/apiResponse";
+import { ApiResponse,axiosInstance,Category } from "@libs";
 import { ApiRoutes } from "@/config/api-routes";
-import { axiosInstance } from "@/lib";
-import { Category } from "@/types/category";
 
 export const fetchCategories = async () => {
   try {

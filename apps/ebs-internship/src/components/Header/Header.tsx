@@ -20,8 +20,8 @@ import { HeaderSearch } from "./HeaderSearch";
 import { useEffect, useRef } from "react";
 import { defineHeaderHeightCssVar } from "@/utils";
 import { useHeaderStyles } from "./HeaderStyles";
-import { useAuthStore } from "@/stores/authStore";
-import { useLogout } from "@/hooks";
+import { useAuthStore } from "@libs";
+import { useLogout } from "@libs";
 
 const { Header } = Layout;
 
@@ -44,7 +44,7 @@ export const AppHeader = () => {
           <ArrowRightOutlined size={20} /> Go to profile
         </Typography.Text>
       ),
-      onClick: () => navigate(RoutesEnum.PROFILE),
+      onClick: () => navigate(RoutesEnum.PROFILE.BASE),
     },
     {
       type: "divider",
@@ -76,7 +76,7 @@ export const AppHeader = () => {
             className={styles.logoContainer}
           >
             <img
-              src="/logo.jpg"
+              src="/logo.png"
               width={31}
               height={40}
               alt=""
@@ -101,7 +101,7 @@ export const AppHeader = () => {
 
         <nav>
           <Link
-            to={RoutesEnum.PROFILE}
+            to={RoutesEnum.PROFILE.BASE}
             className={styles.headerNavItem}
           >
             Teach on Byway

@@ -4,7 +4,7 @@ import {
   UserProfileInformationForm,
   UserProfileImageForm,
 } from "@/features/userProfile/components";
-import { User } from "@/types/user";
+import { User } from "@libs/types/user";
 import { useOutletContext } from "react-router-dom";
 import { useUserProfileFormStyles } from "./UserProfileFormStyles";
 import { useForm } from "antd/es/form/Form";
@@ -48,7 +48,7 @@ const UserProfileForm = () => {
       scrollToFirstError
     >
       <UserProfileInformationForm />
-      <UserProfileImageForm data={data} />
+      <UserProfileImageForm  />
       <UserProfileLinksForm />
       <Form.Item>
         <Button

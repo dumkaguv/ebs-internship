@@ -1,5 +1,5 @@
 import { Container } from "@/components";
-import { Author } from "@/types";
+import { Author } from "@libs";
 import { Avatar, Button, Flex, List, Space, Typography } from "antd";
 import { useMentorInformationStyles } from "./MentorInformationStyles";
 

@@ -1,7 +1,7 @@
 import { Button, Checkbox, Flex, Input, Typography } from "antd";
 import { useMemo, useState } from "react";
 import { ArrowDownOutlined, SearchOutlined } from "@ant-design/icons";
-import { useQueryUrlParams } from "@/hooks";
+import { useQueryUrlParams } from "@libs";
 import { useSearchParams } from "react-router-dom";
 
 type FilterItem = {

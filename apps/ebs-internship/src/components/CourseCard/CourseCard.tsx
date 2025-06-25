@@ -1,4 +1,4 @@
-import { Course } from "@/types/course";
+import { Course } from "@libs";
 import { Card, Flex, Image, Typography } from "antd";
 import { useCourseCardStyles } from "./CourseCardStyles";
 import { formatPrice } from "@/utils";

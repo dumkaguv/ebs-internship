@@ -1,5 +1,5 @@
 import { Container } from "@/components";
-import { Lesson } from "@/types";
+import { Lesson } from "@libs";
 import { Collapse, Typography, Space, Flex } from "antd";
 import { Link } from "react-router-dom";
 import { useCourseDetailsSyllabusStyles } from "./CourseDetailsSyllabusStyles";

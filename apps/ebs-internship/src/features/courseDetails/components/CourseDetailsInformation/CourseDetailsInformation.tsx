@@ -2,7 +2,7 @@ import { Container } from "@/components";
 import { Avatar, Button, Flex, Typography } from "antd";
 import { Link } from "react-router-dom";
 import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
-import { Course } from "@/types";
+import { Course } from "@libs";
 import { useRef, useState } from "react";
 import { CourseDetailsSyllabus } from "@/features/courseDetails/components";
 import { useCourseDetailsInformationStyles } from "./CourseDetailsInformationStyles";

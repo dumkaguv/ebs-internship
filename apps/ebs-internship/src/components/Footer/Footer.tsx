@@ -26,7 +26,7 @@ export const AppFooter = () => {
             gap={8}
           >
             <Image
-              src="/logo(1).png"
+              src="/logo.png"
               alt="Logo"
               width={31}
               height={40}

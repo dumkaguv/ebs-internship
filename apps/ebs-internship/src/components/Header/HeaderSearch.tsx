@@ -1,5 +1,5 @@
 import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
-import { useDebouncedValue } from "@/hooks";
+import { useDebouncedValue } from "@libs";
 import { Api } from "@/services/apiClient";
 import { SearchOutlined } from "@ant-design/icons";
 import { useQuery } from "@tanstack/react-query";

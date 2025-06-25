@@ -25,6 +25,7 @@ export default defineConfig(() => ({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
+      "@libs": path.resolve(__dirname, "../../libs/src")
     },
   },
   // Uncomment this if you are using workers.
