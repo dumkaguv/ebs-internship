@@ -1,4 +1,4 @@
-import { PROFILE_ROUTES, RoutesEnum } from "@/config/routesEnum";
+import { RoutesEnum } from "@/config/routesEnum";
 import { MainLayout } from "@/layouts";
 import { CourseDetailsPage } from "@/features/courseDetails";
 import { HomePage } from "@/features/home";
@@ -48,16 +48,14 @@ export const AppRouter = () => {
               element={<CartPage />}
             />
             <Route
-              path={RoutesEnum.PROFILE}
-              element={<div></div>}
-          <Route
-            path={PROFILE_ROUTES.ROOT}
-            element={<UserProfilePage />}
-          >
-            <Route
-              path={PROFILE_ROUTES.ROOT}
-              element={<UserProfileForm />}
-            />
+              path={RoutesEnum.PROFILE.BASE}
+              element={<UserProfilePage />}
+            >
+              <Route
+                path={RoutesEnum.PROFILE.BASE}
+                element={<UserProfileForm />}
+              />
+            </Route>
           </Route>
         </Route>
       </Routes>

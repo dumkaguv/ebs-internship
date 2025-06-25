@@ -1,16 +1,16 @@
 import { Breadcrumb, Typography } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useBreadcrumbStyles } from "./BreadcrumbsStyles";
 
 interface Props {
-  location: string;
   title?: string;
 }
 
-export const AppBreadcrumb = ({ location, title }: Props) => {
+export const AppBreadcrumb = ({ title }: Props) => {
   const { styles } = useBreadcrumbStyles();
+  const location = useLocation();
 
-  const pathSnippets = location.split("/").filter((i) => i);
+  const pathSnippets = location.pathname.split("/").filter((i) => i);
   const breadcrumbItems = [
     {
       title: (

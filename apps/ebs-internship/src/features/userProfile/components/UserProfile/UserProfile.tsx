@@ -1,7 +1,7 @@
 import { Avatar, Button, Flex, List, Typography } from "antd";
 import { useUserProfileStyles } from "./UserProfileStyles";
 import { Link, useLocation } from "react-router-dom";
-import { PROFILE_ROUTES } from "@/config/routesEnum";
+import { RoutesEnum } from "@/config/routesEnum";
 import { FC } from "react";
 import { User } from "@/types/user";
 
@@ -15,10 +15,10 @@ const UserProfile: FC<Props> = ({ data }) => {
   const { styles } = useUserProfileStyles();
 
   const profileLinks = [
-    { key: "profile", label: "Profile", path: PROFILE_ROUTES.ROOT },
-    { key: "courses", label: "My Courses", path: PROFILE_ROUTES.COURSES },
-    { key: "teachers", label: "Teachers", path: PROFILE_ROUTES.TEACHERS },
-    { key: "message", label: "Message", path: PROFILE_ROUTES.MESSAGE },
+    { key: "profile", label: "Profile", path: RoutesEnum.PROFILE.BASE },
+    { key: "courses", label: "My Courses", path: RoutesEnum.PROFILE.COURSES },
+    { key: "teachers", label: "Teachers", path: RoutesEnum.PROFILE.TEACHERS },
+    { key: "message", label: "Message", path: RoutesEnum.PROFILE.MESSAGE },
   ];
 
   return (

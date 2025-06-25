@@ -2,7 +2,7 @@ import { Card, Typography, Button, Flex, Avatar, message } from "antd";
 import { GlobalOutlined } from "@ant-design/icons";
 import { Container } from "@/components";
 import { Breadcrumb } from "@/components/Breadcrumb";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Course } from "@/types";
 import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
 import { useCourseDetailsHeroStyles } from "./CourseDetailsHeroStyles";
@@ -16,8 +16,6 @@ interface Props {
 
 export const CourseDetailsHero = ({ data, id }: Props) => {
   const { styles } = useCourseDetailsHeroStyles();
-
-  const location = useLocation();
 
   const { mutate, isPending } = useMutation<
     Course,
@@ -39,10 +37,7 @@ export const CourseDetailsHero = ({ data, id }: Props) => {
           gap={24}
           className={styles.leftSide}
         >
-          <Breadcrumb
-            location={location.pathname}
-            title={data?.title}
-          />
+          <Breadcrumb title={data?.title} />
 
           <Flex vertical>
             <Typography.Title level={1}>{data?.title}</Typography.Title>

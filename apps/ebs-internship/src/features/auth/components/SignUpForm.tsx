@@ -11,7 +11,6 @@ export const SignUpForm = () => {
   const onSubmit = async () => {
     const values = await form.validateFields();
     values.return_url = "http://localhost:4200/profile";
-    console.log("Form values:", values);
     mutate(values);
   };
 

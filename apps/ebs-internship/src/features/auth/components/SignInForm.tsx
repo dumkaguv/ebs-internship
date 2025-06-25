@@ -3,7 +3,7 @@ import { Button, Form, Input, Typography } from "antd";
 import { useForm } from "antd/es/form/Form";
 import { useLogin } from "@/features/auth/hooks";
 import { useNavigate } from "react-router-dom";
-import { PROFILE_ROUTES } from "@/config/routesEnum";
+import { RoutesEnum } from "@/config/routesEnum";
 
 export const SignInForm = () => {
   const [form] = useForm();
@@ -15,7 +15,7 @@ export const SignInForm = () => {
     mutate(
       { email, password },
       {
-        onSuccess: () => navigate(PROFILE_ROUTES.ROOT),
+        onSuccess: () => navigate(RoutesEnum.PROFILE.BASE),
       }
     );
   };

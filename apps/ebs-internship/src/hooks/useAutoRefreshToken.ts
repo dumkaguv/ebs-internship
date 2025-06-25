@@ -14,15 +14,12 @@ export const useAutoRefreshToken = () => {
     const expiresAtRaw = localStorage.getItem(EXPIRES_AT);
     if (!token || !expiresAtRaw) return;
 
-    console.log("useAutoRefreshToken started");
-
     const expiresAt = new Date(expiresAtRaw).getTime();
     const now = Date.now();
     const delay = expiresAt - now - DELAY_MIN_BEFORE_EXPIRE * 60 * 1000;
 
     if (delay <= 0) {
       refreshAndSaveToken();
-      console.log("Refreshed token");
       return;
     }
 
