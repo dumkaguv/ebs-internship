@@ -1,4 +1,4 @@
-import { RoutesEnum } from "@/config/routesEnum";
+import { PROFILE_ROUTES, RoutesEnum } from "@/config/routesEnum";
 import { MainLayout } from "@/layouts";
 import CourseDetailsPage from "@/features/courseDetails/pages/CourseDetailsPage";
 import HomePage from "@/features/home/pages/HomePage";
@@ -6,6 +6,8 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { SignInPage, SignUpPage } from "@/features/auth";
 import MentorPage from "@/features/mentorPage/pages/MentorPage";
 import CoursesPage from "@/features/courses/pages/CoursesPage";
+import UserProfilePage from "@/features/userProfile/pages/UserProfilePage";
+import { UserProfileForm } from "@/features/userProfile/components";
 
 const AppRouter = () => {
   return (
@@ -36,6 +38,15 @@ const AppRouter = () => {
             path={`${RoutesEnum.MENTORS}/:id`}
             element={<MentorPage />}
           />
+          <Route
+            path={PROFILE_ROUTES.ROOT}
+            element={<UserProfilePage />}
+          >
+            <Route
+              path={PROFILE_ROUTES.ROOT}
+              element={<UserProfileForm />}
+            />
+          </Route>
         </Route>
       </Routes>
     </Router>

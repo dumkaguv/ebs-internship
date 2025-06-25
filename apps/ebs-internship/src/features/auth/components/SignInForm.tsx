@@ -2,15 +2,22 @@ import { ArrowRightOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Typography } from "antd";
 import { useForm } from "antd/es/form/Form";
 import { useLogin } from "../hooks";
+import { useNavigate } from "react-router-dom";
+import { PROFILE_ROUTES } from "@/config/routesEnum";
 
 const SignInForm = () => {
   const [form] = useForm();
-
+  const navigate = useNavigate();
   const { mutate, isPending } = useLogin();
 
   const handleSubmitSignIn = async () => {
     const { email, password } = await form.validateFields();
-    mutate({ email, password });
+    mutate(
+      { email, password },
+      {
+        onSuccess: () => navigate(PROFILE_ROUTES.ROOT),
+      }
+    );
   };
 
   return (
