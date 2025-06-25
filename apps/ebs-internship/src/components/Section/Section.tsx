@@ -1,20 +1,19 @@
 import { Flex, Typography } from "antd";
-import { FC, HTMLAttributes, PropsWithChildren, ReactNode } from "react";
+import { HTMLAttributes, ReactNode } from "react";
+import { useSectionStyles } from "./SectionStyles";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
   title?: string;
   endAdornment?: ReactNode;
 }
 
-const Section: FC<PropsWithChildren<Props>> = ({
-  title,
-  endAdornment,
-  children,
-  ...props
-}) => {
+export const Section = ({ title, endAdornment, children, ...props }: Props) => {
+  const { styles } = useSectionStyles();
+
   return (
     <section
-      style={{ marginBlock: "60px" }}
+      className={styles.section}
       {...props}
     >
       <Flex
@@ -30,5 +29,3 @@ const Section: FC<PropsWithChildren<Props>> = ({
     </section>
   );
 };
-
-export default Section;

@@ -1,12 +1,12 @@
 import { Layout, Typography, Space, Flex } from "antd";
 import Image from "antd/es/image";
-import SocialIcons from "../SocialIcons/SocialIcons";
+import { SocialIcons } from "@/components";
 import { useFooterStyles } from "./FooterStyles";
 import { Link } from "react-router-dom";
 
 const { Footer } = Layout;
 
-const AppFooter = () => {
+export const AppFooter = () => {
   const { styles } = useFooterStyles();
 
   return (
@@ -167,5 +167,3 @@ const AppFooter = () => {
     </Footer>
   );
 };
-
-export default AppFooter;

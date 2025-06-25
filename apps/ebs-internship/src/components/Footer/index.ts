@@ -1,1 +1,1 @@
-export { default as Footer } from "./Footer";
+export { AppFooter as Footer } from "./Footer";

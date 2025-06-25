@@ -1,16 +1,16 @@
-import { CSSProperties, FC, HTMLAttributes, PropsWithChildren } from "react";
+import { CSSProperties, HTMLAttributes } from "react";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   size?: "md" | "lg";
   style?: CSSProperties;
 }
 
-const Container: FC<PropsWithChildren<Props>> = ({
+export const Container = ({
   size = "md",
   style,
   children,
   ...props
-}) => {
+}: Props) => {
   return (
     <div
       style={{
@@ -25,5 +25,3 @@ const Container: FC<PropsWithChildren<Props>> = ({
     </div>
   );
 };
-
-export default Container;

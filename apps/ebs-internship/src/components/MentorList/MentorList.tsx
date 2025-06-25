@@ -3,19 +3,24 @@ import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
 import { Api } from "@/services/apiClient";
 import { useQuery } from "@tanstack/react-query";
 import { Card, Flex, Image, List, Typography } from "antd";
-import { FC } from "react";
 import { Link } from "react-router-dom";
+import { useMentorListStyles } from "./MentorListStyles";
 
 interface Props {
   title?: string;
   showSeeAllButton?: boolean;
 }
 
-const MentorList: FC<Props> = ({ title = "Top Mentors", showSeeAllButton }) => {
+export const MentorList = ({
+  title = "Top Mentors",
+  showSeeAllButton,
+}: Props) => {
   const { data: mentors, isLoading } = useQuery({
     queryKey: ["mentors"],
     queryFn: Api.tutors.fetchTutors,
   });
+
+  const { styles } = useMentorListStyles();
 
   return (
     <Container>
@@ -52,10 +57,7 @@ const MentorList: FC<Props> = ({ title = "Top Mentors", showSeeAllButton }) => {
                       {mentor.first_name} {mentor.last_name}
                     </Typography.Title>
 
-                    <Typography.Text
-                      className="clamp-text"
-                      style={{ textAlign: "center" }}
-                    >
+                    <Typography.Text className={styles.mentorBio}>
                       {mentor.bio}
                     </Typography.Text>
                   </Flex>
@@ -68,5 +70,3 @@ const MentorList: FC<Props> = ({ title = "Top Mentors", showSeeAllButton }) => {
     </Container>
   );
 };
-
-export default MentorList;

@@ -4,14 +4,12 @@ import { Fragment } from "react/jsx-runtime";
 import { useMetricsStyles } from "./MetricsStyles";
 import { data } from "./data";
 
-const Metrics = () => {
+export const Metrics = () => {
   const { styles } = useMetricsStyles();
 
   return (
     <Section className={styles.metrics}>
-      <Container
-        style={{ paddingBlock: 40, maxWidth: "1280px", margin: "0 auto" }}
-      >
+      <Container style={{ paddingBlock: 40 }}>
         <dl className={styles.metricsList}>
           {data.map((item, i) => (
             <Fragment key={item.description}>
@@ -30,10 +28,7 @@ const Metrics = () => {
                 <Divider
                   type="vertical"
                   size="large"
-                  style={{
-                    height: 55,
-                    alignSelf: "center",
-                  }}
+                  className={styles.divider}
                 />
               )}
             </Fragment>
@@ -43,5 +38,3 @@ const Metrics = () => {
     </Section>
   );
 };
-
-export default Metrics;

@@ -1,11 +1,11 @@
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Typography } from "antd";
 import { useForm } from "antd/es/form/Form";
-import { useLogin } from "../hooks";
+import { useLogin } from "@/features/auth/hooks";
 import { useNavigate } from "react-router-dom";
 import { PROFILE_ROUTES } from "@/config/routesEnum";
 
-const SignInForm = () => {
+export const SignInForm = () => {
   const [form] = useForm();
   const navigate = useNavigate();
   const { mutate, isPending } = useLogin();
@@ -41,12 +41,12 @@ const SignInForm = () => {
             message: "Please enter a valid email",
           },
         ]}
-        style={{ width: "100%" }}
+        className="w-full"
         name="email"
       >
         <Input
           placeholder="Username or Email ID"
-          style={{ height: 58, padding: 16 }}
+          className="input"
         />
       </Form.Item>
       <Form.Item
@@ -58,11 +58,11 @@ const SignInForm = () => {
           },
         ]}
         name="password"
-        style={{ width: "100%" }}
+        className="w-full"
       >
         <Input.Password
           placeholder="Enter Password"
-          style={{ height: 58, padding: 16 }}
+          className="input"
         />
       </Form.Item>
       <Button
@@ -78,5 +78,3 @@ const SignInForm = () => {
     </Form>
   );
 };
-
-export default SignInForm;

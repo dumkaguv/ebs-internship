@@ -16,6 +16,11 @@ export const useHeaderStyles = createStyles(({ token, css }) => {
       z-index: 100;
     `,
 
+    headerWrapper: css`
+      width: 100%;
+      max-width: 1280px;
+    `,
+
     headerNavItem: css`
       && {
         color: ${token.grey.grey700};
@@ -42,6 +47,7 @@ export const useHeaderStyles = createStyles(({ token, css }) => {
 
     logoText: css`
       && {
+        font-size: 16px !important;
         color: ${token.grey.grey700};
       }
     `,
@@ -51,10 +57,6 @@ export const useHeaderStyles = createStyles(({ token, css }) => {
       color: ${token.grey.grey700};
       width: fit-content;
       height: fit-content;
-    `,
-
-    iconCart: css`
-      margin-left: 84px;
     `,
 
     login: css`
@@ -92,6 +94,28 @@ export const useHeaderStyles = createStyles(({ token, css }) => {
           );
           color: ${token.colorBgBase};
         }
+      }
+    `,
+
+    avatarWrapper: css`
+      && {
+        padding-inline: 6px;
+      }
+    `,
+
+    authButtonsWrapper: css`
+      && {
+        margin-left: 100px;
+      }
+    `,
+
+    searchImage: css`
+      border-radius: ${token.borderRadius}px;
+    `,
+
+    searchTextSize: css`
+      && {
+        font-size: 14px !important;
       }
     `,
   };

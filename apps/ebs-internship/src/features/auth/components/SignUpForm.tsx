@@ -1,13 +1,18 @@
 import { ArrowRightOutlined } from "@ant-design/icons";
 import { Button, Flex, Form, Input, Typography } from "antd";
 import { useForm } from "antd/es/form/Form";
+import { useRegister } from "@/features/auth/hooks";
 
-const SignUpForm = () => {
+export const SignUpForm = () => {
   const [form] = useForm();
+
+  const { mutate } = useRegister();
 
   const onSubmit = async () => {
     const values = await form.validateFields();
+    values.return_url = "http://localhost:4200/profile";
     console.log("Form values:", values);
+    mutate(values);
   };
 
   return (
@@ -25,7 +30,7 @@ const SignUpForm = () => {
       >
         <Form.Item
           label={<Typography.Title level={5}>First Name</Typography.Title>}
-          name="firstName"
+          name="first_name"
           rules={[
             {
               required: true,
@@ -40,15 +45,15 @@ const SignUpForm = () => {
               message: "First name must be at most 30 characters",
             },
             {
-              pattern: /^[A-Za-z\s\-]+$/,
+              pattern: /^[A-Za-z\s-]+$/,
               message: "Only letters, spaces, and hyphens are allowed",
             },
           ]}
-          style={{ width: "100%" }}
+          className="w-full"
         >
           <Input
             placeholder="John"
-            style={{ height: 58, padding: 16 }}
+            className="input"
           />
         </Form.Item>
 
@@ -68,16 +73,16 @@ const SignUpForm = () => {
               message: "Last name must be at most 30 characters",
             },
             {
-              pattern: /^[A-Za-z\s\-]+$/,
+              pattern: /^[A-Za-z\s-]+$/,
               message: "Only letters, spaces, and hyphens are allowed",
             },
           ]}
-          style={{ width: "100%" }}
-          name="lastName"
+          className="w-full"
+          name="last_name"
         >
           <Input
             placeholder="Doe"
-            style={{ height: 58, padding: 16 }}
+            className="input"
           />
         </Form.Item>
       </Flex>
@@ -97,16 +102,16 @@ const SignUpForm = () => {
             message: "Username must be at most 30 characters",
           },
           {
-            pattern: /^[A-Za-z\-]+$/,
+            pattern: /^[A-Za-z-]+$/,
             message: "Only letters, and hyphens are allowed",
           },
         ]}
-        style={{ width: "100%" }}
+        className="w-full"
         name="username"
       >
         <Input
           placeholder="johndoe"
-          style={{ height: 58, padding: 16 }}
+          className="input"
         />
       </Form.Item>
       <Form.Item
@@ -125,12 +130,12 @@ const SignUpForm = () => {
             message: "Email must be at most 50 characters",
           },
         ]}
-        style={{ width: "100%" }}
+        className="w-full"
         name="email"
       >
         <Input
           placeholder="johndoe@gmail.com"
-          style={{ height: 58, padding: 16 }}
+          className="input"
         />
       </Form.Item>
 
@@ -158,11 +163,11 @@ const SignUpForm = () => {
             },
           ]}
           name="password"
-          style={{ width: "100%" }}
+          className="w-full"
         >
           <Input.Password
             placeholder="aGAss2%$`1"
-            style={{ height: 58, padding: 16 }}
+            className="input"
           />
         </Form.Item>
 
@@ -170,8 +175,8 @@ const SignUpForm = () => {
           label={
             <Typography.Title level={5}>Confirm Password</Typography.Title>
           }
-          style={{ width: "100%" }}
-          name="confirmPassword"
+          className="w-full"
+          name="password_confirmation"
           hasFeedback
           rules={[
             {
@@ -190,7 +195,7 @@ const SignUpForm = () => {
         >
           <Input.Password
             placeholder="aGAss2%$`1"
-            style={{ height: 58, padding: 16 }}
+            className="input"
           />
         </Form.Item>
       </Flex>
@@ -205,5 +210,3 @@ const SignUpForm = () => {
     </Form>
   );
 };
-
-export default SignUpForm;

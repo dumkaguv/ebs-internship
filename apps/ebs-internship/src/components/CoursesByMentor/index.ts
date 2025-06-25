@@ -1,1 +1,1 @@
-export { default as CoursesByMentor } from "./CoursesByMentor";
+export { CoursesByMentor } from "./CoursesByMentor";

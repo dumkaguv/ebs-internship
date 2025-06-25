@@ -12,6 +12,23 @@ const GlobalStyles = createGlobalStyle(
     background-color: ${token.colorWhite};
   }
 
+  .w-full {
+    width: 100%;
+  }
+
+  .h-full {
+    height: 100%;
+  }
+
+  .h-screen {
+    height: 100dvh;
+  }
+
+  .input {
+    padding: 16px;
+    height: 58px;
+  }
+
   .ant-card {
     box-shadow: 0px 0px 8px 0px rgba(59, 130, 246, 0.12) !important;
   }

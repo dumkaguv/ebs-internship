@@ -1,4 +1,4 @@
-import { axiosInstance } from "../lib/axios";
+import { axiosInstance } from "@/lib";
 import { ApiRoutes } from "@/config/api-routes";
 import { ApiResponse } from "@/types/apiResponse";
 import { Course } from "@/types/course";
@@ -34,7 +34,6 @@ export const fetchCourses = async (
   params?: FetchCoursesParams
 ): Promise<ApiResponse<Course[]> | undefined> => {
   try {
-    console.log(params)
     const response = await axiosInstance.get<ApiResponse<Course[]>>(
       ApiRoutes.COURSES,
       { params }

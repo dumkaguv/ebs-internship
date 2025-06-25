@@ -6,7 +6,7 @@ import { Card, Flex, Image, List, Typography } from "antd";
 import { useTopCategoriesStyles } from "./TopCategoriesStyles";
 import { Api } from "@/services/apiClient";
 
-const TopCategories = () => {
+export const TopCategories = () => {
   const { data: categories, isLoading } = useQuery({
     queryKey: ["categories"],
     queryFn: Api.categories.fetchCategories,
@@ -26,7 +26,7 @@ const TopCategories = () => {
           itemLayout="horizontal"
           dataSource={categories?.slice(0, 4)}
           renderItem={(category) => (
-            <List.Item style={{ marginBottom: 0 }}>
+            <List.Item>
               <Card className={styles.topCategoriesCard}>
                 <Flex
                   vertical
@@ -60,5 +60,3 @@ const TopCategories = () => {
     </Container>
   );
 };
-
-export default TopCategories;

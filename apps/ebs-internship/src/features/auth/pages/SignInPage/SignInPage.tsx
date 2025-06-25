@@ -1,8 +1,11 @@
 import { Container, Section } from "@/components";
 import { Flex, Image, Typography } from "antd";
-import { SignInForm } from "../components";
+import { SignInForm } from "@/features/auth/components";
+import { useSignInStyles } from "./SignInStyles";
 
-const SignInPage = () => {
+export const SignInPage = () => {
+  const { styles } = useSignInStyles();
+
   return (
     <Container>
       <Section>
@@ -17,7 +20,7 @@ const SignInPage = () => {
           >
             <Typography.Title
               level={2}
-              style={{ textAlign: "center", marginBottom: 16 }}
+              className={styles.title}
             >
               Sign in to your account
             </Typography.Title>
@@ -34,5 +37,3 @@ const SignInPage = () => {
     </Container>
   );
 };
-
-export default SignInPage;

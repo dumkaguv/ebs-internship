@@ -1,6 +1,5 @@
 import { Breadcrumb, Typography } from "antd";
 import { Link } from "react-router-dom";
-import { FC } from "react";
 import { useBreadcrumbStyles } from "./BreadcrumbsStyles";
 
 interface Props {
@@ -8,7 +7,7 @@ interface Props {
   title?: string;
 }
 
-const AppBreadcrumb: FC<Props> = ({ location, title }) => {
+export const AppBreadcrumb = ({ location, title }: Props) => {
   const { styles } = useBreadcrumbStyles();
 
   const pathSnippets = location.split("/").filter((i) => i);
@@ -64,5 +63,3 @@ const AppBreadcrumb: FC<Props> = ({ location, title }) => {
     />
   );
 };
-
-export default AppBreadcrumb;

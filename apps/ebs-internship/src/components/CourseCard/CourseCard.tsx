@@ -1,6 +1,5 @@
 import { Course } from "@/types/course";
-import { Card, Flex, Image, Space, Typography } from "antd";
-import { FC } from "react";
+import { Card, Flex, Image, Typography } from "antd";
 import { useCourseCardStyles } from "./CourseCardStyles";
 import { formatPrice } from "@/utils";
 
@@ -9,7 +8,7 @@ interface Props {
   imageHeight?: number | string;
 }
 
-const CourseCard: FC<Props> = ({ course, imageHeight }) => {
+export const CourseCard = ({ course, imageHeight }: Props) => {
   const { styles } = useCourseCardStyles();
 
   return (
@@ -26,12 +25,12 @@ const CourseCard: FC<Props> = ({ course, imageHeight }) => {
           preview={false}
         />
       }
-      style={{ height: "100%", display: "flex", flexDirection: "column" }}
+      className={styles.image}
     >
       <Flex
         gap={8}
-        style={{ height: "100%" }}
         vertical
+        className="h-full"
       >
         <Flex
           vertical
@@ -77,5 +76,3 @@ const CourseCard: FC<Props> = ({ course, imageHeight }) => {
     </Card>
   );
 };
-
-export default CourseCard;

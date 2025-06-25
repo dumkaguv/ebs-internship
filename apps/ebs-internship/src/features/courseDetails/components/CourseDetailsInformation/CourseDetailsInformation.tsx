@@ -3,15 +3,15 @@ import { Avatar, Button, Flex, Typography } from "antd";
 import { Link } from "react-router-dom";
 import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
 import { Course } from "@/types";
-import { FC, useRef, useState } from "react";
-import { CourseDetailsSyllabus } from "../CourseDetailsSyllabus";
+import { useRef, useState } from "react";
+import { CourseDetailsSyllabus } from "@/features/courseDetails/components";
 import { useCourseDetailsInformationStyles } from "./CourseDetailsInformationStyles";
 
 interface Props {
   data: Course;
 }
 
-const CourseDetailsInformation: FC<Props> = ({ data }) => {
+export const CourseDetailsInformation = ({ data }: Props) => {
   const [activeTab, setActiveTab] = useState("description");
   const descriptionRef = useRef<HTMLDivElement>(null);
   const instructorRef = useRef<HTMLDivElement>(null);
@@ -155,5 +155,3 @@ const CourseDetailsInformation: FC<Props> = ({ data }) => {
     </Container>
   );
 };
-
-export default CourseDetailsInformation;

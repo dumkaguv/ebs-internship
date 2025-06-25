@@ -4,9 +4,9 @@ import {
   Metrics,
   TopCategories,
   BecomeInstructorPromo,
-} from "../components";
+} from "@/features/home/components";
 
-function HomePage() {
+export const HomePage = () => {
   return (
     <>
       <Hero />
@@ -17,6 +17,4 @@ function HomePage() {
       <BecomeInstructorPromo />
     </>
   );
-}
-
-export default HomePage;
+};

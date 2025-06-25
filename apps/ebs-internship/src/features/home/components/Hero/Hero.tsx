@@ -3,14 +3,16 @@ import { Button, Flex, Image, Space, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 import { RoutesEnum } from "@/config/routesEnum";
 import { useStyles } from "@/styles";
+import { useHeroStyles } from "./HeroStyles";
 
-const Hero = () => {
+export const Hero = () => {
   const navigate = useNavigate();
 
-  const { styles } = useStyles();
+  const { styles: globalStyles } = useStyles();
+  const { styles } = useHeroStyles();
 
   return (
-    <section style={{ paddingBlock: 40 }}>
+    <section className={styles.section}>
       <Container>
         <Flex
           justify="space-between"
@@ -18,13 +20,13 @@ const Hero = () => {
           gap={16}
         >
           <Flex
-            style={{ maxWidth: 600 }}
+            className={styles.wrapper}
             gap={16}
             vertical
           >
             <Typography.Title
               level={1}
-              style={{ maxWidth: 483, fontWeight: 700 }}
+              className={styles.title}
             >
               Unlock Your Potential with Byway
             </Typography.Title>
@@ -33,7 +35,7 @@ const Hero = () => {
               size={24}
               direction="vertical"
             >
-              <Typography.Paragraph className={styles.paragraph}>
+              <Typography.Paragraph className={globalStyles.paragraph}>
                 Welcome to Byway, where learning knows no bounds. We believe
                 that education is the key to personal and professional growth,
                 and we're here to guide you on your journey to success.
@@ -42,7 +44,7 @@ const Hero = () => {
               <Button
                 variant="solid"
                 color="blue"
-                style={{ alignSelf: "start" }}
+                className={styles.heroButton}
                 onClick={() => navigate(RoutesEnum.SIGNUP)}
               >
                 Start your instructor journey
@@ -83,5 +85,3 @@ const Hero = () => {
     </section>
   );
 };
-
-export default Hero;

@@ -1,1 +1,1 @@
-export { default as CourseDetailsHero } from "./CourseDetailsHero";
+export { CourseDetailsHero } from "./CourseDetailsHero";

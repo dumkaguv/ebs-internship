@@ -23,5 +23,12 @@ export const useMetricsStyles = createStyles(({ token, css }) => {
       font-size: 14px;
       margin-bottom: 0;
     `,
+
+    divider: css`
+      && {
+        height: 55px;
+        align-self: center;
+      }
+    `,
   };
 });

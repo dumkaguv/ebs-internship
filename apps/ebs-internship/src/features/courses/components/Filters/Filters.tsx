@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Api } from "@/services/apiClient";
 import { LoadableCheckboxGroup } from "@/components/LoadableCheckboxGroup";
 
-const Filters = () => {
+export const Filters = () => {
   const { styles } = useFiltersStyles();
   const { styles: globalStyles } = useStyles();
 
@@ -63,11 +63,10 @@ const Filters = () => {
   return (
     <Flex
       gap={6}
-      style={{ width: "100%" }}
+      className="w-full"
       align="start"
     >
       <Collapse
-        style={{ width: "100%" }}
         size="large"
         className={styles.collapse}
         items={items}
@@ -78,5 +77,3 @@ const Filters = () => {
     </Flex>
   );
 };
-
-export default Filters;
