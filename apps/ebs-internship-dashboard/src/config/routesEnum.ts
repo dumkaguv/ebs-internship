@@ -1,5 +1,7 @@
 export const RoutesEnum = {
   DASHBOARD: "/dashboard",
+  COURSES: "/courses",
+  REVENUE: "/revenue",
 } as const;
 
 type ExtractRoutes<T> = T extends string

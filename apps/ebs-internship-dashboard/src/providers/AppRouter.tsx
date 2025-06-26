@@ -4,7 +4,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 export const AppRouter = () => {
   return (
-    <Router>
+    <Router basename="/admin">
       <Routes>
         <Route element={<MainLayout />}>
           <Route
