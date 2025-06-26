@@ -4,6 +4,7 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig(() => ({
+  base: "/admin",
   root: __dirname,
   cacheDir: "../../node_modules/.vite/apps/ebs-internship-dashboard",
   server: {

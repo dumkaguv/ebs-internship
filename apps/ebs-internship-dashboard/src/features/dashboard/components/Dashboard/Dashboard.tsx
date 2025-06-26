@@ -1,0 +1,48 @@
+import { Flex, Typography } from "antd";
+import { useDashboardMainStyles } from "./DashboardStyles";
+import { DashboardBanner } from "@/features/dashboard/components/DashboardBanner";
+import { SalesChart } from "@/features/dashboard/components/SalesChart";
+import { ReviewsBanner } from "@/features/dashboard/components/ReviewsBanner";
+import { DashboardCourses } from "@/features/dashboard/components/DashboardCourses";
+import { useQuery } from "@tanstack/react-query";
+import { fetchDashboardCourses } from "@/features/dashboard/api/fetchDashboardCourses";
+
+export const Dashboard = () => {
+  const { styles } = useDashboardMainStyles();
+  const { data } = useQuery({
+    queryKey: ["courses"],
+    queryFn: fetchDashboardCourses,
+  });
+
+  return (
+    <Flex
+      className={styles.mainContainer}
+      vertical
+      gap={40}
+    >
+      <Flex
+        justify="space-between"
+        gap={24}
+      >
+        <DashboardBanner />
+        <SalesChart />
+      </Flex>
+      <Flex
+        vertical
+        gap={10}
+      >
+        <Typography.Title level={4}>Reviews</Typography.Title>
+        <ReviewsBanner />
+      </Flex>
+      <Flex
+        justify="space=between"
+        align="space-between"
+        vertical
+        gap={10}
+      >
+        <Typography.Title level={4}>Courses</Typography.Title>
+        <DashboardCourses data={data ?? []} />
+      </Flex>
+    </Flex>
+  );
+};
