@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { Card, Flex, Image, List, Typography } from "antd";
 import { useTopCategoriesStyles } from "./TopCategoriesStyles";
-import { Api } from "@/services/apiClient";
+import { Api } from "@libs";
 
 export const TopCategories = () => {
   const { data: categories, isLoading } = useQuery({

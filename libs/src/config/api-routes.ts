@@ -6,4 +6,5 @@ export const ApiRoutes = {
     REFRESH: "/auth/refresh",
     LOGOUT: "/auth/logout",
   },
+  CATEGORIES: "/categories",
 };
