@@ -20,7 +20,7 @@ export const SidebarMenu = ({ collapsed }: Props) => {
 
   const items = [
     getMenuItem("Dashboard", <Dashboard />, RoutesEnum.DASHBOARD),
-    getMenuItem("Courses", <Course />, RoutesEnum.COURSES),
+    getMenuItem("Courses", <Course />, RoutesEnum.COURSES.BASE),
     getMenuItem("Revenue", <Dollar />, RoutesEnum.REVENUE),
   ];
 
