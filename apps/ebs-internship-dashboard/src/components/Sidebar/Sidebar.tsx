@@ -6,6 +6,7 @@ import { RoutesEnum } from "@/config/routesEnum";
 import { useSidebarStyles } from "./SidebarStyles";
 import { ArrowCollapse, Hamburger } from "@/assets";
 import { SidebarMenu } from "./SidebarMenu";
+import { useTheme } from "antd-style";
 
 const { Sider } = Layout;
 
@@ -13,6 +14,8 @@ export const AppSidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   const { styles } = useSidebarStyles();
+
+  const theme = useTheme();
 
   const getSuitableCollapseIcon = (Icon: ReactNode) => (
     <Button
@@ -44,13 +47,15 @@ export const AppSidebar = () => {
           style={{ paddingLeft: collapsed ? "18px" : "10px" }}
         >
           {collapsed ? (
-            getSuitableCollapseIcon(<Hamburger stroke="#F8FAFC" />)
+            getSuitableCollapseIcon(<Hamburger stroke={theme.grey.grey100} />)
           ) : (
             <>
               <Link to={RoutesEnum.DASHBOARD}>
                 <Logo />
               </Link>
-              {getSuitableCollapseIcon(<ArrowCollapse fill="#F8FAFC" />)}
+              {getSuitableCollapseIcon(
+                <ArrowCollapse fill={theme.grey.grey100} />
+              )}
             </>
           )}
         </Flex>
