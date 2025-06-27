@@ -1,63 +1,76 @@
-import { Key, ReactNode, useState } from "react";
-import {
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-import type { MenuProps } from "antd";
-import { Breadcrumb, Layout, Menu, theme } from "antd";
+import { ReactNode, useState } from "react";
+import { Avatar, Button, Flex, Layout } from "antd";
+import { Logo } from "@/components";
+import { Link } from "react-router-dom";
+import { RoutesEnum } from "@/config/routesEnum";
+import { useSidebarStyles } from "./SidebarStyles";
+import { ArrowCollapse, Hamburger } from "@/assets";
+import { SidebarMenu } from "./SidebarMenu";
+import { useTheme } from "antd-style";
 
-const { Header, Content, Footer, Sider } = Layout;
-
-type MenuItem = Required<MenuProps>["items"][number];
-
-const getItem = (
-  label: ReactNode,
-  key: Key,
-  icon?: ReactNode,
-  children?: MenuItem[]
-): MenuItem => {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  } as MenuItem;
-};
-
-const items: MenuItem[] = [
-  getItem("Option 1", "1", <PieChartOutlined />),
-  getItem("Option 2", "2", <DesktopOutlined />),
-  getItem("User", "sub1", <UserOutlined />, [
-    getItem("Tom", "3"),
-    getItem("Bill", "4"),
-    getItem("Alex", "5"),
-  ]),
-  getItem("Team", "sub2", <TeamOutlined />, [
-    getItem("Team 1", "6"),
-    getItem("Team 2", "8"),
-  ]),
-  getItem("Files", "9", <FileOutlined />),
-];
+const { Sider } = Layout;
 
 export const AppSidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
 
+  const { styles } = useSidebarStyles();
+
+  const theme = useTheme();
+
+  const getSuitableCollapseIcon = (Icon: ReactNode) => (
+    <Button
+      type="link"
+      onClick={() => setCollapsed((prev) => !prev)}
+      className={styles.buttonCollapse}
+    >
+      {Icon}
+    </Button>
+  );
+
   return (
     <Sider
       collapsible
+      trigger={null}
       collapsed={collapsed}
       onCollapse={(value) => setCollapsed(value)}
+      className={styles.sider}
     >
-      <div className="demo-logo-vertical" />
-      <Menu
-        theme="dark"
-        defaultSelectedKeys={["1"]}
-        mode="inline"
-        items={items}
-      />
+      <Flex
+        vertical
+        gap={24}
+        className="h-full"
+      >
+        <Flex
+          className={styles.header}
+          align="center"
+          justify="space-between"
+          style={{ paddingLeft: collapsed ? "18px" : "10px" }}
+        >
+          {collapsed ? (
+            getSuitableCollapseIcon(<Hamburger stroke={theme.grey.grey100} />)
+          ) : (
+            <>
+              <Link to={RoutesEnum.DASHBOARD}>
+                <Logo />
+              </Link>
+              {getSuitableCollapseIcon(
+                <ArrowCollapse fill={theme.grey.grey100} />
+              )}
+            </>
+          )}
+        </Flex>
+
+        <SidebarMenu collapsed={collapsed} />
+
+        <Flex
+          className={styles.userInfo}
+          gap={5}
+          align="center"
+        >
+          <Avatar size={40} />
+          {!collapsed && <span>Hi, John</span>}
+        </Flex>
+      </Flex>
     </Sider>
   );
 };

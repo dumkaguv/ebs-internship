@@ -6,7 +6,6 @@ export const AntDesignTheme: ThemeConfig = {
       headerBg: "rgb(255,255,255)",
       footerBg: "rgb(30,41,59)",
       bodyBg: "rgb(255,255,255)",
-      headerPadding: "0 0",
       footerPadding: "80px 0",
     },
   },
