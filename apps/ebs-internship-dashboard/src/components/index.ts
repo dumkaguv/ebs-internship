@@ -1,3 +1,8 @@
 export { Sidebar } from "./Sidebar";
 export { Logo } from "./Logo";
 export { Header } from "./Header";
+export { StaticLabelInput } from "./StaticLabelInput";
+export { StaticLabelWrapper } from "./StaticLabelWrapper";
+export { StaticLabelSelect } from "./StaticLabelSelect";
+export { ButtonBack } from "./ButtonBack";
+export { StaticLabelInputNumber } from "./StaticLabelInputNumber";

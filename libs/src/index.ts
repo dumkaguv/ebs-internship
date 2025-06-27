@@ -6,3 +6,5 @@ export * from "./lib";
 export * from "./utils";
 export * from "./stores";
 export * from "./types";
+
+export { Api } from "./services/apiClient";
