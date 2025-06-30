@@ -1,31 +1,20 @@
 import { createStyles } from "antd-style";
 
-export const useDashboardCoursesStyles = createStyles(({ token, css }) => {
+export const useCourseCardStyles = createStyles(({ token, css }) => {
   return {
-    courseContainer: css`
-      background-color: #fff;
-      border-radius: ${token.borderRadiusSM}px;
-      box-shadow: ${token.boxShadow};
-      &&.ant-flex {
-        padding: 16px;
-      }
-      max-width: 400px;
+    coursesContainer: css`
+      width: 100%;
     `,
 
+    courseCard: css`
+      max-width: 400px;
+    `,
     courseTitle: css`
       display: -webkit-box;
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
       -webkit-line-clamp: 1;
-    `,
-
-    courseLink: css`
-      transition: transform 0.4s ease;
-
-      &:hover {
-        transform: scale(1.03);
-      }
     `,
 
     customParagraph: css`
