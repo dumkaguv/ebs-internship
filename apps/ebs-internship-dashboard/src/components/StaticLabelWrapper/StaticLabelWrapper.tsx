@@ -7,11 +7,14 @@ interface Props {
   children: ReactNode;
 }
 
-export const StaticLabelWrapper = ({ label, id, children }: Props) => {
+export const StaticLabelWrapper = ({ label, id, children, ...rest }: Props) => {
   const { styles } = useStaticLabelWrapperStyles();
 
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={styles.wrapper}
+      {...rest}
+    >
       <label
         htmlFor={id}
         className={styles.label}

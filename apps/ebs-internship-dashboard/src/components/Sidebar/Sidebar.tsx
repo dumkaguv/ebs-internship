@@ -59,7 +59,10 @@ export const AppSidebar = () => {
                 <Logo />
               </Link>
               {getSuitableCollapseIcon(
-                <ArrowCollapse fill={theme.grey.grey100} />
+                <ArrowCollapse
+                  fill={theme.grey.grey100}
+                  stroke="transparent"
+                />
               )}
             </>
           )}

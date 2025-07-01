@@ -7,7 +7,8 @@ export const CourseDescription = () => {
   const { form } = useAddCourseFormStore();
 
   const initialTextFormatterValue = JSON.parse(
-    localStorage.getItem(LOCAL_STORAGE.COURSE_ADD_FORM) || `{ description: "" }`
+    localStorage.getItem(LOCAL_STORAGE.COURSE_ADD_FORM) ||
+      `[ { "description": "" } ]`
   ).description;
 
   const handleChange = (html: string) => {
@@ -18,6 +19,7 @@ export const CourseDescription = () => {
     <Form.Item
       name="description"
       rules={[{ required: true, message: "Please fill in course description" }]}
+      className="w-full"
     >
       <Flex
         vertical
