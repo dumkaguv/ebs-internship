@@ -1,5 +1,5 @@
 export const RoutesEnum = {
-  DASHBOARD: "/dashboard",
+  DASHBOARD: "/",
   COURSES: {
     BASE: "/courses",
     ADD: "/courses/add",

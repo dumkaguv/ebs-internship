@@ -7,11 +7,16 @@ import { useSidebarStyles } from "./SidebarStyles";
 import { ArrowCollapse, Hamburger } from "@/assets";
 import { SidebarMenu } from "./SidebarMenu";
 import { useTheme } from "antd-style";
+import { IMAGE_FALLBACKS, Profile, useAuthStore } from "@libs";
 
 const { Sider } = Layout;
 
 export const AppSidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
+
+  const profile: Profile | null | undefined = useAuthStore(
+    (state) => state.profile
+  );
 
   const { styles } = useSidebarStyles();
 
@@ -67,8 +72,12 @@ export const AppSidebar = () => {
           gap={5}
           align="center"
         >
-          <Avatar size={40} />
-          {!collapsed && <span>Hi, John</span>}
+          <Avatar
+            src={profile?.avatar ?? IMAGE_FALLBACKS.USER}
+            size={40}
+            alt=""
+          />
+          {!collapsed && <span>Hi, {profile?.first_name ?? "Admin"}</span>}
         </Flex>
       </Flex>
     </Sider>

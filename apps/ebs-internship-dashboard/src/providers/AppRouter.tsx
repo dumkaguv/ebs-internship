@@ -1,3 +1,4 @@
+import { AdminGuardRoute } from "@/components";
 import { RoutesEnum } from "@/config/routesEnum";
 import { CourseAddPage } from "@/features/course/pages";
 import { MainLayout } from "@/layouts";
@@ -7,15 +8,17 @@ export const AppRouter = () => {
   return (
     <Router basename="/admin">
       <Routes>
-        <Route element={<MainLayout />}>
-          <Route
-            path={RoutesEnum.DASHBOARD}
-            element={<div></div>}
-          />
-          <Route
-            path={RoutesEnum.COURSES.ADD}
-            element={<CourseAddPage />}
-          />
+        <Route element={<AdminGuardRoute />}>
+          <Route element={<MainLayout />}>
+            <Route
+              path={RoutesEnum.DASHBOARD}
+              element={<div></div>}
+            />
+            <Route
+              path={RoutesEnum.COURSES.ADD}
+              element={<CourseAddPage />}
+            />
+          </Route>
         </Route>
       </Routes>
     </Router>

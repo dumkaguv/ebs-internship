@@ -6,6 +6,8 @@ export const ApiRoutes = {
   COURSES: "/courses",
   TUTORS: "/tutors",
   PROFILE: {
+    BASE: "/profile",
+    ME: "/profile/me",
     SETTINGS: "/profile/settings",
     AVATAR: "profile/upload-avatar",
   },

@@ -6,3 +6,5 @@ export { StaticLabelWrapper } from "./StaticLabelWrapper";
 export { StaticLabelSelect } from "./StaticLabelSelect";
 export { ButtonBack } from "./ButtonBack";
 export { StaticLabelInputNumber } from "./StaticLabelInputNumber";
+export { AdminGuardRoute } from "./AdminGuardRoute";
+export { TextFormattingToolbar } from "./TextFormattingToolbar";

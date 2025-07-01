@@ -20,8 +20,9 @@ import { HeaderSearch } from "./HeaderSearch";
 import { useEffect, useRef } from "react";
 import { defineHeaderHeightCssVar } from "@/utils";
 import { useHeaderStyles } from "./HeaderStyles";
-import { useAuthStore } from "@libs";
+import { IMAGE_FALLBACKS, Profile, useAuthStore } from "@libs";
 import { useLogout } from "@libs";
+import { useShallow } from "zustand/shallow";
 
 const { Header } = Layout;
 
@@ -29,7 +30,12 @@ export const AppHeader = () => {
   const headerRef = useRef(null);
   const navigate = useNavigate();
   const { styles } = useHeaderStyles();
-  const isAuth = useAuthStore((state) => state.isAuth);
+  const [isAuth, profile] = useAuthStore(
+    useShallow((state) => [
+      state.isAuth,
+      state.profile as Profile | null | undefined,
+    ])
+  );
   const { logout } = useLogout();
 
   useEffect(() => {
@@ -138,8 +144,8 @@ export const AppHeader = () => {
                 className={styles.avatarWrapper}
               >
                 <Avatar
+                  src={profile?.avatar ?? IMAGE_FALLBACKS.USER}
                   size={40}
-                  icon={<UserOutlined />}
                 />
               </Button>
             </Dropdown>
