@@ -1,16 +1,43 @@
 import { ReactNode } from "react";
-import { Button, Card, Flex, Typography } from "antd";
+import { Button, Card, Flex, message, Typography } from "antd";
 import { useStepContentStyles } from "./StepContentStyles";
 import { ButtonBack } from "@/components";
+import { saveFormInfo } from "@/features/course/utils";
+import { useAddCourseFormStore } from "@/features/course/stores";
 
 interface Props {
   title: string;
-  onButtonNextClick: () => void;
   children: ReactNode;
 }
 
-export const StepContent = ({ title, onButtonNextClick, children }: Props) => {
+export const StepContent = ({ title, children }: Props) => {
+  const { form, currentStep, setCurrentStep } = useAddCourseFormStore();
+
   const { styles } = useStepContentStyles();
+
+  if (!form) return null;
+
+  const onSaveButtonClick = () => {
+    try {
+      saveFormInfo(form.getFieldsValue());
+      message.success("Saved successfully!");
+    } catch (e) {
+      message.error("Error occurred. Try again");
+      console.log(e);
+    }
+  };
+
+  const onButtonNextClick = async () => {
+    try {
+      await form.validateFields();
+
+      const formValues = form.getFieldsValue();
+      saveFormInfo(formValues);
+      setCurrentStep(currentStep + 1);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Card>
@@ -25,6 +52,7 @@ export const StepContent = ({ title, onButtonNextClick, children }: Props) => {
         >
           <Typography.Title level={3}>{title}</Typography.Title>
           <Button
+            onClick={onSaveButtonClick}
             variant="solid"
             color="green"
           >
@@ -39,15 +67,24 @@ export const StepContent = ({ title, onButtonNextClick, children }: Props) => {
           align="center"
           justify="space-between"
         >
-          <ButtonBack
-            title="Cancel"
-            showIcon={false}
-          />
+          {currentStep > 1 ? (
+            <Button
+              variant="outlined"
+              onClick={() => setCurrentStep(currentStep - 1)}
+            >
+              Previous
+            </Button>
+          ) : (
+            <ButtonBack
+              title="Cancel"
+              showIcon={false}
+            />
+          )}
           <Button
             onClick={onButtonNextClick}
             type="primary"
           >
-            Next
+            Save & Next
           </Button>
         </Flex>
       </Flex>

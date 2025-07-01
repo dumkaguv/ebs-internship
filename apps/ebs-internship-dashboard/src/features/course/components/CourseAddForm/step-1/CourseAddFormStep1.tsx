@@ -5,24 +5,18 @@ import {
   StaticLabelSelect,
 } from "@/components";
 import { StepContent } from "@/features/course/components";
-import type { FormInstance } from "antd";
 import { useCourseAddFormFirstStep } from "@/features/course/hooks";
 
 interface Props {
   title: string;
-  form: FormInstance;
-  onButtonNextClick: () => void;
 }
 
-export const CourseAddFormStep1 = ({ title, onButtonNextClick }: Props) => {
+export const CourseAddFormStep1 = ({ title }: Props) => {
   const { categories, languages, levels, categoriesIsLoading } =
     useCourseAddFormFirstStep();
 
   return (
-    <StepContent
-      title={title}
-      onButtonNextClick={onButtonNextClick}
-    >
+    <StepContent title={title}>
       <Flex
         vertical
         gap={32}

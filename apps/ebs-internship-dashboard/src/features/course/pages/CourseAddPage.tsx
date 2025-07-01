@@ -1,38 +1,32 @@
 import { useForm } from "antd/es/form/Form";
-import { useState } from "react";
+import { useLayoutEffect } from "react";
 import { Form, Tabs } from "antd";
 import type { TabsProps } from "antd";
-import { CourseAddFormStep1 } from "@/features/course/components";
+import {
+  CourseAddFormStep1,
+  CourseAddFormStep2,
+} from "@/features/course/components";
+import { getFormInfo } from "@/features/course/utils";
+import { useAddCourseFormStore } from "../stores";
 
 export const CourseAddPage = () => {
-  const [currentStep, setCurrentStep] = useState(1);
   const [form] = useForm();
+  const { setForm, currentStep, setCurrentStep } = useAddCourseFormStore();
 
-  const onButtonNextClick = async () => {
-    try {
-      await form.validateFields();
-      setCurrentStep((prev) => prev + 1);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  useLayoutEffect(() => setForm(form), [form, setForm]);
+
+  const initialValues = getFormInfo();
 
   const items: TabsProps["items"] = [
     {
       key: "1",
       label: "Basic Information",
-      children: (
-        <CourseAddFormStep1
-          title="Basic Information"
-          form={form}
-          onButtonNextClick={onButtonNextClick}
-        />
-      ),
+      children: <CourseAddFormStep1 title="Basic Information" />,
     },
     {
       key: "2",
       label: "Advance Information",
-      children: <div>Step 2</div>,
+      children: <CourseAddFormStep2 title="Advance Information" />,
     },
     {
       key: "3",
@@ -49,6 +43,7 @@ export const CourseAddPage = () => {
   return (
     <Form
       form={form}
+      initialValues={initialValues}
       layout="vertical"
       requiredMark={false}
       scrollToFirstError
