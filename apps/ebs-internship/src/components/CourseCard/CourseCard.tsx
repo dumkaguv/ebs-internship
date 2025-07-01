@@ -1,4 +1,4 @@
-import { Course } from "@libs";
+import { Course, IMAGE_FALLBACKS } from "@libs";
 import { Card, Flex, Image, Typography } from "antd";
 import { useCourseCardStyles } from "./CourseCardStyles";
 import { formatPrice } from "@/utils";
@@ -17,9 +17,7 @@ export const CourseCard = ({ course, imageHeight }: Props) => {
       cover={
         <Image
           src={course.image_url}
-          fallback={
-            "https://foundr.com/wp-content/uploads/2021/09/Best-online-course-platforms.png"
-          }
+          fallback={IMAGE_FALLBACKS.COURSE}
           height={imageHeight}
           alt=""
           preview={false}

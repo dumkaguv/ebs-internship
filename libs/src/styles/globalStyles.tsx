@@ -29,6 +29,10 @@ export const globalStyles = createGlobalStyle(
     height: 58px;
   }
 
+  .ant-typography {
+    margin: 0 !important;
+  }
+
   .ant-card {
     box-shadow: 0px 0px 8px 0px rgba(59, 130, 246, 0.12) !important;
   }

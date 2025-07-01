@@ -2,14 +2,13 @@ import { Avatar, Button, Flex, List, Typography } from "antd";
 import { useUserProfileStyles } from "./UserProfileStyles";
 import { Link, useLocation } from "react-router-dom";
 import { RoutesEnum } from "@/config/routesEnum";
-import { FC } from "react";
 import { User } from "@libs/types/user";
 
 interface Props {
   data?: User;
 }
 
-const UserProfile: FC<Props> = ({ data }) => {
+export const UserProfile = ({ data }: Props) => {
   const location = useLocation();
   const currentPath = location.pathname;
   const { styles } = useUserProfileStyles();
@@ -78,5 +77,3 @@ const UserProfile: FC<Props> = ({ data }) => {
     </Flex>
   );
 };
-
-export default UserProfile;

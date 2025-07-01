@@ -10,7 +10,7 @@ import { CoursesPage } from "@/features/courses";
 import { CartPage } from "@/features/cart";
 import { ProtectedRoute } from "@/components";
 
-import UserProfilePage from "@/features/userProfile/pages/UserProfilePage";
+import { UserProfilePage } from "@/features/userProfile/pages/UserProfilePage";
 import { UserProfileForm } from "@/features/userProfile/components";
 
 export const AppRouter = () => {

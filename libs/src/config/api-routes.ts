@@ -7,4 +7,8 @@ export const ApiRoutes = {
     LOGOUT: "/auth/logout",
   },
   CATEGORIES: "/categories",
+  PROFILE: {
+    BASE: "/profile",
+    ME: "/profile/me",
+  },
 };
