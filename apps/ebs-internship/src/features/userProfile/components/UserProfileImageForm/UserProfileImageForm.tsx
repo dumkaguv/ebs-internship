@@ -12,11 +12,13 @@ import { useUserProfileFormStyles } from "./UserProfileImageFormStyles";
 import { useState } from "react";
 import { changeUserSettings } from "@/features/userProfile/api/changeUserSettings";
 import { uploadUserAvatar } from "@/features/userProfile/api/uploadUserAvatar";
+import { useForm } from "antd/es/form/Form";
 
 const UserProfileImageForm = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const { styles } = useUserProfileFormStyles();
+  const [form] = useForm();
 
   const handlePreview = (file: File) => {
     if (!file.type.startsWith("image/")) {
@@ -43,9 +45,12 @@ const UserProfileImageForm = () => {
   };
 
   return (
-    <Flex
+    <Form
+      form={form}
+      layout="vertical"
+      requiredMark={false}
+      scrollToFirstError
       className={styles.imageContainer}
-      vertical
     >
       <Flex
         gap={16}
@@ -117,7 +122,7 @@ const UserProfileImageForm = () => {
           Save Image
         </Button>
       </Flex>
-    </Flex>
+    </Form>
   );
 };
 

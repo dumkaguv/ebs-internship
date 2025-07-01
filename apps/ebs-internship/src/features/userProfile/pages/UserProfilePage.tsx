@@ -12,6 +12,8 @@ function UserProfilePage() {
     queryFn: fetchUserProfile,
   });
 
+  console.log(data);
+
   return (
     <Container className={styles.pageContainer}>
       <UserProfile data={data} />
