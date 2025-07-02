@@ -5,9 +5,15 @@ import { StaticLabelWrapper } from "@/components";
 interface Props extends InputProps {
   label: string;
   id: string;
+  placeholder: string;
 }
 
-export const StaticLabelInput = ({ label, id, className, ...rest }: Props) => {
+export const StaticLabelInput = ({
+  label,
+  id,
+  placeholder,
+  ...rest
+}: Props) => {
   return (
     <StaticLabelWrapper
       id={id}
@@ -15,6 +21,7 @@ export const StaticLabelInput = ({ label, id, className, ...rest }: Props) => {
     >
       <Input
         id={id}
+        placeholder={placeholder ?? "Input here..."}
         {...rest}
       />
     </StaticLabelWrapper>

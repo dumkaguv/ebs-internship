@@ -11,3 +11,7 @@ export { ReactComponent as TextStrikeThrough } from "./text-strike-through.svg";
 export { ReactComponent as ListNumbers } from "./list-numbers.svg";
 export { ReactComponent as ListBullets } from "./list-bullets.svg";
 export { ReactComponent as Link } from "./link.svg";
+export { ReactComponent as Pencil } from "./pencil.svg";
+export { ReactComponent as BurgerMenu } from "./burger-menu.svg";
+export { ReactComponent as Trash } from "./trash.svg";
+export { ReactComponent as Plus } from "./plus.svg";
