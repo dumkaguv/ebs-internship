@@ -13,7 +13,6 @@ import {
   HeartOutlined,
   LogoutOutlined,
   ShoppingCartOutlined,
-  UserOutlined,
 } from "@ant-design/icons";
 import { RoutesEnum } from "@/config/routesEnum";
 import { HeaderSearch } from "./HeaderSearch";

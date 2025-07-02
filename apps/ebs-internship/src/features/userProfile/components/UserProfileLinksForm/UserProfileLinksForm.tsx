@@ -1,7 +1,7 @@
 import { Flex, Form, Input, Typography } from "antd";
 import { useUserProfileLinksForm } from "./UserProfileLinksFormStyles";
 
-const UserProfileLinksForm = () => {
+export const UserProfileLinksForm = () => {
   const { styles } = useUserProfileLinksForm();
 
   return (
@@ -67,5 +67,3 @@ const UserProfileLinksForm = () => {
     </Flex>
   );
 };
-
-export default UserProfileLinksForm;

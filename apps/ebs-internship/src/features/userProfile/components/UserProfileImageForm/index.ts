@@ -1,1 +1,1 @@
-export { default as UserProfileImageForm } from "./UserProfileImageForm";
+export { UserProfileImageForm } from "./UserProfileImageForm";

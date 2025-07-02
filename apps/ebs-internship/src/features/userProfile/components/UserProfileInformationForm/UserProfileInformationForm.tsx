@@ -2,7 +2,7 @@ import { Flex, Form, Input, Typography } from "antd";
 import { useUserProfileInformationForm } from "./UserProfileInformationFormStyles";
 import { createTextRules } from "@/utils/createTextRules";
 
-const UserProfileInformationForm = () => {
+export const UserProfileInformationForm = () => {
   const { styles } = useUserProfileInformationForm();
 
   return (
@@ -75,5 +75,3 @@ const UserProfileInformationForm = () => {
     </Flex>
   );
 };
-
-export default UserProfileInformationForm;

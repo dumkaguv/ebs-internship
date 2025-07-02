@@ -13,7 +13,7 @@ import { useState } from "react";
 import { changeUserSettings } from "@/features/userProfile/api/changeUserSettings";
 import { uploadUserAvatar } from "@/features/userProfile/api/uploadUserAvatar";
 
-const UserProfileImageForm = () => {
+export const UserProfileImageForm = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const { styles } = useUserProfileFormStyles();
@@ -120,5 +120,3 @@ const UserProfileImageForm = () => {
     </Flex>
   );
 };
-
-export default UserProfileImageForm;

@@ -4,19 +4,14 @@ import {
   UserProfileInformationForm,
   UserProfileImageForm,
 } from "@/features/userProfile/components";
-import { User } from "@libs/types/user";
-import { useOutletContext } from "react-router-dom";
 import { useUserProfileFormStyles } from "./UserProfileFormStyles";
 import { useForm } from "antd/es/form/Form";
 import { changeUserSettings } from "@/features/userProfile/api/changeUserSettings";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-type ContextType = { data: User };
-
-const UserProfileForm = () => {
+export const UserProfileForm = () => {
   const [form] = useForm();
   const { styles } = useUserProfileFormStyles();
-  const { data } = useOutletContext<ContextType>();
   const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
@@ -48,7 +43,7 @@ const UserProfileForm = () => {
       scrollToFirstError
     >
       <UserProfileInformationForm />
-      <UserProfileImageForm  />
+      <UserProfileImageForm />
       <UserProfileLinksForm />
       <Form.Item>
         <Button
@@ -63,5 +58,3 @@ const UserProfileForm = () => {
     </Form>
   );
 };
-
-export default UserProfileForm;

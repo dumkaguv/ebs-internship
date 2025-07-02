@@ -12,6 +12,7 @@ export const useFetchProfileInfo = () => {
     queryKey: ["me"],
     queryFn: Api.profile.me,
     retry: false,
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {
