@@ -1,6 +1,6 @@
 import { Pencil, Plus, Trash } from "@/assets";
 import { StaticLabelInput } from "@/components";
-import { Button, Form, Modal, Tooltip, Typography } from "antd";
+import { Button, Flex, Form, Modal, Tooltip, Typography } from "antd";
 import { useTheme } from "antd-style";
 import { useState } from "react";
 import { useActionButtonsStyles } from "./ActionButtonsStyles";
@@ -63,19 +63,41 @@ export const ActionButtons = ({
   };
 
   return (
-    <>
-      {showAddButton && (
-        <Tooltip title="Add a new one">
+    <div onClick={(event) => event.stopPropagation()}>
+      <Flex gap={16}>
+        {showAddButton && (
+          <Tooltip title="Add a new one">
+            <Button
+              type="text"
+              onClick={(e) => {
+                e.stopPropagation();
+                onClickAdd?.();
+              }}
+              size="small"
+              style={{ paddingInline: 1 }}
+            >
+              <Plus
+                width={20}
+                height={20}
+                fill="transparent"
+                stroke={theme.grey.grey500}
+              />
+            </Button>
+          </Tooltip>
+        )}
+
+        <Tooltip title="Edit">
           <Button
             type="text"
             onClick={(e) => {
+              showModal();
               e.stopPropagation();
-              onClickAdd?.();
+              onClickEdit?.();
             }}
             size="small"
             style={{ paddingInline: 1 }}
           >
-            <Plus
+            <Pencil
               width={20}
               height={20}
               fill="transparent"
@@ -83,46 +105,26 @@ export const ActionButtons = ({
             />
           </Button>
         </Tooltip>
-      )}
 
-      <Tooltip title="Edit">
-        <Button
-          type="text"
-          onClick={(e) => {
-            e.stopPropagation();
-            showModal();
-            onClickEdit?.();
-          }}
-          size="small"
-          style={{ paddingInline: 1 }}
-        >
-          <Pencil
-            width={20}
-            height={20}
-            fill="transparent"
-            stroke={theme.grey.grey500}
-          />
-        </Button>
-      </Tooltip>
-
-      <Tooltip title="Delete">
-        <Button
-          type="text"
-          onClick={(e) => {
-            e.stopPropagation();
-            onClickRemove?.();
-          }}
-          size="small"
-          style={{ paddingInline: 1 }}
-        >
-          <Trash
-            width={20}
-            height={20}
-            fill="transparent"
-            stroke={theme.grey.grey500}
-          />
-        </Button>
-      </Tooltip>
+        <Tooltip title="Delete">
+          <Button
+            type="text"
+            onClick={(e) => {
+              e.stopPropagation();
+              onClickRemove?.();
+            }}
+            size="small"
+            style={{ paddingInline: 1 }}
+          >
+            <Trash
+              width={20}
+              height={20}
+              fill="transparent"
+              stroke={theme.grey.grey500}
+            />
+          </Button>
+        </Tooltip>
+      </Flex>
 
       <Modal
         title={
@@ -149,6 +151,6 @@ export const ActionButtons = ({
           />
         </Form.Item>
       </Modal>
-    </>
+    </div>
   );
 };

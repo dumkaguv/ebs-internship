@@ -1,9 +1,6 @@
 import { StaticLabelInput } from "@/components";
-import { useAddCourseFormStore } from "@/features/course/stores";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import { LOCAL_STORAGE } from "@libs";
 import { Button, Flex, Form, Typography } from "antd";
-import { useEffect } from "react";
 
 interface Props {
   title: string;
@@ -18,17 +15,6 @@ export const DynamicFieldsList = ({
   placeholder,
   maxInputs = 8,
 }: Props) => {
-  const { form } = useAddCourseFormStore();
-
-  useEffect(() => {
-    const stored = JSON.parse(
-      localStorage.getItem(LOCAL_STORAGE.COURSE_ADD_FORM) ?? `[""]`
-    );
-    const values = stored?.[inputsName] ?? [""];
-
-    form?.setFieldValue(inputsName, values);
-  }, [form, inputsName]);
-
   return (
     <Form.List name={inputsName}>
       {(fields, { add, remove }) => (
@@ -73,9 +59,7 @@ export const DynamicFieldsList = ({
                   placeholder={placeholder}
                 />
               </Form.Item>
-              {fields.length > 1 ? (
-                <MinusCircleOutlined onClick={() => remove(field.name)} />
-              ) : null}
+              <MinusCircleOutlined onClick={() => remove(field.name)} />
             </Flex>
           ))}
         </>

@@ -58,13 +58,13 @@ export const CourseAddFormStep1 = ({ title }: Props) => {
           </Form.Item>
 
           <Form.Item
-            name="category"
+            name="categories"
             rules={[
               { required: true, message: "Please select at least 1 category" },
             ]}
           >
             <StaticLabelSelect
-              label="Course category"
+              label="Course Category"
               id="category"
               virtual={false}
               placeholder="Select category..."
