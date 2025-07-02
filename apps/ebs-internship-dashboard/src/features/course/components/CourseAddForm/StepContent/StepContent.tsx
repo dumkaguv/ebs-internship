@@ -4,6 +4,8 @@ import { useStepContentStyles } from "./StepContentStyles";
 import { ButtonBack } from "@/components";
 import { saveFormInfo } from "@/features/course/utils";
 import { useAddCourseFormStore } from "@/features/course/stores";
+import merge from "lodash.merge";
+import { LOCAL_STORAGE } from "@libs";
 
 interface Props {
   title: string;
@@ -19,7 +21,15 @@ export const StepContent = ({ title, children }: Props) => {
 
   const onSaveButtonClick = () => {
     try {
-      saveFormInfo(form.getFieldsValue());
+      saveFormInfo(
+        merge(
+          {},
+          JSON.parse(
+            localStorage.getItem(LOCAL_STORAGE.COURSE_ADD_FORM) ?? "[]"
+          ),
+          form.getFieldsValue()
+        )
+      );
       message.success("Saved successfully!");
     } catch (e) {
       message.error("Error occurred. Try again");

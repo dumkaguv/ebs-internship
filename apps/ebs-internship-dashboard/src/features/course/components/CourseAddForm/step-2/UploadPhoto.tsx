@@ -14,6 +14,9 @@ import {
 import { useState } from "react";
 import { Upload as UploadIcon } from "@/assets";
 import { useCourseAddFormStep2Styles } from "./CourseAddFormStep2Styles";
+import merge from "lodash.merge";
+import { LOCAL_STORAGE } from "@libs";
+import { useAddCourseFormStore } from "@/features/course/stores";
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
@@ -45,6 +48,8 @@ export const UploadPhoto = () => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
 
+  const { form } = useAddCourseFormStore();
+
   const { styles } = useCourseAddFormStep2Styles();
 
   const handleChange: UploadProps["onChange"] = (info) => {
@@ -52,10 +57,25 @@ export const UploadPhoto = () => {
       setLoading(true);
       return;
     }
+
     if (info.file.status === "done") {
       getBase64(info.file.originFileObj as FileType, (url) => {
         setLoading(false);
         setImageUrl(url);
+
+        const existing = JSON.parse(
+          localStorage.getItem(LOCAL_STORAGE.COURSE_ADD_FORM) ?? "{}"
+        );
+
+        const updated = merge({}, existing, {
+          ...form?.getFieldsValue(),
+          photo: url,
+        });
+
+        localStorage.setItem(
+          LOCAL_STORAGE.COURSE_ADD_FORM,
+          JSON.stringify(updated)
+        );
       });
     }
   };
