@@ -66,7 +66,7 @@ export const DynamicFieldsList = ({
                 style={{ marginBottom: 0 }}
               >
                 <StaticLabelInput
-                  id={String(index)}
+                  id={String(index) + Math.random().toPrecision(6)}
                   label={String(index + 1).padStart(2, "0")}
                   maxLength={120}
                   count={{ show: true }}

@@ -5,6 +5,7 @@ import type { TabsProps } from "antd";
 import {
   CourseAddFormStep1,
   CourseAddFormStep2,
+  CourseAddFormStep3,
 } from "@/features/course/components";
 import { getFormInfo } from "@/features/course/utils";
 import { useAddCourseFormStore } from "../stores";
@@ -30,8 +31,8 @@ export const CourseAddPage = () => {
     },
     {
       key: "3",
-      label: "Curriculum",
-      children: <div>Step 3</div>,
+      label: "Course Curriculum",
+      children: <CourseAddFormStep3 title="Course Curriculum" />,
     },
     {
       key: "4",
