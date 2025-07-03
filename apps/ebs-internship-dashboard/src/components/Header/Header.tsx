@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useHeaderStyles } from "./HeaderStyles";
 import { ReactNode } from "react";
 import { RoutesEnum } from "@/config/routesEnum";
+import { NotificationDrawer } from "@/features/notifications/components";
 
 const { Header } = Layout;
 
@@ -49,6 +50,7 @@ export const AppHeader = ({ title, startAdornment, buttonActions }: Props) => {
           >
             Add Course
           </Button>
+          <NotificationDrawer />
         </Flex>
       </Flex>
     </Header>

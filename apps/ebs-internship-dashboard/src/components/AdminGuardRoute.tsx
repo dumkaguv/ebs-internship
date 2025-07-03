@@ -29,6 +29,7 @@ export const AdminGuardRoute = () => {
     queryKey: ["me"],
     queryFn: Api.profile.me,
     retry: false,
+    refetchOnWindowFocus: false,
   });
 
   useEffect(() => {
