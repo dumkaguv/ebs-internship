@@ -74,7 +74,7 @@ export const ActionButtons = ({
                 onClickAdd?.();
               }}
               size="small"
-              style={{ paddingInline: 1 }}
+              className={styles.button}
             >
               <Plus
                 width={20}
@@ -95,7 +95,7 @@ export const ActionButtons = ({
               onClickEdit?.();
             }}
             size="small"
-            style={{ paddingInline: 1 }}
+            className={styles.button}
           >
             <Pencil
               width={20}
@@ -114,7 +114,7 @@ export const ActionButtons = ({
               onClickRemove?.();
             }}
             size="small"
-            style={{ paddingInline: 1 }}
+            className={styles.button}
           >
             <Trash
               width={20}

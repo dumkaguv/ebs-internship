@@ -1,6 +1,6 @@
 import { LOCAL_STORAGE } from "@libs";
 
-interface FormInitialValues {
+export interface FormInitialValues {
   lessons?: Array<{
     topics: Array<{
       title?: string;
@@ -13,6 +13,7 @@ interface FormInitialValues {
     } | null>;
   }>;
   description?: string;
+  photo?: Base64URLString;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }

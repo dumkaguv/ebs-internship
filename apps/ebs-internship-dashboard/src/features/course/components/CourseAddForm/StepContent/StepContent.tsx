@@ -6,6 +6,9 @@ import { saveFormInfo } from "@/features/course/utils";
 import { useAddCourseFormStore } from "@/features/course/stores";
 import merge from "lodash.merge";
 import { LOCAL_STORAGE } from "@libs";
+import { ButtonCreateCourse } from "./ButtonCreateCourse";
+
+const TOTAL_STEPS = 4;
 
 interface Props {
   title: string;
@@ -90,12 +93,16 @@ export const StepContent = ({ title, children }: Props) => {
               showIcon={false}
             />
           )}
-          <Button
-            onClick={onButtonNextClick}
-            type="primary"
-          >
-            Save & Next
-          </Button>
+          {currentStep === TOTAL_STEPS ? (
+            <ButtonCreateCourse />
+          ) : (
+            <Button
+              onClick={onButtonNextClick}
+              type="primary"
+            >
+              Save & Next
+            </Button>
+          )}
         </Flex>
       </Flex>
     </Card>

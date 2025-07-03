@@ -17,5 +17,11 @@ export const useActionButtonsStyles = createStyles(({ css }) => {
         margin-top: 0;
       }
     `,
+
+    button: css`
+      &&.ant-btn {
+        padding-inline: 1px;
+      }
+    `,
   };
 });

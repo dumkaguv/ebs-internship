@@ -17,6 +17,7 @@ import { useCourseAddFormStep2Styles } from "./CourseAddFormStep2Styles";
 import merge from "lodash.merge";
 import { LOCAL_STORAGE } from "@libs";
 import { useAddCourseFormStore } from "@/features/course/stores";
+import { FormInitialValues } from "@/features/course/utils/getFormInfo";
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
@@ -46,7 +47,10 @@ const beforeUpload = (file: FileType) => {
 
 export const UploadPhoto = () => {
   const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState(
+    JSON.parse(localStorage.getItem(LOCAL_STORAGE.COURSE_ADD_FORM) || "{}")
+      ?.photo
+  );
 
   const { form } = useAddCourseFormStore();
 

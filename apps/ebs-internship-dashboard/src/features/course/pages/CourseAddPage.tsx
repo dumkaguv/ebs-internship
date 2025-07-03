@@ -6,6 +6,7 @@ import {
   CourseAddFormStep1,
   CourseAddFormStep2,
   CourseAddFormStep3,
+  CourseAddFormStep4,
 } from "@/features/course/components";
 import { getFormInfo } from "@/features/course/utils";
 import { useAddCourseFormStore } from "../stores";
@@ -37,7 +38,7 @@ export const CourseAddPage = () => {
     {
       key: "4",
       label: "Publish Course",
-      children: <div>Step 4</div>,
+      children: <CourseAddFormStep4 title="Publish Course" />,
     },
   ];
 
