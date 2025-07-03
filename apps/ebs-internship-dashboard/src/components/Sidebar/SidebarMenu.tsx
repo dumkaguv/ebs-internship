@@ -1,4 +1,4 @@
-import { Course, Dashboard, Dollar } from "@/assets";
+import { Course, Dashboard, Dollar, Settings } from "@/assets";
 import { useSidebarStyles } from "./SidebarStyles";
 import { NavLink } from "react-router-dom";
 import { RoutesEnum } from "@/config/routesEnum";
@@ -30,6 +30,11 @@ export const SidebarMenu = ({ collapsed }: Props) => {
       RoutesEnum.COURSES.BASE
     ),
     getMenuItem("Revenue", <Dollar stroke="transparent" />, RoutesEnum.REVENUE),
+    getMenuItem(
+      "Settings",
+      <Settings stroke="transparent" />,
+      RoutesEnum.SETTINGS
+    ),
   ];
 
   return (

@@ -74,6 +74,8 @@ export const NotificationDrawer = () => {
       <Button
         type="primary"
         onClick={showDrawer}
+        className={styles.buttonOpen}
+        data-count-notification={data?.pages[0]?.meta?.total}
       >
         <NotificationOutlined style={{ fontSize: 16 }} />
       </Button>

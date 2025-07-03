@@ -12,6 +12,7 @@ import { ProtectedRoute } from "@/components";
 
 import { UserProfilePage } from "@/features/userProfile/pages/UserProfilePage";
 import { UserProfileForm } from "@/features/userProfile/components";
+import { NotFoundPage } from "@libs";
 
 export const AppRouter = () => {
   return (
@@ -57,6 +58,10 @@ export const AppRouter = () => {
               />
             </Route>
           </Route>
+          <Route
+            path="*"
+            element={<NotFoundPage />}
+          />
         </Route>
       </Routes>
     </Router>

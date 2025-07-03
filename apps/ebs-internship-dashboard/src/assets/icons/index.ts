@@ -15,3 +15,4 @@ export { ReactComponent as Pencil } from "./pencil.svg";
 export { ReactComponent as BurgerMenu } from "./burger-menu.svg";
 export { ReactComponent as Trash } from "./trash.svg";
 export { ReactComponent as Plus } from "./plus.svg";
+export { ReactComponent as Settings } from "./settings.svg";
