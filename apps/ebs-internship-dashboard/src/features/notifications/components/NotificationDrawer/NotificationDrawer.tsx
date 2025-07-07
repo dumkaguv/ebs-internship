@@ -42,7 +42,6 @@ export const NotificationDrawer = () => {
 
       return currentPage < totalPages ? currentPage + 1 : undefined;
     },
-    enabled: open,
     refetchOnWindowFocus: false,
   });
 
@@ -75,7 +74,7 @@ export const NotificationDrawer = () => {
         type="primary"
         onClick={showDrawer}
         className={styles.buttonOpen}
-        data-count-notification={data?.pages[0]?.meta?.total}
+        data-count-notification={data?.pages[0]?.meta?.total ?? 0}
       >
         <NotificationOutlined style={{ fontSize: 16 }} />
       </Button>
