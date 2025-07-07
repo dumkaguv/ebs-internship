@@ -19,7 +19,7 @@ import { HeaderSearch } from "./HeaderSearch";
 import { useEffect, useRef } from "react";
 import { defineHeaderHeightCssVar } from "@/utils";
 import { useHeaderStyles } from "./HeaderStyles";
-import { IMAGE_FALLBACKS, Profile, useAuthStore } from "@libs";
+import { IMAGE_FALLBACKS, useAuthStore } from "@libs";
 import { useLogout } from "@libs";
 import { useShallow } from "zustand/shallow";
 

@@ -9,6 +9,9 @@ export const ApiRoutes = {
   CATEGORIES: "/categories",
   PROFILE: {
     BASE: "/profile",
+    SETTINGS: "/settings",
+    AVATAR: "/upload-avatar",
+    PASSWORD: "/password",
     ME: "/profile/me",
   },
 };

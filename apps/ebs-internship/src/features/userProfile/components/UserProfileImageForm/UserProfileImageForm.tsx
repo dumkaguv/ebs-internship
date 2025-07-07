@@ -10,8 +10,7 @@ import {
 } from "antd";
 import { useUserProfileFormStyles } from "./UserProfileImageFormStyles";
 import { useState } from "react";
-import { changeUserSettings } from "@/features/userProfile/api/changeUserSettings";
-import { uploadUserAvatar } from "@/features/userProfile/api/uploadUserAvatar";
+import { Api } from "@libs";
 
 export const UserProfileImageForm = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -37,8 +36,8 @@ export const UserProfileImageForm = () => {
       message.warning("Please upload an image");
       return;
     }
-    const uploadedUrl = await uploadUserAvatar(imageFile);
-    await changeUserSettings({ avatar: uploadedUrl });
+    const uploadedUrl = await Api.profile.uploadUserAvatar(imageFile);
+    await Api.profile.changeUserSettings({ avatar: uploadedUrl });
     message.success("Image saved successfully!");
   };
 

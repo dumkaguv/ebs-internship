@@ -1,6 +1,6 @@
-import { Flex, Form, Select } from "antd";
+import { Button, Flex, Form, message, Select } from "antd";
 import { StaticLabelInput, StaticLabelTextArea } from "@/components";
-import { useAuthStore } from "@libs";
+import { throttle, useAuthStore } from "@libs";
 import { useEffect } from "react";
 import { useForm } from "antd/es/form/Form";
 import { useFormMainInfoStyles } from "./FormMainInfoStyles";
@@ -19,6 +19,20 @@ export const FormMainInfo = () => {
   const [form] = useForm();
 
   const { styles } = useFormMainInfoStyles();
+
+  const throttledSave = throttle(() => {
+    console.log("save!");
+  }, 1000);
+
+  const onSaveButtonClick = () => {
+    const didRun = throttledSave();
+
+    if (didRun) {
+      message.success("Settings updated");
+    } else {
+      message.warning("Please wait a bit before saving again.");
+    }
+  };
 
   useEffect(() => {
     if (profile) {
@@ -137,6 +151,15 @@ export const FormMainInfo = () => {
             placeholder="Write a short bio..."
           />
         </Form.Item>
+
+        <Button
+          // htmlType="submit"
+          onClick={onSaveButtonClick}
+          type="primary"
+          className={styles.buttonSave}
+        >
+          Save Changes
+        </Button>
       </Flex>
     </Form>
   );

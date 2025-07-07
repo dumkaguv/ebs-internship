@@ -6,8 +6,8 @@ import {
 } from "@/features/userProfile/components";
 import { useUserProfileFormStyles } from "./UserProfileFormStyles";
 import { useForm } from "antd/es/form/Form";
-import { changeUserSettings } from "@/features/userProfile/api/changeUserSettings";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Api } from "@libs";
 
 export const UserProfileForm = () => {
   const [form] = useForm();
@@ -15,7 +15,7 @@ export const UserProfileForm = () => {
   const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
-    mutationFn: changeUserSettings,
+    mutationFn: Api.profile.changeUserSettings,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["profile"] });
       message.success("Changes was applied");

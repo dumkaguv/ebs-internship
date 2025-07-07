@@ -1,6 +1,6 @@
 import { createStyles } from "antd-style";
 
-export const useFormMainInfoStyles = createStyles(({ css, token }) => {
+export const useFormMainInfoStyles = createStyles(({ css }) => {
   return {
     wrapper: css`
       .ant-form-item {
@@ -12,6 +12,10 @@ export const useFormMainInfoStyles = createStyles(({ css, token }) => {
       && {
         height: inherit;
       }
+    `,
+
+    buttonSave: css`
+      width: fit-content;
     `,
   };
 });
