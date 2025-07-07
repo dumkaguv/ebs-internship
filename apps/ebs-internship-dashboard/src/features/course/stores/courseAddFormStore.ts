@@ -1,7 +1,6 @@
-import { FormInstance, GetProp, UploadProps } from "antd";
+import { FormInstance } from "antd";
 import { create } from "zustand";
-
-export type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
+import type { UploadFile } from "@/types";
 
 export interface CourseFormData {
   title: string;
@@ -36,13 +35,13 @@ interface Topic {
 interface AddCourseFormState {
   form: FormInstance<CourseFormData> | null;
   currentStep: number;
-  photoFile: FileType | null;
-  videoFile: FileType | null;
+  photoFile: UploadFile | null;
+  videoFile: UploadFile | null;
 
   setForm: (form: FormInstance<CourseFormData>) => void;
   setCurrentStep: (step: number) => void;
-  setPhotoFile: (file: FileType) => void;
-  setVideoFile: (file: FileType) => void;
+  setPhotoFile: (file: UploadFile) => void;
+  setVideoFile: (file: UploadFile) => void;
 }
 
 export const useAddCourseFormStore = create<AddCourseFormState>((set) => ({

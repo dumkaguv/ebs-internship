@@ -1,14 +1,14 @@
 import { Input } from "antd";
-import type { InputProps } from "antd";
 import { StaticLabelWrapper } from "@/components";
+import { TextAreaProps } from "antd/es/input";
 
-interface Props extends InputProps {
+interface Props extends TextAreaProps {
   label: string;
   id: string;
   placeholder?: string;
 }
 
-export const StaticLabelInput = ({
+export const StaticLabelTextArea = ({
   label,
   id,
   placeholder,
@@ -19,7 +19,7 @@ export const StaticLabelInput = ({
       id={id}
       label={label}
     >
-      <Input
+      <Input.TextArea
         id={id}
         placeholder={placeholder ?? "Input here..."}
         {...rest}

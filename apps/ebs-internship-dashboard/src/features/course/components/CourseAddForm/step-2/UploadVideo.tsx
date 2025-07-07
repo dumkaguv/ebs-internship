@@ -13,7 +13,7 @@ import { useCourseAddFormStep2Styles } from "./CourseAddFormStep2Styles";
 import { Upload as UploadIcon } from "@/assets";
 import { useState } from "react";
 import { useAddCourseFormStore } from "@/features/course/stores";
-import { FileType } from "@/features/course/stores/courseAddFormStore";
+import type { UploadFile } from "@/types";
 
 const MAX_SIZE_MB = 500;
 
@@ -38,7 +38,7 @@ export const UploadVideo = () => {
   const { setVideoFile } = useAddCourseFormStore();
 
   const handleChange: UploadProps["onChange"] = (info) => {
-    const file = info.file.originFileObj as FileType;
+    const file = info.file.originFileObj as UploadFile;
     const status = info.file.status;
 
     if (file) {

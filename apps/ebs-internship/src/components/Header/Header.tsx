@@ -30,10 +30,7 @@ export const AppHeader = () => {
   const navigate = useNavigate();
   const { styles } = useHeaderStyles();
   const [isAuth, profile] = useAuthStore(
-    useShallow((state) => [
-      state.isAuth,
-      state.profile as Profile | null | undefined,
-    ])
+    useShallow((state) => [state.isAuth, state.profile])
   );
   const { logout } = useLogout();
 

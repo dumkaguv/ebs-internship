@@ -14,17 +14,12 @@ import { useState } from "react";
 import { Upload as UploadIcon } from "@/assets";
 import { useCourseAddFormStep2Styles } from "./CourseAddFormStep2Styles";
 import { useAddCourseFormStore } from "@/features/course/stores";
-import { FileType } from "@/features/course/stores/courseAddFormStore";
+import type { UploadFile } from "@/types";
+import { getBase64 } from "@/utils";
 
 const MAX_SIZE_MB = 2;
 
-const getBase64 = (img: FileType, callback: (url: string) => void) => {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => callback(reader.result as string));
-  reader.readAsDataURL(img);
-};
-
-const beforeUpload = (file: FileType) => {
+const beforeUpload = (file: UploadFile) => {
   const isJpgOrPng =
     file.type === "image/jpeg" ||
     file.type === "image/png" ||
@@ -49,7 +44,7 @@ export const UploadPhoto = () => {
   const { styles } = useCourseAddFormStep2Styles();
 
   const handleChange: UploadProps["onChange"] = (info) => {
-    const photoOriginFile = info.file.originFileObj as FileType;
+    const photoOriginFile = info.file.originFileObj as UploadFile;
     const status = info.file.status;
 
     if (status === "uploading") {

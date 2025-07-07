@@ -1,13 +1,9 @@
 import { LOCAL_STORAGE } from "@libs";
-
-interface Props {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  form: Record<string, any>;
-}
+import { CourseFormData } from "../stores/courseAddFormStore";
 
 const IGNORED_INPUTS = ["video", "photo"];
 
-export const saveFormInfo = (form: Props) => {
+export const saveFormInfo = (form: Partial<CourseFormData>) => {
   const storedRaw = localStorage.getItem(LOCAL_STORAGE.COURSE_ADD_FORM);
   const stored = storedRaw ? JSON.parse(storedRaw) : {};
 

@@ -1,12 +1,12 @@
 import { ApiRoutes } from "@/config/api-routes";
-import { FileType } from "@/features/course/stores/courseAddFormStore";
+import type { UploadFile } from "@/types";
 import { CreatedFile } from "@/types/createdFile";
 import { axiosInstance } from "@libs";
 import type { ApiResponse } from "@libs/types";
 
 interface UploadFilesParams {
   target: string;
-  file: File | FileType;
+  file: File | UploadFile;
 }
 
 export const uploadFiles = async (body: UploadFilesParams) => {
