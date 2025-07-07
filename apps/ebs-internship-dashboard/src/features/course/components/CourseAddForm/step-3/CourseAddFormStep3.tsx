@@ -120,63 +120,50 @@ export const CourseAddFormStep3 = ({ title }: Props) => {
           <Form.Item
             name={[topicField.name, "description"]}
             rules={[
-              {
-                required: true,
-                message: "Please fill topic description",
-              },
+              { required: true, message: "Please fill topic description" },
             ]}
           >
             <StaticLabelInput
               label="Topic Description"
-              id="topic_description"
+              id={`topic_description_${Math.random().toPrecision(6)}`}
               placeholder="Write your topic description here..."
             />
           </Form.Item>
+
           <Form.Item
             name={[topicField.name, "summary"]}
-            rules={[
-              {
-                required: true,
-                message: "Please fill topic summary",
-              },
-            ]}
+            rules={[{ required: true, message: "Please fill topic summary" }]}
           >
             <StaticLabelInput
               label="Topic Summary"
-              id="topic_summary"
+              id={`topic_summary_${Math.random().toPrecision(6)}`}
               placeholder="Write your topic summary here..."
             />
           </Form.Item>
+
           <Flex gap={24}>
             <Form.Item
               name={[topicField.name, "duration"]}
               rules={[
-                {
-                  required: true,
-                  message: "Please fill topic duration",
-                },
+                { required: true, message: "Please fill topic duration" },
               ]}
               className="w-full"
             >
               <StaticLabelInputNumber
                 label="Topic Duration (hours)"
-                id="topic_duration"
+                id={`topic_duration_${Math.random().toPrecision(6)}`}
                 placeholder="Write your topic duration here..."
               />
             </Form.Item>
+
             <Form.Item
               name={[topicField.name, "order"]}
-              rules={[
-                {
-                  required: true,
-                  message: "Please fill topic order",
-                },
-              ]}
+              rules={[{ required: true, message: "Please fill topic order" }]}
               className="w-full"
             >
               <StaticLabelInputNumber
                 label="Topic Order"
-                id="topic_order"
+                id={`topic_order_${Math.random().toPrecision(6)}`}
                 placeholder="Write your topic order here..."
                 min={1}
               />

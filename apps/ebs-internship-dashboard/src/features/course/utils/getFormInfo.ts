@@ -13,7 +13,6 @@ export interface FormInitialValues {
     } | null>;
   }>;
   description?: string;
-  photo?: Base64URLString;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }

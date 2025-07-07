@@ -3,7 +3,6 @@ import {
   Button,
   Flex,
   Form,
-  GetProp,
   Image,
   message,
   Spin,
@@ -14,12 +13,8 @@ import {
 import { useState } from "react";
 import { Upload as UploadIcon } from "@/assets";
 import { useCourseAddFormStep2Styles } from "./CourseAddFormStep2Styles";
-import merge from "lodash.merge";
-import { LOCAL_STORAGE } from "@libs";
 import { useAddCourseFormStore } from "@/features/course/stores";
-import { FormInitialValues } from "@/features/course/utils/getFormInfo";
-
-type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
+import { FileType } from "@/features/course/stores/courseAddFormStore";
 
 const MAX_SIZE_MB = 2;
 
@@ -47,39 +42,26 @@ const beforeUpload = (file: FileType) => {
 
 export const UploadPhoto = () => {
   const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState(
-    JSON.parse(localStorage.getItem(LOCAL_STORAGE.COURSE_ADD_FORM) || "{}")
-      ?.photo
-  );
+  const [imageUrl, setImageUrl] = useState("");
 
-  const { form } = useAddCourseFormStore();
+  const { setPhotoFile } = useAddCourseFormStore();
 
   const { styles } = useCourseAddFormStep2Styles();
 
   const handleChange: UploadProps["onChange"] = (info) => {
-    if (info.file.status === "uploading") {
+    const photoOriginFile = info.file.originFileObj as FileType;
+    const status = info.file.status;
+
+    if (status === "uploading") {
       setLoading(true);
       return;
     }
 
-    if (info.file.status === "done") {
-      getBase64(info.file.originFileObj as FileType, (url) => {
+    if (status === "done") {
+      getBase64(photoOriginFile, (url) => {
         setLoading(false);
         setImageUrl(url);
-
-        const existing = JSON.parse(
-          localStorage.getItem(LOCAL_STORAGE.COURSE_ADD_FORM) ?? "{}"
-        );
-
-        const updated = merge({}, existing, {
-          ...form?.getFieldsValue(),
-          photo: url,
-        });
-
-        localStorage.setItem(
-          LOCAL_STORAGE.COURSE_ADD_FORM,
-          JSON.stringify(updated)
-        );
+        setPhotoFile(photoOriginFile);
       });
     }
   };

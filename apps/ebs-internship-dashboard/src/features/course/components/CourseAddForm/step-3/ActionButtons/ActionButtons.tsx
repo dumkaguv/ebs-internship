@@ -49,11 +49,11 @@ export const ActionButtons = ({
   const handleOk = () => {
     if (innerIndex !== undefined) {
       form?.setFieldValue(
-        ["lessons", index, "topics", innerIndex, fieldName],
+        ["lessons", index, "topics", innerIndex, fieldName as any],
         inputValue
       );
     } else {
-      form?.setFieldValue(["lessons", index, fieldName], inputValue);
+      form?.setFieldValue(["lessons", index, fieldName as any], inputValue);
     }
     setIsModalEditOpen(false);
   };
@@ -138,10 +138,7 @@ export const ActionButtons = ({
         wrapClassName={styles.modalWrapper}
         centered
       >
-        <Form.Item
-          name={["lessons", index, fieldName]}
-          rules={[{ required: true, message: "Please fill in" }]}
-        >
+        <Form.Item name={["lessons", index, fieldName]}>
           <StaticLabelInput
             id={inputEditId}
             label={inputEditLabel}

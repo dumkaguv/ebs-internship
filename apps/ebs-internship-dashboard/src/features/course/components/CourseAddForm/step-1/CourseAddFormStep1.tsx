@@ -99,7 +99,6 @@ export const CourseAddFormStep1 = ({ title }: Props) => {
               <StaticLabelSelect
                 label="Course Language"
                 placeholder="Select language..."
-                mode="tags"
                 id="language"
                 options={languages}
               />

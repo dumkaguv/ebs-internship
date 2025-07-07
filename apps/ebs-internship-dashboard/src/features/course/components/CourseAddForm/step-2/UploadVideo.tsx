@@ -12,6 +12,8 @@ import {
 import { useCourseAddFormStep2Styles } from "./CourseAddFormStep2Styles";
 import { Upload as UploadIcon } from "@/assets";
 import { useState } from "react";
+import { useAddCourseFormStore } from "@/features/course/stores";
+import { FileType } from "@/features/course/stores/courseAddFormStore";
 
 const MAX_SIZE_MB = 500;
 
@@ -33,17 +35,23 @@ export const UploadVideo = () => {
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  const { setVideoFile } = useAddCourseFormStore();
+
   const handleChange: UploadProps["onChange"] = (info) => {
-    const file = info.file.originFileObj as File;
+    const file = info.file.originFileObj as FileType;
+    const status = info.file.status;
 
     if (file) {
       const previewUrl = URL.createObjectURL(file);
       setVideoUrl(previewUrl);
     }
 
-    if (info.file.status === "uploading") {
+    if (status === "uploading") {
       setLoading(true);
-    } else {
+    }
+
+    if (status === "done") {
+      setVideoFile(file);
       setLoading(false);
     }
   };
