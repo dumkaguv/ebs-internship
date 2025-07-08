@@ -16,7 +16,7 @@ interface createLessonToCourseBody {
 export const createLessonToCourse = async (body: createLessonToCourseBody) => {
   try {
     const response = await axiosInstance.post<ApiResponse<Lesson>>(
-      ApiRoutes.LESSONS.CREATE,
+      ApiRoutes.LESSONS,
       body
     );
 

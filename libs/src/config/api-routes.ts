@@ -7,11 +7,12 @@ export const ApiRoutes = {
     LOGOUT: "/auth/logout",
   },
   CATEGORIES: "/categories",
+  TAGS: "/tags",
   PROFILE: {
     BASE: "/profile",
-    SETTINGS: "/settings",
-    AVATAR: "/upload-avatar",
-    PASSWORD: "/password",
+    SETTINGS: "/profile/settings",
+    AVATAR: "/profile/upload-avatar",
+    PASSWORD: "/profile/password",
     ME: "/profile/me",
   },
 };

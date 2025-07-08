@@ -141,6 +141,19 @@ export const CourseAddFormStep3 = ({ title }: Props) => {
             />
           </Form.Item>
 
+          <Form.Item
+            name={[topicField.name, "introduction"]}
+            rules={[
+              { required: true, message: "Please fill topic introduction" },
+            ]}
+          >
+            <StaticLabelInput
+              label="Topic introduction"
+              id={`topic_introduction_${Math.random().toPrecision(6)}`}
+              placeholder="Write your topic introduction here..."
+            />
+          </Form.Item>
+
           <Flex gap={24}>
             <Form.Item
               name={[topicField.name, "duration"]}
@@ -175,14 +188,20 @@ export const CourseAddFormStep3 = ({ title }: Props) => {
           >
             <Flex vertical>
               <Typography.Paragraph>Active</Typography.Paragraph>
-              <Form.Item name={[topicField.name, "active"]}>
-                <Switch defaultChecked />
+              <Form.Item
+                name={[topicField.name, "active"]}
+                valuePropName="checked"
+              >
+                <Switch />
               </Form.Item>
             </Flex>
             <Flex vertical>
               <Typography.Paragraph>Preview</Typography.Paragraph>
-              <Form.Item name={[topicField.name, "preview"]}>
-                <Switch defaultChecked />
+              <Form.Item
+                name={[topicField.name, "preview"]}
+                valuePropName="checked"
+              >
+                <Switch />
               </Form.Item>
             </Flex>
           </Flex>

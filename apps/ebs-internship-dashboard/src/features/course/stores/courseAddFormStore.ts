@@ -5,7 +5,8 @@ import type { UploadFile } from "@/types";
 export interface CourseFormData {
   title: string;
   subtitle: string;
-  categories: string[];
+  categories: number[];
+  tags: number[];
   topic: string;
   language: string;
   level: string;
@@ -26,6 +27,7 @@ interface Topic {
   title: string;
   description: string;
   summary: string;
+  introduction: string;
   duration: number;
   order: number;
   active: boolean;

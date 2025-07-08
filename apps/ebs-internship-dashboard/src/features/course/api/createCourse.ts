@@ -1,7 +1,7 @@
 import { ApiRoutes } from "@/config/api-routes";
 import { ApiResponse, axiosInstance, Course } from "@libs";
 
-interface CreateCourseParams {
+interface CreateCourseBody {
   id?: number;
   title: string;
   summary?: string;
@@ -28,10 +28,10 @@ interface CreateCourseParams {
   fields?: unknown;
 }
 
-export const createCourse = async (body: CreateCourseParams) => {
+export const createCourse = async (body: CreateCourseBody) => {
   try {
     const response = await axiosInstance.post<ApiResponse<Course>>(
-      ApiRoutes.COURSES.CREATE,
+      ApiRoutes.COURSES,
       body
     );
 

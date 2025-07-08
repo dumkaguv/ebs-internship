@@ -64,14 +64,20 @@ export const ButtonCreateCourse = () => {
         throw new Error("Upload failed");
       }
 
-      const updatedCourseWithFiles = await updateCourse(createdCourseId, {
-        image_url: uploadedPhoto.url,
-        image_path: `/${uploadedPhoto.name}`,
-        video_url: uploadedVideo.url,
-        video_path: `/${uploadedVideo.name}`,
-      });
+      const { categories, tags } = courseInfoFromForm;
 
-      if (!updatedCourseWithFiles) {
+      const updatedCourseWithFilesTagsAndCategories = await updateCourse(
+        createdCourseId,
+        {
+          image_url: uploadedPhoto.url,
+          image_path: `/${uploadedPhoto.name}`,
+          video_url: uploadedVideo.url,
+          video_path: `/${uploadedVideo.name}`,
+        },
+        { categories, tags }
+      );
+
+      if (!updatedCourseWithFilesTagsAndCategories) {
         message.error("Failed to update course with files");
         throw new Error("Failed to update course with files");
       }
@@ -103,12 +109,15 @@ export const ButtonCreateCourse = () => {
             topics.map((topic) =>
               createTopicToLesson({
                 lesson_id: Number(lesson?.id),
+                topicable_type:
+                  "EscolaLms\\TopicTypes\\Models\\TopicContent\\RichText",
+                introduction: topic.introduction,
+                value: topic.title,
                 title: topic.title,
                 description: topic.description,
                 summary: topic.summary,
                 duration: String(topic.duration),
                 order: topic.order,
-                preview: topic.preview ?? false,
               })
             )
           );

@@ -14,6 +14,29 @@ export const changeUserSettings = async (data: Partial<User>) => {
   }
 };
 
+export interface ChangeUserProfileInfoProps {
+  first_name?: string;
+  last_name?: string;
+  phone?: string;
+  address?: string;
+  bio?: string;
+}
+
+export const changeUserProfileInfo = async (
+  body: ChangeUserProfileInfoProps
+): Promise<User> => {
+  try {
+    const response = await axiosInstance.put<ApiResponse<User>>(
+      ApiRoutes.PROFILE.ME,
+      body
+    );
+    return response.data.data;
+  } catch (error) {
+    console.error("Failed to update user settings:", error);
+    throw error;
+  }
+};
+
 export const uploadUserAvatar = async (file: File): Promise<string> => {
   const formData = new FormData();
   formData.append("avatar", file);

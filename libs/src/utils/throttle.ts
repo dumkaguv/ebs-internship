@@ -1,21 +1,30 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function throttle<T extends (...args: any[]) => void>(
+export function throttle<T extends (...args: any[]) => any>(
   callback: T,
   delay: number
-): (...args: Parameters<T>) => boolean {
+): (...args: Parameters<T>) => Promise<boolean> {
   let lastCall = 0;
 
-  return function (this: unknown, ...args: Parameters<T>) {
+  return async function (
+    this: unknown,
+    ...args: Parameters<T>
+  ): Promise<boolean> {
     const now = Date.now();
-    const difference = now - lastCall;
 
-    if (difference >= delay) {
+    if (now - lastCall >= delay) {
       lastCall = now;
-      callback.apply(this, args);
 
-      return true;
+      try {
+        const result = callback.apply(this, args);
+        if (result instanceof Promise) {
+          await result;
+        }
+        return true;
+      } catch (error) {
+        console.error("Error in throttled function:", error);
+        return false;
+      }
     }
-
     return false;
   };
 }

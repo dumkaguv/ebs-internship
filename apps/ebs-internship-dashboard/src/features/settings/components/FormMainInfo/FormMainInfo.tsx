@@ -1,10 +1,13 @@
 import { Button, Flex, Form, message, Select } from "antd";
 import { StaticLabelInput, StaticLabelTextArea } from "@/components";
-import { throttle, useAuthStore } from "@libs";
-import { useEffect } from "react";
+import { Api, throttle, useAuthStore, User } from "@libs";
+import { useCallback, useEffect } from "react";
 import { useForm } from "antd/es/form/Form";
 import { useFormMainInfoStyles } from "./FormMainInfoStyles";
 import { UploadPhoto } from "@/features/settings/components";
+import { useMutation } from "@tanstack/react-query";
+import type { ChangeUserProfileInfoProps } from "@libs/services/profile";
+import { AxiosError } from "axios";
 
 const options = [
   { value: "+880", label: "+880" },
@@ -16,37 +19,54 @@ const options = [
 export const FormMainInfo = () => {
   const { profile } = useAuthStore();
 
-  const [form] = useForm();
+  const [form] = useForm<ChangeUserProfileInfoProps>();
 
   const { styles } = useFormMainInfoStyles();
 
-  const throttledSave = throttle(() => {
-    console.log("save!");
-  }, 1000);
+  const { mutateAsync: updateProfileInfo, isPending } = useMutation<
+    User,
+    AxiosError<Error>,
+    ChangeUserProfileInfoProps
+  >({
+    mutationFn: (values) => Api.profile.changeUserProfileInfo(values),
+  });
 
-  const onSaveButtonClick = () => {
-    const didRun = throttledSave();
-
-    if (didRun) {
+  const throttledSave = throttle(async () => {
+    try {
+      await form.validateFields();
+      const formValues = form.getFieldsValue();
+      await updateProfileInfo(formValues);
       message.success("Settings updated");
-    } else {
+    } catch (e) {
+      if (e instanceof AxiosError) {
+        message.error("Failed to update profile: " + e.message);
+      } else {
+        console.error("Validation error:", e);
+        message.error("Please correct the errors in the form");
+      }
+    }
+  }, 4000);
+
+  const onSaveButtonClick = useCallback(async () => {
+    const didRun = await throttledSave();
+
+    if (!didRun) {
       message.warning("Please wait a bit before saving again.");
     }
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (profile) {
       form.setFieldsValue({
-        firstName: profile.first_name,
-        lastName: profile.last_name,
+        first_name: profile.first_name,
+        last_name: profile.last_name,
         phone: profile.phone,
         address: profile.address,
         bio: profile.bio,
       });
     }
   }, [form, profile]);
-
-  console.log(profile);
 
   return (
     <Form
@@ -65,7 +85,7 @@ export const FormMainInfo = () => {
             className="w-full"
           >
             <Form.Item
-              name="firstName"
+              name="first_name"
               rules={[
                 {
                   required: true,
@@ -82,7 +102,7 @@ export const FormMainInfo = () => {
             </Form.Item>
 
             <Form.Item
-              name="lastName"
+              name="last_name"
               rules={[
                 {
                   required: true,
@@ -156,6 +176,7 @@ export const FormMainInfo = () => {
           // htmlType="submit"
           onClick={onSaveButtonClick}
           type="primary"
+          loading={isPending}
           className={styles.buttonSave}
         >
           Save Changes

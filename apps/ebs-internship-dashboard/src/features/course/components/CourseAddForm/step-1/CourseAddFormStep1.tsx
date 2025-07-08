@@ -12,8 +12,14 @@ interface Props {
 }
 
 export const CourseAddFormStep1 = ({ title }: Props) => {
-  const { categories, languages, levels, categoriesIsLoading } =
-    useCourseAddFormFirstStep();
+  const {
+    categories,
+    tags,
+    languages,
+    levels,
+    categoriesIsLoading,
+    tagsIsLoading,
+  } = useCourseAddFormFirstStep();
 
   return (
     <StepContent title={title}>
@@ -57,23 +63,49 @@ export const CourseAddFormStep1 = ({ title }: Props) => {
             />
           </Form.Item>
 
-          <Form.Item
-            name="categories"
-            rules={[
-              { required: true, message: "Please select at least 1 category" },
-            ]}
-          >
-            <StaticLabelSelect
-              label="Course Category"
-              id="category"
-              virtual={false}
-              placeholder="Select category..."
-              mode="multiple"
-              loading={categoriesIsLoading}
-              options={categories}
-            />
-          </Form.Item>
+          <Flex gap={24}>
+            <Form.Item
+              name="categories"
+              rules={[
+                {
+                  required: true,
+                  message: "Please select at least 1 category",
+                },
+              ]}
+              className="w-full"
+            >
+              <StaticLabelSelect
+                label="Course Category"
+                id="category"
+                virtual={false}
+                placeholder="Select category..."
+                mode="multiple"
+                loading={categoriesIsLoading}
+                options={categories}
+              />
+            </Form.Item>
 
+            <Form.Item
+              name="tags"
+              rules={[
+                {
+                  required: true,
+                  message: "Please select at least 1 tag",
+                },
+              ]}
+              className="w-full"
+            >
+              <StaticLabelSelect
+                label="Course Tag"
+                id="tag"
+                virtual={false}
+                placeholder="Select tag..."
+                mode="multiple"
+                loading={tagsIsLoading}
+                options={tags}
+              />
+            </Form.Item>
+          </Flex>
           <Form.Item
             name="topic"
             rules={[{ required: true, message: "Please fill in course topic" }]}

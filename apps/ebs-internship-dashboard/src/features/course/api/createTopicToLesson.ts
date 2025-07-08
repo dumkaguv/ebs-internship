@@ -22,8 +22,13 @@ interface CreateTopicToLessonBody {
 export const createTopicToLesson = async (body: CreateTopicToLessonBody) => {
   try {
     const response = await axiosInstance.post<ApiResponse<Topic>>(
-      ApiRoutes.TOPICS.CREATE,
-      body
+      ApiRoutes.TOPICS,
+      body,
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      }
     );
 
     return response.data.data;

@@ -8,9 +8,21 @@ export const useCourseAddFormFirstStep = () => {
     queryFn: Api.categories.fetchCategories,
   });
 
-  const categories: SelectProps["options"] = categoriesRaw?.map(({ name }) => ({
-    value: name.trim().toLowerCase(),
-    label: name,
+  const { data: tagsRaw, isLoading: tagsIsLoading } = useQuery({
+    queryKey: ["tags"],
+    queryFn: Api.tags.fetchTags,
+  });
+
+  const categories: SelectProps["options"] = categoriesRaw?.map(
+    ({ id, name }) => ({
+      value: id,
+      label: name,
+    })
+  );
+
+  const tags: SelectProps["options"] = tagsRaw?.map(({ id, title }) => ({
+    value: id,
+    label: title,
   }));
 
   const languages: SelectProps["options"] = ["en", "ru", "ro", "fr", "pl"].map(
@@ -32,8 +44,10 @@ export const useCourseAddFormFirstStep = () => {
 
   return {
     categories,
+    tags,
     languages,
     levels,
     categoriesIsLoading,
+    tagsIsLoading,
   };
 };

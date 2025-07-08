@@ -1,5 +1,6 @@
 import { ApiRoutes, getApiUrlById } from "@/config/api-routes";
 import { ApiResponse, axiosInstance, Course } from "@libs";
+import QueryString from "qs";
 
 interface UpdateCourseBody {
   id?: number;
@@ -28,14 +29,30 @@ interface UpdateCourseBody {
   fields?: unknown;
 }
 
+interface UpdateCourseParams {
+  categories?: number[];
+  tags?: number[];
+}
+
 export const updateCourse = async (
   courseId: number,
-  body: UpdateCourseBody
+  body: UpdateCourseBody,
+  params?: UpdateCourseParams
 ) => {
   try {
     const response = await axiosInstance.post<ApiResponse<Course>>(
-      getApiUrlById(ApiRoutes.COURSES.CREATE, courseId),
-      body
+      getApiUrlById(ApiRoutes.COURSES, courseId),
+      body,
+      {
+        params,
+        paramsSerializer: {
+          serialize: (params) =>
+            QueryString.stringify(params, {
+              arrayFormat: "brackets",
+              encode: false,
+            }),
+        },
+      }
     );
 
     return response.data.data;
