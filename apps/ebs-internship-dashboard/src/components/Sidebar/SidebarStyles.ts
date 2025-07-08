@@ -22,6 +22,7 @@ export const useSidebarStyles = createStyles(({ css, token }) => ({
     &&.ant-flex {
       padding: 10px;
       margin-top: auto;
+      cursor: pointer;
     }
   `,
 
