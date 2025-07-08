@@ -7,14 +7,7 @@ import { useSidebarStyles } from "./SidebarStyles";
 import { ArrowCollapse, Hamburger } from "@/assets";
 import { SidebarMenu } from "./SidebarMenu";
 import { useTheme } from "antd-style";
-import {
-  IMAGE_FALLBACKS,
-  LOCAL_STORAGE,
-  Profile,
-  URLS,
-  useAuthStore,
-  useLogout,
-} from "@libs";
+import { IMAGE_FALLBACKS, URLS, useAuthStore, useLogout } from "@libs";
 import { Typography } from "antd";
 import { LogoutOutlined } from "@ant-design/icons";
 
@@ -22,9 +15,7 @@ const { Sider } = Layout;
 
 export const AppSidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const profile: Profile | null | undefined = useAuthStore(
-    (state) => state.profile
-  );
+  const profile = useAuthStore((state) => state.profile);
   const { logout } = useLogout();
 
   const { styles } = useSidebarStyles();
