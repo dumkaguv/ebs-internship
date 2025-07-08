@@ -65,3 +65,22 @@ export const me = async () => {
     return null;
   }
 };
+
+export interface ChangePasswordBody {
+  current_password: string;
+  new_password: string;
+  new_current_password: string;
+}
+
+export const changePassword = async (body: ChangePasswordBody) => {
+  try {
+    const response = await axiosInstance.put<ApiResponse<null>>(
+      ApiRoutes.PROFILE.PASSWORD,
+      body
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
