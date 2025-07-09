@@ -10,7 +10,7 @@ import { useForm } from "antd/es/form/Form";
 import { createCourse, updateCourse } from "@/features/course/api";
 import { useEffect } from "react";
 import { useAddCourseFormStore } from "@/features/course/stores";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
 
 interface Props {
@@ -28,6 +28,7 @@ interface FormValues {
 }
 
 export const CourseAddFormStep1 = ({ title }: Props) => {
+  const { id } = useParams<{ id?: string }>();
   const [form] = useForm<FormValues>();
   const navigate = useNavigate();
 
@@ -51,6 +52,22 @@ export const CourseAddFormStep1 = ({ title }: Props) => {
       duration: String(courseInfoFromForm.duration),
       level: courseInfoFromForm.level,
     };
+    const { categories: categoriesForm, tags: tagsForm } = courseInfoFromForm;
+
+    if (id) {
+      const updatedCourse = await updateCourse(Number(id), mainCourseInfo, {
+        categories: categoriesForm,
+        tags: tagsForm,
+      });
+
+      if (!updatedCourse) {
+        message.error("Error occurred updating course. Try again.");
+        return;
+      }
+
+      setCourse(updatedCourse);
+      return;
+    }
 
     const createdCourseId = (await createCourse(mainCourseInfo))?.id;
     if (!createdCourseId) {
@@ -58,7 +75,6 @@ export const CourseAddFormStep1 = ({ title }: Props) => {
       return;
     }
 
-    const { categories: categoriesForm, tags: tagsForm } = courseInfoFromForm;
     const updatedCourseTagsAndCategories = await updateCourse(
       createdCourseId,
       {},
