@@ -31,10 +31,7 @@ export const Courses = () => {
     >
       {data && (
         <>
-          <CourseCard
-            data={data?.data ?? []}
-            limit={perPage}
-          />
+          <CourseCard data={data?.data ?? []} />
           <PaginationComponent
             current={currentPage}
             pageSize={perPage}

@@ -6,12 +6,10 @@ import { Link } from "react-router-dom";
 
 interface Props {
   data?: Course[];
-  limit?: number;
 }
 
-export const CourseCard = ({ data, limit }: Props) => {
+export const CourseCard = ({ data }: Props) => {
   const { styles } = useCourseCardStyles();
-  const mainCourses = data?.slice(0, limit) || [];
 
   return (
     <Flex
@@ -20,7 +18,7 @@ export const CourseCard = ({ data, limit }: Props) => {
       gap={12}
       className={styles.coursesContainer}
     >
-      {mainCourses?.map((course) => {
+      {data?.map((course) => {
         const stats = [
           { value: `$${course.product?.price || 0}`, label: "Price" },
           { value: `${course.lessons?.length || 0}`, label: "Chapters" },

@@ -9,9 +9,10 @@ import { CourseCard } from "@/components/CourseCard";
 
 export const Dashboard = () => {
   const { styles } = useDashboardMainStyles();
+  const perPage = 3;
   const { data } = useQuery({
-    queryKey: ["courses"],
-    queryFn: () => fetchDashboardCourses(),
+    queryKey: ["courses", perPage],
+    queryFn: () => fetchDashboardCourses({ per_page: perPage }),
   });
 
   return (
@@ -41,10 +42,7 @@ export const Dashboard = () => {
         gap={10}
       >
         <Typography.Title level={4}>Courses</Typography.Title>
-        <CourseCard
-          data={data?.data ?? []}
-          limit={3}
-        />
+        <CourseCard data={data?.data ?? []} />
       </Flex>
     </Flex>
   );
