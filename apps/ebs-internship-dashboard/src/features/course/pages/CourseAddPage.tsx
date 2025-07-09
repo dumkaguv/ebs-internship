@@ -50,16 +50,19 @@ export const CourseAddPage = () => {
       key: "2",
       label: "Advance Information",
       children: <CourseAddFormStep2 title="Advance Information" />,
+      disabled: !id,
     },
     {
       key: "3",
       label: "Course Curriculum",
       children: <CourseAddFormStep3 title="Course Curriculum" />,
+      disabled: !id,
     },
     {
       key: "4",
       label: "Publish Course",
       children: <CourseAddFormStep4 title="Publish Course" />,
+      disabled: !id,
     },
   ];
 
