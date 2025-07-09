@@ -22,7 +22,10 @@ export const ReviewsBanner = () => {
   const { styles } = useReviewsBannerStyles();
 
   return (
-    <Flex justify="space-between">
+    <Flex
+      justify="space-between"
+      className={styles.bannersContainer}
+    >
       {reviews.map((review, index) => (
         <Flex
           key={index}
