@@ -12,6 +12,7 @@ export const ApiRoutes = {
     MOVE: `${ADMIN_PREFIX}/file/move`,
   },
   COURSES: `${ADMIN_PREFIX}/courses`,
+  PRODUCTS: `${ADMIN_PREFIX}/products`,
   LESSONS: `${ADMIN_PREFIX}/lessons`,
   TOPICS: `${ADMIN_PREFIX}/topics`,
 };

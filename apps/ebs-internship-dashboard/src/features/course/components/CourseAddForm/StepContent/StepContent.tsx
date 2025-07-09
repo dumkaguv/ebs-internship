@@ -13,6 +13,8 @@ interface Props {
   onButtonNextClickCB: () => Promise<void>;
 }
 
+const TOTAL_STEPS = 4;
+
 export const StepContent = ({
   form,
   title,
@@ -31,7 +33,7 @@ export const StepContent = ({
       message.success(
         (data as AxiosResponse<ApiResponse<null>>)?.data?.message ?? "Success!"
       );
-      setCurrentStep(currentStep + 1);
+      setCurrentStep(currentStep < TOTAL_STEPS ? currentStep + 1 : currentStep);
     },
     onError: (error: AxiosError<ApiResponse<null>>) => {
       requestAnimationFrame(() => message.destroy("Processing"));
@@ -95,7 +97,7 @@ export const StepContent = ({
             loading={isPending}
             type="primary"
           >
-            Save & Next
+            {TOTAL_STEPS === currentStep ? "Save" : "Save & Next"}
           </Button>
         </Flex>
       </Flex>

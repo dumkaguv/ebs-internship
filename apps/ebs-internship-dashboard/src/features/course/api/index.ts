@@ -7,3 +7,5 @@ export { deleteTopic } from "./deleteTopic";
 export { updateLesson } from "./updateLesson";
 export { updateTopic } from "./updateTopic";
 export { fetchCourseDetails } from "./fetchCourseDetails";
+export { createProduct } from "./createProduct";
+export { updateProduct } from "./updateProduct";

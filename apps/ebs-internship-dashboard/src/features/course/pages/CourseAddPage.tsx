@@ -60,8 +60,8 @@ export const CourseAddPage = () => {
     },
     {
       key: "4",
-      label: "Publish Course",
-      children: <CourseAddFormStep4 title="Publish Course" />,
+      label: "Course Product",
+      children: <CourseAddFormStep4 title="Course Product" />,
       disabled: !id,
     },
   ];
