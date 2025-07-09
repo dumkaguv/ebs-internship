@@ -8,8 +8,8 @@ import { saveTokenToLocalStorage } from "@/utils";
 import { useClearSearchParams } from "@/hooks";
 
 export const AdminGuardRoute = () => {
-  const [isAuth, setProfile, setIsAuth] = useAuthStore(
-    useShallow((state) => [state.isAuth, state.setProfile, state.setIsAuth])
+  const [setProfile, setIsAuth] = useAuthStore(
+    useShallow((state) => [state.setProfile, state.setIsAuth])
   );
 
   const [searchParams] = useSearchParams();

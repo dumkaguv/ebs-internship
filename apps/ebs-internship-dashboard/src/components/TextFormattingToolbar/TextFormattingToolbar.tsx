@@ -35,10 +35,10 @@ export const TextFormattingToolbar = ({ form }: Props) => {
       }),
     ],
     content: course?.description,
-    onUpdate: ({ editor }) => {
-      const html = editor.getHTML();
-      form.setFieldValue("description", html);
-    },
+    onUpdate: ({ editor }) =>
+      form.setFieldValue("description", editor.getHTML()),
+    onCreate: ({ editor }) =>
+      form.setFieldValue("description", editor.getHTML()),
   });
 
   const { styles, theme: token } = useTextFormattingToolbarStyles();

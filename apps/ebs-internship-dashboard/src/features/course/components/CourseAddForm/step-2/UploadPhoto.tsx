@@ -64,7 +64,6 @@ export const UploadPhoto = () => {
   return (
     <Form.Item
       name="photo"
-      rules={[{ required: true, message: "Please upload a photo" }]}
     >
       <Flex
         vertical

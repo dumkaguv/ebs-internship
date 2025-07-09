@@ -2,7 +2,7 @@ import { ApiRoutes, getApiUrlById } from "@/config/api-routes";
 import { ApiResponse, axiosInstance, Course } from "@libs";
 import QueryString from "qs";
 
-interface UpdateCourseBody {
+export interface UpdateCourseBody {
   id?: number;
   title?: string;
   summary?: string;

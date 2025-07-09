@@ -10,6 +10,7 @@ import { ApiClient } from "@/services/apiClient";
 import { useAddCourseFormStore } from "@/features/course/stores";
 import { updateCourse } from "@/features/course/api";
 import { FileType } from "@/features/course/stores/courseAddFormStore";
+import { UpdateCourseBody } from "@/features/course/api/updateCourse";
 
 interface Props {
   title: string;
@@ -22,7 +23,7 @@ interface FormValues {
 }
 
 export const CourseAddFormStep2 = ({ title }: Props) => {
-  const { course, photoFile, videoFile, setCourse } = useAddCourseFormStore();
+  const { course, photoFile, videoFile } = useAddCourseFormStore();
   const [form] = useForm<FormValues>();
 
   const { styles } = useCourseAddFormStep2Styles();
@@ -32,37 +33,45 @@ export const CourseAddFormStep2 = ({ title }: Props) => {
   const onButtonNextClick = async () => {
     const valuesFromForm = form.getFieldsValue();
 
-    if (!photoFile || !videoFile) {
-      message.error("Photo or video is missing!");
-      return;
-    }
-
-    const uploadedPhoto = await ApiClient.files.uploadFiles({
-      target: `/course/images/${course.id}`,
-      file: photoFile,
-    });
-
-    const uploadedVideo = await ApiClient.files.uploadFiles({
-      target: `/course/videos/${course.id}`,
-      file: videoFile,
-    });
-
-    if (!uploadedPhoto || !uploadedVideo) {
-      message.error("Upload failed");
-      throw new Error("Upload failed");
-    }
-
-    const updatedCourseWithFiles = await updateCourse(course.id, {
-      image_url: uploadedPhoto.url,
-      image_path: `/${uploadedPhoto.name}`,
-      video_url: uploadedVideo.url,
-      video_path: `/${uploadedVideo.name}`,
+    const updateData: Partial<UpdateCourseBody> = {
       description: valuesFromForm.description,
-    });
+    };
 
-    if (!updatedCourseWithFiles) {
-      message.error("Failed to update course with files");
-      throw new Error("Failed to update course with files");
+    if (photoFile) {
+      const uploadedPhoto = await ApiClient.files.uploadFiles({
+        target: `/course/images/${course.id}`,
+        file: photoFile,
+      });
+
+      if (!uploadedPhoto) {
+        message.error("Failed to upload photo");
+        throw new Error("Photo upload failed");
+      }
+
+      updateData.image_url = uploadedPhoto.url;
+      updateData.image_path = `/${uploadedPhoto.name}`;
+    }
+
+    if (videoFile) {
+      const uploadedVideo = await ApiClient.files.uploadFiles({
+        target: `/course/videos/${course.id}`,
+        file: videoFile,
+      });
+
+      if (!uploadedVideo) {
+        message.error("Failed to upload video");
+        throw new Error("Video upload failed");
+      }
+
+      updateData.video_url = uploadedVideo.url;
+      updateData.video_path = `/${uploadedVideo.name}`;
+    }
+
+    const updatedCourse = await updateCourse(course.id, updateData);
+
+    if (!updatedCourse) {
+      message.error("Failed to update course");
+      throw new Error("Course update failed");
     }
   };
 

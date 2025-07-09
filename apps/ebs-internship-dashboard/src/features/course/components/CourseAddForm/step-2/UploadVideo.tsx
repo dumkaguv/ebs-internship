@@ -62,7 +62,6 @@ export const UploadVideo = () => {
     <Form.Item
       name="video"
       valuePropName="file"
-      rules={[{ required: true, message: "Please upload a video" }]}
     >
       <Flex
         vertical

@@ -32,7 +32,7 @@ export const CourseAddFormStep1 = ({ title }: Props) => {
   const [form] = useForm<FormValues>();
   const navigate = useNavigate();
 
-  const { course, setCourse } = useAddCourseFormStore();
+  const { course } = useAddCourseFormStore();
 
   const {
     categories,
