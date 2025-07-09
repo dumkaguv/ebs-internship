@@ -1,56 +1,66 @@
-import { ReactNode } from "react";
-import { Button, Card, Flex, message, Typography } from "antd";
-import { useStepContentStyles } from "./StepContentStyles";
+import { ReactNode, useEffect } from "react";
+import { Button, Card, Flex, FormInstance, message, Typography } from "antd";
 import { ButtonBack } from "@/components";
-import { saveFormInfo } from "@/features/course/utils";
 import { useAddCourseFormStore } from "@/features/course/stores";
-import merge from "lodash.merge";
-import { LOCAL_STORAGE } from "@libs";
-import { ButtonCreateCourse } from "./ButtonCreateCourse";
-
-const TOTAL_STEPS = 4;
+import { useMutation } from "@tanstack/react-query";
+import { AxiosError, AxiosResponse } from "axios";
+import { ApiResponse } from "@libs";
 
 interface Props {
+  form: FormInstance;
   title: string;
   children: ReactNode;
+  onButtonNextClickCB: () => Promise<void>;
 }
 
-export const StepContent = ({ title, children }: Props) => {
-  const { form, currentStep, setCurrentStep } = useAddCourseFormStore();
+export const StepContent = ({
+  form,
+  title,
+  children,
+  onButtonNextClickCB,
+}: Props) => {
+  const { currentStep, setCurrentStep } = useAddCourseFormStore();
 
-  const { styles } = useStepContentStyles();
-
-  if (!form) return null;
-
-  const onSaveButtonClick = () => {
-    try {
-      saveFormInfo(
-        merge(
-          {},
-          JSON.parse(
-            localStorage.getItem(LOCAL_STORAGE.COURSE_ADD_FORM) ?? "[]"
-          ),
-          form.getFieldsValue()
-        )
+  const { mutate: callback, isPending } = useMutation<
+    unknown,
+    AxiosError<ApiResponse<null>>
+  >({
+    mutationFn: onButtonNextClickCB,
+    onSuccess: (data) => {
+      message.destroy("Processing");
+      message.success(
+        (data as AxiosResponse<ApiResponse<null>>)?.data?.message ?? "Success!"
       );
-      message.success("Saved successfully!");
-    } catch (e) {
-      message.error("Error occurred. Try again");
-      console.log(e);
-    }
-  };
+      setCurrentStep(currentStep + 1);
+    },
+    onError: (error: AxiosError<ApiResponse<null>>) => {
+      message.destroy("Processing");
+      console.error(error);
+    },
+  });
 
   const onButtonNextClick = async () => {
     try {
       await form.validateFields();
-
-      const formValues = form.getFieldsValue();
-      saveFormInfo(formValues);
-      setCurrentStep(currentStep + 1);
-    } catch (error) {
-      console.log(error);
+    } catch (e) {
+      console.log(e);
+      message.error("Error validation fields!");
+      return;
     }
+
+    callback();
   };
+
+  useEffect(() => {
+    if (isPending) {
+      message.open({
+        key: "Processing",
+        type: "loading",
+        content: "Processing...",
+        duration: 0,
+      });
+    }
+  }, [isPending]);
 
   return (
     <Card>
@@ -58,20 +68,7 @@ export const StepContent = ({ title, children }: Props) => {
         vertical
         gap={24}
       >
-        <Flex
-          align="center"
-          justify="space-between"
-          className={styles.header}
-        >
-          <Typography.Title level={3}>{title}</Typography.Title>
-          <Button
-            onClick={onSaveButtonClick}
-            variant="solid"
-            color="green"
-          >
-            Save
-          </Button>
-        </Flex>
+        <Typography.Title level={3}>{title}</Typography.Title>
 
         {children}
 
@@ -93,16 +90,13 @@ export const StepContent = ({ title, children }: Props) => {
               showIcon={false}
             />
           )}
-          {currentStep === TOTAL_STEPS ? (
-            <ButtonCreateCourse />
-          ) : (
-            <Button
-              onClick={onButtonNextClick}
-              type="primary"
-            >
-              Save & Next
-            </Button>
-          )}
+          <Button
+            onClick={onButtonNextClick}
+            loading={isPending}
+            type="primary"
+          >
+            Save & Next
+          </Button>
         </Flex>
       </Flex>
     </Card>

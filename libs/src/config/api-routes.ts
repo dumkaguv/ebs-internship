@@ -7,7 +7,11 @@ export const ApiRoutes = {
     LOGOUT: "/auth/logout",
   },
   CATEGORIES: "/categories",
-  TAGS: "/tags",
+  TAGS: {
+    BASE: "/tags",
+    UNIQUE: "/tags/unique",
+  },
+  COURSES: "/courses",
   PROFILE: {
     BASE: "/profile",
     SETTINGS: "/profile/settings",
@@ -16,3 +20,16 @@ export const ApiRoutes = {
     ME: "/profile/me",
   },
 };
+
+type ExtractRoutes<T> = T extends string
+  ? T
+  : T extends object
+  ? ExtractRoutes<T[keyof T]>
+  : never;
+
+type FlatApiRoutes = ExtractRoutes<typeof ApiRoutes>;
+
+export const getApiUrlById = (
+  baseRoute: FlatApiRoutes,
+  id: string | number
+): string => `${baseRoute}/${id}`;

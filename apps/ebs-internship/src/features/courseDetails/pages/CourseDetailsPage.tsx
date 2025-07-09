@@ -4,17 +4,19 @@ import {
   CourseDetailsInformation,
 } from "@/features/courseDetails/components";
 import { useQuery } from "@tanstack/react-query";
-import { fetchCourseDetails } from "@/features/courseDetails/api";
 import { Flex, Spin, Typography } from "antd";
 import { CourseList } from "@/components";
+import { Api } from "@libs";
 
 export const CourseDetailsPage = () => {
   const { id } = useParams();
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["courses", id],
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    queryFn: () => fetchCourseDetails(id!),
+    queryFn: () => Api.courses.fetchCourseDetails(id!),
   });
+
+  console.log(data);
 
   if (isLoading)
     return (

@@ -1,10 +1,15 @@
 import { ApiResponse, axiosInstance, Category } from "../";
 import { ApiRoutes } from "../config";
 
-export const fetchCategories = async () => {
+interface FetchCategoriesParams {
+  per_page?: number;
+}
+
+export const fetchCategories = async (params?: FetchCategoriesParams) => {
   try {
     const response = await axiosInstance.get<ApiResponse<Category[]>>(
-      ApiRoutes.CATEGORIES
+      ApiRoutes.CATEGORIES,
+      { params }
     );
     return response.data.data;
   } catch (error) {

@@ -5,7 +5,7 @@ import { SelectProps } from "antd";
 export const useCourseAddFormFirstStep = () => {
   const { data: categoriesRaw, isLoading: categoriesIsLoading } = useQuery({
     queryKey: ["categories"],
-    queryFn: Api.categories.fetchCategories,
+    queryFn: () => Api.categories.fetchCategories({ per_page: 1000 }),
   });
 
   const { data: tagsRaw, isLoading: tagsIsLoading } = useQuery({
@@ -20,7 +20,20 @@ export const useCourseAddFormFirstStep = () => {
     })
   );
 
-  const tags: SelectProps["options"] = tagsRaw?.map(({ id, title }) => ({
+  const uniqueTags = tagsRaw
+    ? Array.from(
+        tagsRaw
+          .reduce((map, tag) => {
+            if (!map.has(tag.title)) {
+              map.set(tag.title, tag);
+            }
+            return map;
+          }, new Map<string, (typeof tagsRaw)[0]>())
+          .values()
+      )
+    : [];
+
+  const tags: SelectProps["options"] = uniqueTags.map(({ id, title }) => ({
     value: id,
     label: title,
   }));

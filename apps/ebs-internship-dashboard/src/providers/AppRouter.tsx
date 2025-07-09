@@ -21,6 +21,10 @@ export const AppRouter = () => {
               element={<CourseAddPage />}
             />
             <Route
+              path={`${RoutesEnum.COURSES.ADD}/:id`}
+              element={<CourseAddPage />}
+            />
+            <Route
               path={RoutesEnum.SETTINGS}
               element={<SettingsPage />}
             />

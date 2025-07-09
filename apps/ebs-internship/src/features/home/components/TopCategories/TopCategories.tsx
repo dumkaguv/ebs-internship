@@ -9,7 +9,7 @@ import { Api } from "@libs";
 export const TopCategories = () => {
   const { data: categories, isLoading } = useQuery({
     queryKey: ["categories"],
-    queryFn: Api.categories.fetchCategories,
+    queryFn: () => Api.categories.fetchCategories({ per_page: 1000 }),
   });
 
   const { styles } = useTopCategoriesStyles();

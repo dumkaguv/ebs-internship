@@ -36,7 +36,7 @@ interface UpdateCourseParams {
 
 export const updateCourse = async (
   courseId: number,
-  body: UpdateCourseBody,
+  body?: UpdateCourseBody,
   params?: UpdateCourseParams
 ) => {
   try {

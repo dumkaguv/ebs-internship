@@ -1,6 +1,4 @@
-import { useForm } from "antd/es/form/Form";
-import { useLayoutEffect } from "react";
-import { Form, Tabs } from "antd";
+import { message, Tabs } from "antd";
 import type { TabsProps } from "antd";
 import {
   CourseAddFormStep1,
@@ -8,16 +6,40 @@ import {
   CourseAddFormStep3,
   CourseAddFormStep4,
 } from "@/features/course/components";
-import { getFormInfo } from "@/features/course/utils";
-import { useAddCourseFormStore } from "../stores";
+import { useAddCourseFormStore } from "@/features/course/stores";
+import { useParams } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
+import { useEffect } from "react";
+import { fetchCourseDetails } from "@libs/services/courses";
 
 export const CourseAddPage = () => {
-  const [form] = useForm();
-  const { setForm, currentStep, setCurrentStep } = useAddCourseFormStore();
+  const { id } = useParams<{ id?: string }>();
+  const { currentStep, course, setCourse, setCurrentStep } =
+    useAddCourseFormStore();
 
-  useLayoutEffect(() => setForm(form), [form, setForm]);
+  const queryClient = useQueryClient();
 
-  const initialValues = getFormInfo();
+  useEffect(() => {
+    if (!id || course) return;
+
+    const loadCourse = async () => {
+      try {
+        const course = await queryClient.fetchQuery({
+          queryKey: ["course", id],
+          queryFn: () => fetchCourseDetails(id),
+          retry: false,
+        });
+
+        console.log("Course loaded", course);
+        setCourse(course);
+      } catch (error) {
+        message.error("Failed to load course");
+        console.error(error);
+      }
+    };
+
+    loadCourse();
+  }, [course, id, queryClient, setCourse]);
 
   const items: TabsProps["items"] = [
     {
@@ -43,20 +65,12 @@ export const CourseAddPage = () => {
   ];
 
   return (
-    <Form
-      form={form}
-      initialValues={initialValues}
-      layout="vertical"
-      requiredMark={false}
-      scrollToFirstError
-    >
-      <Tabs
-        activeKey={String(currentStep)}
-        onTabClick={(key) => setCurrentStep(Number(key))}
-        tabBarGutter={24}
-        className="w-full"
-        items={items}
-      />
-    </Form>
+    <Tabs
+      activeKey={String(currentStep)}
+      onTabClick={(key) => setCurrentStep(Number(key))}
+      tabBarGutter={24}
+      className="w-full"
+      items={items}
+    />
   );
 };
