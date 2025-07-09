@@ -1,4 +1,5 @@
 import { RoutesEnum } from "@/config/routesEnum";
+import { Courses } from "@/features/courses";
 import { Dashboard } from "@/features/dashboard";
 import { MainLayout } from "@/layouts";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
@@ -11,6 +12,10 @@ export const AppRouter = () => {
           <Route
             path={RoutesEnum.DASHBOARD}
             element={<Dashboard />}
+          />
+          <Route
+            path={RoutesEnum.COURSES}
+            element={<Courses />}
           />
         </Route>
       </Routes>
