@@ -32,10 +32,10 @@ const onBeforeUpload = (file: File): boolean => {
 };
 
 export const UploadVideo = () => {
-  const [videoUrl, setVideoUrl] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  const { course, setVideoFile } = useAddCourseFormStore();
 
-  const { setVideoFile } = useAddCourseFormStore();
+  const [videoUrl, setVideoUrl] = useState(course?.video_url ?? "");
+  const [loading, setLoading] = useState(false);
 
   const handleChange: UploadProps["onChange"] = (info) => {
     const file = info.file.originFileObj as UploadFile;

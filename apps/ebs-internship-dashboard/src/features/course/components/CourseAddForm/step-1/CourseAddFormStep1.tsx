@@ -64,8 +64,6 @@ export const CourseAddFormStep1 = ({ title }: Props) => {
         message.error("Error occurred updating course. Try again.");
         return;
       }
-
-      setCourse(updatedCourse);
       return;
     }
 
@@ -88,7 +86,6 @@ export const CourseAddFormStep1 = ({ title }: Props) => {
       return;
     }
 
-    setCourse(updatedCourseTagsAndCategories);
     navigate(getRouteUrlById(RoutesEnum.COURSES.ADD, createdCourseId));
   };
 

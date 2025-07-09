@@ -36,10 +36,10 @@ const beforeUpload = (file: UploadFile) => {
 };
 
 export const UploadPhoto = () => {
-  const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState("");
+  const { course, setPhotoFile } = useAddCourseFormStore();
 
-  const { setPhotoFile } = useAddCourseFormStore();
+  const [loading, setLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState(course?.image_url ?? "");
 
   const { styles } = useCourseAddFormStep2Styles();
 

@@ -10,17 +10,16 @@ import { useAddCourseFormStore } from "@/features/course/stores";
 import { useParams } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
-import { fetchCourseDetails } from "@libs/services/courses";
+import { fetchCourseDetails } from "@/features/course/api";
 
 export const CourseAddPage = () => {
   const { id } = useParams<{ id?: string }>();
-  const { currentStep, course, setCourse, setCurrentStep } =
-    useAddCourseFormStore();
+  const { currentStep, setCourse, setCurrentStep } = useAddCourseFormStore();
 
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    if (!id || course) return;
+    if (!id) return;
 
     const loadCourse = async () => {
       try {
@@ -39,7 +38,7 @@ export const CourseAddPage = () => {
     };
 
     loadCourse();
-  }, [course, id, queryClient, setCourse]);
+  }, [currentStep, id, queryClient, setCourse]);
 
   const items: TabsProps["items"] = [
     {

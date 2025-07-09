@@ -6,16 +6,18 @@ import Strike from "@tiptap/extension-strike";
 import Underline from "@tiptap/extension-underline";
 import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
-import { Flex } from "antd";
+import { Flex, FormInstance } from "antd";
 import { useTextFormattingToolbarStyles } from "./TextFormattingToolbarStyles";
 import { getFormattingButtons } from "./formattingButtonsConfig";
+import { useAddCourseFormStore } from "@/features/course/stores";
 
 interface Props {
-  initialValue?: string;
-  onChange?: (value: string) => void;
+  form: FormInstance;
 }
 
-export const TextFormattingToolbar = ({ initialValue, onChange }: Props) => {
+export const TextFormattingToolbar = ({ form }: Props) => {
+  const { course } = useAddCourseFormStore();
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -32,10 +34,10 @@ export const TextFormattingToolbar = ({ initialValue, onChange }: Props) => {
         placeholder: "Enter your course description...",
       }),
     ],
-    content: initialValue,
-    onUpdate({ editor }) {
+    content: course?.description,
+    onUpdate: ({ editor }) => {
       const html = editor.getHTML();
-      onChange?.(html);
+      form.setFieldValue("description", html);
     },
   });
 

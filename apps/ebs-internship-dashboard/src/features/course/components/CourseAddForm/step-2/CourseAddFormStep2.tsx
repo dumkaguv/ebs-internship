@@ -1,4 +1,4 @@
-import { Flex, Form } from "antd";
+import { Flex, Form, message } from "antd";
 import { StepContent } from "@/features/course/components";
 import { UploadPhoto } from "./UploadPhoto";
 import { UploadVideo } from "./UploadVideo";
@@ -6,18 +6,64 @@ import { useCourseAddFormStep2Styles } from "./CourseAddFormStep2Styles";
 import { CourseDescription } from "./CourseDescription";
 import { DynamicFieldsList } from "./DynamicFieldsList";
 import { useForm } from "antd/es/form/Form";
+import { ApiClient } from "@/services/apiClient";
+import { useAddCourseFormStore } from "@/features/course/stores";
+import { updateCourse } from "@/features/course/api";
+import { FileType } from "@/features/course/stores/courseAddFormStore";
 
 interface Props {
   title: string;
 }
 
+interface FormValues {
+  photoFile: FileType;
+  videoFile: FileType;
+  description: string;
+}
+
 export const CourseAddFormStep2 = ({ title }: Props) => {
-  const [form] = useForm();
+  const { course, photoFile, videoFile, setCourse } = useAddCourseFormStore();
+  const [form] = useForm<FormValues>();
 
   const { styles } = useCourseAddFormStep2Styles();
 
+  if (!course) return null;
+
   const onButtonNextClick = async () => {
-    console.log(1);
+    const valuesFromForm = form.getFieldsValue();
+
+    if (!photoFile || !videoFile) {
+      message.error("Photo or video is missing!");
+      return;
+    }
+
+    const uploadedPhoto = await ApiClient.files.uploadFiles({
+      target: `/course/images/${course.id}`,
+      file: photoFile,
+    });
+
+    const uploadedVideo = await ApiClient.files.uploadFiles({
+      target: `/course/videos/${course.id}`,
+      file: videoFile,
+    });
+
+    if (!uploadedPhoto || !uploadedVideo) {
+      message.error("Upload failed");
+      throw new Error("Upload failed");
+    }
+
+    const updatedCourseWithFiles = await updateCourse(course.id, {
+      image_url: uploadedPhoto.url,
+      image_path: `/${uploadedPhoto.name}`,
+      video_url: uploadedVideo.url,
+      video_path: `/${uploadedVideo.name}`,
+      description: valuesFromForm.description,
+    });
+
+    if (!updatedCourseWithFiles) {
+      message.error("Failed to update course with files");
+      throw new Error("Failed to update course with files");
+    }
   };
 
   return (
@@ -41,7 +87,7 @@ export const CourseAddFormStep2 = ({ title }: Props) => {
           <UploadVideo />
         </Flex>
         <Flex className={styles.sectionDivider}>
-          <CourseDescription />
+          <CourseDescription form={form} />
         </Flex>
         <Flex
           vertical

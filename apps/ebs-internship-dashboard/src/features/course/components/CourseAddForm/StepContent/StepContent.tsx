@@ -27,7 +27,7 @@ export const StepContent = ({
   >({
     mutationFn: onButtonNextClickCB,
     onSuccess: (data) => {
-      message.destroy("Processing");
+      requestAnimationFrame(() => message.destroy("Processing"));
       message.success(
         (data as AxiosResponse<ApiResponse<null>>)?.data?.message ?? "Success!"
       );

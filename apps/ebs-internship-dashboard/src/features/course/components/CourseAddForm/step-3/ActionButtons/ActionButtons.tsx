@@ -1,12 +1,20 @@
 import { Pencil, Plus, Trash } from "@/assets";
 import { StaticLabelInput } from "@/components";
-import { Button, Flex, Form, Modal, Tooltip, Typography } from "antd";
+import {
+  Button,
+  Flex,
+  Form,
+  FormInstance,
+  Modal,
+  Tooltip,
+  Typography,
+} from "antd";
 import { useTheme } from "antd-style";
 import { useState } from "react";
 import { useActionButtonsStyles } from "./ActionButtonsStyles";
-import { useAddCourseFormStore } from "@/features/course/stores";
 
 interface Props {
+  form: FormInstance;
   index: number;
   innerIndex?: number;
   fieldName: string;
@@ -21,6 +29,7 @@ interface Props {
 }
 
 export const ActionButtons = ({
+  form,
   index,
   innerIndex,
   fieldName,
@@ -33,8 +42,6 @@ export const ActionButtons = ({
   inputEditId,
   inputEditPlaceholder,
 }: Props) => {
-  const { form } = useAddCourseFormStore();
-
   const [isModalEditOpen, setIsModalEditOpen] = useState(false);
 
   const [inputValue, setInputValue] = useState("");
@@ -48,12 +55,12 @@ export const ActionButtons = ({
 
   const handleOk = () => {
     if (innerIndex !== undefined) {
-      form?.setFieldValue(
-        ["lessons", index, "topics", innerIndex, fieldName as any],
+      form.setFieldValue(
+        ["lessons", index, "topics", innerIndex, fieldName],
         inputValue
       );
     } else {
-      form?.setFieldValue(["lessons", index, fieldName as any], inputValue);
+      form.setFieldValue(["lessons", index, fieldName], inputValue);
     }
     setIsModalEditOpen(false);
   };

@@ -4,9 +4,9 @@ import { ApiResponse, axiosInstance, Topic } from "@libs";
 interface CreateTopicToLessonBody {
   id?: number;
   title: string;
-  active?: boolean;
+  active?: boolean | 0 | 1;
   can_skip?: boolean;
-  preview?: boolean;
+  preview?: boolean | 0 | 1;
   lesson_id: number;
   topicable_id?: number;
   topicable_type?: string;
