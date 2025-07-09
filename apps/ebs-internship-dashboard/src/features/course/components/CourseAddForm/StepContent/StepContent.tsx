@@ -34,7 +34,7 @@ export const StepContent = ({
       setCurrentStep(currentStep + 1);
     },
     onError: (error: AxiosError<ApiResponse<null>>) => {
-      message.destroy("Processing");
+      requestAnimationFrame(() => message.destroy("Processing"));
       console.error(error);
     },
   });

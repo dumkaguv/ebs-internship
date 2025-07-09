@@ -81,7 +81,16 @@ export const LessonCollapse = ({
                 children: (
                   <Form.List name={[lessonField.name, "topics"]}>
                     {(topicFields, { add, remove }) => {
-                      topicsAddMap.current[lessonField.name] = add;
+                      topicsAddMap.current[lessonField.name] = () =>
+                        add({
+                          title: "",
+                          description: "",
+                          summary: "",
+                          introduction: "",
+                          order: topicFields.length + 1,
+                          active: true,
+                          preview: true,
+                        });
 
                       return (
                         <Collapse

@@ -43,12 +43,27 @@ export const CourseAddFormStep3 = ({ title }: Props) => {
     deleteTopicMutate,
   } = useSubmitStep3(form);
 
+  const initialLessonValue = {
+    title: "",
+    topics: [
+      {
+        title: "",
+        description: "",
+        summary: "",
+        introduction: "",
+        order: 1,
+        active: true,
+        preview: true,
+      },
+    ],
+  };
+
   useEffect(() => {
     form.setFieldValue(
       "lessons",
       course?.lessons && course.lessons.length > 0
         ? course.lessons
-        : [{ topics: [null] }]
+        : [initialLessonValue]
     );
   }, [course, form]);
 
@@ -85,7 +100,7 @@ export const CourseAddFormStep3 = ({ title }: Props) => {
                 ))}
                 <Button
                   type="primary"
-                  onClick={() => add()}
+                  onClick={() => add(initialLessonValue)}
                 >
                   Add Lesson
                 </Button>

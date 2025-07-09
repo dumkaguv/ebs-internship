@@ -138,7 +138,7 @@ export const TopicCollapse = ({
                 name={[topicField.name, "active"]}
                 valuePropName="checked"
               >
-                <Switch />
+                <Switch defaultChecked={true} />
               </Form.Item>
             </Flex>
             <Flex vertical>
@@ -147,7 +147,7 @@ export const TopicCollapse = ({
                 name={[topicField.name, "preview"]}
                 valuePropName="checked"
               >
-                <Switch />
+                <Switch defaultChecked={true} />
               </Form.Item>
             </Flex>
           </Flex>
