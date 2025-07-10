@@ -1,4 +1,9 @@
 export { Sidebar } from "./Sidebar";
 export { Logo } from "./Logo";
 export { Header } from "./Header";
-export { CourseCard } from "./CourseCard";
+export { DashboardBanner } from "./DashboardBanner";
+export { ReviewsBanner } from "./ReviewsBanner";
+export { StaticLabelInput } from "./StaticLabelInput";
+export { StaticLabelWrapper } from "./StaticLabelWrapper";
+export { StaticLabelSelect } from "./StaticLabelSelect";
+export { PromotionBanner } from "./PromotionBanner";

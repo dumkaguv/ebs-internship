@@ -2,6 +2,9 @@ import { createStyles } from "antd-style";
 
 export const useReviewsBannerStyles = createStyles(({ token, css }) => {
   return {
+    bannersContainer: css`
+      width: 100%;
+    `,
     reviewInfo: css`
       background-color: #fff;
       border-radius: ${token.borderRadiusSM}px;
@@ -9,6 +12,9 @@ export const useReviewsBannerStyles = createStyles(({ token, css }) => {
       box-shadow: ${token.boxShadow};
       &&.ant-flex {
         padding: 24px 56px 16px 24px;
+      }
+      && .ant-typography {
+        margin: 0px;
       }
     `,
 
