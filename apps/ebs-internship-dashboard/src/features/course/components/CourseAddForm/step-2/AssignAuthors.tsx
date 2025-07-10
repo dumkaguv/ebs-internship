@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAuthors } from "@/features/course/api/fetchAuthors";
 import {
@@ -11,13 +11,13 @@ import {
   FormInstance,
   Input,
 } from "antd";
-import type { DefaultOptionType } from "antd/es/select";
 import { useCourseAddFormStep2Styles } from "./CourseAddFormStep2Styles";
 import { Author } from "@libs";
 import { SearchOutlined } from "@ant-design/icons";
 import { FormValues } from "./CourseAddFormStep2";
 import { useAddCourseFormStore } from "@/features/course/stores";
 import { useWatch } from "antd/es/form/Form";
+import { DefaultOptionType } from "antd/es/select";
 
 interface Props {
   form: FormInstance<FormValues>;
@@ -32,6 +32,8 @@ export const AssignAuthors = ({ form }: Props) => {
   const { course } = useAddCourseFormStore();
   const authorsValue: Author[] = useWatch("authors", form) || [];
 
+  const [inputValue, setInputValue] = useState("");
+
   const { styles } = useCourseAddFormStep2Styles();
 
   useEffect(() => {
@@ -45,6 +47,7 @@ export const AssignAuthors = ({ form }: Props) => {
     if (!selected || authorsValue.some((a) => a.id === selected.id)) return;
 
     form.setFieldValue("authors", [...authorsValue, selected]);
+    setInputValue("");
   };
 
   const handleRemove = (id: number) => {
@@ -73,10 +76,14 @@ export const AssignAuthors = ({ form }: Props) => {
   );
 
   const authorOptions: DefaultOptionType[] =
-    authors?.map((author) => ({
-      value: author.id.toString(),
-      label: renderAuthorCard(author),
-    })) ?? [];
+    authors
+      ?.filter((author) => !authorsValue.some((a) => a.id === author.id))
+      .map((author) => ({
+        value: author.id.toString(),
+        label: renderAuthorCard(author),
+        nameSearchString:
+          `${author.first_name} ${author.last_name}`.toLowerCase(),
+      })) ?? [];
 
   return (
     <>
@@ -94,10 +101,13 @@ export const AssignAuthors = ({ form }: Props) => {
         <AutoComplete
           options={authorOptions}
           placeholder="Search author..."
-          value=""
-          onChange={() => undefined}
+          value={inputValue}
+          onChange={(value) => setInputValue(String(value))}
           onSelect={handleSelect}
           prefix={<SearchOutlined />}
+          filterOption={(input, option) =>
+            option?.nameSearchString?.includes(input.toLowerCase())
+          }
           allowClear
           className={styles.inputAuthors}
         />
