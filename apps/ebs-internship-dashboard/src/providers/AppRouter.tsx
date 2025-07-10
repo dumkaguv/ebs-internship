@@ -1,4 +1,6 @@
 import { RoutesEnum } from "@/config/routesEnum";
+import { Course } from "@/features/courseDetails";
+import { CourseChapterDetails } from "@/features/courseDetails/pages/CourseChapterDetails";
 import { Courses } from "@/features/courses";
 import { Dashboard } from "@/features/dashboard";
 import { MainLayout } from "@/layouts";
@@ -13,6 +15,14 @@ export const AppRouter = () => {
             path={RoutesEnum.DASHBOARD}
             element={<Dashboard />}
           />
+          <Route
+            path={`${RoutesEnum.COURSES}/:id`}
+            element={<Course />}
+          />
+          <Route
+            path={`${RoutesEnum.CHAPTER}/:id`}
+            element={<CourseChapterDetails />}
+            />
           <Route
             path={RoutesEnum.COURSES}
             element={<Courses />}

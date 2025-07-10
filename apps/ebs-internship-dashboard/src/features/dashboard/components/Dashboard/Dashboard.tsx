@@ -1,8 +1,9 @@
 import { Flex, Typography } from "antd";
 import { useDashboardMainStyles } from "./DashboardStyles";
-import { DashboardBanner } from "@/features/dashboard/components/DashboardBanner";
+import { DashboardBanner } from "@/components/DashboardBanner";
 import { SalesChart } from "@/features/dashboard/components/SalesChart";
-import { ReviewsBanner } from "@/features/dashboard/components/ReviewsBanner";
+import { ReviewsBanner } from "@/components/ReviewsBanner";
+import { DashboardCourses } from "@/features/dashboard/components/DashboardCourses";
 import { useQuery } from "@tanstack/react-query";
 import { fetchDashboardCourses } from "@/services/adminCourses";
 import { CourseCard } from "@/components/CourseCard";
