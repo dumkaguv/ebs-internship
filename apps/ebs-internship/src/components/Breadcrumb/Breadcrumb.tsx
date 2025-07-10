@@ -1,17 +1,16 @@
 import { Breadcrumb, Typography } from "antd";
-import { Link } from "react-router-dom";
-import { FC } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useBreadcrumbStyles } from "./BreadcrumbsStyles";
 
 interface Props {
-  location: string;
   title?: string;
 }
 
-const AppBreadcrumb: FC<Props> = ({ location, title }) => {
+export const AppBreadcrumb = ({ title }: Props) => {
   const { styles } = useBreadcrumbStyles();
+  const location = useLocation();
 
-  const pathSnippets = location.split("/").filter((i) => i);
+  const pathSnippets = location.pathname.split("/").filter((i) => i);
   const breadcrumbItems = [
     {
       title: (
@@ -64,5 +63,3 @@ const AppBreadcrumb: FC<Props> = ({ location, title }) => {
     />
   );
 };
-
-export default AppBreadcrumb;

@@ -1,1 +1,1 @@
-export { default as Breadcrumb } from "./Breadcrumb";
+export { AppBreadcrumb as Breadcrumb } from "./Breadcrumb";

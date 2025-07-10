@@ -1,14 +1,20 @@
 import { RoutesEnum } from "@/config/routesEnum";
 import { MainLayout } from "@/layouts";
-import CourseDetailsPage from "@/features/courseDetails/pages/CourseDetailsPage";
-import HomePage from "@/features/home/pages/HomePage";
+import { CourseDetailsPage } from "@/features/courseDetails";
+import { HomePage } from "@/features/home";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { SignInPage, SignUpPage } from "@/features/auth";
-import MentorPage from "@/features/mentorPage/pages/MentorPage";
-import CoursesPage from "@/features/courses/pages/CoursesPage";
-import CartPage from "@/features/cart/pages/Cart";
 
-const AppRouter = () => {
+import { MentorPage } from "@/features/mentorPage";
+import { CoursesPage } from "@/features/courses";
+import { CartPage } from "@/features/cart";
+import { ProtectedRoute } from "@/components";
+
+import { UserProfilePage } from "@/features/userProfile/pages/UserProfilePage";
+import { UserProfileForm } from "@/features/userProfile/components";
+import { NotFoundPage } from "@libs";
+
+export const AppRouter = () => {
   return (
     <Router>
       <Routes>
@@ -37,14 +43,27 @@ const AppRouter = () => {
             path={`${RoutesEnum.MENTORS}/:id`}
             element={<MentorPage />}
           />
+          <Route element={<ProtectedRoute />}>
+            <Route
+              path={RoutesEnum.CART}
+              element={<CartPage />}
+            />
+            <Route
+              path={RoutesEnum.PROFILE.BASE}
+              element={<UserProfilePage />}
+            >
+              <Route
+                path={RoutesEnum.PROFILE.BASE}
+                element={<UserProfileForm />}
+              />
+            </Route>
+          </Route>
           <Route
-            path={RoutesEnum.CART}
-            element={<CartPage />}
+            path="*"
+            element={<NotFoundPage />}
           />
         </Route>
       </Routes>
     </Router>
   );
 };
-
-export default AppRouter;

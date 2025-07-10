@@ -1,6 +1,5 @@
-import { Course } from "@/types/course";
-import { Card, Flex, Image, Space, Typography } from "antd";
-import { FC } from "react";
+import { Course, IMAGE_FALLBACKS } from "@libs";
+import { Card, Flex, Image, Typography } from "antd";
 import { useCourseCardStyles } from "./CourseCardStyles";
 import { formatPrice } from "@/utils";
 
@@ -9,7 +8,7 @@ interface Props {
   imageHeight?: number | string;
 }
 
-const CourseCard: FC<Props> = ({ course, imageHeight }) => {
+export const CourseCard = ({ course, imageHeight }: Props) => {
   const { styles } = useCourseCardStyles();
 
   return (
@@ -18,20 +17,18 @@ const CourseCard: FC<Props> = ({ course, imageHeight }) => {
       cover={
         <Image
           src={course.image_url}
-          fallback={
-            "https://foundr.com/wp-content/uploads/2021/09/Best-online-course-platforms.png"
-          }
+          fallback={IMAGE_FALLBACKS.COURSE}
           height={imageHeight}
           alt=""
           preview={false}
         />
       }
-      style={{ height: "100%", display: "flex", flexDirection: "column" }}
+      className={styles.image}
     >
       <Flex
         gap={8}
-        style={{ height: "100%" }}
         vertical
+        className="h-full"
       >
         <Flex
           vertical
@@ -77,5 +74,3 @@ const CourseCard: FC<Props> = ({ course, imageHeight }) => {
     </Card>
   );
 };
-
-export default CourseCard;

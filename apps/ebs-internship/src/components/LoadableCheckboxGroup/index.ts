@@ -1,1 +1,1 @@
-export { default as LoadableCheckboxGroup } from "./LoadableCheckboxGroup";
+export { LoadableCheckboxGroup } from "./LoadableCheckboxGroup";

@@ -1,1 +1,1 @@
-export { default as TopCategories } from "./TopCategories";
+export { TopCategories } from "./TopCategories";

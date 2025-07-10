@@ -2,14 +2,15 @@ import { DownOutlined } from "@ant-design/icons";
 import { Button, Dropdown, Flex, MenuProps, Typography } from "antd";
 import { useSortStyles } from "./SortStyles";
 import { sortOptionsData, sortOptionsMap } from "./sortConfig";
-import { Dispatch, FC, SetStateAction, useState } from "react";
-import type { Sort as SortType } from "../../types";
+import { Dispatch, SetStateAction, useState } from "react";
+import type { Sort as SortType } from "@/features/courses/types";
 
 interface Props {
   sort: SortType;
   setSort: Dispatch<SetStateAction<SortType>>;
 }
-const Sort: FC<Props> = ({ sort, setSort }) => {
+
+export const Sort = ({ sort, setSort }: Props) => {
   const { styles } = useSortStyles();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -53,5 +54,3 @@ const Sort: FC<Props> = ({ sort, setSort }) => {
     </Flex>
   );
 };
-
-export default Sort;

@@ -1,10 +1,10 @@
-import { Product } from "@/types";
+import { Product } from "@libs";
 
 export interface CartItem {
   id: number;
   product_id: number;
   product_type: string;
-  product: Product[];
+  product: Product;
   price: number;
   price_with_tax: number;
   quantity: number;

@@ -5,6 +5,7 @@ export const useFiltersStyles = createStyles(({ token, css }) => {
     collapse: css`
       &&.ant-collapse {
         background-color: ${token.colorWhite};
+        width: 100%;
       }
     `,
   };

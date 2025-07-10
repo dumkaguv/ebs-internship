@@ -1,4 +1,4 @@
-import { FC, useRef } from "react";
+import { useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Api } from "@/services/apiClient";
 import { Container, CourseCard } from "@/components";
@@ -13,7 +13,7 @@ interface Props {
   authorName: string;
 }
 
-const CoursesByMentor: FC<Props> = ({ authorId, authorName }) => {
+export const CoursesByMentor = ({ authorId, authorName }: Props) => {
   const { styles } = useCoursesByMentorStyles();
 
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -79,5 +79,3 @@ const CoursesByMentor: FC<Props> = ({ authorId, authorName }) => {
     </div>
   );
 };
-
-export default CoursesByMentor;

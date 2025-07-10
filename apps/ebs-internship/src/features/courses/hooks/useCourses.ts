@@ -2,9 +2,9 @@ import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Api } from "@/services/apiClient";
-import type { Sort as SortType } from "../types/sortTypes";
-import { useDebouncedValue, useQueryUrlParams } from "@/hooks";
-import { useScrollTop, useChangeToInitialPage } from "../hooks";
+import type { Sort as SortType } from "@/features/courses/types";
+import { useDebouncedValue, useQueryUrlParams } from "@libs";
+import { useScrollTop, useChangeToInitialPage } from "@/features/courses/hooks";
 
 const PER_PAGE = 9;
 
@@ -21,9 +21,7 @@ export const useCourses = () => {
     sortOrder: (searchParams.get("order") as SortType["sortOrder"]) || "ASC",
   });
 
-  const [searchValue, setSearchValue] = useState(
-    searchParams.get("title")
-  );
+  const [searchValue, setSearchValue] = useState(searchParams.get("title"));
   const debouncedSearch = useDebouncedValue(searchValue, 500);
 
   const categories = useMemo(

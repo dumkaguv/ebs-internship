@@ -17,6 +17,12 @@ export const useCourseCardStyles = createStyles(({ token, css }) => {
 
     price: css`
       margin-top: auto;
-    `
+    `,
+
+    image: css`
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    `,
   };
 });

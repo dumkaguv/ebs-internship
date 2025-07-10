@@ -1,1 +1,1 @@
-export { default as BecomeInstructorPromo } from "./BecomeInstructorPromo";
+export { BecomeInstructorPromo } from "./BecomeInstructorPromo";

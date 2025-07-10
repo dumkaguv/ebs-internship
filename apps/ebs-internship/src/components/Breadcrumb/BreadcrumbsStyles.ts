@@ -1,6 +1,6 @@
 import { createStyles } from "antd-style";
 
-export const useBreadcrumbStyles = createStyles(({ token, css, cx }) => {
+export const useBreadcrumbStyles = createStyles(({ token, css }) => {
   return {
     customBreadcrumb: css`
       &&.ant-breadcrumb ol {

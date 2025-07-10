@@ -1,6 +1,4 @@
-import { ApiResponse } from "@/types/apiResponse";
-import { axiosInstance } from "@/lib";
-import { Token } from "@/types/token";
+import { ApiResponse,Token ,axiosInstance } from "@libs";
 import { ApiRoutes } from "@/config/api-routes";
 import { AxiosError } from "axios";
 

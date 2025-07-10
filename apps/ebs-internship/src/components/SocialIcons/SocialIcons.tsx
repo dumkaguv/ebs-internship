@@ -29,14 +29,14 @@ const socialLinks = [
   },
 ] as const;
 
-const SocialIcons = () => {
+export const SocialIcons = () => {
   const { styles } = useSocialIconsStyles();
 
   return (
     <Flex
-      style={{ marginTop: 20 }}
       justify="flex-start"
       gap={20}
+      className={styles.wrapper}
     >
       {socialLinks.map((item) => (
         <a
@@ -57,5 +57,3 @@ const SocialIcons = () => {
     </Flex>
   );
 };
-
-export default SocialIcons;

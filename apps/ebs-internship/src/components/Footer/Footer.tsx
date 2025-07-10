@@ -1,12 +1,12 @@
 import { Layout, Typography, Space, Flex } from "antd";
 import Image from "antd/es/image";
-import SocialIcons from "../SocialIcons/SocialIcons";
+import { SocialIcons } from "@/components";
 import { useFooterStyles } from "./FooterStyles";
 import { Link } from "react-router-dom";
 
 const { Footer } = Layout;
 
-const AppFooter = () => {
+export const AppFooter = () => {
   const { styles } = useFooterStyles();
 
   return (
@@ -26,7 +26,7 @@ const AppFooter = () => {
             gap={8}
           >
             <Image
-              src="/logo(1).png"
+              src="/logo.png"
               alt="Logo"
               width={31}
               height={40}
@@ -167,5 +167,3 @@ const AppFooter = () => {
     </Footer>
   );
 };
-
-export default AppFooter;

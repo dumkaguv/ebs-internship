@@ -1,33 +1,34 @@
 import { useParams } from "react-router-dom";
-import { CourseDetailsHero } from "../components";
-import { CourseDetailsInformation } from "../components";
+import {
+  CourseDetailsHero,
+  CourseDetailsInformation,
+} from "@/features/courseDetails/components";
 import { useQuery } from "@tanstack/react-query";
-import { fetchCourseDetails } from "../api/fetchCourseDetails";
-import { Flex, Spin } from "antd";
+import { Flex, Spin, Typography } from "antd";
 import { CourseList } from "@/components";
+import { Api } from "@libs";
 
-function CourseDetailsPage() {
+export const CourseDetailsPage = () => {
   const { id } = useParams();
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["courses", id],
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    queryFn: () => fetchCourseDetails(id!),
+    queryFn: () => Api.courses.fetchCourseDetails(id!),
   });
-
-  console.log(data);
 
   if (isLoading)
     return (
       <Flex
         align="center"
         justify="center"
-        style={{ height: "100dvh" }}
+        className="h-screen"
       >
         <Spin size="large"></Spin>
       </Flex>
     );
   if (isError) return <div>Error: {error.message}</div>;
-  if (!data) return <div style={{ color: "red" }}>No data found!</div>;
+  if (!data)
+    return <Typography.Text type="danger">No data found!</Typography.Text>;
 
   return (
     <>
@@ -42,6 +43,4 @@ function CourseDetailsPage() {
       />
     </>
   );
-}
-
-export default CourseDetailsPage;
+};

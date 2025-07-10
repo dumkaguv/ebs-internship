@@ -1,8 +1,7 @@
 import { CourseCard } from "@/components";
 import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
-import { Course } from "@/types";
+import { Course } from "@libs";
 import { List } from "antd";
-import { FC } from "react";
 import { Link } from "react-router-dom";
 
 interface Props {
@@ -10,7 +9,7 @@ interface Props {
   isLoading: boolean;
 }
 
-const CourseList: FC<Props> = ({ courses, isLoading }) => {
+export const CourseList = ({ courses, isLoading }: Props) => {
   return (
     <List
       dataSource={courses}
@@ -32,5 +31,3 @@ const CourseList: FC<Props> = ({ courses, isLoading }) => {
     />
   );
 };
-
-export default CourseList;

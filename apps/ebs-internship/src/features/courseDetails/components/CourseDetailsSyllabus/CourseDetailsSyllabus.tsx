@@ -1,7 +1,6 @@
 import { Container } from "@/components";
-import { Lesson } from "@/types";
+import { Lesson } from "@libs";
 import { Collapse, Typography, Space, Flex } from "antd";
-import { FC } from "react";
 import { Link } from "react-router-dom";
 import { useCourseDetailsSyllabusStyles } from "./CourseDetailsSyllabusStyles";
 
@@ -9,7 +8,7 @@ interface Props {
   lessons?: Lesson[];
 }
 
-const CourseDetailsSyllabus: FC<Props> = ({ lessons }) => {
+export const CourseDetailsSyllabus = ({ lessons }: Props) => {
   const { styles } = useCourseDetailsSyllabusStyles();
 
   const items = lessons?.map((lesson) => ({
@@ -68,5 +67,3 @@ const CourseDetailsSyllabus: FC<Props> = ({ lessons }) => {
     </Container>
   );
 };
-
-export default CourseDetailsSyllabus;

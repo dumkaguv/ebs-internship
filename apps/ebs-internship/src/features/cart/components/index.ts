@@ -1,1 +1,1 @@
-export { CartItem } from "./CartItem";
+export * from "./CartItem";

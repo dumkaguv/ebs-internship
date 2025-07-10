@@ -4,12 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { Card, Flex, Image, List, Typography } from "antd";
 import { useTopCategoriesStyles } from "./TopCategoriesStyles";
-import { Api } from "@/services/apiClient";
+import { Api } from "@libs";
 
-const TopCategories = () => {
+export const TopCategories = () => {
   const { data: categories, isLoading } = useQuery({
     queryKey: ["categories"],
-    queryFn: Api.categories.fetchCategories,
+    queryFn: () => Api.categories.fetchCategories({ per_page: 1000 }),
   });
 
   const { styles } = useTopCategoriesStyles();
@@ -26,7 +26,7 @@ const TopCategories = () => {
           itemLayout="horizontal"
           dataSource={categories?.slice(0, 4)}
           renderItem={(category) => (
-            <List.Item style={{ marginBottom: 0 }}>
+            <List.Item>
               <Card className={styles.topCategoriesCard}>
                 <Flex
                   vertical
@@ -60,5 +60,3 @@ const TopCategories = () => {
     </Container>
   );
 };
-
-export default TopCategories;

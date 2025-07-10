@@ -1,13 +1,13 @@
 import { Container } from "@/components";
-import { Author } from "@/types";
+import { Author } from "@libs";
 import { Avatar, Button, Flex, List, Space, Typography } from "antd";
-import { FC } from "react";
 import { useMentorInformationStyles } from "./MentorInformationStyles";
+
 interface Props {
   data: Author;
 }
 
-const MentorInformation: FC<Props> = ({ data }) => {
+export const MentorInformation = ({ data }: Props) => {
   const { styles } = useMentorInformationStyles();
 
   const expertiseAreas = [
@@ -133,5 +133,3 @@ const MentorInformation: FC<Props> = ({ data }) => {
     </Container>
   );
 };
-
-export default MentorInformation;

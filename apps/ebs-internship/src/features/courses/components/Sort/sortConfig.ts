@@ -1,4 +1,4 @@
-import { SortBy, SortOrder } from "../../types/sortTypes";
+import { SortBy, SortOrder } from "@/features/courses/types";
 
 export const sortOptionsData = [
   {

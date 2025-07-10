@@ -1,22 +1,20 @@
+import { ApiRoutes as GlobalApiRoutes } from "@libs";
+
 export const ApiRoutes = {
+  ...GlobalApiRoutes,
   CATEGORIES: "/categories",
   COURSES: "/courses",
   TUTORS: "/tutors",
-  AUTH: {
-    BASE: "/auth",
-    LOGIN: "/auth/login",
-    REFRESH: "/auth/refresh",
-  },
   CART: {
     BASE: "/cart",
     PRODUCTS: "/cart/products",
   },
-} as const;
+};
 
 type ExtractRoutes<T> = T extends string
   ? T
   : T extends object
-  ? { [K in keyof T]: ExtractRoutes<T[K]> }[keyof T]
+  ? ExtractRoutes<T[keyof T]>
   : never;
 
 type FlatApiRoutes = ExtractRoutes<typeof ApiRoutes>;
