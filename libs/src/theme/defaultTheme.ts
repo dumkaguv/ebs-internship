@@ -64,5 +64,12 @@ export const defaultTheme: ThemeConfig = {
       colorPrimary: "rgb(59,130,246)",
       paddingXS: 12,
     },
+    Table: {
+      headerBg: "#fff",
+      borderColor: "#E2E8F0",
+      borderRadius: 0,
+      headerBorderRadius: 0,
+      controlItemBgActive: "#fff",
+    },
   },
 };
