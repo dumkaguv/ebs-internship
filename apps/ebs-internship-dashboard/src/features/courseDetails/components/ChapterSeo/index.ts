@@ -1,0 +1,1 @@
+export { ChapterSeo } from "./ChapterSeo";
