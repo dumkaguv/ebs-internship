@@ -5,13 +5,15 @@ import { SalesChart } from "@/features/dashboard/components/SalesChart";
 import { ReviewsBanner } from "@/components/ReviewsBanner";
 import { DashboardCourses } from "@/features/dashboard/components/DashboardCourses";
 import { useQuery } from "@tanstack/react-query";
-import { fetchDashboardCourses } from "@/features/dashboard/api/fetchDashboardCourses";
+import { fetchDashboardCourses } from "@/services/adminCourses";
+import { CourseCard } from "@/components/CourseCard";
 
 export const Dashboard = () => {
   const { styles } = useDashboardMainStyles();
+  const perPage = 3;
   const { data } = useQuery({
-    queryKey: ["courses"],
-    queryFn: fetchDashboardCourses,
+    queryKey: ["courses", perPage],
+    queryFn: () => fetchDashboardCourses({ per_page: perPage }),
   });
 
   return (
@@ -41,7 +43,7 @@ export const Dashboard = () => {
         gap={10}
       >
         <Typography.Title level={4}>Courses</Typography.Title>
-        <DashboardCourses data={data ?? []} />
+        <CourseCard data={data?.data ?? []} />
       </Flex>
     </Flex>
   );

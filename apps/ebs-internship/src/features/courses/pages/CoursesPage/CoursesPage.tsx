@@ -1,9 +1,10 @@
 import { Container, Section } from "@/components";
-import { Flex, Input, Pagination, Typography } from "antd";
+import { Flex, Input, Typography } from "antd";
 import { Sort, Filters, CourseList } from "@/features/courses/components";
 import { useCourses } from "@/features/courses/hooks";
 import { SearchOutlined } from "@ant-design/icons";
 import { useCoursesPageStyles } from "./CoursesPageStyles";
+import { PaginationComponent } from "@libs/components";
 
 export const CoursesPage = () => {
   const {
@@ -61,12 +62,11 @@ export const CoursesPage = () => {
                 isLoading={isLoading}
               />
               {!isLoading && courses.length > 0 && total > perPage && (
-                <Pagination
+                <PaginationComponent
                   current={currentPage}
                   pageSize={perPage}
                   onChange={(page) => setCurrentPage(page)}
                   total={total}
-                  align="center"
                 />
               )}
             </Flex>
