@@ -29,7 +29,6 @@ export const CourseAddPage = () => {
           retry: false,
         });
 
-        console.log("Course loaded", course);
         setCourse(course);
       } catch (error) {
         message.error("Failed to load course");
@@ -39,6 +38,13 @@ export const CourseAddPage = () => {
 
     loadCourse();
   }, [currentStep, id, queryClient, setCourse]);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [currentStep]);
 
   const items: TabsProps["items"] = [
     {

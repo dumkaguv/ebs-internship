@@ -34,7 +34,6 @@ export const CourseAddFormStep2 = ({ title }: Props) => {
 
   const onButtonNextClick = async () => {
     const valuesFromForm = form.getFieldsValue();
-    console.log(valuesFromForm);
 
     const updateData: Partial<UpdateCourseBody> = {
       description: valuesFromForm.description,

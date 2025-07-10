@@ -16,8 +16,6 @@ export const CourseDetailsPage = () => {
     queryFn: () => Api.courses.fetchCourseDetails(id!),
   });
 
-  console.log(data);
-
   if (isLoading)
     return (
       <Flex
