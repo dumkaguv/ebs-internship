@@ -4,22 +4,24 @@ import { UploadPhoto } from "./UploadPhoto";
 import { UploadVideo } from "./UploadVideo";
 import { useCourseAddFormStep2Styles } from "./CourseAddFormStep2Styles";
 import { CourseDescription } from "./CourseDescription";
-import { DynamicFieldsList } from "./DynamicFieldsList";
 import { useForm } from "antd/es/form/Form";
 import { ApiClient } from "@/services/apiClient";
 import { useAddCourseFormStore } from "@/features/course/stores";
 import { updateCourse } from "@/features/course/api";
 import { FileType } from "@/features/course/stores/courseAddFormStore";
 import { UpdateCourseBody } from "@/features/course/api/updateCourse";
+import { AssignAuthors } from "./AssignAuthors";
+import { Author } from "@libs";
 
 interface Props {
   title: string;
 }
 
-interface FormValues {
+export interface FormValues {
   photoFile: FileType;
   videoFile: FileType;
   description: string;
+  authors: Author[];
 }
 
 export const CourseAddFormStep2 = ({ title }: Props) => {
@@ -32,6 +34,7 @@ export const CourseAddFormStep2 = ({ title }: Props) => {
 
   const onButtonNextClick = async () => {
     const valuesFromForm = form.getFieldsValue();
+    console.log(valuesFromForm);
 
     const updateData: Partial<UpdateCourseBody> = {
       description: valuesFromForm.description,
@@ -67,7 +70,9 @@ export const CourseAddFormStep2 = ({ title }: Props) => {
       updateData.video_path = `/${uploadedVideo.name}`;
     }
 
-    const updatedCourse = await updateCourse(course.id, updateData);
+    const updatedCourse = await updateCourse(course.id, updateData, {
+      authors: valuesFromForm.authors.map((author) => author.id),
+    });
 
     if (!updatedCourse) {
       message.error("Failed to update course");
@@ -98,33 +103,10 @@ export const CourseAddFormStep2 = ({ title }: Props) => {
         <Flex className={styles.sectionDivider}>
           <CourseDescription form={form} />
         </Flex>
-        <Flex
-          vertical
-          gap={24}
-          className={styles.sectionDivider}
-        >
-          <DynamicFieldsList
-            inputsName="teach"
-            title="What you will teach in this course"
-            placeholder="What you will teach in this course..."
-          />
+
+        <Flex className={styles.sectionDivider}>
+          <AssignAuthors form={form} />
         </Flex>
-        <Flex
-          vertical
-          gap={24}
-          className={styles.sectionDivider}
-        >
-          <DynamicFieldsList
-            inputsName="audience"
-            title="Target Audience"
-            placeholder="Who this course is for..."
-          />
-        </Flex>
-        <DynamicFieldsList
-          inputsName="requirements"
-          title="Course requirements"
-          placeholder="What is your course requirements..."
-        />
       </StepContent>
     </Form>
   );

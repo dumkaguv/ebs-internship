@@ -23,7 +23,7 @@ interface FormValues {
   language: string;
   level: string;
   duration: number;
-  tags: number[];
+  tags: string[];
   categories: number[];
 }
 
@@ -99,7 +99,7 @@ export const CourseAddFormStep1 = ({ title }: Props) => {
       level: course.level ?? "",
       duration: Number(course.duration),
       categories: course.categories?.map((cat) => cat.id),
-      tags: course.tags?.map((tag) => tag.id),
+      tags: course.tags?.map((tag) => tag.title),
     });
   }, [course, form]);
 
@@ -188,7 +188,7 @@ export const CourseAddFormStep1 = ({ title }: Props) => {
                   id="tag"
                   virtual={false}
                   placeholder="Select tag..."
-                  mode="multiple"
+                  mode="tags"
                   loading={tagsIsLoading}
                   options={tags}
                 />

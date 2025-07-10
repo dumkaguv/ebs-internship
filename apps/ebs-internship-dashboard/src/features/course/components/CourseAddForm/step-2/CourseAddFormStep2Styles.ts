@@ -30,5 +30,20 @@ export const useCourseAddFormStep2Styles = createStyles(({ css, token }) => {
         object-fit: contain;
       }
     `,
+
+    inputAuthors: css`
+      && {
+        height: 50px;
+      }
+    `,
+
+    authorTag: css`
+      && {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px;
+      }
+    `,
   };
 });

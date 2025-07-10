@@ -10,7 +10,7 @@ export const useCourseAddFormFirstStep = () => {
 
   const { data: tagsRaw, isLoading: tagsIsLoading } = useQuery({
     queryKey: ["tags"],
-    queryFn: Api.tags.fetchTags,
+    queryFn: Api.tags.fetchUniqueTags,
   });
 
   const categories: SelectProps["options"] = categoriesRaw?.map(
@@ -20,21 +20,8 @@ export const useCourseAddFormFirstStep = () => {
     })
   );
 
-  const uniqueTags = tagsRaw
-    ? Array.from(
-        tagsRaw
-          .reduce((map, tag) => {
-            if (!map.has(tag.title)) {
-              map.set(tag.title, tag);
-            }
-            return map;
-          }, new Map<string, (typeof tagsRaw)[0]>())
-          .values()
-      )
-    : [];
-
-  const tags: SelectProps["options"] = uniqueTags.map(({ id, title }) => ({
-    value: id,
+  const tags: SelectProps["options"] = tagsRaw?.map(({ id, title }) => ({
+    value: title,
     label: title,
   }));
 

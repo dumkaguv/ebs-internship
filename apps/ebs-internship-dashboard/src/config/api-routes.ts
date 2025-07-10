@@ -15,6 +15,7 @@ export const ApiRoutes = {
   PRODUCTS: `${ADMIN_PREFIX}/products`,
   LESSONS: `${ADMIN_PREFIX}/lessons`,
   TOPICS: `${ADMIN_PREFIX}/topics`,
+  AUTHORS: "/tutors",
 };
 
 type ExtractRoutes<T> = T extends string

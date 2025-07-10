@@ -31,7 +31,8 @@ export interface UpdateCourseBody {
 
 interface UpdateCourseParams {
   categories?: number[];
-  tags?: number[];
+  tags?: string[];
+  authors?: number[];
 }
 
 export const updateCourse = async (
