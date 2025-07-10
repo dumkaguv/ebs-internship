@@ -26,8 +26,7 @@ export const useCourseAddFormStep2Styles = createStyles(({ css, token }) => {
       && {
         width: 230px !important;
         height: 220px !important;
-        flex-shrink: 0;
-        object-fit: contain;
+        object-fit: cover;
       }
     `,
 

@@ -12,15 +12,17 @@ import { FileType } from "@/features/course/stores/courseAddFormStore";
 import { UpdateCourseBody } from "@/features/course/api/updateCourse";
 import { AssignAuthors } from "./AssignAuthors";
 import { Author } from "@libs";
+import { StaticLabelInput } from "@/components";
 
 interface Props {
   title: string;
 }
 
 export interface FormValues {
-  photoFile: FileType;
-  videoFile: FileType;
-  description: string;
+  photoFile?: FileType;
+  videoFile?: FileType;
+  description?: string;
+  target_group?: string;
   authors: Author[];
 }
 
@@ -99,12 +101,35 @@ export const CourseAddFormStep2 = ({ title }: Props) => {
           <UploadPhoto />
           <UploadVideo />
         </Flex>
+
         <Flex className={styles.sectionDivider}>
           <CourseDescription form={form} />
         </Flex>
 
         <Flex className={styles.sectionDivider}>
-          <AssignAuthors form={form} />
+          <Flex
+            vertical
+            gap={32}
+            className="w-full"
+          >
+            <AssignAuthors form={form} />
+            <Form.Item
+              name="target_group"
+              className="w-full"
+              initialValue={course.target_group || undefined}
+            >
+              <StaticLabelInput
+                id="target_group"
+                label="Target Group"
+                placeholder="Who this course is for..."
+                count={{
+                  show: true,
+                  max: 120,
+                }}
+                allowClear
+              />
+            </Form.Item>
+          </Flex>
         </Flex>
       </StepContent>
     </Form>
