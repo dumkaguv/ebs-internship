@@ -88,7 +88,6 @@ export const CartPage = () => {
               ) : (
                 <Flex
                   vertical
-                  align="center"
                   gap={16}
                 >
                   <Typography.Title

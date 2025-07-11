@@ -100,6 +100,7 @@ export const OrderDetails = ({ cart, isPending }: Props) => {
         />
         <Button
           type="primary"
+          disabled={cart?.items.length === 0}
           loading={isPending}
         >
           Proceed to Checkout

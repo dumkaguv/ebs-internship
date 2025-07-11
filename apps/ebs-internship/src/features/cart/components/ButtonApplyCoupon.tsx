@@ -78,6 +78,7 @@ export const ButtonApplyCoupon = ({ cart, isLoading }: Props) => {
       <Button
         onClick={onButtonClick}
         loading={isDeleting || isApplying || isLoading}
+        disabled={cart?.items.length === 0}
       >
         {cart?.coupon ? "Delete Coupon" : "Apply a Coupon"}
       </Button>
