@@ -2,7 +2,7 @@ export const LOCAL_STORAGE = {
   ACCESS_TOKEN: "access_token",
   EXPIRES_AT: "expires_at",
   USER_ROLE: "user_role",
-  COURSE_ADD_FORM: "course_add_form",
+  WISHLIST: "wishlist",
 } as const;
 
 export const USER_ROLES = {
