@@ -32,10 +32,7 @@ export const CourseDetailsPage = () => {
 
   return (
     <>
-      <CourseDetailsHero
-        data={data}
-        id={Number(id)}
-      />
+      <CourseDetailsHero data={data} />
       <CourseDetailsInformation data={data} />
       <CourseList
         title="More Courses Like This"

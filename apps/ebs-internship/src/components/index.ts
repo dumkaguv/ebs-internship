@@ -11,3 +11,5 @@ export { Section } from "./Section";
 export { CourseList } from "./CourseList";
 export { ProtectedRoute } from "./ProtectedRoute";
 export { CoursesByMentor } from "./CoursesByMentor";
+export { ButtonAddToCart } from "./ButtonAddToCart";
+export { CourseStatistics } from "./CourseStatistics";

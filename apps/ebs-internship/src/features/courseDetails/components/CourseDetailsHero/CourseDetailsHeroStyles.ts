@@ -55,13 +55,6 @@ export const useCourseDetailsHeroStyles = createStyles(({ token, css }) => {
     customButtonAdd: css`
       &&.ant-btn {
         margin-bottom: 16px;
-        background-color: black;
-        color: white;
-        &&.ant-btn:hover {
-          background-color: #333;
-          border-color: #333;
-          color: white;
-        }
       }
     `,
 
