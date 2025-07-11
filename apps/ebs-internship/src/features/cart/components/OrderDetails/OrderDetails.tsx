@@ -94,7 +94,10 @@ export const OrderDetails = ({ cart, isPending }: Props) => {
         gap={8}
         className={styles.actionButtons}
       >
-        <ButtonApplyCoupon cart={cart} />
+        <ButtonApplyCoupon
+          cart={cart}
+          isLoading={isPending}
+        />
         <Button
           type="primary"
           loading={isPending}

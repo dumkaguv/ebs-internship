@@ -11,9 +11,10 @@ interface FormValues {
 
 interface Props {
   cart: Cart;
+  isLoading: boolean;
 }
 
-export const ButtonApplyCoupon = ({ cart }: Props) => {
+export const ButtonApplyCoupon = ({ cart, isLoading }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [form] = useForm<FormValues>();
@@ -76,7 +77,7 @@ export const ButtonApplyCoupon = ({ cart }: Props) => {
     <>
       <Button
         onClick={onButtonClick}
-        loading={isDeleting}
+        loading={isDeleting || isApplying || isLoading}
       >
         {cart?.coupon ? "Delete Coupon" : "Apply a Coupon"}
       </Button>
