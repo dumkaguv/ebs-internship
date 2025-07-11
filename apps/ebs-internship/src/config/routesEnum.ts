@@ -14,6 +14,7 @@ export const RoutesEnum = {
     SETTINGS: "/profile/settings",
     REVIEWS: "/profile/reviews",
   },
+  WISHLIST: "/wishlist",
 } as const;
 
 type ExtractRoutes<T> = T extends string
