@@ -1,6 +1,6 @@
-import { Card, Typography, Button, Flex, Avatar, message } from "antd";
+import { Card, Typography, Button, Flex, Avatar, message, Rate } from "antd";
 import { GlobalOutlined } from "@ant-design/icons";
-import { Container } from "@/components";
+import { Container, SocialIcons } from "@/components";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { Link } from "react-router-dom";
 import { Course } from "@libs";
@@ -39,19 +39,48 @@ export const CourseDetailsHero = ({ data, id }: Props) => {
         >
           <Breadcrumb title={data?.title} />
 
-          <Flex vertical>
-            <Typography.Title level={1}>{data?.title}</Typography.Title>
-            <Typography.Paragraph>{data?.description}</Typography.Paragraph>
+          <Flex
+            vertical
+            gap={17}
+          >
+            <Typography.Title level={1}>
+              {data?.title ?? "Introduction to User Experience Design"}
+            </Typography.Title>
+            <Typography.Paragraph>
+              {data?.description ??
+                "This course is meticulously crafted to provide you with a foundational understanding of the principles, methodologies, and tools that drive exceptional user experiences in the digital landscape."}
+            </Typography.Paragraph>
           </Flex>
           <Flex
+            className={styles.detailsContainer}
             vertical
             gap={24}
           >
-            <Flex align="center">
-              <Typography.Text>
-                {data?.duration ?? "0"} Total Hours. {data?.lessons?.length}{" "}
-                Lessons. {data?.level ?? "0"} Level
-              </Typography.Text>
+            <Flex
+              align="center"
+              gap={12}
+            >
+              <Flex
+                align="center"
+                gap={4}
+              >
+                <Typography.Paragraph className={styles.rateNumber}>
+                  4.6
+                </Typography.Paragraph>
+                <Rate
+                  disabled
+                  defaultValue={5}
+                  className={styles.rate}
+                />
+                <Typography.Paragraph>(651651 rating)</Typography.Paragraph>
+              </Flex>
+
+              <div className={styles.line}></div>
+
+              <Typography.Paragraph>
+                {data?.duration ?? "22"} Total Hours. {data?.lessons?.length}{" "}
+                Lectures. {data?.level?.toLocaleUpperCase() ?? "All"} Level
+              </Typography.Paragraph>
             </Flex>
 
             <Flex
@@ -59,10 +88,13 @@ export const CourseDetailsHero = ({ data, id }: Props) => {
               gap={8}
             >
               <Avatar
-                src={data?.author?.url_avatar}
-                size={40}
+                src={
+                  data?.author?.url_avatar ??
+                  "https://wellms-multidomain-demo.s3.pl-waw.scw.cloud/avatars/2/avatar.png"
+                }
+                size={45}
               />
-              <Typography.Text>Created by</Typography.Text>
+              <Typography.Paragraph>Created by</Typography.Paragraph>
               <Link to={getRouteUrlById(RoutesEnum.MENTORS, data?.author_id)}>
                 {data?.author?.first_name} {data?.author?.last_name}
               </Link>
@@ -72,8 +104,10 @@ export const CourseDetailsHero = ({ data, id }: Props) => {
               align="center"
               gap={8}
             >
-              <GlobalOutlined size={24} />
-              <Typography.Text>Language: {data?.language}</Typography.Text>
+              <GlobalOutlined className={styles.globalIcon} />
+              <Typography.Text>
+                Language: {data.language?.toLocaleUpperCase() ?? "English"}
+              </Typography.Text>
             </Flex>
           </Flex>
         </Flex>
@@ -88,42 +122,66 @@ export const CourseDetailsHero = ({ data, id }: Props) => {
                 "https://foundr.com/wp-content/uploads/2021/09/Best-online-course-platforms.png"
               }
             />
-            <Typography.Title
-              className={styles.cardTitle}
-              level={3}
+            <Flex
+              align="center"
+              gap={13}
             >
-              {data?.product?.price_old ? `$${data.product.price_old}` : "Free"}
-
-              {data?.product?.price_old && (
+              {data?.product?.price !== 0 ? (
                 <>
+                  <Typography.Title
+                    className={styles.cardTitle}
+                    level={3}
+                  >
+                    ${data?.product?.price}
+                  </Typography.Title>
                   <Typography.Text
                     delete
                     type="secondary"
                   >
-                    $
-                    {(data.product.price_old ?? 0) *
-                      (1 + (data.product.tax_rate ?? 0) / 100)}
+                    ${data?.product?.price_old ?? 0}
                   </Typography.Text>
                   <Typography.Text className={styles.rateText}>
                     {data?.product?.tax_rate}% Off
                   </Typography.Text>
                 </>
+              ) : (
+                <Typography.Title
+                  className={styles.cardTitle}
+                  level={3}
+                >
+                  Free
+                </Typography.Title>
               )}
-            </Typography.Title>
-            <Button
-              onClick={() => mutate({ id })}
-              loading={isPending}
-              className={styles.customButtonAdd}
-              block
+            </Flex>
+            <Flex
+              vertical
+              gap={16}
             >
-              Add To Cart
-            </Button>
-            <Button
-              className={styles.customButtonBuy}
-              block
+              <Button
+                onClick={() => mutate({ id })}
+                loading={isPending}
+                className={styles.customButtonAdd}
+                block
+              >
+                Add To Cart
+              </Button>
+              <Button
+                className={styles.customButtonBuy}
+                block
+              >
+                Buy Now
+              </Button>
+            </Flex>
+            <div className={styles.cardLine}></div>
+            <Flex
+              vertical
+              gap={8}
             >
-              Buy Now
-            </Button>
+              <Typography.Paragraph style={{ margin: 0 }}>
+                Share
+              </Typography.Paragraph>
+              <SocialIcons />
+            </Flex>
           </Card>
         </Flex>
       </Container>

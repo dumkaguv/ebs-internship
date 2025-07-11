@@ -6,14 +6,13 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { fetchCourseDetails } from "@/features/courseDetails/api";
 import { Flex, Spin, Typography } from "antd";
-import { CourseList } from "@/components";
+import { CourseList, OurCustomer } from "@/components";
 
 export const CourseDetailsPage = () => {
   const { id } = useParams();
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["courses", id],
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    queryFn: () => fetchCourseDetails(id!),
+    queryFn: () => fetchCourseDetails(Number(id)),
   });
 
   if (isLoading)
@@ -37,6 +36,7 @@ export const CourseDetailsPage = () => {
         id={Number(id)}
       />
       <CourseDetailsInformation data={data} />
+      <OurCustomer />
       <CourseList
         title="More Courses Like This"
         category={data.categories[0]?.name}
