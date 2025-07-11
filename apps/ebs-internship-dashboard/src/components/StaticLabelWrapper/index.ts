@@ -1,0 +1,1 @@
+export { StaticLabelWrapper } from "./StaticLabelWrapper";

@@ -1,0 +1,1 @@
+export { BecomeInstructorPromo } from "./BecomeInstructorPromo";

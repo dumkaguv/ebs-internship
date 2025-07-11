@@ -8,6 +8,15 @@
     },
     {
       "path": "./apps/ebs-internship"
+    },
+    {
+      "path": "./apps/ebs-internship-dashboard-e2e"
+    },
+    {
+      "path": "./apps/ebs-internship-dashboard"
+    },
+    {
+      "path": "./libs"
     }
   ]
 }
