@@ -91,7 +91,7 @@ export const CourseAddFormStep2 = ({ title }: Props) => {
       <StepContent
         form={form}
         title={title}
-        onButtonNextClickCB={onButtonNextClick}
+        onNext={onButtonNextClick}
       >
         <Flex
           gap={48}

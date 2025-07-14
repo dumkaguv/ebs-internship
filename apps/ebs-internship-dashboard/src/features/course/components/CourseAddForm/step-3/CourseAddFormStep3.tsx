@@ -77,7 +77,7 @@ export const CourseAddFormStep3 = ({ title }: Props) => {
       <StepContent
         form={form}
         title={title}
-        onButtonNextClickCB={onButtonNextClick}
+        onNext={onButtonNextClick}
       >
         <Flex
           vertical
