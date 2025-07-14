@@ -28,10 +28,43 @@ export const LessonCollapse = ({
 }: Props) => {
   const theme = useTheme();
 
+  const onClickAdd = () => topicsAddMap.current[lessonField.name]?.();
+
+  const onClickRemove = () => {
+    const lesson = form.getFieldValue(["lessons", lessonField.name]);
+
+    if (lesson?.id) {
+      deleteLessonMutate(lesson.id);
+    }
+    removeLesson(lessonField.name);
+  };
+
+  const createAddTopicFn = (
+    add: (initialValue: unknown) => void,
+    topicCount: number
+  ) => {
+    return () => {
+      add({
+        title: "",
+        description: "",
+        summary: "",
+        introduction: "",
+        order: topicCount + 1,
+        active: true,
+        preview: true,
+      });
+    };
+  };
+
+  console.log("lesson");
+
   return (
     <Form.Item
       noStyle
-      shouldUpdate
+      shouldUpdate={(prev, curr) =>
+        prev.lessons?.[lessonField.name]?.title !==
+        curr.lessons?.[lessonField.name]?.title
+      }
     >
       {() => {
         const lessonTitle = form.getFieldValue([
@@ -53,25 +86,11 @@ export const LessonCollapse = ({
                     <span>{lessonTitle || "Lesson title (edit)"}</span>
                     <ActionButtons
                       form={form}
-                      onClickAdd={() =>
-                        topicsAddMap.current[lessonField.name]?.()
-                      }
-                      onClickRemove={() => {
-                        const lesson = form.getFieldValue([
-                          "lessons",
-                          lessonField.name,
-                        ]);
-
-                        if (lesson?.id) {
-                          deleteLessonMutate(lesson.id);
-                        }
-                        removeLesson(lessonField.name);
-                      }}
+                      onClickAdd={onClickAdd}
+                      onClickRemove={onClickRemove}
                       modalTitle="Edit Lesson Title"
                       inputEditLabel="Lesson"
-                      inputEditId={`lesson_title_${Math.random().toPrecision(
-                        6
-                      )}`}
+                      inputEditId={`lesson_title_lesson_${lessonField.name}`}
                       inputEditPlaceholder="Write your lesson name here..."
                       fieldName="title"
                       index={lessonField.name}
@@ -81,16 +100,10 @@ export const LessonCollapse = ({
                 children: (
                   <Form.List name={[lessonField.name, "topics"]}>
                     {(topicFields, { add, remove }) => {
-                      topicsAddMap.current[lessonField.name] = () =>
-                        add({
-                          title: "",
-                          description: "",
-                          summary: "",
-                          introduction: "",
-                          order: topicFields.length + 1,
-                          active: true,
-                          preview: true,
-                        });
+                      topicsAddMap.current[lessonField.name] = createAddTopicFn(
+                        add,
+                        topicFields.length
+                      );
 
                       return (
                         <Collapse
