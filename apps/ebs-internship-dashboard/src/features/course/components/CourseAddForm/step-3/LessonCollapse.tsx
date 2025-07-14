@@ -56,8 +56,6 @@ export const LessonCollapse = ({
     };
   };
 
-  console.log("lesson");
-
   return (
     <Form.Item
       noStyle
