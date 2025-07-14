@@ -1,5 +1,5 @@
 import { Avatar, Button, Flex, List, Typography } from "antd";
-import { useUserProfileStyles } from "./UserProfileStyles";
+import { useUserProfileSidebarStyles } from "./UserProfileSidebarStyles";
 import { Link, useLocation } from "react-router-dom";
 import { RoutesEnum } from "@/config/routesEnum";
 import { FC } from "react";
@@ -12,13 +12,13 @@ interface Props {
 const UserProfile: FC<Props> = ({ data }) => {
   const location = useLocation();
   const currentPath = location.pathname;
-  const { styles } = useUserProfileStyles();
+  const { styles } = useUserProfileSidebarStyles();
 
   const profileLinks = [
     { key: "profile", label: "Profile", path: RoutesEnum.PROFILE.BASE },
     { key: "courses", label: "My Courses", path: RoutesEnum.PROFILE.COURSES },
     { key: "teachers", label: "Teachers", path: RoutesEnum.PROFILE.TEACHERS },
-    { key: "message", label: "Message", path: RoutesEnum.PROFILE.MESSAGE },
+    { key: "settings", label: "Settings", path: RoutesEnum.PROFILE.SETTINGS },
   ];
 
   return (

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchUserProfile } from "@/features/userProfile/api/fetchUserProfile";
-import { UserProfile } from "../components";
+import { UserProfileSidebar } from "@/features/userProfile/components/UserProfileSidebar";
 import { Outlet } from "react-router-dom";
 import { Container } from "@/components";
 import { useUserProfilePageStyles } from "./UserProfilePageStyles";
@@ -12,11 +12,9 @@ function UserProfilePage() {
     queryFn: fetchUserProfile,
   });
 
-  console.log(data);
-
   return (
     <Container className={styles.pageContainer}>
-      <UserProfile data={data} />
+      <UserProfileSidebar data={data} />
 
       <Outlet context={{ data }} />
     </Container>

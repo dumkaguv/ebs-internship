@@ -1,6 +1,6 @@
 import { createStyles } from "antd-style";
 
-export const useUserProfileStyles = createStyles(({ token, css }) => {
+export const useUserProfileSidebarStyles = createStyles(({ token, css }) => {
   return {
     profileContainer: css`
       max-width: 290px;
