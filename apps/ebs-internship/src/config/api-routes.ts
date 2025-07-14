@@ -11,6 +11,7 @@ export const ApiRoutes = {
     PASSWORD: "/profile/password",
     AVATAR: "profile/upload-avatar",
     SETTINGS: "profile/settings",
+    COURSES: "courses/my",
   },
   CART: {
     BASE: "/cart",

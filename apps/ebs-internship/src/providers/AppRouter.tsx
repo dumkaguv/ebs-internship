@@ -12,6 +12,7 @@ import { ProtectedRoute } from "@/components";
 
 import UserProfilePage from "@/features/userProfile/pages/UserProfilePage";
 import {
+  UserCourses,
   UserDashboard,
   UserProfileForm,
 } from "@/features/userProfile/components";
@@ -61,6 +62,10 @@ export const AppRouter = () => {
               <Route
                 path={RoutesEnum.PROFILE.SETTINGS}
                 element={<UserProfileForm />}
+              />
+              <Route
+                path={RoutesEnum.PROFILE.COURSES}
+                element={<UserCourses />}
               />
             </Route>
           </Route>

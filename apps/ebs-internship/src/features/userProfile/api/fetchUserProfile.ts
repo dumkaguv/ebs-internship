@@ -1,5 +1,5 @@
 import { ApiRoutes } from "@/config/api-routes";
-import { axiosInstance,ApiResponse } from "@libs";
+import { axiosInstance, ApiResponse } from "@libs";
 import { User } from "@libs/types/user";
 
 export const fetchUserProfile = async () => {
