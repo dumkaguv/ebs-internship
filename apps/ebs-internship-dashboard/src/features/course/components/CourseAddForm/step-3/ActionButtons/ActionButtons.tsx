@@ -10,7 +10,7 @@ import {
   Typography,
 } from "antd";
 import { useTheme } from "antd-style";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useActionButtonsStyles } from "./ActionButtonsStyles";
 
 interface Props {
@@ -53,7 +53,7 @@ export const ActionButtons = ({
     setIsModalEditOpen(true);
   };
 
-  const handleOk = () => {
+  const handleOk = useCallback(() => {
     if (innerIndex !== undefined) {
       form.setFieldValue(
         ["lessons", index, "topics", innerIndex, fieldName],
@@ -63,7 +63,7 @@ export const ActionButtons = ({
       form.setFieldValue(["lessons", index, fieldName], inputValue);
     }
     setIsModalEditOpen(false);
-  };
+  }, [form, index, innerIndex, fieldName, inputValue, setIsModalEditOpen]);
 
   const handleCancel = () => {
     setIsModalEditOpen(false);
