@@ -14,6 +14,7 @@ import UserProfilePage from "@/features/userProfile/pages/UserProfilePage";
 import {
   UserDashboard,
   UserProfileForm,
+  UserTeachers,
 } from "@/features/userProfile/components";
 
 export const AppRouter = () => {
@@ -61,6 +62,10 @@ export const AppRouter = () => {
               <Route
                 path={RoutesEnum.PROFILE.SETTINGS}
                 element={<UserProfileForm />}
+              />
+              <Route
+                path={RoutesEnum.PROFILE.TEACHERS}
+                element={<UserTeachers />}
               />
             </Route>
           </Route>
