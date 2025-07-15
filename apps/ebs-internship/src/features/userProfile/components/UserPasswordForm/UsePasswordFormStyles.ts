@@ -1,30 +1,33 @@
 import { createStyles } from "antd-style";
 
-export const useUserProfileLinksForm = createStyles(({ token, css }) => {
+export const useUserPasswordFormStyles = createStyles(({ token, css }) => {
   return {
-    userContainer: css`
+    passwordContainer: css`
       border: 1px solid ${token.grey.grey300};
       padding: 24px !important;
       border-radius: 16px;
-      width: 100%;
+      width: 45%;
       display: flex;
       flex-direction: column;
       gap: 16px;
-
-      && .ant-typography {
-        margin: 0px;
-      }
     `,
 
     inputForm: css`
       &&.ant-input {
         padding: 16px;
       }
+      &&.ant-input-affix-wrapper {
+        padding: 16px;
+      }
     `,
+
+    formItem: css`
+      width: 100%;
+    `,
+
     saveButton: css`
       align-self: baseline;
-      margin: 0px !important;
-      && .ant-btn {
+      &&.ant-btn {
         background-color: ${token.grey.grey900};
         color: #fff;
       }

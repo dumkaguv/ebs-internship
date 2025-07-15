@@ -1,4 +1,3 @@
-import { RoutesEnum } from "@/config/routesEnum";
 import { navigateToAdminProfile } from "@/utils";
 import { LOCAL_STORAGE, USER_ROLES } from "@libs";
 import { useLayoutEffect } from "react";
@@ -13,8 +12,6 @@ export const useNavigateToProfile = () => {
 
     if (isAdmin) {
       navigateToAdminProfile();
-    } else {
-      navigate(RoutesEnum.PROFILE.BASE);
     }
   }, [navigate]);
 };

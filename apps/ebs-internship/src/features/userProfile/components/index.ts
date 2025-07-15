@@ -1,6 +1,7 @@
 export { UserProfileSidebar } from "./UserProfileSidebar";
 export { UserProfileForm } from "./UserProfileForm";
-export { UserProfileImageForm } from "./UserProfileImageForm";
-export { UserProfileInformationForm } from "./UserProfileInformationForm";
-export { UserProfileLinksForm } from "./UserProfileLinksForm";
+export { UserImageForm } from "./UserImageForm";
+export { UserInformationForm } from "./UserInformationForm";
+export { UserLinksForm } from "./UserLinksForm";
 export { UserDashboard } from "./UserDashboard";
+export { UserPasswordForm } from "./UserPasswordForm";

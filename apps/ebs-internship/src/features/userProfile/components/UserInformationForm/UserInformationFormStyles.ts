@@ -1,6 +1,6 @@
 import { createStyles } from "antd-style";
 
-export const useUserProfileInformationForm = createStyles(({ token, css }) => {
+export const useUserInformationForm = createStyles(({ token, css }) => {
   return {
     formContainer: css`
       display: flex;

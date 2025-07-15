@@ -46,9 +46,15 @@ export const CourseDetailsHero = ({ data, id }: Props) => {
             <Typography.Title level={1}>
               {data?.title ?? "Introduction to User Experience Design"}
             </Typography.Title>
+            {/* <Typography.Paragraph>{data?.description}</Typography.Paragraph> */}
             <Typography.Paragraph>
-              {data?.description ??
-                "This course is meticulously crafted to provide you with a foundational understanding of the principles, methodologies, and tools that drive exceptional user experiences in the digital landscape."}
+              <p
+                dangerouslySetInnerHTML={{
+                  __html:
+                    data?.description ??
+                    "This course is meticulously crafted to provide you with a foundational understanding of the principles, methodologies, and tools that drive exceptional user experiences in the digital landscape.",
+                }}
+              />
             </Typography.Paragraph>
           </Flex>
           <Flex

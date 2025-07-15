@@ -1,19 +1,37 @@
 import { Button, Flex, Form, Input, message, Typography } from "antd";
-import { useUserProfileLinksForm } from "./UserProfileLinksFormStyles";
+import { useUserLinksForm } from "./UserLinksFormStyles";
 import { useForm } from "antd/es/form/Form";
 import { changeUserSettings } from "@/features/userProfile/api/changeUserSettings";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { queryClient } from "@/providers/TanstackQueryClient";
+import { fetchUserSettings } from "../../api";
+import { useEffect } from "react";
 
-export const UserProfileLinksForm = () => {
+export const UserLinksForm = () => {
   const [form] = useForm();
+  const { data } = useQuery({
+    queryKey: ["settings"],
+    queryFn: fetchUserSettings,
+  });
 
-  const { styles } = useUserProfileLinksForm();
+  const { styles } = useUserLinksForm();
+
+  useEffect(() => {
+    if (data) {
+      form.setFieldsValue({
+        website: data.website || "",
+        twitter: data.twitter || "",
+        linkedin: data.linkedin || "",
+        youtube: data.youtube || "",
+        facebook: data.facebook || "",
+      });
+    }
+  }, [data, form]);
 
   const { mutate, isPending } = useMutation({
     mutationFn: changeUserSettings,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["profile"] });
+      queryClient.invalidateQueries({ queryKey: ["settings"] });
       message.success("Links are added");
     },
     onError: () => {

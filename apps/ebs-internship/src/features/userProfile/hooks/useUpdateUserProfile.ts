@@ -1,26 +1,22 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
-  changeUserSettings,
   changeUserEmail,
-  updateUserPassword,
+  changeUserInformation,
 } from "@/features/userProfile/api";
 import { message } from "antd";
 
 interface FormValues {
   first_name: string;
   last_name: string;
-  bio?: string;
+  bio: string;
   email: string;
-  current_password?: string;
-  new_password?: string;
-  new_confirm_password?: string;
 }
 
 export const useUpdateUserProfile = () => {
   const queryClient = useQueryClient();
 
   const updateProfile = useMutation({
-    mutationFn: changeUserSettings,
+    mutationFn: changeUserInformation,
     onError: () => {
       message.error("Failed to update profile");
     },
@@ -33,33 +29,10 @@ export const useUpdateUserProfile = () => {
     },
   });
 
-  const updatePassword = useMutation({
-    mutationFn: updateUserPassword,
-    onError: () => {
-      message.error("Failed to update password");
-    },
-  });
-
   const submit = async (values: FormValues) => {
-    const {
-      email,
-      current_password,
-      new_password,
-      new_confirm_password,
-      first_name,
-      last_name,
-      bio,
-    } = values;
+    const { email, first_name, last_name, bio } = values;
 
     try {
-      if (current_password && new_password && new_confirm_password) {
-        await updatePassword.mutateAsync({
-          current_password,
-          new_password,
-          new_confirm_password,
-        });
-      }
-
       if (email) {
         await updateEmail.mutateAsync({ email });
       }
@@ -72,10 +45,7 @@ export const useUpdateUserProfile = () => {
       console.error(err);
     }
   };
-  const isPending =
-    updateProfile.isPending ||
-    updateEmail.isPending ||
-    updatePassword.isPending;
+  const isPending = updateProfile.isPending || updateEmail.isPending;
 
   return { submit, isPending };
 };
