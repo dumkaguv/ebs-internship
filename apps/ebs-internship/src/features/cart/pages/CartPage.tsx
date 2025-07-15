@@ -28,7 +28,66 @@ export const CartPage = () => {
 
   const { styles } = useCartPageStyles();
 
-  const coursesCount = cart?.items.length ?? 0;
+  const renderCartContent = () => {
+    const coursesCount = cart?.items.length ?? 0;
+
+    if (isPending) {
+      return (
+        <>
+          <Typography.Text className={styles.divider}>
+            <Spin size="small" /> Loading your cart...
+          </Typography.Text>
+          <SkeletonCartItemList />
+        </>
+      );
+    }
+
+    if (coursesCount > 0) {
+      return (
+        <>
+          <Typography.Title
+            level={4}
+            className={styles.divider}
+          >
+            {coursesCount} {coursesCount === 1 ? "Course" : "Courses"} in cart
+          </Typography.Title>
+          <List
+            dataSource={cart?.items}
+            itemLayout="vertical"
+            renderItem={(cartItem) => (
+              <List.Item className={styles.listItem}>
+                <CartItem
+                  cartItem={cartItem}
+                  course={courses?.data.find((course) =>
+                    cartItem.product.productables.some(
+                      (productable) => productable.productable_id === course.id
+                    )
+                  )}
+                />
+              </List.Item>
+            )}
+          />
+        </>
+      );
+    }
+
+    return (
+      <Flex
+        vertical
+        gap={16}
+      >
+        <Typography.Title
+          level={4}
+          type="danger"
+        >
+          Your cart is empty
+        </Typography.Title>
+        <Typography.Text type="secondary">
+          Add some courses to your cart and come back here.
+        </Typography.Text>
+      </Flex>
+    );
+  };
 
   return (
     <Container>
@@ -51,56 +110,7 @@ export const CartPage = () => {
               gap={40}
               className="w-full"
             >
-              {isPending ? (
-                <>
-                  <Typography.Text className={styles.divider}>
-                    <Spin size="small" /> Loading your cart...
-                  </Typography.Text>
-                  <SkeletonCartItemList />
-                </>
-              ) : coursesCount > 0 ? (
-                <>
-                  <Typography.Title
-                    level={4}
-                    className={styles.divider}
-                  >
-                    {coursesCount} {coursesCount === 1 ? "Course" : "Courses"}{" "}
-                    in cart
-                  </Typography.Title>
-                  <List
-                    dataSource={cart?.items}
-                    itemLayout="vertical"
-                    renderItem={(cartItem) => (
-                      <List.Item className={styles.listItem}>
-                        <CartItem
-                          cartItem={cartItem}
-                          course={courses?.data.find((course) =>
-                            cartItem.product.productables.some(
-                              (productable) =>
-                                productable.productable_id === course.id
-                            )
-                          )}
-                        />
-                      </List.Item>
-                    )}
-                  />
-                </>
-              ) : (
-                <Flex
-                  vertical
-                  gap={16}
-                >
-                  <Typography.Title
-                    level={4}
-                    type="danger"
-                  >
-                    Your cart is empty
-                  </Typography.Title>
-                  <Typography.Text type="secondary">
-                    Add some courses to your cart and come back here.
-                  </Typography.Text>
-                </Flex>
-              )}
+              {renderCartContent()}
             </Flex>
 
             <OrderDetails
