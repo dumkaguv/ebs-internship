@@ -8,9 +8,9 @@ import {
   ChapterSeo,
 } from "@/features/courseDetails/components";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { changeChapterInformation } from "../../api/changeChapterInformation";
+import { changeChapterInformation } from "@/features/courseDetails/api/changeChapterInformation";
 import { useForm } from "antd/es/form/Form";
-import { fetchChapterDetails } from "../../api/fetchChapterDetails";
+import { fetchChapterDetails } from "@/features/courseDetails/api/fetchChapterDetails";
 
 export const CourseChapterDetails = () => {
   const [form] = useForm();
