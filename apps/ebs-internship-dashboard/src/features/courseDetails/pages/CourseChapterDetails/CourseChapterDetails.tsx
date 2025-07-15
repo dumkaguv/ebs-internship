@@ -46,7 +46,7 @@ export const CourseChapterDetails = () => {
       gap={16}
     >
       <Flex justify="space-between">
-        <Link to={getRouteUrlById(RoutesEnum.COURSES, Number(data?.course_id))}>
+        <Link to={getRouteUrlById(RoutesEnum.CHAPTER, Number(data?.course_id))}>
           <Typography.Paragraph>
             <LeftOutlined />
             Chapter {data?.order} - {data?.title}

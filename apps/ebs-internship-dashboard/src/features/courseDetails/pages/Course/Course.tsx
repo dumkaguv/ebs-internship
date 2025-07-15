@@ -12,6 +12,7 @@ import { fetchCourseDetails } from "@/features/courseDetails/api/fetchCourseDeta
 
 export const Course = () => {
   const { id } = useParams();
+  
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["courses", id],
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
