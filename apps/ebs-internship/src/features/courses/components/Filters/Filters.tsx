@@ -3,6 +3,7 @@ import { useFiltersStyles } from "./FiltersStyles";
 import { useMemo } from "react";
 import { useStyles } from "@/styles";
 import { useQuery } from "@tanstack/react-query";
+import { Api as ApiGlobal } from "@libs";
 import { Api } from "@/services/apiClient";
 import { LoadableCheckboxGroup } from "@/components/LoadableCheckboxGroup";
 
@@ -17,7 +18,7 @@ export const Filters = () => {
 
   const { data: categories, isLoading: isCategoriesLoading } = useQuery({
     queryKey: ["categories"],
-    queryFn: Api.categories.fetchCategories,
+    queryFn: ApiGlobal.categories.fetchCategories,
   });
 
   const filtersConfig = useMemo(

@@ -4,10 +4,11 @@ import { createTextRules } from "@/utils/createTextRules";
 import { useForm } from "antd/es/form/Form";
 import { useUpdateUserProfile } from "@/features/userProfile/hooks/useUpdateUserProfile";
 
-const UserProfileInformationForm = () => {
-  const [form] = useForm();
-  const { styles } = useUserProfileInformationForm();
+export const UserProfileInformationForm = () => {
   const { submit, isPending } = useUpdateUserProfile();
+  const [form] = useForm();
+
+  const { styles } = useUserProfileInformationForm();
 
   return (
     <Form
@@ -199,5 +200,3 @@ const UserProfileInformationForm = () => {
     </Form>
   );
 };
-
-export default UserProfileInformationForm;

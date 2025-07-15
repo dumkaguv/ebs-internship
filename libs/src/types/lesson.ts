@@ -10,6 +10,6 @@ export interface Lesson {
   course_id: number;
   active_from?: string | null;
   active_to?: string | null;
-  lessons: unknown;
+  lessons: Lesson[];
   topics: Topic[];
 }

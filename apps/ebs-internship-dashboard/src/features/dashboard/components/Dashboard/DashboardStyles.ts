@@ -5,7 +5,7 @@ export const useDashboardMainStyles = createStyles(({ token, css }) => {
     mainContainer: css`
       display: flex;
       width: 100%;
-      max-width: 1300px;
+      // max-width: 1300px;
       &&.ant-flex {
         padding: 16px;
       }

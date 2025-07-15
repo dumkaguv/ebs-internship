@@ -1,4 +1,3 @@
-// import { Button, Form } from "antd";
 import {
   UserProfileLinksForm,
   UserProfileInformationForm,
@@ -7,7 +6,7 @@ import {
 import { useUserProfileFormStyles } from "./UserProfileFormStyles";
 import { Flex } from "antd";
 
-const UserProfileForm = () => {
+export const UserProfileForm = () => {
   const { styles } = useUserProfileFormStyles();
 
   return (
@@ -22,5 +21,3 @@ const UserProfileForm = () => {
     </Flex>
   );
 };
-
-export default UserProfileForm;

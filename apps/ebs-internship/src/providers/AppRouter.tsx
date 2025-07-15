@@ -4,14 +4,16 @@ import { CourseDetailsPage } from "@/features/courseDetails";
 import { HomePage } from "@/features/home";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { SignInPage, SignUpPage } from "@/features/auth";
-
 import { MentorPage } from "@/features/mentorPage";
 import { CoursesPage } from "@/features/courses";
 import { CartPage } from "@/features/cart";
 import { ProtectedRoute } from "@/components";
-
-import UserProfilePage from "@/features/userProfile/pages/UserProfilePage";
-import { UserProfileForm } from "@/features/userProfile/components";
+import { UserProfilePage } from "@/features/userProfile/pages/UserProfilePage";
+import {
+  UserDashboard,
+  UserProfileForm,
+} from "@/features/userProfile/components";
+import { NotFoundPage } from "@libs";
 
 export const AppRouter = () => {
   return (
@@ -53,10 +55,18 @@ export const AppRouter = () => {
             >
               <Route
                 path={RoutesEnum.PROFILE.BASE}
+                element={<UserDashboard />}
+              />
+              <Route
+                path={RoutesEnum.PROFILE.SETTINGS}
                 element={<UserProfileForm />}
               />
             </Route>
           </Route>
+          <Route
+            path="*"
+            element={<NotFoundPage />}
+          />
         </Route>
       </Routes>
     </Router>

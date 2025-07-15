@@ -10,3 +10,4 @@ export type { ApiResponse } from "./apiResponse";
 export type { Token } from "./token";
 export type { Avatar } from "./userAvatar";
 export type { User } from "./user";
+export type { Profile } from "./profile";
