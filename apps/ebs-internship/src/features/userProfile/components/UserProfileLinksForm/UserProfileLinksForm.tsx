@@ -5,8 +5,9 @@ import { changeUserSettings } from "@/features/userProfile/api/changeUserSetting
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/providers/TanstackQueryClient";
 
-const UserProfileLinksForm = () => {
+export const UserProfileLinksForm = () => {
   const [form] = useForm();
+
   const { styles } = useUserProfileLinksForm();
 
   const { mutate, isPending } = useMutation({
@@ -104,5 +105,3 @@ const UserProfileLinksForm = () => {
     </Form>
   );
 };
-
-export default UserProfileLinksForm;

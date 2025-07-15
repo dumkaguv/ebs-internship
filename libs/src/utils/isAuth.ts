@@ -1,8 +1,8 @@
-import { ACCESS_TOKEN, EXPIRES_AT } from "../config";
+import { LOCAL_STORAGE } from "../config";
 
 export const isAuth = () => {
-  const token = localStorage.getItem(ACCESS_TOKEN);
-  const expiresAt = localStorage.getItem(EXPIRES_AT);
+  const token = localStorage.getItem(LOCAL_STORAGE.ACCESS_TOKEN);
+  const expiresAt = localStorage.getItem(LOCAL_STORAGE.EXPIRES_AT);
 
   if (!token || !expiresAt) return false;
 

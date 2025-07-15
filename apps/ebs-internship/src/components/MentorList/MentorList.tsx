@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Card, Flex, Image, List, Typography } from "antd";
 import { Link } from "react-router-dom";
 import { useMentorListStyles } from "./MentorListStyles";
+import { IMAGE_FALLBACKS } from "@libs";
 
 interface Props {
   title?: string;
@@ -42,7 +43,7 @@ export const MentorList = ({
                   cover={
                     <Image
                       src={mentor.url_avatar}
-                      fallback="https://static.vecteezy.com/system/resources/previews/046/409/821/non_2x/avatar-profile-icon-in-flat-style-male-user-profile-illustration-on-isolated-background-man-profile-sign-business-concept-vector.jpg"
+                      fallback={IMAGE_FALLBACKS.USER}
                       alt=""
                       preview={false}
                       height={240}

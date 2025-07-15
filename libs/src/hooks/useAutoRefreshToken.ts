@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { EXPIRES_AT } from "../config";
+import { LOCAL_STORAGE } from "../config";
 import { refreshAndSaveToken, getAccessToken } from "../utils";
 
 const DELAY_MIN_BEFORE_EXPIRE = 1;
@@ -10,7 +10,7 @@ export const useAutoRefreshToken = () => {
 
   useEffect(() => {
     const token = getAccessToken();
-    const expiresAtRaw = localStorage.getItem(EXPIRES_AT);
+    const expiresAtRaw = localStorage.getItem(LOCAL_STORAGE.EXPIRES_AT);
 
     if (!token || !expiresAtRaw) return;
 

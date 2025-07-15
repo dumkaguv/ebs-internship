@@ -13,5 +13,17 @@ export const antDesignTheme: ThemeConfig = {
       colorPrimaryHover: "rgba(59, 131, 246, 0.89)",
       colorPrimaryActive: "rgba(59, 131, 246, 0.78)",
     },
+    Input: {
+      paddingInline: 16,
+      paddingInlineLG: 20,
+      controlHeight: 50,
+    },
+    InputNumber: {
+      paddingInline: 16,
+      paddingInlineLG: 20,
+    },
+    Select: {
+      paddingSM: 16,
+    },
   },
 };

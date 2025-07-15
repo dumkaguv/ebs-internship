@@ -1,1 +1,1 @@
-export { default as UserProfileInformationForm } from "./UserProfileInformationForm";
+export { UserProfileInformationForm } from "./UserProfileInformationForm";
