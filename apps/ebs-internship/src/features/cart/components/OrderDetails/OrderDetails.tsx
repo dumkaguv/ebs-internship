@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const OrderDetails = ({ cart, isPending }: Props) => {
-  const { styles } = useOrderDetailsStyles();
+  const { styles } = useOrderDetailsStyles({ isPending });
 
   return (
     <Flex
@@ -21,15 +21,6 @@ export const OrderDetails = ({ cart, isPending }: Props) => {
       <Flex
         vertical
         gap={16}
-        style={
-          isPending
-            ? {
-                filter: "blur(4px)",
-                cursor: "not-allowed",
-                pointerEvents: "none",
-              }
-            : undefined
-        }
         className={styles.orderInfoInner}
       >
         <Flex
