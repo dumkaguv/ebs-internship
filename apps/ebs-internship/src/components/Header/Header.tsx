@@ -6,6 +6,7 @@ import {
   Avatar,
   MenuProps,
   Dropdown,
+  Badge,
 } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -22,6 +23,8 @@ import { useHeaderStyles } from "./HeaderStyles";
 import { IMAGE_FALLBACKS, useAuthStore } from "@libs";
 import { useLogout } from "@libs";
 import { useShallow } from "zustand/shallow";
+import { useQuery } from "@tanstack/react-query";
+import { Api } from "@/services/apiClient";
 
 const { Header } = Layout;
 
@@ -33,6 +36,11 @@ export const AppHeader = () => {
     useShallow((state) => [state.isAuth, state.profile])
   );
   const { logout } = useLogout();
+
+  const { data: cart } = useQuery({
+    queryKey: ["cart"],
+    queryFn: Api.cart.fetchCart,
+  });
 
   useEffect(() => {
     defineHeaderHeightCssVar(headerRef);
@@ -122,13 +130,18 @@ export const AppHeader = () => {
             >
               <HeartOutlined />
             </Button>
-            <Button
-              onClick={() => navigate(RoutesEnum.CART)}
-              type="text"
+            <Badge
+              count={cart?.items.length ?? 0}
               size="small"
             >
-              <ShoppingCartOutlined />
-            </Button>
+              <Button
+                onClick={() => navigate(RoutesEnum.CART)}
+                type="text"
+                size="small"
+              >
+                <ShoppingCartOutlined />
+              </Button>
+            </Badge>
             <Dropdown
               menu={{ items }}
               trigger={["click"]}

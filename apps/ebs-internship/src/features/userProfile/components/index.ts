@@ -1,3 +1,4 @@
+export { UserProfile } from "./UserProfile";
 export { UserProfileSidebar } from "./UserProfileSidebar";
 export { UserProfileForm } from "./UserProfileForm";
 export { UserImageForm } from "./UserImageForm";

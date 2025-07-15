@@ -18,8 +18,6 @@ export const UserProfileForm = () => {
 
   return (
     <Flex
-      vertical
-      gap={40}
       className={styles.formContainer}
     >
       <UserInformationForm data={data} />

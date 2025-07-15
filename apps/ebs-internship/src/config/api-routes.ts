@@ -15,6 +15,7 @@ export const ApiRoutes = {
   CART: {
     BASE: "/cart",
     PRODUCTS: "/cart/products",
+    VOUCHER: "/cart/voucher",
   },
 };
 
