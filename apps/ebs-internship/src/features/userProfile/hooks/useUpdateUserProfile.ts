@@ -1,7 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { changeUserSettings } from "@/features/userProfile/api/changeUserSettings";
-import { changeUserEmail } from "@/features/userProfile/api/changeUserEmail";
-import { updateUserPassword } from "@/features/userProfile/api/updateUserPassword";
+import {
+  changeUserSettings,
+  changeUserEmail,
+  updateUserPassword,
+} from "@/features/userProfile/api";
 import { message } from "antd";
 
 interface FormValues {

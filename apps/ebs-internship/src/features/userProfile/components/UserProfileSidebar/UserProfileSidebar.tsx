@@ -8,7 +8,7 @@ interface Props {
   data?: User;
 }
 
-export const UserProfile = ({ data }: Props) => {
+export const UserProfileSidebar = ({ data }: Props) => {
   const location = useLocation();
   const currentPath = location.pathname;
   const { styles } = useUserProfileSidebarStyles();

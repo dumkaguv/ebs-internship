@@ -11,3 +11,4 @@ export { StaticLabelInputNumber } from "./StaticLabelInputNumber";
 export { AdminGuardRoute } from "./AdminGuardRoute";
 export { TextFormattingToolbar } from "./TextFormattingToolbar";
 export { StaticLabelTextArea } from "./StaticLabelTextArea";
+export { PromotionBanner } from "./PromotionBanner";
