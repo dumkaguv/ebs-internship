@@ -7,13 +7,13 @@ import {
 import { useCartPageStyles } from "./CartPageStyles";
 import { fetchCourses } from "@/services/courses";
 import { Flex, List, Spin, Typography } from "antd";
-import { fetchCart } from "@/features/cart/api";
 import { useQuery } from "@tanstack/react-query";
+import { Api } from "@/services/apiClient";
 
 export const CartPage = () => {
   const { data: cart, isPending } = useQuery({
     queryKey: ["cart"],
-    queryFn: fetchCart,
+    queryFn: Api.cart.fetchCart,
   });
 
   const coursesIds = cart?.items.map(
