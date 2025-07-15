@@ -21,9 +21,11 @@ export const useUserProfileLinksForm = createStyles(({ token, css }) => {
         padding: 16px;
       }
     `,
+
     saveButton: css`
       align-self: baseline;
       margin: 0px !important;
+
       && .ant-btn {
         background-color: ${token.grey.grey900};
         color: #fff;

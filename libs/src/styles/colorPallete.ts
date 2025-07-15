@@ -9,7 +9,7 @@ type ShadeKey =
   | "800"
   | "900";
 
-type ColorType = "grey" | "primary";
+type ColorType = "grey" | "primary" | "warning";
 
 type ShadePalette<Color extends ColorType> = {
   [key in `${Color}${ShadeKey}`]: string;
@@ -18,6 +18,7 @@ type ShadePalette<Color extends ColorType> = {
 type ColorPalette = {
   grey: ShadePalette<"grey">;
   primary: ShadePalette<"primary">;
+  warning: ShadePalette<"warning">;
 };
 
 type ThemeCommon = {
@@ -41,7 +42,7 @@ const GREY = {
   grey700: "#334155",
   grey800: "#1d2939",
   grey900: "#0F172A",
-};
+} as const;
 
 const PRIMARY = {
   primary100: "#e0f2fe",
@@ -53,10 +54,23 @@ const PRIMARY = {
   primary700: "#84B41F",
   primary800: "#699016",
   primary900: "#384D0B",
-};
+} as const;
+
+const WARNING = {
+  warning100: "",
+  warning200: "",
+  warning300: "#FEC84B",
+  warning400: "",
+  warning500: "#EAB308",
+  warning600: "",
+  warning700: "",
+  warning800: "",
+  warning900: "",
+} as const;
 
 export const customThemePalette: FullTokenCustom = {
   common: { black: "#000000", white: "#FFFFFF" },
   primary: PRIMARY,
   grey: GREY,
-};
+  warning: WARNING,
+} as const;

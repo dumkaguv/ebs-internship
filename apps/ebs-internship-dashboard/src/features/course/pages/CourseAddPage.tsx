@@ -1,5 +1,4 @@
-import { message, Tabs } from "antd";
-import type { TabsProps } from "antd";
+import { Tabs, type TabsProps } from "antd";
 import {
   CourseAddFormStep1,
   CourseAddFormStep2,

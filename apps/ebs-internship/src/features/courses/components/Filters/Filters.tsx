@@ -18,7 +18,7 @@ export const Filters = () => {
 
   const { data: categories, isLoading: isCategoriesLoading } = useQuery({
     queryKey: ["categories"],
-    queryFn: ApiGlobal.categories.fetchCategories,
+    queryFn: () => ApiGlobal.categories.fetchCategories({ per_page: 1000 }),
   });
 
   const filtersConfig = useMemo(
