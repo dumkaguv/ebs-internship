@@ -11,6 +11,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { changeChapterInformation } from "@/features/courseDetails/api/changeChapterInformation";
 import { useForm } from "antd/es/form/Form";
 import { fetchChapterDetails } from "@/features/courseDetails/api/fetchChapterDetails";
+import { useEffect } from "react";
 
 export const CourseChapterDetails = () => {
   const [form] = useForm();
@@ -19,9 +20,18 @@ export const CourseChapterDetails = () => {
 
   const { data } = useQuery({
     queryKey: ["lessons", id],
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    queryFn: () => fetchChapterDetails(id!),
+    queryFn: () => fetchChapterDetails(Number(id)),
   });
+
+  useEffect(() => {
+    if (data) {
+      form.setFieldsValue({
+        title: data.title,
+        summary: data.summary,
+        duration: data.duration,
+      });
+    }
+  }, [data, form]);
 
   const { mutate, isPending } = useMutation({
     mutationFn: changeChapterInformation,
@@ -46,7 +56,9 @@ export const CourseChapterDetails = () => {
       gap={16}
     >
       <Flex justify="space-between">
-        <Link to={getRouteUrlById(RoutesEnum.CHAPTER, Number(data?.course_id))}>
+        <Link
+          to={getRouteUrlById(RoutesEnum.COURSES.BASE, Number(data?.course_id))}
+        >
           <Typography.Paragraph>
             <LeftOutlined />
             Chapter {data?.order} - {data?.title}

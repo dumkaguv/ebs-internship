@@ -90,13 +90,13 @@ export const PromotionChart = () => {
               gradientUnits="userSpaceOnUse"
             >
               <stop
-                stop-color="#3BB346"
-                stop-opacity="0.2"
+                stopColor="#3BB346"
+                stopOpacity="0.2"
               />
               <stop
                 offset="1"
-                stop-color="#3BB346"
-                stop-opacity="0"
+                stopColor="#3BB346"
+                stopOpacity="0"
               />
             </linearGradient>
             <linearGradient
@@ -107,13 +107,13 @@ export const PromotionChart = () => {
               y2="147.264"
             >
               <stop
-                stop-color="#165DFF"
-                stop-opacity="0.2"
+                stopColor="#165DFF"
+                stopOpacity="0.2"
               />
               <stop
                 offset="1"
-                stop-color="#165DFF"
-                stop-opacity="0"
+                stopColor="#165DFF"
+                stopOpacity="0"
               />
             </linearGradient>
           </defs>

@@ -6,7 +6,6 @@ import {
   Dropdown,
   Flex,
   MenuProps,
-  Pagination,
   Table,
   Typography,
 } from "antd";
@@ -21,6 +20,7 @@ import {
   CreateOrEditCoupon,
   PromotionChart,
 } from "@/features/courseDetails/components";
+import { PaginationComponent } from "@libs";
 
 const formatDate = (isoDate: string) => {
   return new Date(isoDate).toLocaleDateString("en-US", {
@@ -78,10 +78,11 @@ export const CoursePromotion = () => {
   const [isCreating, setIsCreating] = useState(false);
   const { styles } = useCoursePromotionStyles();
   const [filterFields, setFilterFields] = useState<string[]>(["name", "code"]);
+  const perPage = 8;
 
   const { data, isLoading } = useQuery({
     queryKey: ["coupons", currentPage],
-    queryFn: () => fetchCourseCoupons(currentPage),
+    queryFn: () => fetchCourseCoupons(currentPage, perPage),
   });
 
   const handleCheckboxChange = (key: string) => {
@@ -198,53 +199,16 @@ export const CoursePromotion = () => {
           pagination={false}
         />
         {data?.meta?.total && data.meta.total && (
-          <Pagination
-            current={currentPage}
-            pageSize={data?.meta?.per_page}
-            total={data.meta.total}
-            onChange={setCurrentPage}
-            showSizeChanger={false}
-            align="center"
-          />
+          <Flex justify="center">
+            <PaginationComponent
+              current={currentPage}
+              pageSize={data?.meta?.per_page}
+              total={data.meta.total}
+              onChange={setCurrentPage}
+            />
+          </Flex>
         )}
       </Flex>
     </Flex>
   );
 };
-
-<defs>
-  <linearGradient
-    id=""
-    x1="0"
-    y1="0"
-    x2="0"
-    y2="1"
-  >
-    <stop
-      stop-color="#165DFF"
-      stop-opacity="0.2"
-    />
-    <stop
-      offset="1"
-      stop-color="#165DFF"
-      stop-opacity="0"
-    />
-  </linearGradient>
-  <linearGradient
-    id="colorUv"
-    x1="0"
-    y1="0"
-    x2="0"
-    y2="1"
-  >
-    <stop
-      stop-color="#3BB346"
-      stop-opacity="0.2"
-    />
-    <stop
-      offset="1"
-      stop-color="#3BB346"
-      stop-opacity="0"
-    />
-  </linearGradient>
-</defs>;

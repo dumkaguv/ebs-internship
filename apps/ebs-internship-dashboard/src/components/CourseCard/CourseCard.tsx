@@ -34,7 +34,10 @@ export const CourseCard = ({ data }: Props) => {
           { value: `${course?.users_count || 0}`, label: "Added to Shelf" },
         ];
         return (
-          <Link to={getRouteUrlById(RoutesEnum.COURSES.BASE, course.id)}>
+          <Link
+            key={course.id}
+            to={getRouteUrlById(RoutesEnum.COURSES.BASE, course.id)}
+          >
             <Card
               className={styles.courseCard}
               hoverable
