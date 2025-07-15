@@ -10,7 +10,7 @@ interface FormValues {
 }
 
 interface Props {
-  cart: Cart;
+  cart?: Cart;
   isLoading: boolean;
 }
 
@@ -44,7 +44,7 @@ export const ButtonApplyCoupon = ({ cart, isLoading }: Props) => {
   );
 
   const onButtonClick = async () => {
-    if (cart.coupon) {
+    if (cart?.coupon) {
       await deleteCouponAsync();
       queryClient.invalidateQueries({ queryKey: ["cart"] });
     } else {

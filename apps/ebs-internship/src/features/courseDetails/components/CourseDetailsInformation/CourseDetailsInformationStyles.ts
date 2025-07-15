@@ -4,7 +4,7 @@ export const useCourseDetailsInformationStyles = createStyles(({ css }) => {
   return {
     infoContainer: css`
       max-width: 1280px;
-      padding-block: 40px 0;
+      padding-top: 40px;
       margin: 0 auto;
     `,
 
@@ -16,6 +16,7 @@ export const useCourseDetailsInformationStyles = createStyles(({ css }) => {
         height: auto;
         padding: 18px 21px;
         border: 0;
+
         &&.ant-btn:hover {
           background-color: #eff6ff;
         }

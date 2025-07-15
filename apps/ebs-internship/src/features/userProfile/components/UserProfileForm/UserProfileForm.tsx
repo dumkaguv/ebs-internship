@@ -1,9 +1,4 @@
 import { Button, Form, message } from "antd";
-import {
-  UserProfileLinksForm,
-  UserProfileInformationForm,
-  UserProfileImageForm,
-} from "@/features/userProfile/components";
 import { useUserProfileFormStyles } from "./UserProfileFormStyles";
 import { useForm } from "antd/es/form/Form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -42,9 +37,6 @@ export const UserProfileForm = () => {
       requiredMark={false}
       scrollToFirstError
     >
-      <UserProfileInformationForm />
-      <UserProfileImageForm />
-      <UserProfileLinksForm />
       <Form.Item>
         <Button
           htmlType="submit"

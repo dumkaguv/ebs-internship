@@ -1,7 +1,4 @@
 import { Breadcrumb, Container, Section } from "@/components";
-import { Flex, List, Spin, Typography } from "antd";
-import { fetchCart } from "@/features/cart/api";
-import { useQuery } from "@tanstack/react-query";
 import {
   CartItem,
   OrderDetails,
@@ -9,6 +6,9 @@ import {
 } from "@/features/cart/components";
 import { useCartPageStyles } from "./CartPageStyles";
 import { fetchCourses } from "@/services/courses";
+import { Flex, List, Spin, Typography } from "antd";
+import { fetchCart } from "@/features/cart/api";
+import { useQuery } from "@tanstack/react-query";
 
 export const CartPage = () => {
   const { data: cart, isPending } = useQuery({

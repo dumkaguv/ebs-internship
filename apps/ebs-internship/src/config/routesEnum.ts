@@ -11,6 +11,7 @@ export const RoutesEnum = {
     COURSES: "/profile/courses",
     TEACHERS: "/profile/teachers",
     MESSAGE: "/profile/message",
+    SETTINGS: "/profile/settings",
     REVIEWS: "/profile/reviews",
   },
 } as const;

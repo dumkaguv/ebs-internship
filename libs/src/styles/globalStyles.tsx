@@ -61,5 +61,10 @@ export const globalStyles = createGlobalStyle(
   .ant-list-item {
     height: 100% !important;
   }
+
+ .ant-table-row,
+      .ant-table-cell {
+        font-size: 14px;
+      }
 `
 );

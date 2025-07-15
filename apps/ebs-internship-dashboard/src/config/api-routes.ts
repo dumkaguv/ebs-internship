@@ -4,6 +4,7 @@ const ADMIN_PREFIX = "/admin";
 
 export const ApiRoutes = {
   ...GlobalApiRoutes,
+  COUPONS: `${ADMIN_PREFIX}/vouchers`,
   NOTIFICATIONS: {
     BASE: `${ADMIN_PREFIX}/notifications`,
   },

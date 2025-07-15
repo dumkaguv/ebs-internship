@@ -5,6 +5,13 @@ export const ApiRoutes = {
   CATEGORIES: "/categories",
   COURSES: "/courses",
   TUTORS: "/tutors",
+  PROFILE: {
+    ME: "/profile/me",
+    EMAIL: "/profile/me-auth",
+    PASSWORD: "/profile/password",
+    AVATAR: "/profile/upload-avatar",
+    SETTINGS: "/profile/settings",
+  },
   CART: {
     BASE: "/cart",
     PRODUCTS: "/cart/products",

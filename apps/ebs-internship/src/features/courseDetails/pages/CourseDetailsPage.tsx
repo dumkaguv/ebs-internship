@@ -5,7 +5,7 @@ import {
 } from "@/features/courseDetails/components";
 import { useQuery } from "@tanstack/react-query";
 import { Flex, Spin, Typography } from "antd";
-import { CourseList } from "@/components";
+import { CourseList, OurCustomer } from "@/components";
 import { Api } from "@libs";
 
 export const CourseDetailsPage = () => {
@@ -34,6 +34,7 @@ export const CourseDetailsPage = () => {
     <>
       <CourseDetailsHero data={data} />
       <CourseDetailsInformation data={data} />
+      <OurCustomer />
       <CourseList
         title="More Courses Like This"
         category={data.categories[0]?.name}

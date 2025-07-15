@@ -89,6 +89,7 @@ export const AssignAuthors = ({ form }: Props) => {
     <>
       <Form.Item
         name="authors"
+        hidden
         noStyle
       >
         <Input hidden />

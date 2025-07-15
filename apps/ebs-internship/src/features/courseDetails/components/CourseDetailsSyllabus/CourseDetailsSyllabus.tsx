@@ -6,9 +6,10 @@ import { useCourseDetailsSyllabusStyles } from "./CourseDetailsSyllabusStyles";
 
 interface Props {
   lessons?: Lesson[];
+  id: string;
 }
 
-export const CourseDetailsSyllabus = ({ lessons }: Props) => {
+export const CourseDetailsSyllabus = ({ lessons, id }: Props) => {
   const { styles } = useCourseDetailsSyllabusStyles();
 
   const items = lessons?.map((lesson) => ({
@@ -17,10 +18,11 @@ export const CourseDetailsSyllabus = ({ lessons }: Props) => {
       <Flex
         justify="space-between"
         align="center"
+        id={id}
       >
         <Typography.Title level={5}>{lesson.title}</Typography.Title>
         <Space size="small">
-          <Typography.Text>{lesson.topics?.length} Topics</Typography.Text>
+          <Typography.Text>{lesson.topics?.length ?? 0} Topics</Typography.Text>
           <Typography.Text>{lesson.duration ?? "0 hours"}</Typography.Text>
         </Space>
       </Flex>
@@ -58,12 +60,16 @@ export const CourseDetailsSyllabus = ({ lessons }: Props) => {
     <Container className={styles.syllabusContainer}>
       <Typography.Title level={4}>Syllabus</Typography.Title>
 
-      <Collapse
-        className={styles.collapseItems}
-        accordion
-        bordered
-        items={items}
-      />
+      {lessons?.length !== 0 ? (
+        <Collapse
+          className={styles.collapseItems}
+          accordion
+          bordered
+          items={items}
+        />
+      ) : (
+        <Typography.Text type="secondary">No lessons available</Typography.Text>
+      )}
     </Container>
   );
 };

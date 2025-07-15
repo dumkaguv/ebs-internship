@@ -1,60 +1,22 @@
 import { PlayCircleOutlined } from "@ant-design/icons";
-import {
-  Button,
-  Flex,
-  Form,
-  message,
-  Spin,
-  Typography,
-  Upload,
-  UploadProps,
-} from "antd";
+import { Button, Flex, Form, Spin, Typography, Upload } from "antd";
 import { useCourseAddFormStep2Styles } from "./CourseAddFormStep2Styles";
 import { Upload as UploadIcon } from "@/assets";
-import { useState } from "react";
 import { useAddCourseFormStore } from "@/features/course/stores";
-import type { UploadFile } from "@/types";
-
-const MAX_SIZE_MB = 500;
-
-const onBeforeUpload = (file: File): boolean => {
-  const isMp4 = file.type === "video/mp4";
-  if (!isMp4) {
-    message.error("Only .mp4 videos are allowed!");
-  }
-
-  const isUnderLimit = file.size / 1024 / 1024 < MAX_SIZE_MB;
-  if (!isUnderLimit) {
-    message.error(`Video must be smaller than ${MAX_SIZE_MB}MB!`);
-  }
-
-  return isMp4 && isUnderLimit;
-};
+import { useUploadHandler } from "@/features/course/hooks";
 
 export const UploadVideo = () => {
-  const { course, setVideoFile } = useAddCourseFormStore();
+  const { setVideoFile } = useAddCourseFormStore();
 
-  const [videoUrl, setVideoUrl] = useState(course?.video_url ?? "");
-  const [loading, setLoading] = useState(false);
-
-  const handleChange: UploadProps["onChange"] = (info) => {
-    const file = info.file.originFileObj as UploadFile;
-    const status = info.file.status;
-
-    if (file) {
-      const previewUrl = URL.createObjectURL(file);
-      setVideoUrl(previewUrl);
-    }
-
-    if (status === "uploading") {
-      setLoading(true);
-    }
-
-    if (status === "done") {
-      setVideoFile(file);
-      setLoading(false);
-    }
-  };
+  const {
+    loading,
+    previewUrl: videoUrl,
+    handleChange,
+    beforeUpload,
+  } = useUploadHandler({
+    targetBase: "video",
+    onFileSet: setVideoFile,
+  });
 
   const { styles } = useCourseAddFormStep2Styles();
 
@@ -99,7 +61,7 @@ export const UploadVideo = () => {
               <Upload
                 id="video"
                 showUploadList={false}
-                beforeUpload={onBeforeUpload}
+                beforeUpload={beforeUpload}
                 onChange={handleChange}
               >
                 <Button

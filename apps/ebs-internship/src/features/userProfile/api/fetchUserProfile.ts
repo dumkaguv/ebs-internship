@@ -5,7 +5,7 @@ import { User } from "@libs/types/user";
 export const fetchUserProfile = async () => {
   try {
     const response = await axiosInstance.get<ApiResponse<User>>(
-      ApiRoutes.PROFILE.SETTINGS
+      ApiRoutes.PROFILE.ME
     );
     return response.data.data;
   } catch (error) {

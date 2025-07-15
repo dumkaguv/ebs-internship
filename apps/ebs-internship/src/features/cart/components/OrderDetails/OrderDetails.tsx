@@ -1,10 +1,10 @@
 import { Button, Col, Flex, Row, Typography } from "antd";
 import type { Cart } from "@/features/cart/types";
-import { useOrderDetailsStyles } from "./orderDetailsStyles";
+import { useOrderDetailsStyles } from "./OrderDetailsStyles";
 import { ButtonApplyCoupon } from "@/features/cart/components";
 
 interface Props {
-  cart: Cart;
+  cart?: Cart;
   isPending: boolean;
 }
 

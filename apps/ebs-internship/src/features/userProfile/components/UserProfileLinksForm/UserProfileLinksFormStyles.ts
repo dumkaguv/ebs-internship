@@ -10,11 +10,25 @@ export const useUserProfileLinksForm = createStyles(({ token, css }) => {
       display: flex;
       flex-direction: column;
       gap: 16px;
+
+      && .ant-typography {
+        margin: 0px;
+      }
     `,
 
     inputForm: css`
       &&.ant-input {
         padding: 16px;
+      }
+    `,
+
+    saveButton: css`
+      align-self: baseline;
+      margin: 0px !important;
+
+      && .ant-btn {
+        background-color: ${token.grey.grey900};
+        color: #fff;
       }
     `,
   };

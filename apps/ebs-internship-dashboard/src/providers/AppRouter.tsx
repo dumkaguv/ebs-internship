@@ -1,10 +1,14 @@
 import { AdminGuardRoute } from "@/components";
 import { RoutesEnum } from "@/config/routesEnum";
+import { Course } from "@/features/courseDetails";
+import { Courses } from "@/features/courses";
+import { Dashboard } from "@/features/dashboard";
 import { CourseAddPage } from "@/features/course/pages";
 import { SettingsPage } from "@/features/settings/pages/SettingsPage";
 import { MainLayout } from "@/layouts";
 import { NotFoundPage } from "@libs/components";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { CourseChapterDetails } from "@/features/courseDetails/pages/CourseChapterDetails";
 
 export const AppRouter = () => {
   return (
@@ -14,7 +18,19 @@ export const AppRouter = () => {
           <Route element={<MainLayout />}>
             <Route
               path={RoutesEnum.DASHBOARD}
-              element={<div></div>}
+              element={<Dashboard />}
+            />
+            <Route
+              path={`${RoutesEnum.COURSES.BASE}/:id`}
+              element={<Course />}
+            />
+            <Route
+              path={`${RoutesEnum.CHAPTER}/:id`}
+              element={<CourseChapterDetails />}
+            />
+            <Route
+              path={RoutesEnum.COURSES.BASE}
+              element={<Courses />}
             />
             <Route
               path={RoutesEnum.COURSES.ADD}

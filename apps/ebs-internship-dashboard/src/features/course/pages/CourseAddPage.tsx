@@ -1,5 +1,4 @@
-import { message, Tabs } from "antd";
-import type { TabsProps } from "antd";
+import { Tabs, type TabsProps } from "antd";
 import {
   CourseAddFormStep1,
   CourseAddFormStep2,
@@ -8,7 +7,7 @@ import {
 } from "@/features/course/components";
 import { useAddCourseFormStore } from "@/features/course/stores";
 import { useParams } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { fetchCourseDetails } from "@/features/course/api";
 
@@ -16,28 +15,18 @@ export const CourseAddPage = () => {
   const { id } = useParams<{ id?: string }>();
   const { currentStep, setCourse, setCurrentStep } = useAddCourseFormStore();
 
-  const queryClient = useQueryClient();
+  const { data: course, isSuccess } = useQuery({
+    queryKey: ["course", id],
+    queryFn: () => fetchCourseDetails(String(id)),
+    enabled: !!id,
+    retry: false,
+  });
 
   useEffect(() => {
-    if (!id) return;
-
-    const loadCourse = async () => {
-      try {
-        const course = await queryClient.fetchQuery({
-          queryKey: ["course", id],
-          queryFn: () => fetchCourseDetails(id),
-          retry: false,
-        });
-
-        setCourse(course);
-      } catch (error) {
-        message.error("Failed to load course");
-        console.error(error);
-      }
-    };
-
-    loadCourse();
-  }, [currentStep, id, queryClient, setCourse]);
+    if (isSuccess && course) {
+      setCourse(course);
+    }
+  }, [isSuccess, course, setCourse]);
 
   useEffect(() => {
     window.scrollTo({

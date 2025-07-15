@@ -10,29 +10,19 @@ interface Props {
   form: FormInstance;
   title: string;
   children: ReactNode;
-  onButtonNextClickCB: () => Promise<void>;
+  onNext: () => Promise<AxiosResponse<ApiResponse<null>> | void>;
 }
 
 const TOTAL_STEPS = 4;
 
-export const StepContent = ({
-  form,
-  title,
-  children,
-  onButtonNextClickCB,
-}: Props) => {
+export const StepContent = ({ form, title, children, onNext }: Props) => {
   const { currentStep, setCurrentStep } = useAddCourseFormStore();
 
-  const { mutate: callback, isPending } = useMutation<
-    unknown,
-    AxiosError<ApiResponse<null>>
-  >({
-    mutationFn: onButtonNextClickCB,
+  const { mutate: performNext, isPending } = useMutation({
+    mutationFn: onNext,
     onSuccess: (data) => {
       requestAnimationFrame(() => message.destroy("Processing"));
-      message.success(
-        (data as AxiosResponse<ApiResponse<null>>)?.data?.message ?? "Success!"
-      );
+      message.success({ content: data?.data?.message ?? "Success!" });
       setCurrentStep(currentStep < TOTAL_STEPS ? currentStep + 1 : currentStep);
     },
     onError: (error: AxiosError<ApiResponse<null>>) => {
@@ -44,13 +34,12 @@ export const StepContent = ({
   const onButtonNextClick = async () => {
     try {
       await form.validateFields();
+      performNext();
     } catch (e) {
       console.log(e);
       message.error("Error validation fields!");
       return;
     }
-
-    callback();
   };
 
   useEffect(() => {

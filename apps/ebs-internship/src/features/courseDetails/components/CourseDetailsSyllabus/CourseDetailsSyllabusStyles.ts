@@ -16,10 +16,14 @@ export const useCourseDetailsSyllabusStyles = createStyles(({ token, css }) => {
       }
     `,
     contentContainer: css`
-      padding: ${token.paddingSM}px !important;
+      padding: 10px !important;
+      border: 1px solid transparent;
       &:hover {
         border: 1px solid ${token.grey.grey300};
         border-radius: ${token.borderRadius}px;
+      }
+      && .ant-typography {
+        margin: 0px;
       }
     `,
     itemDuration: css`
