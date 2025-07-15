@@ -26,7 +26,7 @@ export const CourseDetailsHero = ({ data }: Props) => {
 
           <Flex
             vertical
-            gap={17}
+            gap={18}
           >
             <Typography.Title level={1}>
               {data?.title ?? "Introduction to User Experience Design"}
@@ -102,8 +102,9 @@ export const CourseDetailsHero = ({ data }: Props) => {
               src={IMAGE_FALLBACKS.COURSE}
             />
             <Flex
+              vertical
               align="center"
-              gap={13}
+              gap={12}
             >
               {data?.product?.price !== 0 ? (
                 <>
@@ -139,7 +140,9 @@ export const CourseDetailsHero = ({ data }: Props) => {
               <Button
                 className={styles.customButtonBuy}
                 block
-              />
+              >
+                Buy Now
+              </Button>
               <Typography.Paragraph style={{ margin: 0 }}>
                 Share
               </Typography.Paragraph>

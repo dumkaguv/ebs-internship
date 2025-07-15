@@ -71,8 +71,6 @@ export const ButtonApplyCoupon = ({ cart, isLoading }: Props) => {
     setIsModalOpen(false);
   };
 
-  console.log(cart);
-
   return (
     <>
       <Button

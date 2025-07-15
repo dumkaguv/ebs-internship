@@ -55,6 +55,7 @@ export const CoursesPage = () => {
             </Flex>
             <Flex
               vertical
+              align="center"
               gap={24}
             >
               <CourseList

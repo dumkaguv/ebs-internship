@@ -54,7 +54,7 @@ export const AppRouter = () => {
               element={<UserProfilePage />}
             >
               <Route
-                path={RoutesEnum.PROFILE.BASE}
+                index
                 element={<UserDashboard />}
               />
               <Route

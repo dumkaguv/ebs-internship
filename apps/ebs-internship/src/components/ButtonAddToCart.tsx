@@ -1,6 +1,8 @@
 import { Api } from "@/services/apiClient";
+import { ApiResponse } from "@libs";
 import { useMutation } from "@tanstack/react-query";
 import { Button, ButtonProps, message } from "antd";
+import { AxiosError } from "axios";
 
 interface Props extends ButtonProps {
   productId: number;
@@ -25,8 +27,11 @@ export const ButtonAddToCart = ({
 
       onSuccessCb?.();
     },
-    onError: () => {
-      message.error("Error occurred. Try again later.");
+    onError: (err) => {
+      const axiosError = err as AxiosError<ApiResponse<null>>;
+      message.error(
+        axiosError.response?.data.message ?? "Error occurred. Try again later."
+      );
     },
   });
 
