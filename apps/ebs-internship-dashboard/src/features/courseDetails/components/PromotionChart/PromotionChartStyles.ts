@@ -14,6 +14,7 @@ export const usePromotionChartStyles = createStyles(({ token, css }) => {
       border-radius: 50%;
       background-color: #00c9a7;
     `,
+
     chosenPeriod: css`
       width: 10px;
       height: 10px;

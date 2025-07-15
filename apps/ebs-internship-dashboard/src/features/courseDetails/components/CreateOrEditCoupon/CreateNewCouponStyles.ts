@@ -7,6 +7,7 @@ export const useCreateOrEditCouponStyles = createStyles(({ token, css }) => {
       flex-direction: column;
       gap: 24px;
       width: 100%;
+
       && .ant-typography {
         margin: 0px;
       }

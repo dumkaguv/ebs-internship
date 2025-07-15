@@ -19,8 +19,8 @@ import { useState } from "react";
 import {
   CouponDetails,
   CreateOrEditCoupon,
+  PromotionChart,
 } from "@/features/courseDetails/components";
-import { PromotionChart } from "../PromotionChart/PromotionChart";
 
 const formatDate = (isoDate: string) => {
   return new Date(isoDate).toLocaleDateString("en-US", {

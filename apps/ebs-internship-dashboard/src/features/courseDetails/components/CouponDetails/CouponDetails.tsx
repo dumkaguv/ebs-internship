@@ -17,8 +17,8 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchCouponById } from "@/features/courseDetails/api/fetchCouponById";
 import { CreateOrEditCoupon } from "@/features/courseDetails/components/CreateOrEditCoupon";
 import { useState } from "react";
-import { useDeleteCoupon } from "../../hooks/useDeleteCoupon";
-import { PromotionChart } from "../PromotionChart/PromotionChart";
+import { useDeleteCoupon } from "@/features/courseDetails/hooks/useDeleteCoupon";
+import { PromotionChart } from "@/features/courseDetails/components";
 
 interface Props {
   couponId: number;

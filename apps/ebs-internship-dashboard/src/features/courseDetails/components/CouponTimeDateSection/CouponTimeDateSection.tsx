@@ -1,6 +1,9 @@
 import { StaticLabelWrapper } from "@/components";
 import { Col, DatePicker, Flex, Form, Row, TimePicker, Typography } from "antd";
 
+const DATE_FORMAT = "DD/MM/YYYY";
+const TIME_FORMAT_12H = "h:mm A";
+
 export const CouponTimeDateSection = () => {
   return (
     <Flex
@@ -22,7 +25,7 @@ export const CouponTimeDateSection = () => {
               ]}
             >
               <DatePicker
-                format="DD/MM/YYYY"
+                format={DATE_FORMAT}
                 placeholder="DD/MM/YYYY"
               />
             </Form.Item>
@@ -42,7 +45,7 @@ export const CouponTimeDateSection = () => {
             >
               <TimePicker
                 use12Hours
-                format="h:mm A"
+                format={TIME_FORMAT_12H}
               />
             </Form.Item>
           </StaticLabelWrapper>
@@ -60,7 +63,7 @@ export const CouponTimeDateSection = () => {
               ]}
             >
               <DatePicker
-                format="DD/MM/YYYY"
+                format={DATE_FORMAT}
                 placeholder="DD/MM/YYYY"
               />
             </Form.Item>
@@ -80,7 +83,7 @@ export const CouponTimeDateSection = () => {
             >
               <TimePicker
                 use12Hours
-                format="h:mm A"
+                format={TIME_FORMAT_12H}
               />
             </Form.Item>
           </StaticLabelWrapper>

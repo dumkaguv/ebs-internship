@@ -6,10 +6,6 @@ export const useCoursePromotionStyles = createStyles(({ token, css }) => {
       width: 100%;
     `,
     table: css`
-      &&.ant-table-row,
-      .ant-table-cell {
-        font-size: 14px;
-      }
       && .ant-typography {
         margin: 0px;
         font-size: 14px;
