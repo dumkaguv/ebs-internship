@@ -54,16 +54,13 @@ export const ButtonApplyCoupon = ({ cart, isLoading }: Props) => {
 
   const handleOk = async () => {
     try {
-      await form.validateFields();
-
       const valuesFromForm = form.getFieldsValue();
+      await form.validateFields();
       await applyCouponAsync(valuesFromForm.code);
       queryClient.invalidateQueries({ queryKey: ["cart"] });
-
       setIsModalOpen(false);
-    } catch (e) {
-      message.error("Validation fields error!");
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
   };
 
