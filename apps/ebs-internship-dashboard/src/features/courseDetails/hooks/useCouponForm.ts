@@ -15,8 +15,7 @@ export const useCouponForm = (couponId?: number | null) => {
 
   const { data: couponData } = useQuery({
     queryKey: ["coupon", couponId],
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    queryFn: () => fetchCouponById(couponId!),
+    queryFn: () => fetchCouponById(Number(couponId)),
     enabled: isEditMode,
   });
 
@@ -37,8 +36,7 @@ export const useCouponForm = (couponId?: number | null) => {
 
   const { mutateAsync, isPending } = useMutation({
     mutationFn: isEditMode
-      ? // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        (data: Coupon) => editCouponInformation(couponId!, data)
+      ? (data: Coupon) => editCouponInformation(couponId, data)
       : createNewCoupon,
     onSuccess: async () => {
       message.success(

@@ -27,6 +27,7 @@ export const CouponCodeSection = () => {
           label="Limit Usage"
           id="limit_usage"
           placeholder="Limit usage"
+          min={1}
         />
       </Form.Item>
       <Form.Item
@@ -39,6 +40,7 @@ export const CouponCodeSection = () => {
           label="Limit Per User"
           id="limit_per_user"
           placeholder="Limit per user"
+          min={1}
         />
       </Form.Item>
       <Form.Item
@@ -51,6 +53,7 @@ export const CouponCodeSection = () => {
           label="Min Cart Price"
           id="min_cart_price"
           placeholder="Min cart price"
+          min={1}
         />
       </Form.Item>
       <Form.Item
@@ -63,6 +66,7 @@ export const CouponCodeSection = () => {
           label="Max Cart Price"
           id="max_cart_price"
           placeholder="Max cart price"
+          min={1}
         />
       </Form.Item>
       <Form.Item
@@ -73,6 +77,7 @@ export const CouponCodeSection = () => {
           label="Amount"
           id="amount"
           placeholder="Amount"
+          min={1}
         />
       </Form.Item>
     </Flex>
