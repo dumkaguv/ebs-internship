@@ -17,6 +17,7 @@ import {
   UserReviews,
 } from "@/features/userProfile/components";
 import { NotFoundPage } from "@libs";
+import { WishListPage } from "@/features/wishlist/pages";
 
 export const AppRouter = () => {
   return (
@@ -51,6 +52,10 @@ export const AppRouter = () => {
             <Route
               path={RoutesEnum.CART}
               element={<CartPage />}
+            />
+            <Route
+              path={RoutesEnum.WISHLIST}
+              element={<WishListPage />}
             />
             <Route
               path={RoutesEnum.PROFILE.BASE}
