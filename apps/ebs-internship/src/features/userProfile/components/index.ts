@@ -5,6 +5,8 @@ export { UserImageForm } from "./UserImageForm";
 export { UserInformationForm } from "./UserInformationForm";
 export { UserLinksForm } from "./UserLinksForm";
 export { UserDashboard } from "./UserDashboard";
+export { UserTeachers } from "./UserTeachers";
 export { UserReviews } from "./UserReviews";
 export { UserPasswordForm } from "./UserPasswordForm";
+
 
