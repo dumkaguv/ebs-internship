@@ -10,6 +10,7 @@ import { CartPage } from "@/features/cart";
 import { ProtectedRoute } from "@/components";
 import { UserProfilePage } from "@/features/userProfile/pages/UserProfilePage";
 import {
+  UserCourses,
   UserDashboard,
   UserProfileForm,
   UserTeachers,
@@ -63,6 +64,10 @@ export const AppRouter = () => {
                 path={RoutesEnum.PROFILE.SETTINGS}
                 element={<UserProfileForm />}
               />
+              <Route
+                path={RoutesEnum.PROFILE.COURSES}
+                element={<UserCourses />}
+               />
               <Route
                 path={RoutesEnum.PROFILE.TEACHERS}
                 element={<UserTeachers />}
