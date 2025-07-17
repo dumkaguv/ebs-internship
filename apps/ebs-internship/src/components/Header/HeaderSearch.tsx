@@ -3,12 +3,21 @@ import { IMAGE_FALLBACKS, useDebouncedValue } from "@libs";
 import { Api } from "@/services/apiClient";
 import { SearchOutlined } from "@ant-design/icons";
 import { useQuery } from "@tanstack/react-query";
-import { AutoComplete, Flex, Image, Input, Typography } from "antd";
+import {
+  AutoComplete,
+  AutoCompleteProps,
+  Flex,
+  Image,
+  Input,
+  Typography,
+} from "antd";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useHeaderStyles } from "./HeaderStyles";
 
-export const HeaderSearch = () => {
+type Props = AutoCompleteProps;
+
+export const HeaderSearch = ({ ...rest }: Props) => {
   const [searchValue, setSearchValue] = useState("");
   const debouncedSearch = useDebouncedValue(searchValue, 500);
 
@@ -46,6 +55,7 @@ export const HeaderSearch = () => {
             <Flex vertical>
               <Typography.Title
                 className={styles.searchTextSize}
+                ellipsis
                 level={5}
               >
                 {course.title}
@@ -66,7 +76,6 @@ export const HeaderSearch = () => {
       options={options}
       onSearch={setSearchValue}
       value={searchValue}
-      onChange={setSearchValue}
       allowClear
       popupMatchSelectWidth={false}
       notFoundContent={
@@ -77,6 +86,7 @@ export const HeaderSearch = () => {
         )
       }
       className={styles.headerSearch}
+      {...rest}
     >
       <Input
         prefix={<SearchOutlined />}
