@@ -35,8 +35,8 @@ export const CourseCard = ({ data }: Props) => {
         ];
         return (
           <Link
-            to={getRouteUrlById(RoutesEnum.COURSES, course.id)}
             key={course.id}
+            to={getRouteUrlById(RoutesEnum.COURSES.BASE, course.id)}
           >
             <Card
               className={styles.courseCard}

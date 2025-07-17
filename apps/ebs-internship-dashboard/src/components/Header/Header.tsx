@@ -1,7 +1,9 @@
 import { Button, Flex, Layout, Typography } from "antd";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useHeaderStyles } from "./HeaderStyles";
 import { ReactNode } from "react";
+import { RoutesEnum } from "@/config/routesEnum";
+import { NotificationDrawer } from "@/features/notifications/components";
 
 const { Header } = Layout;
 
@@ -13,6 +15,7 @@ interface Props {
 
 export const AppHeader = ({ title, startAdornment, buttonActions }: Props) => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const headerTitle = title ?? pathname.slice(1);
 
   const { styles } = useHeaderStyles();
@@ -41,7 +44,13 @@ export const AppHeader = ({ title, startAdornment, buttonActions }: Props) => {
           align="center"
         >
           {buttonActions}
-          <Button type="primary">Add Course</Button>
+          <Button
+            type="primary"
+            onClick={() => navigate(RoutesEnum.COURSES.ADD)}
+          >
+            Add Course
+          </Button>
+          <NotificationDrawer />
         </Flex>
       </Flex>
     </Header>

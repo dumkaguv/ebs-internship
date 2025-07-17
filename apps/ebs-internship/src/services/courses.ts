@@ -17,10 +17,13 @@ export const fetchCourseByName = async (title?: string) => {
 };
 
 export interface FetchCoursesParams {
+  ids?: number[];
   title?: string | null;
   page?: number;
+  categories?: number[];
   category_id?: number;
   tag?: string;
+  tags?: number[];
   per_page?: number;
   order_by?: "created_at" | "title";
   order?: "ASC" | "DESC";
@@ -32,6 +35,8 @@ export const fetchCourses = async (
   params?: FetchCoursesParams
 ): Promise<ApiResponse<Course[]> | undefined> => {
   try {
+    if (params?.ids && params?.ids.length === 0) return;
+
     const response = await axiosInstance.get<ApiResponse<Course[]>>(
       ApiRoutes.COURSES,
       { params }

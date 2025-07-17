@@ -11,7 +11,7 @@ export const MainLayout = () => {
   const { styles } = useMainLayoutStyles();
 
   return (
-    <Layout className="h-screen">
+    <Layout style={{ minHeight: "100dvh" }}>
       <Sidebar />
 
       <Layout className={styles.layout}>

@@ -22,9 +22,10 @@ export default defineConfig(() => ({
       icon: true,
       svgo: true,
       svgProps: {
+        fill: "currentColor",
+        stroke: "currentColor",
         width: "24",
         height: "24",
-        fill: "currentColor",
       },
       svgoConfig: {
         plugins: [
