@@ -8,9 +8,10 @@ import type { Sort as SortType } from "@/features/courses/types";
 interface Props {
   sort: SortType;
   setSort: Dispatch<SetStateAction<SortType>>;
+  isLoading?: boolean;
 }
 
-export const Sort = ({ sort, setSort }: Props) => {
+export const Sort = ({ sort, isLoading, setSort }: Props) => {
   const { styles } = useSortStyles();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -38,6 +39,7 @@ export const Sort = ({ sort, setSort }: Props) => {
       >
         <Button
           variant="outlined"
+          disabled={isLoading}
           className={styles.buttonSort}
         >
           {sortOptionsMap[`${sort.sortBy}_${sort.sortOrder}`]}

@@ -5,7 +5,10 @@ import { useStyles } from "@/styles";
 import { useQuery } from "@tanstack/react-query";
 import { Api as ApiGlobal } from "@libs";
 import { Api } from "@/services/apiClient";
-import { LoadableCheckboxGroup } from "@/components/LoadableCheckboxGroup";
+import {
+  LoadableCheckboxGroup,
+  LoadableCheckboxGroupListSkeleton,
+} from "@/components/LoadableCheckboxGroup";
 
 export const Filters = () => {
   const { styles } = useFiltersStyles();
@@ -51,7 +54,7 @@ export const Filters = () => {
       </Typography.Paragraph>
     ),
     children: filter.loading ? (
-      <Typography.Text>Loading...</Typography.Text>
+      <LoadableCheckboxGroupListSkeleton />
     ) : (
       <LoadableCheckboxGroup
         items={filter.options}
