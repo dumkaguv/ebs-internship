@@ -2,14 +2,13 @@ import { Avatar, Button, Flex, List, Typography } from "antd";
 import { useUserProfileSidebarStyles } from "./UserProfileSidebarStyles";
 import { Link, useLocation } from "react-router-dom";
 import { RoutesEnum } from "@/config/routesEnum";
-import { FC } from "react";
 import { User } from "@libs/types/user";
 
 interface Props {
   data?: User;
 }
 
-const UserProfile: FC<Props> = ({ data }) => {
+export const UserProfileSidebar = ({ data }: Props) => {
   const location = useLocation();
   const currentPath = location.pathname;
   const { styles } = useUserProfileSidebarStyles();
@@ -18,6 +17,7 @@ const UserProfile: FC<Props> = ({ data }) => {
     { key: "profile", label: "Profile", path: RoutesEnum.PROFILE.BASE },
     { key: "courses", label: "My Courses", path: RoutesEnum.PROFILE.COURSES },
     { key: "teachers", label: "Teachers", path: RoutesEnum.PROFILE.TEACHERS },
+    { key: "reviews", label: "My Reviews", path: RoutesEnum.PROFILE.REVIEWS },
     { key: "settings", label: "Settings", path: RoutesEnum.PROFILE.SETTINGS },
   ];
 
@@ -78,5 +78,3 @@ const UserProfile: FC<Props> = ({ data }) => {
     </Flex>
   );
 };
-
-export default UserProfile;

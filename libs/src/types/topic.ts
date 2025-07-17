@@ -10,7 +10,7 @@ export interface Topic {
   introduction?: string | null;
   description?: string | null;
   order: number;
-  json?: JSON;
+  json?: unknown;
   can_skip: boolean;
   duration?: number | null;
 }

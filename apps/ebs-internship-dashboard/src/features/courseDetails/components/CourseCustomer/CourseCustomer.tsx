@@ -1,6 +1,8 @@
-import { Table } from "antd";
+import { Flex, Table } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { useCourseCustomerStyles } from "./CourseCustomerStyles";
+import { useState } from "react";
+import { PaginationComponent } from "@libs/components";
 
 interface CustomerData {
   key: number;
@@ -159,13 +161,32 @@ const columns: ColumnsType<CustomerData> = [
 ];
 
 export const CourseCustomer = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+
   const { styles } = useCourseCustomerStyles();
+  const pageSize = 8;
+  const paginatedData = dataSource.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
   return (
-    <Table<CustomerData>
-      columns={columns}
-      dataSource={dataSource}
-      pagination={{ pageSize: 8 }}
-      className={styles.table}
-    />
+    <Flex
+      vertical
+      align="center"
+      gap={40}
+    >
+      <Table<CustomerData>
+        columns={columns}
+        dataSource={paginatedData}
+        pagination={false}
+        className={styles.table}
+      />
+      <PaginationComponent
+        current={currentPage}
+        pageSize={pageSize}
+        onChange={(newPage) => setCurrentPage(newPage)}
+        total={dataSource.length}
+      />
+    </Flex>
   );
 };

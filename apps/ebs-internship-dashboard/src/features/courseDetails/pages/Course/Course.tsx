@@ -12,10 +12,10 @@ import { fetchCourseDetails } from "@/features/courseDetails/api/fetchCourseDeta
 
 export const Course = () => {
   const { id } = useParams();
+
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["courses", id],
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    queryFn: () => fetchCourseDetails(id!),
+    queryFn: () => fetchCourseDetails(Number(id)),
   });
 
   if (isLoading)
@@ -57,16 +57,6 @@ export const Course = () => {
       key: "5",
       label: "Promotion",
       children: <CoursePromotion />,
-    },
-    {
-      key: "6",
-      label: "Detail",
-      children: <div>Course details</div>,
-    },
-    {
-      key: "7",
-      label: "Settings",
-      children: <div>Settings tab</div>,
     },
   ];
 

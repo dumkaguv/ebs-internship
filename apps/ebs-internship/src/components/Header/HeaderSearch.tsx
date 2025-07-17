@@ -1,5 +1,5 @@
 import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
-import { useDebouncedValue } from "@libs";
+import { IMAGE_FALLBACKS, useDebouncedValue } from "@libs";
 import { Api } from "@/services/apiClient";
 import { SearchOutlined } from "@ant-design/icons";
 import { useQuery } from "@tanstack/react-query";
@@ -36,7 +36,7 @@ export const HeaderSearch = () => {
           >
             <Image
               src={course.image_url}
-              fallback="https://foundr.com/wp-content/uploads/2021/09/Best-online-course-platforms.png"
+              fallback={IMAGE_FALLBACKS.USER}
               alt=""
               preview={false}
               width={45}

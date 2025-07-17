@@ -1,7 +1,7 @@
-import { Pagination } from "antd";
+import { Pagination, PaginationProps } from "antd";
 import { usePaginationStyles } from "./PaginationStyles";
 
-interface Props {
+interface Props extends PaginationProps {
   current: number;
   pageSize: number;
   onChange: (page: number, pageSize: number) => void;
@@ -13,11 +13,13 @@ export const PaginationComponent = ({
   pageSize,
   onChange,
   total,
+  ...rest
 }: Props) => {
   const { styles } = usePaginationStyles();
 
   return (
     <Pagination
+      {...rest}
       current={current}
       pageSize={pageSize}
       onChange={onChange}

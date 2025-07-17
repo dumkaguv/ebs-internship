@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { login } from "@/features/auth/api";
 import { message } from "antd";
-import { ACCESS_TOKEN, EXPIRES_AT, Token, useAuthStore  } from "@libs";
+import { LOCAL_STORAGE, Token, useAuthStore } from "@libs";
 
 export const useLogin = () => {
   const setIsAuth = useAuthStore((state) => state.setIsAuth);
@@ -11,13 +11,12 @@ export const useLogin = () => {
     Error,
     { email: string; password: string }
   >({
-    mutationFn: async ({ email, password }) => await login(email, password),
+    mutationFn: ({ email, password }) => login(email, password),
     onSuccess: ({ token, expires_at }) => {
-      localStorage.removeItem(ACCESS_TOKEN);
-      localStorage.removeItem(EXPIRES_AT);
+      localStorage.setItem(LOCAL_STORAGE.ACCESS_TOKEN, token);
+      localStorage.setItem(LOCAL_STORAGE.EXPIRES_AT, expires_at);
+
       message.success("Login successfully!");
-      localStorage.setItem(ACCESS_TOKEN, token);
-      localStorage.setItem(EXPIRES_AT, expires_at);
       setIsAuth(true);
     },
     onError: () => {

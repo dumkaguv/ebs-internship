@@ -1,33 +1,18 @@
-import { Card, Typography, Button, Flex, Avatar, message, Rate } from "antd";
+import { Card, Typography, Button, Flex, Avatar, Rate } from "antd";
 import { GlobalOutlined } from "@ant-design/icons";
-import { Container, SocialIcons } from "@/components";
+import { Container, SocialIcons, ButtonAddToCart } from "@/components";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { Link } from "react-router-dom";
-import { Course } from "@libs";
+import { Course, IMAGE_FALLBACKS } from "@libs";
 import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
 import { useCourseDetailsHeroStyles } from "./CourseDetailsHeroStyles";
-import { useMutation } from "@tanstack/react-query";
-import { addItemToCart } from "@/features/courseDetails/api/addItemToCart";
 
 interface Props {
   data: Course;
-  id: number;
 }
 
-export const CourseDetailsHero = ({ data, id }: Props) => {
+export const CourseDetailsHero = ({ data }: Props) => {
   const { styles } = useCourseDetailsHeroStyles();
-
-  const { mutate, isPending } = useMutation<
-    Course,
-    Error,
-    { id: number; quantity?: number }
-  >({
-    mutationFn: () => addItemToCart(data.product.id),
-
-    onSuccess: () =>
-      message.success(`Course ${data.title} added successfully to the cart!`),
-    onError: () => message.error("Error occurred. Try again later."),
-  });
 
   return (
     <section className={styles.heroSection}>
@@ -41,14 +26,20 @@ export const CourseDetailsHero = ({ data, id }: Props) => {
 
           <Flex
             vertical
-            gap={17}
+            gap={18}
           >
             <Typography.Title level={1}>
               {data?.title ?? "Introduction to User Experience Design"}
             </Typography.Title>
+            {/* <Typography.Paragraph>{data?.description}</Typography.Paragraph> */}
             <Typography.Paragraph>
-              {data?.description ??
-                "This course is meticulously crafted to provide you with a foundational understanding of the principles, methodologies, and tools that drive exceptional user experiences in the digital landscape."}
+              <p
+                dangerouslySetInnerHTML={{
+                  __html:
+                    data?.description ??
+                    "This course is meticulously crafted to provide you with a foundational understanding of the principles, methodologies, and tools that drive exceptional user experiences in the digital landscape.",
+                }}
+              />
             </Typography.Paragraph>
           </Flex>
           <Flex
@@ -88,10 +79,7 @@ export const CourseDetailsHero = ({ data, id }: Props) => {
               gap={8}
             >
               <Avatar
-                src={
-                  data?.author?.url_avatar ??
-                  "https://wellms-multidomain-demo.s3.pl-waw.scw.cloud/avatars/2/avatar.png"
-                }
+                src={IMAGE_FALLBACKS.USER}
                 size={45}
               />
               <Typography.Paragraph>Created by</Typography.Paragraph>
@@ -117,14 +105,12 @@ export const CourseDetailsHero = ({ data, id }: Props) => {
             <img
               className={styles.cardImg}
               alt="course"
-              src={
-                data?.image_url ??
-                "https://foundr.com/wp-content/uploads/2021/09/Best-online-course-platforms.png"
-              }
+              src={IMAGE_FALLBACKS.COURSE}
             />
             <Flex
+              vertical
               align="center"
-              gap={13}
+              gap={12}
             >
               {data?.product?.price !== 0 ? (
                 <>
@@ -152,31 +138,17 @@ export const CourseDetailsHero = ({ data, id }: Props) => {
                   Free
                 </Typography.Title>
               )}
-            </Flex>
-            <Flex
-              vertical
-              gap={16}
-            >
-              <Button
-                onClick={() => mutate({ id })}
-                loading={isPending}
+              <ButtonAddToCart
+                productId={data.product.id}
                 className={styles.customButtonAdd}
                 block
-              >
-                Add To Cart
-              </Button>
+              />
               <Button
                 className={styles.customButtonBuy}
                 block
               >
                 Buy Now
               </Button>
-            </Flex>
-            <div className={styles.cardLine}></div>
-            <Flex
-              vertical
-              gap={8}
-            >
               <Typography.Paragraph style={{ margin: 0 }}>
                 Share
               </Typography.Paragraph>

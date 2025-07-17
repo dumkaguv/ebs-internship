@@ -1,0 +1,1 @@
+export { useClearSearchParams } from "./useClearSearchParams";
