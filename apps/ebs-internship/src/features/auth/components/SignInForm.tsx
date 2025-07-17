@@ -64,10 +64,7 @@ export const SignInForm = () => {
         className="w-full"
         name="email"
       >
-        <Input
-          placeholder="Username or Email ID"
-          className="input"
-        />
+        <Input placeholder="Username or Email ID" />
       </Form.Item>
       <Form.Item
         label={<Typography.Title level={5}>Password</Typography.Title>}
@@ -80,10 +77,7 @@ export const SignInForm = () => {
         name="password"
         className="w-full"
       >
-        <Input.Password
-          placeholder="Enter Password"
-          className="input"
-        />
+        <Input.Password placeholder="Enter Password" />
       </Form.Item>
       <Button
         htmlType="submit"

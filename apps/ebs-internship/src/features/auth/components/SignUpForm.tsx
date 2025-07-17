@@ -50,10 +50,7 @@ export const SignUpForm = () => {
           ]}
           className="w-full"
         >
-          <Input
-            placeholder="John"
-            className="input"
-          />
+          <Input placeholder="John" />
         </Form.Item>
 
         <Form.Item
@@ -79,10 +76,7 @@ export const SignUpForm = () => {
           className="w-full"
           name="last_name"
         >
-          <Input
-            placeholder="Doe"
-            className="input"
-          />
+          <Input placeholder="Doe" />
         </Form.Item>
       </Flex>
       <Form.Item
@@ -108,10 +102,7 @@ export const SignUpForm = () => {
         className="w-full"
         name="username"
       >
-        <Input
-          placeholder="johndoe"
-          className="input"
-        />
+        <Input placeholder="johndoe" />
       </Form.Item>
       <Form.Item
         label={<Typography.Title level={5}>Email</Typography.Title>}
@@ -132,10 +123,7 @@ export const SignUpForm = () => {
         className="w-full"
         name="email"
       >
-        <Input
-          placeholder="johndoe@gmail.com"
-          className="input"
-        />
+        <Input placeholder="johndoe@gmail.com" />
       </Form.Item>
 
       <Flex
@@ -164,10 +152,7 @@ export const SignUpForm = () => {
           name="password"
           className="w-full"
         >
-          <Input.Password
-            placeholder="aGAss2%$`1"
-            className="input"
-          />
+          <Input.Password placeholder="aGAss2%$`1" />
         </Form.Item>
 
         <Form.Item
@@ -192,10 +177,7 @@ export const SignUpForm = () => {
             }),
           ]}
         >
-          <Input.Password
-            placeholder="aGAss2%$`1"
-            className="input"
-          />
+          <Input.Password placeholder="aGAss2%$`1" />
         </Form.Item>
       </Flex>
       <Button

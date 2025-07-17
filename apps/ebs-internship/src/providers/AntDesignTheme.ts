@@ -8,5 +8,12 @@ export const AntDesignTheme: ThemeConfig = {
       bodyBg: "rgb(255,255,255)",
       footerPadding: "80px 0",
     },
+    Input: {
+      paddingBlock: 16,
+      paddingInline: 16,
+    },
+    DatePicker: {
+      controlHeight: 58,
+    },
   },
 };

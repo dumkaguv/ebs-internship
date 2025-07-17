@@ -1,8 +1,13 @@
-import { CSSProperties, HTMLAttributes } from "react";
+import { HTMLAttributes } from "react";
+
+const WIDTHS = {
+  md: 1280,
+  lg: 1440,
+};
+const PADDING_INLINE = 16;
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-  size?: "md" | "lg";
-  style?: CSSProperties;
+  size?: keyof typeof WIDTHS;
 }
 
 export const Container = ({
@@ -15,8 +20,13 @@ export const Container = ({
     <div
       style={{
         maxWidth:
-          size === "md" ? "1280px" : size === "lg" ? "1440px" : "1440px",
-        margin: "0 auto",
+          size === "md"
+            ? `${WIDTHS.md + PADDING_INLINE * 2}px`
+            : size === "lg"
+            ? `${WIDTHS.lg + PADDING_INLINE * 2}px`
+            : `${WIDTHS.lg + PADDING_INLINE * 2}px`,
+        marginInline: "auto",
+        paddingInline: 16,
         ...style,
       }}
       {...props}
