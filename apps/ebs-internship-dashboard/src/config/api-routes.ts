@@ -16,6 +16,7 @@ export const ApiRoutes = {
   PRODUCTS: `${ADMIN_PREFIX}/products`,
   LESSONS: `${ADMIN_PREFIX}/lessons`,
   TOPICS: `${ADMIN_PREFIX}/topics`,
+  ORDERS: `${ADMIN_PREFIX}/orders`,
   AUTHORS: "/tutors",
 };
 
