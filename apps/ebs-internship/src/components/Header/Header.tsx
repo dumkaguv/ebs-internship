@@ -125,6 +125,7 @@ export const AppHeader = () => {
             className={styles.authButtonsWrapper}
           >
             <Button
+              onClick={() => navigate(RoutesEnum.WISHLIST)}
               type="text"
               size="small"
             >

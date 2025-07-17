@@ -20,7 +20,7 @@ export const useCourseAddFormFirstStep = () => {
     })
   );
 
-  const tags: SelectProps["options"] = tagsRaw?.map(({ id, title }) => ({
+  const tags: SelectProps["options"] = tagsRaw?.map(({ title }) => ({
     value: title,
     label: title,
   }));
