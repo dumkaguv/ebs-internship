@@ -1,1 +1,2 @@
-export { Courses } from "@/features/courses/components/Courses";
+export { Courses } from "./components/Courses";
+export { SkeletonCourses } from "./components/SkeletonCourses";

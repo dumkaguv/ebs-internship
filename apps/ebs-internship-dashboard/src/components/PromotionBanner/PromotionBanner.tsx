@@ -1,14 +1,15 @@
 import { Card, Flex, Typography } from "antd";
 import { usePromotionBannerStyles } from "./PromotionBannerStyles";
-import arrowIcon from "@/assets/arrow.svg";
+import { ReactNode } from "react";
 
 interface Props {
   stats: string;
   title: string;
   percent: number;
+  icon: ReactNode;
 }
 
-export const PromotionBanner = ({ stats, title, percent }: Props) => {
+export const PromotionBanner = ({ stats, title, percent, icon }: Props) => {
   const { styles } = usePromotionBannerStyles();
 
   return (
@@ -26,11 +27,18 @@ export const PromotionBanner = ({ stats, title, percent }: Props) => {
             {title}
           </Typography.Paragraph>
         </Flex>
-        <Flex className={styles.percent}>
-          <img
-            src={arrowIcon}
-            alt="arrowIcon"
-          />
+        <Flex
+          gap={4}
+          className={styles.percent}
+        >
+          {typeof icon === "string" ? (
+            <img
+              src={icon}
+              alt="icon"
+            />
+          ) : (
+            icon
+          )}
           <Typography.Paragraph>{percent}%</Typography.Paragraph>
         </Flex>
       </Flex>
