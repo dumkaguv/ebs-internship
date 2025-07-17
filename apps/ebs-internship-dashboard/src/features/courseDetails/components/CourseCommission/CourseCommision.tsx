@@ -2,6 +2,8 @@ import { DashboardBanner } from "@/components/DashboardBanner";
 import { Flex, Table, Tag } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { useCourseCommissionStyles } from "./CourseCommissionStyles";
+import { PaginationComponent } from "@libs/components";
+import { useState } from "react";
 
 interface OrderData {
   key: string;
@@ -166,18 +168,32 @@ const columns: ColumnsType<OrderData> = [
 ];
 
 export const CourseCommission = () => {
+  const [currentPage, setCurrentPage] = useState(1);
   const { styles } = useCourseCommissionStyles();
+  const pageSize = 8;
+  const paginatedData = dataSource.slice(
+    (currentPage - 1) * pageSize,
+    currentPage * pageSize
+  );
+
   return (
     <Flex
       vertical
       gap={16}
+      align="center"
     >
       <DashboardBanner direction="horizontal" />
       <Table<OrderData>
         columns={columns}
-        dataSource={dataSource}
-        pagination={{ pageSize: 8 }}
+        dataSource={paginatedData}
+        pagination={false}
         className={styles.table}
+      />
+      <PaginationComponent
+        current={currentPage}
+        pageSize={pageSize}
+        onChange={(newPage) => setCurrentPage(newPage)}
+        total={dataSource.length}
       />
     </Flex>
   );

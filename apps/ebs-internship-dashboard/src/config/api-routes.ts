@@ -1,10 +1,22 @@
 import { ApiRoutes as GlobalApiRoutes } from "@libs";
 
+const ADMIN_PREFIX = "/admin";
+
 export const ApiRoutes = {
   ...GlobalApiRoutes,
-  COURSES: "/admin/courses",
-  LESSONS: "/admin/lessons",
-  COUPONS: "/admin/vouchers",
+  COUPONS: `${ADMIN_PREFIX}/vouchers`,
+  NOTIFICATIONS: {
+    BASE: `${ADMIN_PREFIX}/notifications`,
+  },
+  FILES: {
+    UPLOAD: `${ADMIN_PREFIX}/file/upload`,
+    MOVE: `${ADMIN_PREFIX}/file/move`,
+  },
+  COURSES: `${ADMIN_PREFIX}/courses`,
+  PRODUCTS: `${ADMIN_PREFIX}/products`,
+  LESSONS: `${ADMIN_PREFIX}/lessons`,
+  TOPICS: `${ADMIN_PREFIX}/topics`,
+  AUTHORS: "/tutors",
 };
 
 type ExtractRoutes<T> = T extends string

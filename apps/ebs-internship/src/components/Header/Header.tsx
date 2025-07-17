@@ -6,6 +6,7 @@ import {
   Avatar,
   MenuProps,
   Dropdown,
+  Badge,
 } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -13,15 +14,17 @@ import {
   HeartOutlined,
   LogoutOutlined,
   ShoppingCartOutlined,
-  UserOutlined,
 } from "@ant-design/icons";
 import { RoutesEnum } from "@/config/routesEnum";
 import { HeaderSearch } from "./HeaderSearch";
 import { useEffect, useRef } from "react";
 import { defineHeaderHeightCssVar } from "@/utils";
 import { useHeaderStyles } from "./HeaderStyles";
-import { useAuthStore } from "@libs";
+import { IMAGE_FALLBACKS, useAuthStore } from "@libs";
 import { useLogout } from "@libs";
+import { useShallow } from "zustand/shallow";
+import { useQuery } from "@tanstack/react-query";
+import { Api } from "@/services/apiClient";
 
 const { Header } = Layout;
 
@@ -29,8 +32,15 @@ export const AppHeader = () => {
   const headerRef = useRef(null);
   const navigate = useNavigate();
   const { styles } = useHeaderStyles();
-  const isAuth = useAuthStore((state) => state.isAuth);
+  const [isAuth, profile] = useAuthStore(
+    useShallow((state) => [state.isAuth, state.profile])
+  );
   const { logout } = useLogout();
+
+  const { data: cart } = useQuery({
+    queryKey: ["cart"],
+    queryFn: Api.cart.fetchCart,
+  });
 
   useEffect(() => {
     defineHeaderHeightCssVar(headerRef);
@@ -120,13 +130,18 @@ export const AppHeader = () => {
             >
               <HeartOutlined />
             </Button>
-            <Button
-              onClick={() => navigate(RoutesEnum.CART)}
-              type="text"
+            <Badge
+              count={cart?.items.length ?? 0}
               size="small"
             >
-              <ShoppingCartOutlined />
-            </Button>
+              <Button
+                onClick={() => navigate(RoutesEnum.CART)}
+                type="text"
+                size="small"
+              >
+                <ShoppingCartOutlined />
+              </Button>
+            </Badge>
             <Dropdown
               menu={{ items }}
               trigger={["click"]}
@@ -138,8 +153,8 @@ export const AppHeader = () => {
                 className={styles.avatarWrapper}
               >
                 <Avatar
+                  src={profile?.avatar ?? IMAGE_FALLBACKS.USER}
                   size={40}
-                  icon={<UserOutlined />}
                 />
               </Button>
             </Dropdown>

@@ -8,6 +8,6 @@ export interface Cart {
   total_with_tax: number;
   additional_discount: number;
   total_prediscount: number;
-  coupon: unknown;
-  coupon_type: unknown;
+  coupon?: string;
+  coupon_type?: string;
 }

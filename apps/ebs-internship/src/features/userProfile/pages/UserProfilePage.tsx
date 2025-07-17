@@ -4,13 +4,30 @@ import { UserProfileSidebar } from "@/features/userProfile/components/UserProfil
 import { Outlet } from "react-router-dom";
 import { Container } from "@/components";
 import { useUserProfilePageStyles } from "./UserProfilePageStyles";
+import { useNavigateToProfile } from "@/hooks";
+import { Flex, Spin } from "antd";
 
-function UserProfilePage() {
+export const UserProfilePage = () => {
+  useNavigateToProfile();
+
   const { styles } = useUserProfilePageStyles();
-  const { data } = useQuery({
+
+  const { data, isLoading } = useQuery({
     queryKey: ["profile"],
     queryFn: fetchUserProfile,
   });
+
+  if (isLoading) {
+    return (
+      <Flex
+        justify="center"
+        align="center"
+        style={{ height: "100vh" }}
+      >
+        <Spin size="large" />
+      </Flex>
+    );
+  }
 
   return (
     <Container className={styles.pageContainer}>
@@ -19,6 +36,4 @@ function UserProfilePage() {
       <Outlet context={{ data }} />
     </Container>
   );
-}
-
-export default UserProfilePage;
+};

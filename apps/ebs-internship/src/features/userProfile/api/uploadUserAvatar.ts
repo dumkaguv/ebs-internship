@@ -1,6 +1,4 @@
-import { ApiRoutes } from "@/config/api-routes";
-import { axiosInstance,ApiResponse } from "@libs";
-import { Avatar } from "@libs/types/userAvatar";
+import { ApiResponse, ApiRoutes, Avatar, axiosInstance } from "@libs";
 
 export const uploadUserAvatar = async (file: File): Promise<string> => {
   const formData = new FormData();

@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-      "@ebs-internship": ["libs/src/index.ts"],
-      "@ebs-internship/*": ["libs/src/*"]
-    },
     "composite": true,
     "declarationMap": true,
     "emitDeclarationOnly": true,

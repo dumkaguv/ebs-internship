@@ -4,15 +4,16 @@ import {
   CourseDetailsInformation,
 } from "@/features/courseDetails/components";
 import { useQuery } from "@tanstack/react-query";
-import { fetchCourseDetails } from "@/features/courseDetails/api";
 import { Flex, Spin, Typography } from "antd";
 import { CourseList, OurCustomer } from "@/components";
+import { Api } from "@libs";
 
 export const CourseDetailsPage = () => {
   const { id } = useParams();
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["courses", id],
-    queryFn: () => fetchCourseDetails(Number(id)),
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    queryFn: () => Api.courses.fetchCourseDetails(id!),
   });
 
   if (isLoading)
@@ -31,10 +32,7 @@ export const CourseDetailsPage = () => {
 
   return (
     <>
-      <CourseDetailsHero
-        data={data}
-        id={Number(id)}
-      />
+      <CourseDetailsHero data={data} />
       <CourseDetailsInformation data={data} />
       <OurCustomer />
       <CourseList
