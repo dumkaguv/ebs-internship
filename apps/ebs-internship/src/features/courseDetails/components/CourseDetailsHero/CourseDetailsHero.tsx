@@ -139,7 +139,7 @@ export const CourseDetailsHero = ({ data }: Props) => {
                 </Typography.Title>
               )}
               <ButtonAddToCart
-                productId={data.product.id}
+                productId={data.product?.id}
                 className={styles.customButtonAdd}
                 block
               />
