@@ -67,7 +67,7 @@ export const AppRouter = () => {
               <Route
                 path={RoutesEnum.PROFILE.COURSES}
                 element={<UserCourses />}
-               />
+              />
               <Route
                 path={RoutesEnum.PROFILE.TEACHERS}
                 element={<UserTeachers />}

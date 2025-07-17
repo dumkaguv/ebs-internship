@@ -57,23 +57,19 @@ export const useCourseDetailsHeroStyles = createStyles(({ token, css }) => {
       width: 30%;
     `,
 
+    priceContainer: css`
+      &&.ant-flex {
+        padding-top: 12px;
+      }
+      padding-top: 12px;
+    `,
+
     customCard: css`
       max-width: 385px;
       width: 30%;
       position: absolute !important;
     `,
 
-    cardTitle: css`
-      font-size: 24px;
-      font-weight: 600;
-      display: flex;
-      gap: 13px;
-      align-items: center;
-
-      &&.ant-typography {
-        padding: 25px 0;
-      }
-    `,
     rateText: css`
       &&.ant-typography {
         color: ${token.green5};
@@ -86,12 +82,6 @@ export const useCourseDetailsHeroStyles = createStyles(({ token, css }) => {
       height: 200px;
       border-radius: 8px;
       object-fit: cover;
-    `,
-
-    customButtonAdd: css`
-      &&.ant-btn {
-        margin-bottom: 16px;
-      }
     `,
 
     customButtonBuy: css`
