@@ -22,7 +22,7 @@ const data = [
   { month: "Jul", current: 8000, previous: 4500 },
   { month: "Aug", current: 2100, previous: 1800 },
   { month: "Sep", current: 4500, previous: 7500 },
-  { month: "Oct", current: 100, previous: 2500 },
+  { month: "Oct", current: 1000, previous: 2500 },
   { month: "Nov", current: 7000, previous: 3500 },
   { month: "Dec", current: 4000, previous: 500 },
 ];
@@ -82,38 +82,35 @@ export const PromotionChart = () => {
         <AreaChart data={data}>
           <defs>
             <linearGradient
-              id="colorUv"
-              x1="433.272"
-              y1="-6.90088"
-              x2="433.272"
-              y2="153.264"
-              gradientUnits="userSpaceOnUse"
+              id="colorPrevious"
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="1"
             >
               <stop
-                stopColor="#3BB346"
-                stopOpacity="0.2"
+                offset="0%"
+                stopColor="rgba(59, 179, 70, 0.2)"
               />
               <stop
-                offset="1"
-                stopColor="#3BB346"
-                stopOpacity="0"
+                offset="100%"
+                stopColor="rgba(59, 179, 70, 0)"
               />
             </linearGradient>
             <linearGradient
-              id="colorPv"
-              x1="433.272"
-              y1="-4.55127"
-              x2="433.272"
-              y2="147.264"
+              id="colorCurrent"
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="1"
             >
               <stop
-                stopColor="#165DFF"
-                stopOpacity="0.2"
+                offset="0%"
+                stopColor="rgba(22, 93, 255, 0.2)"
               />
               <stop
-                offset="1"
-                stopColor="#165DFF"
-                stopOpacity="0"
+                offset="100%"
+                stopColor="rgba(22, 93, 255, 0)"
               />
             </linearGradient>
           </defs>
@@ -138,18 +135,18 @@ export const PromotionChart = () => {
           <Tooltip />
 
           <Area
-            dataKey="current"
+            dataKey="previous"
             stroke="#0FC6C2"
             strokeWidth={2}
+            fill="url(#colorPrevious)"
             fillOpacity={1}
-            fill="url(#colorUv)"
           />
           <Area
-            dataKey="previous"
+            dataKey="current"
             stroke="#165DFF"
             strokeWidth={2}
+            fill="url(#colorCurrent)"
             fillOpacity={1}
-            fill="url(#colorPv)"
           />
         </AreaChart>
       </ResponsiveContainer>

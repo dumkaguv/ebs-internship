@@ -1,18 +1,16 @@
 import { ApiRoutes } from "@/config/api-routes";
 import { ApiResponse, axiosInstance, User } from "@libs";
 
-interface UserLinks {
-  website: string;
-  twitter: string;
-  linkedin: string;
-  youtube: string;
-  facebook: string;
+interface UserInformation {
+  first_name: string;
+  last_name: string;
+  bio: string;
 }
 
-export const changeUserSettings = async (data: UserLinks) => {
+export const changeUserInformation = async (data: UserInformation) => {
   try {
     const response = await axiosInstance.put<ApiResponse<User>>(
-      ApiRoutes.PROFILE.SETTINGS,
+      ApiRoutes.PROFILE.ME,
       data
     );
     return response.data.data;

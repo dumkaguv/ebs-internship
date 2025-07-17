@@ -21,6 +21,7 @@ import {
   PromotionChart,
 } from "@/features/courseDetails/components";
 import { PaginationComponent } from "@libs";
+import arrowIcon from "@/assets/arrow.svg";
 
 const formatDate = (isoDate: string) => {
   return new Date(isoDate).toLocaleDateString("en-US", {
@@ -74,43 +75,44 @@ const allColumns = [
 
 export const CoursePromotion = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedCoupon, setSelectedCoupon] = useState<number | null>(null);
   const [isCreating, setIsCreating] = useState(false);
+  const [selectedCoupon, setSelectedCoupon] = useState<number | null>(null);
+  const [visibleKeys, setVisibleKeys] = useState<string[]>(
+    allColumns.map((col) => col.key as string)
+  );
   const { styles } = useCoursePromotionStyles();
-  const [filterFields, setFilterFields] = useState<string[]>(["name", "code"]);
+
+  const [hideStats, setHideStats] = useState(true);
   const perPage = 8;
 
   const { data, isLoading } = useQuery({
     queryKey: ["coupons", currentPage],
-    queryFn: () => fetchCourseCoupons(currentPage, perPage),
+    queryFn: () => fetchCourseCoupons({ per_page: perPage, page: currentPage }),
   });
 
-  const handleCheckboxChange = (key: string) => {
-    setFilterFields((prev) =>
+  const toggleColumn = (key: string) => {
+    setVisibleKeys((prev) =>
       prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]
     );
   };
 
+  const filteredColumns = allColumns.filter((col) =>
+    visibleKeys.includes(col.key as string)
+  );
+
   const dropdownItems: MenuProps["items"] = allColumns.map((col) => ({
-    key: col.key as string,
     label: (
       <div onClick={(e) => e.stopPropagation()}>
         <Checkbox
-          checked={filterFields.includes(col.key as string)}
-          onChange={() => handleCheckboxChange(col.key as string)}
+          checked={visibleKeys.includes(col.key as string)}
+          onChange={() => toggleColumn(col.key as string)}
         >
           {col.title}
         </Checkbox>
       </div>
     ),
+    key: col.key as string,
   }));
-
-  const filteredData = (data?.data ?? []).filter((row) =>
-    filterFields.some((field) => {
-      const value = row[field as keyof Coupon];
-      return value !== null && value !== undefined && value !== "";
-    })
-  );
 
   if (isCreating) {
     return (
@@ -155,21 +157,44 @@ export const CoursePromotion = () => {
             stats="$200.00"
             title="Total Redeemed"
             percent={8}
+            icon={
+              <img
+                src={arrowIcon}
+                alt="icon"
+              />
+            }
           />
           <PromotionBanner
             stats="551"
             title="Total Coupons"
             percent={8}
+            icon={
+              <img
+                src={arrowIcon}
+                alt="icon"
+              />
+            }
           />
           <PromotionBanner
             stats="$8,723"
             title="Redeemed Amount"
             percent={8}
+            icon={
+              <img
+                src={arrowIcon}
+                alt="icon"
+              />
+            }
           />
         </Flex>
 
         <Flex className={styles.filter}>
-          <Button type="text">Hide Stats</Button>
+          <Button
+            type="text"
+            onClick={() => setHideStats(!hideStats)}
+          >
+            Hide Stats
+          </Button>
           <Dropdown
             menu={{ items: dropdownItems }}
             trigger={["click"]}
@@ -183,31 +208,40 @@ export const CoursePromotion = () => {
             </Button>
           </Dropdown>
         </Flex>
-
-        <Table
-          loading={isLoading}
-          className={styles.table}
-          dataSource={filteredData}
-          columns={allColumns}
-          rowKey="id"
-          onRow={(record: Coupon) => ({
-            onClick: () => {
-              setSelectedCoupon(record.id);
-            },
-            style: { cursor: "pointer" },
-          })}
-          pagination={false}
-        />
-        {data?.meta?.total && data.meta.total && (
-          <Flex justify="center">
-            <PaginationComponent
-              current={currentPage}
-              pageSize={data?.meta?.per_page}
-              total={data.meta.total}
-              onChange={setCurrentPage}
-            />
-          </Flex>
-        )}
+        {hideStats &&
+          (filteredColumns.length > 0 ? (
+            <>
+              <Table
+                loading={isLoading}
+                className={styles.table}
+                dataSource={data?.data ?? []}
+                columns={filteredColumns}
+                rowKey="id"
+                onRow={(record: Coupon) => ({
+                  onClick: () => {
+                    setSelectedCoupon(record.id);
+                  },
+                  style: { cursor: "pointer" },
+                })}
+                pagination={false}
+              />
+              {data?.meta?.total && (
+                <Flex justify="center">
+                  <PaginationComponent
+                    current={currentPage}
+                    pageSize={data.meta.per_page}
+                    total={data.meta.total}
+                    onChange={setCurrentPage}
+                  />
+                </Flex>
+              )}
+            </>
+          ) : (
+            <Typography.Text type="secondary">
+              No columns selected. Please use the filter to choose at least one
+              column.
+            </Typography.Text>
+          ))}
       </Flex>
     </Flex>
   );

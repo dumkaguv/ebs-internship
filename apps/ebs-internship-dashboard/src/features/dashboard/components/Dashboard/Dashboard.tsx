@@ -1,5 +1,4 @@
 import { Flex, Typography } from "antd";
-import { useDashboardMainStyles } from "./DashboardStyles";
 import { DashboardBanner } from "@/components/DashboardBanner";
 import { SalesChart } from "@/features/dashboard/components/SalesChart";
 import { ReviewsBanner } from "@/components/ReviewsBanner";
@@ -8,7 +7,6 @@ import { fetchDashboardCourses } from "@/services/adminCourses";
 import { CourseCard } from "@/components/CourseCard";
 
 export const Dashboard = () => {
-  const { styles } = useDashboardMainStyles();
   const perPage = 3;
   const { data } = useQuery({
     queryKey: ["courses", perPage],
@@ -17,7 +15,6 @@ export const Dashboard = () => {
 
   return (
     <Flex
-      className={styles.mainContainer}
       vertical
       gap={40}
     >

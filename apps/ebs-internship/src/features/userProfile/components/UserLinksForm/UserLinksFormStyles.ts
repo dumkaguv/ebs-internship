@@ -1,6 +1,6 @@
 import { createStyles } from "antd-style";
 
-export const useUserProfileLinksForm = createStyles(({ token, css }) => {
+export const useUserLinksForm = createStyles(({ token, css }) => {
   return {
     userContainer: css`
       border: 1px solid ${token.grey.grey300};

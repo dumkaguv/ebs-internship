@@ -1,7 +1,7 @@
 import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
 import { LeftOutlined } from "@ant-design/icons";
-import { Button, Flex, message, Tabs, Typography } from "antd";
-import { Link, useParams } from "react-router-dom";
+import { Button, Flex, message, Modal, Tabs, Typography } from "antd";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   ChapterDetails,
   ChapterResources,
@@ -12,11 +12,13 @@ import { changeChapterInformation } from "@/features/courseDetails/api/changeCha
 import { useForm } from "antd/es/form/Form";
 import { fetchChapterDetails } from "@/features/courseDetails/api/fetchChapterDetails";
 import { useEffect } from "react";
+import { deleteLesson } from "@/features/course/api";
 
 export const CourseChapterDetails = () => {
   const [form] = useForm();
   const { id } = useParams();
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const { data } = useQuery({
     queryKey: ["lessons", id],
@@ -45,6 +47,35 @@ export const CourseChapterDetails = () => {
     },
   });
 
+  const { mutate: deleteLessonMutate, isPending: isDeletingLesson } =
+    useMutation({
+      mutationFn: deleteLesson,
+      onSuccess: () => {
+        message.success("Lesson was deleted");
+        navigate(
+          getRouteUrlById(RoutesEnum.COURSES.BASE, Number(data?.course_id))
+        );
+      },
+      onError: () => {
+        message.error("Something went wrong");
+      },
+    });
+
+  const handleDeleteLesson = () => {
+    Modal.confirm({
+      title: "Delete Lesson",
+      content: "Are you sure you want to delete this lesson?",
+      okText: "Delete",
+      okType: "danger",
+      cancelText: "Cancel",
+      onOk: () => {
+        if (data?.id) {
+          deleteLessonMutate(data.id);
+        }
+      },
+    });
+  };
+
   const submitLessonChanges = async () => {
     const values = await form.validateFields();
     mutate({ id, order: data?.order, course_id: data?.course_id, ...values });
@@ -68,6 +99,8 @@ export const CourseChapterDetails = () => {
           <Button
             type="primary"
             danger
+            loading={isDeletingLesson}
+            onClick={handleDeleteLesson}
           >
             Delete
           </Button>

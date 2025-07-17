@@ -17,6 +17,7 @@ export const UserProfileSidebar = ({ data }: Props) => {
     { key: "profile", label: "Profile", path: RoutesEnum.PROFILE.BASE },
     { key: "courses", label: "My Courses", path: RoutesEnum.PROFILE.COURSES },
     { key: "teachers", label: "Teachers", path: RoutesEnum.PROFILE.TEACHERS },
+    { key: "reviews", label: "My Reviews", path: RoutesEnum.PROFILE.REVIEWS },
     { key: "settings", label: "Settings", path: RoutesEnum.PROFILE.SETTINGS },
   ];
 
