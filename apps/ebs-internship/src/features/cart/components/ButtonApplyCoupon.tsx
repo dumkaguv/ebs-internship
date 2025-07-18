@@ -73,7 +73,7 @@ export const ButtonApplyCoupon = ({ cart, isLoading }: Props) => {
       <Button
         onClick={onButtonClick}
         loading={isDeleting || isApplying || isLoading}
-        disabled={cart?.items.length === 0}
+        disabled={cart?.items?.length === 0}
       >
         {cart?.coupon ? "Delete Coupon" : "Apply a Coupon"}
       </Button>
@@ -101,10 +101,7 @@ export const ButtonApplyCoupon = ({ cart, isLoading }: Props) => {
               },
             ]}
           >
-            <Input
-              placeholder="Enter your coupon code here..."
-              className="input"
-            />
+            <Input placeholder="Enter your coupon code here..." />
           </Form.Item>
         </Form>
       </Modal>

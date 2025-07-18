@@ -5,6 +5,7 @@ import { useCourses } from "@/features/courses/hooks";
 import { SearchOutlined } from "@ant-design/icons";
 import { useCoursesPageStyles } from "./CoursesPageStyles";
 import { PaginationComponent } from "@libs/components";
+import { CourseListSkeletons } from "@/features/courses/components/CourseList";
 
 export const CoursesPage = () => {
   const {
@@ -35,6 +36,7 @@ export const CoursesPage = () => {
             <Flex flex={1}>
               <Input
                 prefix={<SearchOutlined />}
+                disabled={isLoading}
                 allowClear
                 onClear={() => setSearchValue(null)}
                 placeholder="e.g. DSA"
@@ -46,6 +48,7 @@ export const CoursesPage = () => {
               <Sort
                 sort={sort}
                 setSort={setSort}
+                isLoading={isLoading}
               />
             </Flex>
           </Flex>
@@ -58,10 +61,12 @@ export const CoursesPage = () => {
               align="center"
               gap={24}
             >
-              <CourseList
-                courses={courses}
-                isLoading={isLoading}
-              />
+              {isLoading ? (
+                <CourseListSkeletons count={6} />
+              ) : (
+                <CourseList courses={courses} />
+              )}
+
               {!isLoading && courses.length > 0 && total > perPage && (
                 <PaginationComponent
                   current={currentPage}

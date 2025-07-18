@@ -9,4 +9,4 @@ export { UserCourses } from "./UserCourses";
 export { UserTeachers } from "./UserTeachers";
 export { UserReviews } from "./UserReviews";
 export { UserPasswordForm } from "./UserPasswordForm";
-
+export { UserCoursesSkeleton } from "./UserCoursesSkeleton";

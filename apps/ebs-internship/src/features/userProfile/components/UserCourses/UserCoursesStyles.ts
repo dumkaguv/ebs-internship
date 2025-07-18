@@ -12,6 +12,15 @@ export const useUserCoursesStyles = createStyles(({ token, css }) => {
       border-radius: 8px;
     `,
 
+    courseTitle: css`
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 1;
+      width: 266px;
+    `,
+
     inputSearch: css`
       max-width: 300px;
     `,

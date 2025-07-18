@@ -12,8 +12,7 @@ export const CourseDetailsPage = () => {
   const { id } = useParams();
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["courses", id],
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    queryFn: () => Api.courses.fetchCourseDetails(id!),
+    queryFn: () => Api.courses.fetchCourseDetails(Number(id)),
   });
 
   if (isLoading)

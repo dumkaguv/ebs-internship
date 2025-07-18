@@ -1,39 +1,23 @@
-import { Button, Card, Flex, Input, Progress, Rate, Typography } from "antd";
+import { Card, Flex, Image, Progress, Rate, Typography } from "antd";
 import { useUserCoursesStyles } from "./UserCoursesStyles";
-import { DownOutlined } from "@ant-design/icons";
 import { PaginationComponent } from "@libs/components";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { fetchUserCourses } from "@/features/userProfile/api/fetchUserCourses";
-
-const courses = [
-  {
-    title: "Beginner's Guide to Design",
-    author: "Ronald Richards",
-    rate: 5,
-    progress: 30,
-  },
-  {
-    title: "Beginner's Guide to Design",
-    author: "Ronald Richards",
-    rate: 5,
-    progress: 40,
-  },
-  {
-    title: "Beginner's Guide to Design",
-    author: "Ronald Richards",
-    rate: 5,
-    progress: 50,
-  },
-];
+import { Api } from "@/services/apiClient";
+import { IMAGE_FALLBACKS } from "@libs";
+import { UserCoursesSkeleton } from "../UserCoursesSkeleton/UserCoursesSkeleton";
 
 export const UserCourses = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { styles } = useUserCoursesStyles();
-  const { data } = useQuery({
-    queryKey: ["courses"],
-    queryFn: fetchUserCourses,
+  const perPage = 6;
+  const { data, isLoading } = useQuery({
+    queryKey: ["courses", currentPage, perPage],
+    queryFn: () =>
+      Api.courses.fetchCourses({ page: currentPage, per_page: perPage }),
   });
+
+  if (isLoading) return <UserCoursesSkeleton />;
 
   return (
     <Flex
@@ -42,54 +26,23 @@ export const UserCourses = () => {
       className={styles.coursesContainer}
     >
       <Typography.Title level={4}>
-        Courses ({data?.lessons?.length ?? courses.length})
+        Courses({data?.meta?.total})
       </Typography.Title>
-      <Flex
-        justify="space-between"
-        align="center"
-      >
-        <Input.Search
-          className={styles.inputSearch}
-          placeholder="Search Course"
-          size="large"
-        />
-
-        <Flex
-          gap={24}
-          align="center"
-        >
-          <Flex
-            gap={15}
-            align="center"
-          >
-            <Typography.Paragraph>Sort by</Typography.Paragraph>
-            <Button>
-              Relevence <DownOutlined />
-            </Button>
-          </Flex>
-          <Button>
-            <img
-              src="/icons/filter.svg"
-              alt="filterIcon"
-            />
-            Filter
-          </Button>
-        </Flex>
-      </Flex>
 
       <Flex
         gap={24}
         wrap
       >
-        {courses.map((course, index) => (
+        {data?.data.map((course, index) => (
           <Card
             hoverable
             key={index}
           >
-            <img
+            <Image
               width={266}
               height={139}
-              src="images/userCourse.jpg"
+              fallback={IMAGE_FALLBACKS.COURSE}
+              src={course.image_url}
               alt="courseImg"
               className={styles.courseImg}
             />
@@ -98,10 +51,18 @@ export const UserCourses = () => {
               gap={8}
               vertical
             >
-              <Typography.Title level={5}>{course.title}</Typography.Title>
-              <Typography.Paragraph>By {course.author}</Typography.Paragraph>
+              <Typography.Title
+                className={styles.courseTitle}
+                level={5}
+              >
+                {course.title}
+              </Typography.Title>
+              <Typography.Paragraph>
+                By {course?.author?.first_name ?? "Unknown"}{" "}
+                {course?.author?.last_name}
+              </Typography.Paragraph>
               <Progress
-                percent={course.progress}
+                percent={50}
                 format={() => ""}
               />
               <Flex
@@ -111,7 +72,7 @@ export const UserCourses = () => {
               >
                 <Rate
                   disabled
-                  defaultValue={course.rate}
+                  defaultValue={5}
                 />
                 <Typography.Paragraph>(1200 Ratings)</Typography.Paragraph>
               </Flex>
@@ -125,9 +86,9 @@ export const UserCourses = () => {
       >
         <PaginationComponent
           current={currentPage}
-          total={12}
-          pageSize={6}
-          onChange={() => setCurrentPage(2)}
+          total={data?.meta?.total ?? 0}
+          pageSize={perPage}
+          onChange={setCurrentPage}
         />
       </Flex>
     </Flex>
