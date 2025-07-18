@@ -2,10 +2,16 @@ import { Button, Card, Divider, Flex, Typography } from "antd";
 import { useUserTeachersStyles } from "./UserTeachersStyles";
 import { useQuery } from "@tanstack/react-query";
 import { fetchTutors } from "@/services/tutors";
+import { UserTeachersSkeleton } from "../UserTeachersSkeleton";
 
 export const UserTeachers = () => {
   const { styles } = useUserTeachersStyles();
-  const { data } = useQuery({ queryKey: ["tutors"], queryFn: fetchTutors });
+  const { data, isLoading } = useQuery({
+    queryKey: ["tutors"],
+    queryFn: fetchTutors,
+  });
+
+  if (isLoading) return <UserTeachersSkeleton count={6} />;
 
   return (
     <Flex

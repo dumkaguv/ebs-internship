@@ -5,16 +5,19 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Api } from "@/services/apiClient";
 import { IMAGE_FALLBACKS } from "@libs";
+import { UserCoursesSkeleton } from "../UserCoursesSkeleton/UserCoursesSkeleton";
 
 export const UserCourses = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { styles } = useUserCoursesStyles();
   const perPage = 6;
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["courses", currentPage, perPage],
     queryFn: () =>
       Api.courses.fetchCourses({ page: currentPage, per_page: perPage }),
   });
+
+  if (isLoading) return <UserCoursesSkeleton />;
 
   return (
     <Flex
