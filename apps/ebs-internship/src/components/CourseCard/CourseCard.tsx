@@ -2,13 +2,14 @@ import { Course, IMAGE_FALLBACKS } from "@libs";
 import { Card, Flex, Image, Typography } from "antd";
 import { useCourseCardStyles } from "./CourseCardStyles";
 import { formatPrice } from "@/utils";
+import { CourseStatistics } from "../CourseStatistics";
 
 interface Props {
   course: Course;
   imageHeight?: number | string;
 }
 
-export const CourseCard = ({ course, imageHeight }: Props) => {
+export const CourseCard = ({ course, imageHeight = 240 }: Props) => {
   const { styles } = useCourseCardStyles();
 
   return (
@@ -21,9 +22,10 @@ export const CourseCard = ({ course, imageHeight }: Props) => {
           height={imageHeight}
           alt=""
           preview={false}
+          className={styles.image}
         />
       }
-      className={styles.image}
+      className={styles.card}
     >
       <Flex
         gap={8}
@@ -34,42 +36,33 @@ export const CourseCard = ({ course, imageHeight }: Props) => {
           vertical
           gap={6}
         >
-          <Typography.Title level={5}>{course.title}</Typography.Title>
+          <Typography.Title
+            ellipsis={{ rows: 2 }}
+            level={5}
+          >
+            {course.title}
+          </Typography.Title>
 
           <Typography.Paragraph className={styles.courseCardAuthor}>
             By {course.author?.first_name ?? "Unknown"}{" "}
             {course.author?.last_name}
           </Typography.Paragraph>
 
-          <Flex
-            gap={4}
-            flex={1}
-          >
-            {course.hours_to_complete && (
-              <Typography.Paragraph className={styles.courseCardDetails}>
-                {course.hours_to_complete} Total Hours
-              </Typography.Paragraph>
-            )}
-
-            {course.lessons && course.lessons.length > 0 && (
-              <Typography.Paragraph className={styles.courseCardDetails}>
-                {course.lessons?.length} Lessons
-              </Typography.Paragraph>
-            )}
-
-            {course.level && (
-              <Typography.Paragraph className={styles.courseCardDetails}>
-                {course.level} Level
-              </Typography.Paragraph>
-            )}
+          <Flex gap={4}>
+            <CourseStatistics
+              course={course}
+              orientation="vertical"
+            />
           </Flex>
         </Flex>
-        <Typography.Title
-          level={4}
-          className={styles.price}
+        <Flex
+          flex={1}
+          align="end"
         >
-          ${course.product?.price ? formatPrice(course.product.price) : 0}
-        </Typography.Title>
+          <Typography.Title level={4}>
+            ${course.product?.price ? formatPrice(course.product.price) : 0}
+          </Typography.Title>
+        </Flex>
       </Flex>
     </Card>
   );
