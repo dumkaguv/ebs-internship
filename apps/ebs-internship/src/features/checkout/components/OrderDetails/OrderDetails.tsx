@@ -71,8 +71,9 @@ export const OrderDetails = ({ form }: Props) => {
                   <Link to={getRouteUrlById(RoutesEnum.COURSES, course.id)}>
                     <Image
                       src={course.image_url}
-                      width={131}
-                      height={131}
+                      width={111}
+                      height={111}
+                      style={{ objectFit: "cover" }}
                       alt={course.title}
                       preview={false}
                     />
@@ -82,7 +83,7 @@ export const OrderDetails = ({ form }: Props) => {
                     gap={4}
                   >
                     <Typography.Title
-                      ellipsis={{ rows: 3 }}
+                      ellipsis={{ rows: 2 }}
                       level={5}
                     >
                       {course.title}

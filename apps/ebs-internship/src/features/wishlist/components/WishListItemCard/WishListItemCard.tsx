@@ -12,7 +12,7 @@ import {
 import { useWishListItemCardStyles } from "./WishListItemCardStyles";
 import { ButtonAddToCart, CourseStatistics } from "@/components";
 import { useQuery } from "@tanstack/react-query";
-import { fetchCart } from "@/features/cart/api";
+import { Api } from "@/services/apiClient";
 
 interface Props {
   course: Course;
@@ -34,16 +34,16 @@ export const WishListItemCard = ({
 
   const { data: cart } = useQuery({
     queryKey: ["cart"],
-    queryFn: fetchCart,
+    queryFn: Api.cart.fetchCart,
     refetchOnWindowFocus: false,
   });
 
   useEffect(() => {
     if (cart) {
-      const alreadyInCart = cart.items.some(
+      const alreadyInCart = cart?.items?.some(
         (item) => item.product_id === course.product.id
       );
-      setIsInCart(alreadyInCart);
+      setIsInCart(Boolean(alreadyInCart));
     }
   }, [cart, course.product.id]);
 

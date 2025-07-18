@@ -97,6 +97,7 @@ export const HeaderResponsive = () => {
           className={styles.authButtonsWrapper}
         >
           <Button
+            onClick={() => navigate(RoutesEnum.WISHLIST)}
             type="text"
             className={styles.buttonAuth}
           >

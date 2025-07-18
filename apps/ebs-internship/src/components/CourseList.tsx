@@ -46,7 +46,7 @@ export const CourseList = ({
               <Link to={getRouteUrlById(RoutesEnum.COURSES, course.id)}>
                 <CourseCard
                   course={course}
-                  imageHeight={200}
+                  imageHeight={220}
                 />
               </Link>
             </List.Item>
