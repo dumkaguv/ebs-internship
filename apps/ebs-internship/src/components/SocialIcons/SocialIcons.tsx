@@ -36,7 +36,6 @@ export const SocialIcons = () => {
     <Flex
       justify="flex-start"
       gap={20}
-      className={styles.wrapper}
     >
       {socialLinks.map((item) => (
         <a

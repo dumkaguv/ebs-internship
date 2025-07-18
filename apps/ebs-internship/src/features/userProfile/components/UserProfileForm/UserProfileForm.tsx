@@ -17,11 +17,12 @@ export const UserProfileForm = () => {
   const { data } = useOutletContext<OutletContext>();
 
   return (
-    <Flex
-      className={styles.formContainer}
-    >
+    <Flex className={styles.formContainer}>
       <UserInformationForm data={data} />
-      <Flex justify="space-between">
+      <Flex
+        justify="space-between"
+        className="w-full"
+      >
         <UserImageForm data={data} />
         <UserPasswordForm />
       </Flex>

@@ -1,15 +1,17 @@
-import { DownOutlined } from "@ant-design/icons";
-import { Button, Card, Divider, Flex, Input, Typography } from "antd";
+import { Button, Card, Divider, Flex, Typography } from "antd";
 import { useUserTeachersStyles } from "./UserTeachersStyles";
 import { useQuery } from "@tanstack/react-query";
 import { fetchTutors } from "@/services/tutors";
-import { PaginationComponent } from "@libs/components";
-import { useState } from "react";
+import { UserTeachersSkeleton } from "../UserTeachersSkeleton";
 
 export const UserTeachers = () => {
   const { styles } = useUserTeachersStyles();
-  const [currentPage, setCurrentPage] = useState(1);
-  const { data } = useQuery({ queryKey: ["tutors"], queryFn: fetchTutors });
+  const { data, isLoading } = useQuery({
+    queryKey: ["tutors"],
+    queryFn: fetchTutors,
+  });
+
+  if (isLoading) return <UserTeachersSkeleton count={6} />;
 
   return (
     <Flex
@@ -18,33 +20,6 @@ export const UserTeachers = () => {
       className={styles.teachersContainer}
     >
       <Typography.Title level={4}>Teachers ({data?.length})</Typography.Title>
-      <Flex
-        justify="space-between"
-        align="center"
-      >
-        <Input.Search
-          className={styles.inputSearch}
-          placeholder="Search Teacher"
-          size="large"
-        />
-
-        <Flex
-          gap={15}
-          align="center"
-        >
-          <Typography.Paragraph>Sort by</Typography.Paragraph>
-          <Button>
-            Relevence <DownOutlined />
-          </Button>
-          <Button>
-            <img
-              src="/icons/filter.svg"
-              alt="filterIcon"
-            />
-            Filter
-          </Button>
-        </Flex>
-      </Flex>
 
       <Flex
         gap={24}
@@ -93,18 +68,6 @@ export const UserTeachers = () => {
             </Flex>
           </Card>
         ))}
-      </Flex>
-
-      <Flex
-        align="center"
-        justify="center"
-      >
-        <PaginationComponent
-          pageSize={8}
-          total={16}
-          current={currentPage}
-          onChange={() => setCurrentPage(2)}
-        />
       </Flex>
     </Flex>
   );

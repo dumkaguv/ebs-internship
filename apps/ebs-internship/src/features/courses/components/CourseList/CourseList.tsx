@@ -6,14 +6,12 @@ import { Link } from "react-router-dom";
 
 interface Props {
   courses: Course[];
-  isLoading: boolean;
 }
 
-export const CourseList = ({ courses, isLoading }: Props) => {
+export const CourseList = ({ courses }: Props) => {
   return (
     <List
       dataSource={courses}
-      loading={isLoading}
       grid={{
         column: 3,
         gutter: [16, 40],
@@ -21,10 +19,7 @@ export const CourseList = ({ courses, isLoading }: Props) => {
       renderItem={(course) => (
         <List.Item>
           <Link to={getRouteUrlById(RoutesEnum.COURSES, course.id)}>
-            <CourseCard
-              course={course}
-              imageHeight={(courses?.length ?? 0) < 4 ? "100%" : 200}
-            />
+            <CourseCard course={course} />
           </Link>
         </List.Item>
       )}

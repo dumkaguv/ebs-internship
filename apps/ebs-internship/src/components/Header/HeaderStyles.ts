@@ -1,6 +1,6 @@
 import { createStyles } from "antd-style";
 
-export const useHeaderStyles = createStyles(({ token, css }) => {
+export const useHeaderStyles = createStyles(({ token, css, responsive }) => {
   return {
     header: css`
       position: sticky;
@@ -32,6 +32,18 @@ export const useHeaderStyles = createStyles(({ token, css }) => {
       align-items: center;
       width: 622px;
       height: 40px;
+
+      && .ant-input-affix-wrapper {
+        padding: 8px;
+      }
+
+      ${responsive.lg} {
+        width: 470px;
+      }
+
+      ${responsive.md} {
+        width: 100%;
+      }
     `,
 
     headerSearchInput: css`
@@ -105,7 +117,11 @@ export const useHeaderStyles = createStyles(({ token, css }) => {
 
     authButtonsWrapper: css`
       && {
-        margin-left: 100px;
+
+        ${responsive.lg} {
+          width: fit-content;
+          margin-left: 35px;
+        }
       }
     `,
 
@@ -116,6 +132,30 @@ export const useHeaderStyles = createStyles(({ token, css }) => {
     searchTextSize: css`
       && {
         font-size: 14px !important;
+
+        ${responsive.lg} {
+          max-width: 300px;
+        }
+
+        ${responsive.xs} {
+          max-width: 120px;
+        }
+      }
+    `,
+
+    buttonAuth: css`
+      &&.ant-btn {
+        padding-inline: 14px;
+      }
+    `,
+
+    badgeCartCount: css`
+      pointer-events: none;
+    `,
+
+    mobileMenu: css`
+      .ant-drawer-header-title {
+        gap: 16px;
       }
     `,
   };

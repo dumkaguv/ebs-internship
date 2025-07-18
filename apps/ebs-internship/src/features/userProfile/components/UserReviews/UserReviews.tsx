@@ -25,7 +25,6 @@ const reviews = [
 ];
 
 export const UserReviews = () => {
-  const [currentPage, setCurrentPage] = useState(1);
   const { styles } = useUserReviewsStyles();
 
   return (
@@ -33,7 +32,7 @@ export const UserReviews = () => {
       vertical
       gap={16}
     >
-      <Typography.Title level={4}>Reviews (12)</Typography.Title>
+      <Typography.Title level={4}>Reviews ({reviews.length})</Typography.Title>
       <Flex
         gap={16}
         vertical
@@ -75,14 +74,6 @@ export const UserReviews = () => {
             </Flex>
           </Flex>
         ))}
-      </Flex>
-      <Flex justify="center">
-        <PaginationComponent
-          current={currentPage}
-          pageSize={3}
-          total={6}
-          onChange={() => setCurrentPage(2)}
-        />
       </Flex>
     </Flex>
   );

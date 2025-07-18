@@ -9,6 +9,7 @@ import { MainLayout } from "@/layouts";
 import { NotFoundPage } from "@libs/components";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { CourseChapterDetails } from "@/features/courseDetails/pages/CourseChapterDetails";
+import { RevenuePage } from "@/features/revenue";
 
 export const AppRouter = () => {
   return (
@@ -43,6 +44,10 @@ export const AppRouter = () => {
             <Route
               path={RoutesEnum.SETTINGS}
               element={<SettingsPage />}
+            />
+            <Route
+              path={RoutesEnum.REVENUE}
+              element={<RevenuePage />}
             />
             <Route
               path="*"

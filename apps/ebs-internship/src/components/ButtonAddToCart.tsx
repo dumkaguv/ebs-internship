@@ -1,6 +1,6 @@
 import { Api } from "@/services/apiClient";
 import { ApiResponse } from "@libs";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button, ButtonProps, message } from "antd";
 import { AxiosError } from "axios";
 
@@ -18,9 +18,12 @@ export const ButtonAddToCart = ({
   onSuccessCb,
   ...rest
 }: Props) => {
+  const queryClient = useQueryClient();
+
   const { mutate: addItem, isPending } = useMutation({
     mutationFn: () => Api.cart.addItemToCart(productId),
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
       message.success(
         `Course ${courseTitle ?? ""} added successfully to the cart!`
       );

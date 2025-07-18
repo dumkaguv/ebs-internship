@@ -4,8 +4,9 @@ export const RoutesEnum = {
   SIGNIN: "/signin",
   COURSES: "/courses",
   CART: "/cart",
-  CHECKOUT: "/checkout",
+  CHECKOUT: "/cart/checkout",
   MENTORS: "/mentors",
+  WISHLIST: "/wishlist",
   PROFILE: {
     BASE: "/profile",
     COURSES: "/profile/courses",

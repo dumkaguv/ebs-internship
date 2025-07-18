@@ -3,15 +3,11 @@ import { axiosInstance } from "../lib";
 import { ApiResponse, Token } from "@/types";
 
 export const refreshToken = async () => {
-  try {
-    const response = await axiosInstance.get<ApiResponse<Token>>(
-      ApiRoutes.AUTH.REFRESH
-    );
-    return response.data.data;
-  } catch (error) {
-    console.error(error);
-    return undefined;
-  }
+  const response = await axiosInstance.get<ApiResponse<Token>>(
+    ApiRoutes.AUTH.REFRESH
+  );
+
+  return response.data.data;
 };
 
 export const logout = async () => {

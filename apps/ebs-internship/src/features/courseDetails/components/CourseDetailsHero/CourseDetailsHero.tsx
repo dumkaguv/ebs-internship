@@ -31,7 +31,6 @@ export const CourseDetailsHero = ({ data }: Props) => {
             <Typography.Title level={1}>
               {data?.title ?? "Introduction to User Experience Design"}
             </Typography.Title>
-            {/* <Typography.Paragraph>{data?.description}</Typography.Paragraph> */}
             <Typography.Paragraph>
               <p
                 dangerouslySetInnerHTML={{
@@ -105,19 +104,19 @@ export const CourseDetailsHero = ({ data }: Props) => {
             <img
               className={styles.cardImg}
               alt="course"
-              src={IMAGE_FALLBACKS.COURSE}
+              src={data.image_url ?? IMAGE_FALLBACKS.COURSE}
             />
             <Flex
               vertical
-              align="center"
               gap={12}
             >
               {data?.product?.price !== 0 ? (
-                <>
-                  <Typography.Title
-                    className={styles.cardTitle}
-                    level={3}
-                  >
+                <Flex
+                  align="center"
+                  gap={8}
+                  className={styles.priceContainer}
+                >
+                  <Typography.Title level={3}>
                     ${data?.product?.price}
                   </Typography.Title>
                   <Typography.Text
@@ -129,10 +128,10 @@ export const CourseDetailsHero = ({ data }: Props) => {
                   <Typography.Text className={styles.rateText}>
                     {data?.product?.tax_rate}% Off
                   </Typography.Text>
-                </>
+                </Flex>
               ) : (
                 <Typography.Title
-                  className={styles.cardTitle}
+                  className={styles.priceContainer}
                   level={3}
                 >
                   Free
@@ -149,9 +148,7 @@ export const CourseDetailsHero = ({ data }: Props) => {
               >
                 Buy Now
               </Button>
-              <Typography.Paragraph style={{ margin: 0 }}>
-                Share
-              </Typography.Paragraph>
+              <Typography.Paragraph>Share</Typography.Paragraph>
               <SocialIcons />
             </Flex>
           </Card>

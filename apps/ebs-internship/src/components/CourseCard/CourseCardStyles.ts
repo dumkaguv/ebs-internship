@@ -2,6 +2,12 @@ import { createStyles } from "antd-style";
 
 export const useCourseCardStyles = createStyles(({ token, css }) => {
   return {
+    card: css`
+      .ant-card-body {
+        height: 230px !important;
+      }
+    `,
+
     courseCardAuthor: css`
       && {
         font-size: 14px;
@@ -15,14 +21,8 @@ export const useCourseCardStyles = createStyles(({ token, css }) => {
       }
     `,
 
-    price: css`
-      margin-top: auto;
-    `,
-
     image: css`
-      display: flex;
-      flex-direction: column;
-      height: 100%;
+      object-fit: cover;
     `,
   };
 });
