@@ -16,7 +16,7 @@ export const CartPage = () => {
     queryFn: Api.cart.fetchCart,
   });
 
-  const coursesIds = cart?.items.map(
+  const coursesIds = cart?.items?.map(
     ({ product }) => product.productables[0].productable_id
   );
 
@@ -28,8 +28,20 @@ export const CartPage = () => {
 
   const { styles } = useCartPageStyles();
 
+  if (!cart || Object.keys(cart).length === 0) {
+    return (
+      <Flex
+        justify="center"
+        align="center"
+        style={{ height: "100vh" }}
+      >
+        <Spin size="large" />
+      </Flex>
+    );
+  }
+
   const renderCartContent = () => {
-    const coursesCount = cart?.items.length ?? 0;
+    const coursesCount = cart?.items?.length ?? 0;
 
     if (isPending) {
       return (

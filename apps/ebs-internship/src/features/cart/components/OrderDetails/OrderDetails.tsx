@@ -2,6 +2,8 @@ import { Button, Col, Flex, Row, Typography } from "antd";
 import type { Cart } from "@/features/cart/types";
 import { useOrderDetailsStyles } from "./OrderDetailsStyles";
 import { ButtonApplyCoupon } from "@/features/cart/components";
+import { useNavigate } from "react-router-dom";
+import { RoutesEnum } from "@/config/routesEnum";
 
 interface Props {
   cart?: Cart;
@@ -9,6 +11,8 @@ interface Props {
 }
 
 export const OrderDetails = ({ cart, isPending }: Props) => {
+  const navigate = useNavigate();
+
   const { styles } = useOrderDetailsStyles({ isPending });
 
   return (
@@ -90,8 +94,9 @@ export const OrderDetails = ({ cart, isPending }: Props) => {
           isLoading={isPending}
         />
         <Button
+          onClick={() => navigate(RoutesEnum.CHECKOUT)}
           type="primary"
-          disabled={cart?.items.length === 0}
+          disabled={cart?.items?.length === 0}
           loading={isPending}
         >
           Proceed to Checkout
