@@ -1,15 +1,19 @@
 import { createStyles } from "antd-style";
 
 export const useOrderDetailsStyles = createStyles(
-  ({ css, token }, props: { isPending?: boolean }) => {
+  ({ css, token, responsive }, props: { isPending?: boolean }) => {
     return {
       orderInfo: css`
         &&.ant-flex {
           position: sticky;
           top: calc(var(--header-height) + 20px);
           align-self: flex-start;
-          max-width: 330px;
+          max-width: 300px;
           width: 100%;
+
+          ${responsive.lg} {
+            max-width: unset;
+          }
         }
       `,
 

@@ -108,7 +108,7 @@ export const CartPage = () => {
           vertical
           gap={32}
         >
-          <Flex gap={40}>
+          <Flex className={styles.title}>
             <Typography.Title level={2}>Shopping Cart</Typography.Title>
             <Breadcrumb title="Shopping Cart" />
           </Flex>
@@ -116,6 +116,7 @@ export const CartPage = () => {
           <Flex
             gap={70}
             justify="space-between"
+            className={styles.wrapper}
           >
             <Flex
               vertical
