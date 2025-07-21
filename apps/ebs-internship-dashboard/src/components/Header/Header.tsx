@@ -1,24 +1,34 @@
 import { Button, Flex, Layout, Typography } from "antd";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { Api } from "@libs";
+import { NotificationDrawer } from "@/features/notifications";
+import { getPageTitle } from "@/utils";
 import { useHeaderStyles } from "./HeaderStyles";
-import { ReactNode } from "react";
 import { RoutesEnum } from "@/config/routesEnum";
-import { NotificationDrawer } from "@/features/notifications/components";
 
 const { Header } = Layout;
 
-interface Props {
-  title?: string;
-  startAdornment?: ReactNode;
-  buttonActions?: ReactNode;
-}
-
-export const AppHeader = ({ title, startAdornment, buttonActions }: Props) => {
+export const AppHeader = () => {
   const { pathname } = useLocation();
+  const { id } = useParams<{ id?: string }>();
   const navigate = useNavigate();
-  const headerTitle = title ?? pathname.slice(1);
-
   const { styles } = useHeaderStyles();
+
+  const isCoursePage = pathname.startsWith("/courses") && Boolean(id);
+
+  const { data: courseTitle, isLoading } = useQuery({
+    queryKey: ["course", id],
+    queryFn: () => Api.courses.fetchCourseDetails(id ?? ""),
+    enabled: isCoursePage,
+    select: (data) => data.title,
+  });
+
+  const title = isLoading
+    ? "Loading..."
+    : courseTitle
+    ? `Course — ${courseTitle}`
+    : getPageTitle(pathname);
 
   return (
     <Header>
@@ -30,20 +40,18 @@ export const AppHeader = ({ title, startAdornment, buttonActions }: Props) => {
           align="center"
           gap={8}
         >
-          {startAdornment}
           <Typography.Title
             level={3}
             className={styles.title}
           >
-            {headerTitle}
+            {title}
           </Typography.Title>
         </Flex>
 
         <Flex
-          gap={80}
+          gap={20}
           align="center"
         >
-          {buttonActions}
           <Button
             type="primary"
             onClick={() => navigate(RoutesEnum.COURSES.ADD)}
