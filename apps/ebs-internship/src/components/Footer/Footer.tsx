@@ -3,8 +3,23 @@ import Image from "antd/es/image";
 import { SocialIcons } from "@/components";
 import { useFooterStyles } from "./FooterStyles";
 import { Link } from "react-router-dom";
+import { RoutesEnum } from "@/config/routesEnum";
 
 const { Footer } = Layout;
+
+const helpLinks = [
+  { label: "Contact Us", to: "#" },
+  { label: "Latest Article", to: "#" },
+  { label: "FAQ", to: "#" },
+];
+
+const programLinks = [
+  { label: "Art & Design", to: "#" },
+  { label: "Business", to: "#" },
+  { label: "IT & Software", to: "#" },
+  { label: "Languages", to: "#" },
+  { label: "Programming", to: "#" },
+];
 
 export const AppFooter = () => {
   const { styles } = useFooterStyles();
@@ -14,31 +29,34 @@ export const AppFooter = () => {
       <Flex
         className={styles.footerContainer}
         justify="space-between"
-        gap={16}
+        gap={32}
+        wrap
       >
         <Flex
           className={styles.footerDescription}
           vertical
           gap={16}
         >
-          <Flex
-            align="center"
-            gap={8}
-          >
-            <Image
-              src="/logo.png"
-              alt="Logo"
-              width={31}
-              height={40}
-              preview={false}
-            />
-            <Typography.Title
-              className={styles.logoTitle}
-              level={3}
+          <Link to={RoutesEnum.HOME}>
+            <Flex
+              align="center"
+              gap={8}
             >
-              Byway
-            </Typography.Title>
-          </Flex>
+              <Image
+                src="/logo.png"
+                alt="Logo"
+                width={31}
+                height={40}
+                preview={false}
+              />
+              <Typography.Title
+                className={styles.logoTitle}
+                level={3}
+              >
+                Byway
+              </Typography.Title>
+            </Flex>
+          </Link>
           <Typography.Paragraph className={styles.paragraph}>
             Empowering learners through accessible and engaging online
             education.
@@ -63,24 +81,15 @@ export const AppFooter = () => {
             direction="vertical"
             size="small"
           >
-            <Link
-              to={"#"}
-              className={styles.paragraph}
-            >
-              Contact Us
-            </Link>
-            <Link
-              to={"#"}
-              className={styles.paragraph}
-            >
-              Latest Article
-            </Link>
-            <Link
-              to={"#"}
-              className={styles.paragraph}
-            >
-              FAQ
-            </Link>
+            {helpLinks.map((link) => (
+              <Link
+                key={link.label}
+                to={link.to}
+                className={styles.paragraph}
+              >
+                {link.label}
+              </Link>
+            ))}
           </Space>
         </Flex>
 
@@ -95,36 +104,15 @@ export const AppFooter = () => {
             Programs
           </Typography.Title>
           <Space direction="vertical">
-            <Link
-              to={"#"}
-              className={styles.paragraph}
-            >
-              Art & Design
-            </Link>
-            <Link
-              to={"#"}
-              className={styles.paragraph}
-            >
-              Business
-            </Link>
-            <Link
-              to={"#"}
-              className={styles.paragraph}
-            >
-              IT & Software
-            </Link>
-            <Link
-              to={"#"}
-              className={styles.paragraph}
-            >
-              Languages
-            </Link>
-            <Link
-              to={"#"}
-              className={styles.paragraph}
-            >
-              Programming
-            </Link>
+            {programLinks.map((link) => (
+              <Link
+                key={link.label}
+                to={link.to}
+                className={styles.paragraph}
+              >
+                {link.label}
+              </Link>
+            ))}
           </Space>
         </Flex>
 
@@ -143,7 +131,7 @@ export const AppFooter = () => {
             size="small"
           >
             <Typography.Paragraph className={styles.paragraph}>
-              Address: 123 Main Street, Anytown, CA 12345
+              Address: 123 Main Street, Any town, CA 12345
             </Typography.Paragraph>
 
             <Typography.Link
