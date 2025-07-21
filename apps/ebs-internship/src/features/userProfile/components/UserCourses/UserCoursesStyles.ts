@@ -10,6 +10,7 @@ export const useUserCoursesStyles = createStyles(({ token, css }) => {
     `,
     courseImg: css`
       border-radius: 8px;
+      object-fit: cover;
     `,
 
     courseTitle: css`

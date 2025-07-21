@@ -1,12 +1,16 @@
 import { createStyles } from "antd-style";
 
-export const useUserFormStyles = createStyles(({ token, css }) => {
+export const useUserFormStyles = createStyles(({ token, css, responsive }) => {
   return {
     imageContainer: css`
       border: 1px solid ${token.grey.grey300};
       padding: 24px !important;
       border-radius: 16px;
       width: 45%;
+      ${responsive.lg} {
+        width: 100%;
+        padding: 16px !important;
+      }
     `,
 
     imagePreview: css`

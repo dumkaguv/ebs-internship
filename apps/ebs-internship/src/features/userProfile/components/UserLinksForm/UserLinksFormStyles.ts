@@ -1,6 +1,6 @@
 import { createStyles } from "antd-style";
 
-export const useUserLinksForm = createStyles(({ token, css }) => {
+export const useUserLinksForm = createStyles(({ token, css, responsive }) => {
   return {
     userContainer: css`
       border: 1px solid ${token.grey.grey300};
@@ -11,13 +11,28 @@ export const useUserLinksForm = createStyles(({ token, css }) => {
       flex-direction: column;
       gap: 16px;
 
+      ${responsive.sm} {
+        padding: 16px !important;
+      }
+
       && .ant-typography {
+        margin: 0px;
+      }
+
+      && .ant-form-item {
         margin: 0px;
       }
     `,
 
     inputForm: css`
       &&.ant-input {
+        padding: 16px;
+
+        ${responsive.sm} {
+          padding: 10px;
+        }
+      }
+      &&.ant-input-affix-wrapper {
         padding: 16px;
       }
     `,

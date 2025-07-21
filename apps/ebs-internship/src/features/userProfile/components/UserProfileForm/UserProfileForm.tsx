@@ -21,7 +21,8 @@ export const UserProfileForm = () => {
       <UserInformationForm data={data} />
       <Flex
         justify="space-between"
-        className="w-full"
+        gap={40}
+        className={styles.imageAndPasswordContainer}
       >
         <UserImageForm data={data} />
         <UserPasswordForm />

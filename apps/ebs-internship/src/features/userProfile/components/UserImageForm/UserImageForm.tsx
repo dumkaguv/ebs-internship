@@ -50,6 +50,7 @@ export const UserImageForm = ({ data }: Props) => {
   return (
     <Flex
       vertical
+      gap={16}
       justify="space-between"
       className={styles.imageContainer}
     >

@@ -1,7 +1,5 @@
 import { Flex, Rate, Typography } from "antd";
 import { useUserReviewsStyles } from "./UserReviewsStyles";
-import { PaginationComponent } from "@libs/components";
-import { useState } from "react";
 
 const reviews = [
   {
