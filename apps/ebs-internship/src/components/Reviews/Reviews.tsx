@@ -1,5 +1,4 @@
 import { Avatar, Button, Flex, Rate, Typography } from "antd";
-import { Container } from "../Container";
 import { useReviewStyles } from "./ReviewsStyles";
 import { useState } from "react";
 
@@ -34,7 +33,7 @@ const allReviews = [
     rate: 3,
     reviewed: "22and March, 2020",
     message:
-      "Webflow course was good, it coves design secrtes, and to build responsive web pages, blog, and some more tricks and tips about webflow. I enjoyed the course and it helped me to add web development skills related to webflow in my toolbox. Thank you Vako.",
+      "Webflow course was good, it coves design secretes, and to build responsive web pages, blog, and some more tricks and tips about webflow. I enjoyed the course and it helped me to add web development skills related to webflow in my toolbox. Thank you Vako.",
   },
   {
     userName: "Mark Doe",
@@ -45,17 +44,31 @@ const allReviews = [
   },
 ];
 
+const rates = [
+  { defaultValue: 5, percent: 80 },
+  { defaultValue: 4, percent: 10 },
+  { defaultValue: 3, percent: 5 },
+  { defaultValue: 2, percent: 3 },
+  { defaultValue: 2, percent: 2 },
+];
+
 export const Reviews = ({ id }: Props) => {
   const [moreReviews, setMoreReviews] = useState(false);
   const { styles } = useReviewStyles();
 
   return (
-    <Container
+    <Flex
+      vertical
+      gap={24}
       className={styles.container}
       id={id}
     >
       <Typography.Title level={4}>Learner Reviews</Typography.Title>
-      <Flex justify="space-between">
+      <Flex
+        justify="space-between"
+        gap={20}
+        className={styles.mainContainer}
+      >
         <Flex
           className={styles.ratesContainer}
           vertical
@@ -77,43 +90,21 @@ export const Reviews = ({ id }: Props) => {
             vertical
             gap={8}
           >
-            <Flex gap={8}>
-              <Rate
-                disabled
-                defaultValue={5}
-              />
-              <Typography.Paragraph>80%</Typography.Paragraph>
-            </Flex>
-            <Flex gap={8}>
-              <Rate
-                disabled
-                defaultValue={4}
-              />
-              <Typography.Paragraph>10%</Typography.Paragraph>
-            </Flex>
-            <Flex gap={8}>
-              <Rate
-                disabled
-                defaultValue={3}
-              />
-              <Typography.Paragraph>5%</Typography.Paragraph>
-            </Flex>
-            <Flex gap={8}>
-              <Rate
-                disabled
-                defaultValue={2}
-              />
-              <Typography.Paragraph>3%</Typography.Paragraph>
-            </Flex>
-            <Flex gap={8}>
-              <Rate
-                disabled
-                defaultValue={1}
-              />
-              <Typography.Paragraph>2%</Typography.Paragraph>
-            </Flex>
+            {rates.map((rate, index) => (
+              <Flex
+                gap={8}
+                key={index}
+              >
+                <Rate
+                  disabled
+                  defaultValue={rate.defaultValue}
+                />
+                <Typography.Paragraph>{rate.percent}%</Typography.Paragraph>
+              </Flex>
+            ))}
           </Flex>
         </Flex>
+
         <Flex
           className={styles.reviewsContainer}
           vertical
@@ -126,6 +117,7 @@ export const Reviews = ({ id }: Props) => {
                 key={index}
                 justify="space-between"
                 align="flex-start"
+                gap={8}
                 className={styles.cardReviewContainer}
               >
                 <Flex
@@ -182,6 +174,6 @@ export const Reviews = ({ id }: Props) => {
           )}
         </Flex>
       </Flex>
-    </Container>
+    </Flex>
   );
 };

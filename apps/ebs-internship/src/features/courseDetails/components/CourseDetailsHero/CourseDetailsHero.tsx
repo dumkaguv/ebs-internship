@@ -47,8 +47,8 @@ export const CourseDetailsHero = ({ data }: Props) => {
             gap={24}
           >
             <Flex
-              align="center"
               gap={12}
+              className={styles.infoCourse}
             >
               <Flex
                 align="center"
@@ -139,7 +139,6 @@ export const CourseDetailsHero = ({ data }: Props) => {
               )}
               <ButtonAddToCart
                 productId={data.product?.id}
-                className={styles.customButtonAdd}
                 block
               />
               <Button

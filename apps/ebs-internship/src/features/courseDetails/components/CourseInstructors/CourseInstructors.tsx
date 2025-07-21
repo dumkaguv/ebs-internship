@@ -1,4 +1,4 @@
-import { Course } from "@libs";
+import { Course, IMAGE_FALLBACKS } from "@libs";
 import { useCourseInstructorsStyles } from "./CourseIntructorsStyles";
 import { Avatar, Flex, Typography } from "antd";
 import { Link } from "react-router-dom";
@@ -46,10 +46,7 @@ export const CourseInstructors = ({ data, id }: Props) => {
           >
             <Avatar
               size={120}
-              src={
-                author?.url_avatar ??
-                "https://static.vecteezy.com/system/resources/previews/046/409/821/non_2x/avatar-profile-icon-in-flat-style-male-user-profile-illustration-on-isolated-background-man-profile-sign-business-concept-vector.jpg"
-              }
+              src={author?.url_avatar ?? IMAGE_FALLBACKS.USER}
             />
             <Flex
               gap={10}

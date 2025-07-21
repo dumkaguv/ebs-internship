@@ -29,6 +29,7 @@ export const CourseDetailsInformation = ({ data }: Props) => {
       <Flex
         gap={24}
         justify="flex-start"
+        wrap
       >
         {tabs.map((tab, index) => (
           <Button
