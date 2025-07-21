@@ -7,11 +7,17 @@ import type { Sort as SortType } from "@/features/courses/types";
 
 interface Props {
   sort: SortType;
-  setSort: Dispatch<SetStateAction<SortType>>;
+  title?: string;
   isLoading?: boolean;
+  setSort: Dispatch<SetStateAction<SortType>>;
 }
 
-export const Sort = ({ sort, isLoading, setSort }: Props) => {
+export const Sort = ({
+  sort,
+  title = "Sort By",
+  isLoading,
+  setSort,
+}: Props) => {
   const { styles } = useSortStyles();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +37,7 @@ export const Sort = ({ sort, isLoading, setSort }: Props) => {
       gap={15}
       align="center"
     >
-      <Typography.Text>Sort By</Typography.Text>
+      {Boolean(title) && <Typography.Text>{title}</Typography.Text>}
       <Dropdown
         menu={{ items }}
         trigger={["click"]}

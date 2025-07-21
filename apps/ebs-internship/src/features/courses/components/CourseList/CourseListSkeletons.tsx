@@ -9,22 +9,29 @@ export const CourseListSkeletons = ({ count = 6 }: Props) => {
     <List
       dataSource={Array.from({ length: count }, (_, index) => ({ key: index }))}
       grid={{
-        column: 3,
         gutter: [16, 40],
+        xxl: 3,
+        xl: 3,
+        lg: 2,
+        md: 2,
+        sm: 1,
+        xs: 1,
       }}
       renderItem={() => (
-        <List.Item>
+        <List.Item className="w-full">
           <Card
             cover={
               <Skeleton.Image
                 active
-                style={{ height: 250, width: 300, objectFit: "cover" }}
+                style={{ maxWidth: "unset", height: 240, width: "100%" }}
               />
             }
+            className="w-full"
           >
             <Flex
               vertical
               gap={12}
+              className="w-full"
             >
               <Skeleton
                 active

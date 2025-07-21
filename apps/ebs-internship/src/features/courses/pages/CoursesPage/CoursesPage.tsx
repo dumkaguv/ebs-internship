@@ -1,11 +1,14 @@
 import { Container, Section } from "@/components";
-import { Flex, Input, Typography } from "antd";
+import { Flex, Input, Typography, Grid, Button, Drawer } from "antd";
 import { Sort, Filters, CourseList } from "@/features/courses/components";
 import { useCourses } from "@/features/courses/hooks";
-import { SearchOutlined } from "@ant-design/icons";
+import { FilterOutlined, SearchOutlined } from "@ant-design/icons";
 import { useCoursesPageStyles } from "./CoursesPageStyles";
 import { PaginationComponent } from "@libs/components";
 import { CourseListSkeletons } from "@/features/courses/components/CourseList";
+import { useState } from "react";
+
+const { useBreakpoint } = Grid;
 
 export const CoursesPage = () => {
   const {
@@ -21,6 +24,10 @@ export const CoursesPage = () => {
     setSort,
   } = useCourses();
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const screens = useBreakpoint();
+
   const { styles } = useCoursesPageStyles();
 
   return (
@@ -32,7 +39,11 @@ export const CoursesPage = () => {
         >
           <Typography.Title level={1}>Design Courses</Typography.Title>
           <Typography.Title level={3}>All Development Courses</Typography.Title>
-          <Flex gap={48}>
+          <Flex
+            gap={32}
+            align={screens.lg ? "center" : ""}
+            vertical={!screens.lg}
+          >
             <Flex flex={1}>
               <Input
                 prefix={<SearchOutlined />}
@@ -44,18 +55,38 @@ export const CoursesPage = () => {
                 onChange={(event) => setSearchValue(event.target.value)}
               />
             </Flex>
-            <Flex>
+            <Flex gap={20}>
+              {!screens.lg && (
+                <>
+                  <Button
+                    onClick={() => setIsOpen((prev) => !prev)}
+                    icon={<FilterOutlined />}
+                    style={{ width: "fit-content" }}
+                  >
+                    Filters
+                  </Button>
+                  <Drawer
+                    title="Filters"
+                    closable={{ "aria-label": "Close Button" }}
+                    placement="left"
+                    open={isOpen}
+                    onClose={() => setIsOpen(false)}
+                  >
+                    <Filters />
+                  </Drawer>
+                </>
+              )}
+
               <Sort
                 sort={sort}
+                title={screens.md ? "Sort By" : ""}
                 setSort={setSort}
                 isLoading={isLoading}
               />
             </Flex>
           </Flex>
           <Flex gap={40}>
-            <Flex className={styles.leftSide}>
-              <Filters />
-            </Flex>
+            <Flex className={styles.leftSide}>{screens.lg && <Filters />}</Flex>
             <Flex
               vertical
               align="center"
@@ -64,7 +95,18 @@ export const CoursesPage = () => {
               {isLoading ? (
                 <CourseListSkeletons count={6} />
               ) : (
-                <CourseList courses={courses} />
+                <CourseList
+                  grid={{
+                    gutter: [16, 40],
+                    xxl: 3,
+                    xl: 3,
+                    lg: 2,
+                    md: 2,
+                    sm: 1,
+                    xs: 1,
+                  }}
+                  courses={courses}
+                />
               )}
 
               {!isLoading && courses.length > 0 && total > perPage && (
