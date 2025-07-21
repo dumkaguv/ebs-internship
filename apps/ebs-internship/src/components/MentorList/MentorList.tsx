@@ -34,7 +34,15 @@ export const MentorList = ({
         <List
           loading={isLoading}
           dataSource={mentors?.slice(0, 4)}
-          grid={{ gutter: 16, column: 5 }}
+          grid={{
+            gutter: [16, 40],
+            xxl: 5,
+            xl: 4,
+            lg: 4,
+            md: 2,
+            sm: 2,
+            xs: 1,
+          }}
           renderItem={(mentor) => (
             <List.Item>
               <Link to={getRouteUrlById(RoutesEnum.MENTORS, mentor.id)}>

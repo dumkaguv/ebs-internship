@@ -169,7 +169,7 @@ export const HeaderResponsive = () => {
                 to={RoutesEnum.PROFILE.BASE}
                 className={styles.headerNavItem}
               >
-                Teach on Byway
+                Mentors
               </Link>
             </nav>
           </Flex>
@@ -182,7 +182,7 @@ export const HeaderResponsive = () => {
           align="center"
         >
           <HeaderMobileMenu />
-          {renderAvatar()}
+          {isAuth && renderAvatar()}
         </Flex>
       )}
     </Flex>

@@ -40,7 +40,15 @@ export const CourseList = ({
         <List
           loading={isLoading}
           dataSource={filteredCourses?.slice(0, 4)}
-          grid={{ gutter: 16, column: 4 }}
+          grid={{
+            gutter: [16, 40],
+            xxl: 4,
+            xl: 4,
+            lg: 2,
+            md: 2,
+            sm: 2,
+            xs: 1,
+          }}
           renderItem={(course) => (
             <List.Item>
               <Link to={getRouteUrlById(RoutesEnum.COURSES, course.id)}>

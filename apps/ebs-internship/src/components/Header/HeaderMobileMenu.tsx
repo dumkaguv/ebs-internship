@@ -82,6 +82,24 @@ export const HeaderMobileMenu = () => {
               Cart <ShoppingCartOutlined style={{ fontSize: 20 }} />
             </Button>
           </Badge>
+
+          <Flex
+            gap={24}
+            align="center"
+          >
+            <Link
+              to={RoutesEnum.SIGNIN}
+              className={styles.login}
+            >
+              Log In
+            </Link>
+            <Link
+              to={RoutesEnum.SIGNUP}
+              className={styles.signUp}
+            >
+              Sign Up
+            </Link>
+          </Flex>
         </Flex>
       </Drawer>
     </>

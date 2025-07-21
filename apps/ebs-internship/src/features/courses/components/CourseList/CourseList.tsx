@@ -13,8 +13,13 @@ export const CourseList = ({ courses, ...rest }: Props) => {
     <List
       dataSource={courses}
       grid={{
-        column: 3,
         gutter: [16, 40],
+        xxl: 3,
+        xl: 3,
+        lg: 2,
+        md: 2,
+        sm: 1,
+        xs: 1,
       }}
       renderItem={(course) => (
         <List.Item>
