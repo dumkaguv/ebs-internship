@@ -16,7 +16,6 @@ import filterIcon from "@/assets/filter.svg";
 import { PaginationComponent, useDebouncedValue } from "@libs";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAdminOrders } from "../api/fetchAdminOrders";
-// import { useRevenuePageStyles } from "./RevenuePageStyles";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
@@ -78,7 +77,6 @@ const allColumns = [
 ];
 
 export const RevenuePage = () => {
-  // const { styles } = useRevenuePageStyles();
   const [searchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchValue, setSearchValue] = useState(

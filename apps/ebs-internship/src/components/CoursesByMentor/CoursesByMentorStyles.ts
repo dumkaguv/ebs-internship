@@ -10,7 +10,7 @@ export const useCoursesByMentorStyles = createStyles(({ token, css }) => {
       display: flex;
       flex-direction: column;
       padding: 40px 0;
-      gap: 38px;
+      gap: 20px;
     `,
     button: css`
       &&.ant-btn {
@@ -23,10 +23,10 @@ export const useCoursesByMentorStyles = createStyles(({ token, css }) => {
       display: flex;
       gap: 16px;
       overflow-x: auto;
-      scrollbehavior: smooth;
+      scroll-behavior: smooth;
       scrollbar-width: none;
-      paddingbottom: 8;
     `,
+
     cardContainer: css`
       flex: 0 0 auto;
       width: 280px;

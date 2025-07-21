@@ -1,6 +1,6 @@
 import { Container } from "@/components";
 import { Author } from "@libs";
-import { Avatar, Button, Flex, List, Space, Typography } from "antd";
+import { Avatar, Button, Flex, List, Typography } from "antd";
 import { useMentorInformationStyles } from "./MentorInformationStyles";
 
 interface Props {
@@ -27,13 +27,13 @@ export const MentorInformation = ({ data }: Props) => {
         className={styles.firstSide}
         vertical
       >
-        <Space direction="vertical">
+        <Flex vertical>
           <Typography.Paragraph>Instructor</Typography.Paragraph>
           <Typography.Title level={2}>
             {data.first_name} {data.last_name}
           </Typography.Title>
           <Typography.Paragraph>{data.bio}</Typography.Paragraph>
-        </Space>
+        </Flex>
 
         <Flex
           vertical

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchMentorDetails } from "@/features/mentorPage/api/fetchMentorDetails";
 import { MentorInformation } from "@/features/mentorPage/components";
 import { Flex, Spin, Typography } from "antd";
-import { CoursesByMentor } from "@/components";
+import { CoursesByMentor, Reviews } from "@/components";
 
 export const MentorPage = () => {
   const { id } = useParams();
@@ -33,6 +33,7 @@ export const MentorPage = () => {
         authorId={Number(id)}
         authorName={`${data.first_name} ${data.last_name}`}
       />
+      <Reviews id="Reviews" />
     </>
   );
 };
