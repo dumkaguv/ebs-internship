@@ -72,10 +72,11 @@ export const CartItem = ({ cartItem, course }: Props) => {
         {course ? (
           <Image
             src={course?.image_url}
-            width={192}
-            height={108}
+            width={120}
+            height={120}
             fallback={IMAGE_FALLBACKS.COURSE}
             preview={false}
+            style={{ objectFit: "cover" }}
             alt=""
           />
         ) : (
@@ -100,7 +101,7 @@ export const CartItem = ({ cartItem, course }: Props) => {
               {course?.title ?? product.name}
             </Typography.Title>
             <Typography.Paragraph className={globalStyles.paragraphSm}>
-              By {product.authors[0]?.first_name}{" "}
+              By {product.authors[0]?.first_name ?? "Unknown  "}{" "}
               {product.authors[0]?.last_name}
             </Typography.Paragraph>
           </Flex>

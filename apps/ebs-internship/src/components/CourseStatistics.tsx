@@ -18,7 +18,7 @@ export const CourseStatistics = ({
     <Flex
       gap={4}
       align={orientation === "horizontal" ? "center" : ""}
-      wrap="wrap"
+      wrap
       vertical={orientation === "vertical"}
     >
       <Flex
