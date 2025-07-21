@@ -1,7 +1,7 @@
 import { createStyles } from "antd-style";
 
 export const useOrderDetailsStyles = createStyles(
-  ({ css, token }, props: { isPendingCart?: boolean }) => {
+  ({ css, token, responsive }, props: { isPendingCart?: boolean }) => {
     return {
       container: css`
         &&.ant-flex {
@@ -12,6 +12,11 @@ export const useOrderDetailsStyles = createStyles(
           max-width: 400px;
 
           ${props.isPendingCart && "filter: blur(4px); pointer-event: none;"}
+
+          ${responsive.md} {
+            max-width: unset;
+            min-width: 320px;
+          }
         }
       `,
 

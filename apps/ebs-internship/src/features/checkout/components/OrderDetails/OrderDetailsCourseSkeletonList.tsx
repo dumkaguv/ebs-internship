@@ -16,7 +16,7 @@ export const OrderDetailsCourseSkeletonList = ({ count = 3 }: Props) => {
           <Flex gap={8}>
             <Skeleton.Image
               active
-              style={{ width: 133, height: 133 }}
+              style={{ width: 111, height: 111 }}
             />
             <Flex
               vertical
@@ -24,12 +24,12 @@ export const OrderDetailsCourseSkeletonList = ({ count = 3 }: Props) => {
             >
               <Skeleton.Node
                 active
-                style={{ width: 220, height: 26 }}
+                style={{ width: 185, height: 26 }}
               />
 
               <Skeleton.Node
                 active
-                style={{ width: 180, height: 26 }}
+                style={{ width: 170, height: 26 }}
               />
 
               <Skeleton.Node
