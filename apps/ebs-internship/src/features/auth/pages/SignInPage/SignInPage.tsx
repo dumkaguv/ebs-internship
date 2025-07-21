@@ -1,9 +1,13 @@
+import { Flex, Image, Typography, Grid } from "antd";
 import { Container, Section } from "@/components";
-import { Flex, Image, Typography } from "antd";
 import { SignInForm } from "@/features/auth/components";
 import { useSignInStyles } from "./SignInStyles";
 
+const { useBreakpoint } = Grid;
+
 export const SignInPage = () => {
+  const screens = useBreakpoint();
+
   const { styles } = useSignInStyles();
 
   return (
@@ -27,11 +31,14 @@ export const SignInPage = () => {
 
             <SignInForm />
           </Flex>
-          <Image
-            src="/images/login-hero.png"
-            preview={false}
-            alt="loginImg"
-          />
+
+          {screens.xl && (
+            <Image
+              src="/images/login-hero.png"
+              preview={false}
+              alt="loginImg"
+            />
+          )}
         </Flex>
       </Section>
     </Container>
