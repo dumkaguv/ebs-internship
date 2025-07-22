@@ -36,7 +36,7 @@ export const CoursesByMentor = ({ authorId, authorName }: Props) => {
     <div className={styles.fullContainer}>
       <Container className={styles.coursesContainer}>
         <Flex justify="space-between">
-          <Typography.Title level={3}>
+          <Typography.Title level={4}>
             More Courses by {authorName}
           </Typography.Title>
           <Flex

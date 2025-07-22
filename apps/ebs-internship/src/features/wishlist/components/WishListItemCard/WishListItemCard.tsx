@@ -1,5 +1,5 @@
 import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
-import { type Course, IMAGE_FALLBACKS, LOCAL_STORAGE } from "@libs";
+import { type Course, IMAGE_FALLBACKS } from "@libs";
 import { Button, Card, Flex, Typography, Image } from "antd";
 import { useNavigate } from "react-router-dom";
 import {
