@@ -7,7 +7,7 @@ interface Props {
 export const WishListItemCardSkeletonList = ({ count = 4 }: Props) => {
   return (
     <List
-      grid={{ gutter: [16, 16], column: 4 }}
+      grid={{ gutter: [16, 16], column: 4, xs: 1, sm: 2, md: 3, lg: 4 }}
       dataSource={Array.from({ length: count }, (_, index) => ({ key: index }))}
       renderItem={(item) => (
         <List.Item key={item.key}>
