@@ -42,6 +42,14 @@ export const StepContent = ({ form, title, children, onNext }: Props) => {
     }
   };
 
+  const onButtonPrevClick = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    } else {
+      form.resetFields();
+    }
+  };
+
   useEffect(() => {
     if (isPending) {
       message.open({
@@ -68,19 +76,13 @@ export const StepContent = ({ form, title, children, onNext }: Props) => {
           align="center"
           justify="space-between"
         >
-          {currentStep > 1 ? (
-            <Button
-              variant="outlined"
-              onClick={() => setCurrentStep(currentStep - 1)}
-            >
-              Previous
-            </Button>
-          ) : (
-            <ButtonBack
-              title="Cancel"
-              showIcon={false}
-            />
-          )}
+          <Button
+            variant="outlined"
+            onClick={onButtonPrevClick}
+          >
+            {currentStep === 1 ? "Cancel" : "Go Back"}
+          </Button>
+
           <Button
             onClick={onButtonNextClick}
             loading={isPending}
