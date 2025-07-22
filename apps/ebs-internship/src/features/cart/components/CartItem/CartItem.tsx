@@ -1,13 +1,13 @@
 import { Button, Flex, Image, message, Skeleton, Typography } from "antd";
-import { useCartItemStyles } from "./CartItemStyles";
-import { useStyles } from "@/styles";
-import type { CartItem as CartItemType } from "@/features/cart/types/cartItem";
-import { Course, IMAGE_FALLBACKS, LOCAL_STORAGE } from "@libs";
 import { Link } from "react-router-dom";
-import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteProduct } from "@/features/cart/api";
+import { Course, IMAGE_FALLBACKS, LOCAL_STORAGE } from "@libs";
 import { CourseStatistics } from "@/components";
+import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
+import type { CartItem as CartItemType } from "@/features/cart/types/cartItem";
+import { deleteProduct } from "@/features/cart/api";
+import { useStyles } from "@/styles";
+import { useCartItemStyles } from "./CartItemStyles";
 
 interface Props {
   cartItem: CartItemType;
@@ -15,12 +15,7 @@ interface Props {
 }
 
 export const CartItem = ({ cartItem, course }: Props) => {
-  const { styles } = useCartItemStyles();
-  const { styles: globalStyles } = useStyles();
-
   const queryClient = useQueryClient();
-
-  const { product } = cartItem;
 
   const {
     mutate: deleteProductMutate,
@@ -32,6 +27,11 @@ export const CartItem = ({ cartItem, course }: Props) => {
       queryClient.invalidateQueries({ queryKey: ["cart"] });
     },
   });
+
+  const { styles } = useCartItemStyles({ isProductDeleting });
+  const { styles: globalStyles } = useStyles();
+
+  const { product } = cartItem;
 
   const onSaveButtonClick = async () => {
     try {
@@ -57,12 +57,7 @@ export const CartItem = ({ cartItem, course }: Props) => {
   };
 
   return (
-    <article
-      style={{
-        filter: isProductDeleting ? "blur(4px)" : "none",
-      }}
-      className={styles.itemCard}
-    >
+    <article className={styles.itemCard}>
       <Link
         to={
           (course && getRouteUrlById(RoutesEnum.COURSES, course.id)) ??
@@ -72,16 +67,14 @@ export const CartItem = ({ cartItem, course }: Props) => {
         {course ? (
           <Image
             src={course?.image_url}
-            width={120}
-            height={120}
             fallback={IMAGE_FALLBACKS.COURSE}
             preview={false}
-            style={{ objectFit: "cover" }}
+            className={styles.image}
             alt=""
           />
         ) : (
           <Skeleton.Image
-            style={{ width: 192, height: 108 }}
+            style={{ width: 160, height: 150 }}
             active
           />
         )}
@@ -89,8 +82,8 @@ export const CartItem = ({ cartItem, course }: Props) => {
       <Flex
         justify="space-between"
         align="flex-start"
-        gap={32}
         flex={1}
+        className={styles.mainInfo}
       >
         <Flex
           vertical
@@ -106,7 +99,10 @@ export const CartItem = ({ cartItem, course }: Props) => {
             </Typography.Paragraph>
           </Flex>
 
-          <CourseStatistics course={course} />
+          <CourseStatistics
+            course={course}
+            orientation="vertical"
+          />
 
           <Flex align="center">
             <Button
@@ -133,7 +129,10 @@ export const CartItem = ({ cartItem, course }: Props) => {
           </Flex>
         </Flex>
 
-        <Typography.Title level={3}>
+        <Typography.Title
+          level={3}
+          className={styles.price}
+        >
           {product.price?.toFixed(2)}$
         </Typography.Title>
       </Flex>
