@@ -1,22 +1,28 @@
+import { Flex, Image, Typography, Grid } from "antd";
 import { Container, Section } from "@/components";
-import { Flex, Image, Typography } from "antd";
 import { SignUpForm } from "@/features/auth/components";
 import { useSignUpPageStyles } from "./SignUpPageStyles";
 
+const { useBreakpoint } = Grid;
+
 export const SignUpPage = () => {
+  const screens = useBreakpoint();
+
   const { styles } = useSignUpPageStyles();
 
   return (
     <Container>
       <Section>
         <Flex gap={40}>
-          <Image
-            src="/images/signup-hero.jpg"
-            width={560}
-            height={760}
-            preview={false}
-            alt=""
-          />
+          {screens.xl && (
+            <Image
+              src="/images/signup-hero.jpg"
+              width={560}
+              height={760}
+              preview={false}
+              alt=""
+            />
+          )}
           <Flex
             vertical
             flex={1}
