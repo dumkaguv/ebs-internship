@@ -1,10 +1,23 @@
-import { Flex, Form, Input, Radio, Typography, Image, DatePicker } from "antd";
+import {
+  Flex,
+  Form,
+  Input,
+  Radio,
+  Typography,
+  Image,
+  DatePicker,
+  Grid,
+} from "antd";
 import dayjs from "dayjs";
 import { useMainInfoStyles } from "./MainInfoStyles";
 
 const dateFormat = "DD.MM.YYYY";
 
+const { useBreakpoint } = Grid;
+
 export const MainInfo = () => {
+  const screens = useBreakpoint();
+
   const { styles } = useMainInfoStyles();
 
   return (
@@ -13,7 +26,10 @@ export const MainInfo = () => {
       gap={8}
       className={styles.container}
     >
-      <Flex gap={16}>
+      <Flex
+        vertical={!screens.md}
+        gap={16}
+      >
         <Flex
           vertical
           gap={8}

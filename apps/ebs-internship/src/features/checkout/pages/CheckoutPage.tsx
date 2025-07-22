@@ -1,8 +1,9 @@
-import { Flex, Form, Typography } from "antd";
+import { Flex, Form, Grid, Typography } from "antd";
 import { useForm } from "antd/es/form/Form";
 import { Breadcrumb, Container, Section } from "@/components";
 import { MainInfo, OrderDetails } from "@/features/checkout/components";
 
+const { useBreakpoint } = Grid;
 export interface FormValues {
   country: string;
   state: string;
@@ -14,6 +15,8 @@ export interface FormValues {
 
 export const CheckoutPage = () => {
   const [form] = useForm<FormValues>();
+
+  const screens = useBreakpoint();
 
   return (
     <Form
@@ -27,12 +30,18 @@ export const CheckoutPage = () => {
             vertical
             gap={32}
           >
-            <Flex gap={40}>
+            <Flex
+              vertical={!screens.sm}
+              gap={24}
+            >
               <Typography.Title level={2}>Checkout Page</Typography.Title>
               <Breadcrumb title="Checkout" />
             </Flex>
 
-            <Flex gap={40}>
+            <Flex
+              gap={40}
+              vertical={!screens.lg}
+            >
               <MainInfo />
               <OrderDetails form={form} />
             </Flex>
