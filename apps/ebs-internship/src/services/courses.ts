@@ -36,6 +36,7 @@ export const fetchCourses = async (
 ): Promise<ApiResponse<Course[]> | undefined> => {
   try {
     if (params?.ids && params?.ids.length === 0) return;
+    if (params?.title?.length === 0) params.title = null;
 
     const response = await axiosInstance.get<ApiResponse<Course[]>>(
       ApiRoutes.COURSES,
