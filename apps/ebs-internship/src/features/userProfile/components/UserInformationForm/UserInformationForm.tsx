@@ -36,12 +36,14 @@ export const UserInformationForm = ({ data }: Props) => {
     >
       <Flex
         vertical
+        gap={16}
         className={styles.userContainer}
       >
         <Flex
-          gap={30}
           align="center"
+          gap={16}
           justify="space-between"
+          className={styles.nameContainer}
         >
           <Form.Item
             label={<Typography.Paragraph>First Name</Typography.Paragraph>}
@@ -107,6 +109,7 @@ export const UserInformationForm = ({ data }: Props) => {
             htmlType="submit"
             block
             loading={isPending}
+            className={styles.formItem}
           >
             Save Changes
           </Button>

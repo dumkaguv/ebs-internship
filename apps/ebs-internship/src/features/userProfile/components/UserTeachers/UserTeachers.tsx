@@ -24,6 +24,7 @@ export const UserTeachers = () => {
       <Flex
         gap={24}
         align="stretch"
+        wrap
       >
         {data?.map((teacher) => (
           <Card

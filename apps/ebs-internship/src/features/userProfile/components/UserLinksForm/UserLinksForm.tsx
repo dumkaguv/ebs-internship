@@ -57,7 +57,7 @@ export const UserLinksForm = () => {
     >
       <Typography.Title level={4}>Links</Typography.Title>
 
-      <Flex vertical>
+      <Flex vertical gap={16}>
         <Form.Item
           label={<Typography.Paragraph>Website</Typography.Paragraph>}
           name="website"

@@ -1,6 +1,6 @@
 import { createStyles } from "antd-style";
 
-export const useUserProfileFormStyles = createStyles(({ css }) => {
+export const useUserProfileFormStyles = createStyles(({ css, responsive }) => {
   return {
     formContainer: css`
       display: flex;
@@ -9,6 +9,12 @@ export const useUserProfileFormStyles = createStyles(({ css }) => {
       gap: 40px;
       padding: 40px 0;
       width: 100%;
+    `,
+    imageAndPasswordContainer: css`
+      width: 100%;
+      ${responsive.lg} {
+        flex-direction: column;
+      }
     `,
   };
 });

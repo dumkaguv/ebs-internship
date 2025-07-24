@@ -54,7 +54,7 @@ const dashboardLectures = [
   {
     subtitle: "Clasification of logistics",
     title: "Final Test in logistics",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUpAAp0LLFXT2cl2cIMQ5qZxjVAlzId7cczA&s",
+    img: "https://www.mooc.org/hubfs/what-computer-programming-jobs-offer-remote-work-jpg.jpeg",
   },
   {
     subtitle: "Benefits of using logistics systems",
@@ -80,7 +80,8 @@ export const UserDashboard = () => {
       >
         <Typography.Title level={4}>Dashboard</Typography.Title>
         <Flex
-          justify="space-between"
+          justify="flex-start"
+          wrap
           gap={10}
         >
           {dashboardBanners.map((banner, index) => (
@@ -123,7 +124,7 @@ export const UserDashboard = () => {
               className={styles.cardContainer}
             >
               <img
-                width="auto"
+                width="100%"
                 height={200}
                 src={lecture.img}
                 alt={lecture.title}

@@ -37,7 +37,10 @@ export const UserPasswordForm = () => {
     >
       <Typography.Title level={4}>Change Password</Typography.Title>
 
-      <Flex vertical>
+      <Flex
+        vertical
+        gap={16}
+      >
         <Form.Item
           label={<Typography.Paragraph>Current password</Typography.Paragraph>}
           name="current_password"
@@ -71,22 +74,22 @@ export const UserPasswordForm = () => {
           label={<Typography.Paragraph>New password</Typography.Paragraph>}
           name="new_password"
           className={styles.formItem}
-          // rules={[
-          //   {
-          //     required: true,
-          //     message: "Please enter your password",
-          //   },
-          //   {
-          //     min: 8,
-          //     message: "Password must be at least 8 characters",
-          //   },
-          //   {
-          //     pattern:
-          //       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&^])[A-Za-z\d@$!%*#?&^]+$/,
-          //     message:
-          //       "Password must include upper/lowercase, number, and special character",
-          //   },
-          // ]}
+          rules={[
+            {
+              required: true,
+              message: "Please enter your password",
+            },
+            {
+              min: 8,
+              message: "Password must be at least 8 characters",
+            },
+            {
+              pattern:
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&^])[A-Za-z\d@$!%*#?&^]+$/,
+              message:
+                "Password must include upper/lowercase, number, and special character",
+            },
+          ]}
         >
           <Input.Password
             className={styles.inputForm}
@@ -101,20 +104,20 @@ export const UserPasswordForm = () => {
           }
           name="new_confirm_password"
           className={styles.formItem}
-          // rules={[
-          //   {
-          //     required: true,
-          //     message: "Please confirm your password",
-          //   },
-          //   ({ getFieldValue }) => ({
-          //     validator(_, value) {
-          //       if (!value || getFieldValue("new_password") === value) {
-          //         return Promise.resolve();
-          //       }
-          //       return Promise.reject(new Error("Passwords do not match"));
-          //     },
-          //   }),
-          // ]}
+          rules={[
+            {
+              required: true,
+              message: "Please confirm your password",
+            },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("new_password") === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error("Passwords do not match"));
+              },
+            }),
+          ]}
         >
           <Input.Password
             type="password"

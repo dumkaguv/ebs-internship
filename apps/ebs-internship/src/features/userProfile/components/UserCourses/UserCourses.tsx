@@ -32,6 +32,8 @@ export const UserCourses = () => {
       <Flex
         gap={24}
         wrap
+        align="center"
+        justify="space-between"
       >
         {data?.data.map((course, index) => (
           <Card
@@ -39,8 +41,8 @@ export const UserCourses = () => {
             key={index}
           >
             <Image
-              width={266}
-              height={139}
+              width={"100%"}
+              height={140}
               fallback={IMAGE_FALLBACKS.COURSE}
               src={course.image_url}
               alt="courseImg"
