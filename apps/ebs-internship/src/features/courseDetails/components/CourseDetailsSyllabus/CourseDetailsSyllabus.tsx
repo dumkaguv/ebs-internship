@@ -1,4 +1,3 @@
-import { Container } from "@/components";
 import { Lesson } from "@libs";
 import { Collapse, Typography, Space, Flex } from "antd";
 import { Link } from "react-router-dom";
@@ -43,7 +42,7 @@ export const CourseDetailsSyllabus = ({ lessons, id }: Props) => {
               <Typography.Paragraph className={styles.itemDuration}>
                 <img
                   src="/icons/video-recorder.svg"
-                  alt="iconvideo"
+                  alt="iconVideo"
                 />
                 {topic.duration ?? "0 min"}
               </Typography.Paragraph>
@@ -57,7 +56,7 @@ export const CourseDetailsSyllabus = ({ lessons, id }: Props) => {
   }));
 
   return (
-    <Container className={styles.syllabusContainer}>
+    <Flex className={styles.syllabusContainer}>
       <Typography.Title level={4}>Syllabus</Typography.Title>
 
       {lessons?.length !== 0 ? (
@@ -70,6 +69,6 @@ export const CourseDetailsSyllabus = ({ lessons, id }: Props) => {
       ) : (
         <Typography.Text type="secondary">No lessons available</Typography.Text>
       )}
-    </Container>
+    </Flex>
   );
 };

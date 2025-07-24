@@ -1,4 +1,4 @@
-import { Flex } from "antd";
+import { Flex, Image } from "antd";
 import { useSocialIconsStyles } from "./SocialIconsStyles";
 
 const socialLinks = [
@@ -35,6 +35,7 @@ export const SocialIcons = () => {
   return (
     <Flex
       justify="flex-start"
+      wrap
       gap={20}
     >
       {socialLinks.map((item) => (
@@ -45,11 +46,12 @@ export const SocialIcons = () => {
           rel="noopener noreferrer"
           className={styles.socialIcons}
         >
-          <img
+          <Image
             height={40}
             width={40}
             src={`/icons/${item.img}`}
             alt={item.alt}
+            preview={false}
           />
         </a>
       ))}

@@ -54,13 +54,19 @@ export const OurCustomer = () => {
     scrollRef.current?.scrollBy({ left: 350, behavior: "smooth" });
 
   return (
-    <Flex className={styles.backgroundContainer}>
+    <div className={styles.fullContainer}>
       <Container className={styles.customerContainer}>
-        <Flex justify="space-between">
-          <Typography.Title level={3}>
+        <Flex
+          justify="space-between"
+          gap={16}
+        >
+          <Typography.Title level={4}>
             What Our Customer Say About Us
           </Typography.Title>
-          <Flex gap={8}>
+          <Flex
+            justify="flex-end"
+            gap={4}
+          >
             <Button
               className={styles.button}
               block
@@ -77,9 +83,10 @@ export const OurCustomer = () => {
             </Button>
           </Flex>
         </Flex>
-        <Flex
-          ref={scrollRef}
+
+        <div
           className={styles.carrousel}
+          ref={scrollRef}
         >
           {ourCustomerMessage.map((item, index) => (
             <Card
@@ -110,8 +117,8 @@ export const OurCustomer = () => {
               </Flex>
             </Card>
           ))}
-        </Flex>
+        </div>
       </Container>
-    </Flex>
+    </div>
   );
 };
