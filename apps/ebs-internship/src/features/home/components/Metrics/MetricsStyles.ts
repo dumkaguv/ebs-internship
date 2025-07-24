@@ -1,6 +1,6 @@
 import { createStyles } from "antd-style";
 
-export const useMetricsStyles = createStyles(({ token, css }) => {
+export const useMetricsStyles = createStyles(({ token, css, responsive }) => {
   return {
     metrics: css`
       background-color: ${token.grey.grey100};
@@ -11,7 +11,13 @@ export const useMetricsStyles = createStyles(({ token, css }) => {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
       margin-bottom: 0;
+
+      ${responsive.lg} {
+        flex-direction: column;
+      }
     `,
 
     metricsCount: css`

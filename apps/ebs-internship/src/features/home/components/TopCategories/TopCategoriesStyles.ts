@@ -2,13 +2,6 @@ import { createStyles } from "antd-style";
 
 export const useTopCategoriesStyles = createStyles(({ token, css }) => {
   return {
-    topCategories: css`
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 32px;
-      margin-top: 48px;
-    `,
-
     topCategoriesCard: css`
       && {
         padding-top: 20px;

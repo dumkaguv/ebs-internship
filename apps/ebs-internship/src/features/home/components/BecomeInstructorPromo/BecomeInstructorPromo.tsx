@@ -17,14 +17,14 @@ export const BecomeInstructorPromo = () => {
           <Flex
             justify="space-between"
             align="center"
+            className={styles.wrapper}
           >
             <Image
               src="/images/persons/8.png"
               preview={false}
-              width={400}
-              height={425}
               alt=""
               loading="lazy"
+              className={styles.image}
             />
             <Flex
               vertical
@@ -48,7 +48,7 @@ export const BecomeInstructorPromo = () => {
                 </Typography.Paragraph>
                 <Button
                   type="primary"
-                  href={RoutesEnum.PROFILE}
+                  href={RoutesEnum.PROFILE.BASE}
                   icon={<ArrowRightOutlined />}
                   iconPosition="end"
                 >
@@ -60,6 +60,7 @@ export const BecomeInstructorPromo = () => {
           <Flex
             justify="space-between"
             align="center"
+            className={styles.wrapper}
           >
             <Flex
               vertical
@@ -93,10 +94,9 @@ export const BecomeInstructorPromo = () => {
             <Image
               src="/images/persons/9.png"
               preview={false}
-              width={470}
-              height={380}
               alt=""
               loading="lazy"
+              className={styles.image}
             />
           </Flex>
         </Flex>

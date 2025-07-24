@@ -21,7 +21,7 @@ export const TopCategories = () => {
         endAdornment={<Link to={RoutesEnum.COURSES}>See All</Link>}
       >
         <List
-          grid={{ gutter: 16, column: 4 }}
+          grid={{ gutter: [16, 16], xxl: 4, xl: 4, lg: 2, md: 2, sm: 1, xs: 1 }}
           loading={isLoading}
           itemLayout="horizontal"
           dataSource={categories?.slice(0, 4)}

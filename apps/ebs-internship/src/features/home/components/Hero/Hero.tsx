@@ -18,6 +18,7 @@ export const Hero = () => {
           justify="space-between"
           align="center"
           gap={16}
+          className={styles.mainWrapper}
         >
           <Flex
             className={styles.wrapper}
@@ -52,31 +53,32 @@ export const Hero = () => {
             </Space>
           </Flex>
 
-          <Flex align="center">
+          <Flex
+            align="center"
+            className={styles.imageWrapper}
+          >
             <Image
               src="/images/persons/1.png"
-              width={222}
-              height={222}
               preview={false}
               alt=""
+              className={styles.image}
             />
             <Flex
               vertical
               gap={8}
+              className={styles.imageWrapperInner}
             >
               <Image
                 src="/images/persons/2.png"
-                width={222}
-                height={222}
                 preview={false}
                 alt=""
+                className={styles.image}
               />
               <Image
                 src="/images/persons/3.png"
-                width={222}
                 preview={false}
-                height={222}
                 alt=""
+                className={styles.image}
               />
             </Flex>
           </Flex>
