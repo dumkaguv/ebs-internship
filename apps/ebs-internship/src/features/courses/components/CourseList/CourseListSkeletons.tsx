@@ -23,7 +23,12 @@ export const CourseListSkeletons = ({ count = 6 }: Props) => {
             cover={
               <Skeleton.Image
                 active
-                style={{ maxWidth: "unset", height: 240, width: "100%" }}
+                style={{
+                  maxWidth: "unset",
+                  height: 240,
+                  width: "100%",
+                  minWidth: 300,
+                }}
               />
             }
             className="w-full"
