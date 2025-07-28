@@ -5,7 +5,7 @@ import { Api } from "@libs";
 import { NotificationDrawer } from "@/features/notifications";
 import { getPageTitle } from "@/utils";
 import { useHeaderStyles } from "./HeaderStyles";
-import { RoutesEnum } from "@/config/routesEnum";
+import { getRouteUrlById, RoutesEnum } from "@/config/routesEnum";
 
 const { Header } = Layout;
 
@@ -52,6 +52,16 @@ export const AppHeader = () => {
           gap={20}
           align="center"
         >
+          {isCoursePage && id && (
+            <Button
+              type="primary"
+              onClick={() =>
+                navigate(getRouteUrlById(RoutesEnum.COURSES.ADD, Number(id)))
+              }
+            >
+              Edit Course
+            </Button>
+          )}
           <Button
             type="primary"
             onClick={() => navigate(RoutesEnum.COURSES.ADD)}
